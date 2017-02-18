@@ -14,7 +14,7 @@ public class MainInterfaceFrame extends JFrame {
     public SerialCommunications SerialCommunication = new SerialCommunications();
     public JPanel contentPane;
     public MainInterfaceFrame frame;
-    //public ControllerInput LogitechController;
+    public ControllerInput LogitechController;
     /**
      * Launch the application.
      */
@@ -72,38 +72,37 @@ public class MainInterfaceFrame extends JFrame {
         btnSerialDisconnect.setVisible(false);
         btnSerialDisconnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialDisconnectClicked();}});
         contentPane.add(btnSerialDisconnect, BorderLayout.CENTER);
-		/*
+
 		JLabel lblChooseController = new JLabel("Choose Controller");
 		lblChooseController.setName("lblChooseController");
-		lblChooseController.setBounds(new Rectangle(50, 50, 130, 20));
+		lblChooseController.setBounds(new Rectangle(450, 50, 130, 20));
 		contentPane.add(lblChooseController, BorderLayout.CENTER);
 
 		JComboBox ControllerComboBox = new JComboBox();
-		ControllerComboBox.setBounds(new Rectangle(50, 80, 130, 30));
+		ControllerComboBox.setBounds(new Rectangle(450, 80, 130, 30));
 		ControllerComboBox.setName("ControllerComboBox");
-		Controller.btnControllerRefreshClicked();
-		ControllerComboBox.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){Controller.ControllerComboBoxSelection();}});
+		ControllerComboBox.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.ControllerComboBoxSelection();}});
 		contentPane.add(ControllerComboBox, BorderLayout.CENTER);
 
 		JButton btnControllerRefresh = new JButton("Refresh");
-		btnControllerRefresh.setBounds(new Rectangle(200, 50, 100, 40));
+		btnControllerRefresh.setBounds(new Rectangle(600, 50, 100, 40));
 		btnControllerRefresh.setName("btnControllerRefresh");
-		btnControllerRefresh.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){Controller.btnControllerRefreshClicked();}});
+		btnControllerRefresh.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnControllerRefreshClicked();}});
 		contentPane.add(btnControllerRefresh, BorderLayout.CENTER);
 
 		JButton btnControllerConnect = new JButton("Connect");
-		btnControllerConnect.setBounds(new Rectangle(200, 100, 100, 40));
+		btnControllerConnect.setBounds(new Rectangle(600, 100, 100, 40));
 		btnControllerConnect.setName("btnControllerConnect");
-		btnControllerConnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){Controller.btnControllerConnectClicked();}});
+		btnControllerConnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnControllerConnectClicked();}});
 		contentPane.add(btnControllerConnect, BorderLayout.CENTER);
 
 		JButton btnControllerDisconnect = new JButton("Disconnect");
-		btnControllerDisconnect.setBounds(new Rectangle(200, 150, 100, 40));
+		btnControllerDisconnect.setBounds(new Rectangle(600, 150, 100, 40));
 		btnControllerDisconnect.setName("btnControllerDisconnect");
 		btnControllerDisconnect.setVisible(false);
-		btnControllerDisconnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){Controller.btnControllerDisconnectClicked();}});
+		btnControllerDisconnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnControllerDisconnectClicked();}});
 		contentPane.add(btnControllerDisconnect, BorderLayout.CENTER);
-		*/
+
         createComponentMap();
     }
 
