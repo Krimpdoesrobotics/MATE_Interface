@@ -26,7 +26,9 @@ public class ControllerInput {
             JComboBox SomeComboBox = (JComboBox) SomeComponent;
             SomeComboBox.removeAllItems();
             for(int i = 0; i < Controllers.length; i++){
-                SomeComboBox.addItem(Controllers[i]);
+                if(Controllers[i].getType() == Controller.Type.GAMEPAD) {
+                    SomeComboBox.addItem(Controllers[i]);
+                }
             }
         }
     }
