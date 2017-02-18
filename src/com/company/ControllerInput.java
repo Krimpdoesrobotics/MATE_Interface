@@ -54,10 +54,14 @@ public class ControllerInput {
                         YRotation = value;
                     }
                 } else {
-                    if(value==1.0f) {
-                        buffer.append("On");
-                    } else {
-                        buffer.append("Off");
+                    if(comp.getIdentifier() == Component.Identifier.Axis.POV){
+                        buffer.append(value);
+                    }else{
+                        if(value==1.0f) {
+                            buffer.append("On");
+                        } else {
+                            buffer.append("Off");
+                        }
                     }
                 }
                 System.out.println(buffer.toString());
@@ -190,7 +194,7 @@ public class ControllerInput {
         // 12: BUTTON 7: Start Button
         // 13: BUTTON 8: L Stick Push Down
         // 14: BUTTON 9: R Stick Push Down
-        // 15: HAT SWITCH: D Pad
+        // 15: HAT SWITCH: D Pad 0 Nothing .125 FL .25 F, .375 FR, etc..... 1.0 L
         // --------------- //
 
     }
