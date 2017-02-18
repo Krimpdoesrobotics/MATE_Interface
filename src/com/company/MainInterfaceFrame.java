@@ -184,9 +184,4 @@ public class MainInterfaceFrame extends JFrame {
         command+= powerstr;
         return SerialCommunication.PortSender(command);
     }
-    public boolean LJInput()//method to catch changes in left joystick position
-    {
-        //TODO implenent this method
-        return true;//temporary - change when this method is implemented0
-    }
 }
