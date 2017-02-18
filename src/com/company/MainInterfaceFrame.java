@@ -10,11 +10,10 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 public class MainInterfaceFrame extends JFrame {
-    public static HashMap componentMap;
-    public SerialCommunications SerialCommunication = new SerialCommunications();
-    public JPanel contentPane;
-    public MainInterfaceFrame frame;
-    public ControllerInput LogitechController = new ControllerInput();
+    private static HashMap componentMap;
+    private SerialCommunications SerialCommunication = new SerialCommunications();
+    private JPanel contentPane;
+    private ControllerInput LogitechController = new ControllerInput();
     /**
      * Launch the application.
      */
@@ -189,4 +188,5 @@ public class MainInterfaceFrame extends JFrame {
         command+= powerstr;
         return SerialCommunication.PortSender(command);
     }
+
 }

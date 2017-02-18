@@ -9,19 +9,41 @@ import java.awt.*;
 import javax.swing.JComboBox;
 
 public class SerialCommunications {
-    public String[] portNames;
-    public String portSelected;
-    public SerialPort serialPort;
+    // instance variables
+    // private data
+    private String[] portNames;
+    private String portSelected;
+    private SerialPort serialPort;
 
-    //constructor
-    public SerialCommunications(){
+    // constructor
+    public SerialCommunications() {
+        // default constructor
+
     }
 
-    public void btnSerialRefreshClicked(){
+    // refresh
+    public void btnSerialRefreshClicked() {
+        //
+        // refreshes the port so if the port changes, it will update.
+        //
         refreshPortList();
+
+    }
+    private void refreshPortList() {
+        portNames = SerialPortList.getPortNames();
+        Component SomeComponent = MainInterfaceFrame.getComponentByName("serialComboBox");
+        if (SomeComponent instanceof JComboBox) {
+            JComboBox SomeComboBox = (JComboBox) SomeComponent;
+            SomeComboBox.removeAllItems();
+            for (int i = 0; i < portNames.length; i++) {
+                SomeComboBox.addItem(portNames[i]);
+            }
+        }
+
     }
 
-    public void btnSerialConnectClicked(){
+    // connection
+    public void btnSerialConnectClicked() {
         MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(false);
         MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(true);
         try {
@@ -39,57 +61,55 @@ public class SerialCommunications {
                     SerialPort.FLOWCONTROL_RTSCTS_OUT);
 
             serialPort.addEventListener(new PortReader(), SerialPort.MASK_RXCHAR);
-        }
-        catch (SerialPortException ex) {
-            System.out.println("There are an error on writing string to port: " + ex);
-        }
-    }
 
-    public void btnSerialDisconnectClicked(){
+        } catch (SerialPortException ex) {
+            System.out.println("There are an error on writing string to port: " + ex);
+
+        }
+
+    }
+    public void btnSerialDisconnectClicked() {
         MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(false);
         MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(true);
         try {
             serialPort.closePort();
+
         } catch (SerialPortException e) {
             e.printStackTrace();
+
         }
+
     }
 
-    public void refreshPortList(){
-        portNames = SerialPortList.getPortNames();
-        Component SomeComponent = MainInterfaceFrame.getComponentByName("serialComboBox");
-        if(SomeComponent instanceof JComboBox){
-            JComboBox SomeComboBox = (JComboBox) SomeComponent;
-            SomeComboBox.removeAllItems();
-            for(int i = 0; i < portNames.length; i++){
-                SomeComboBox.addItem(portNames[i]);
-            }
-        }
-    }
-
-    public boolean PortSender(String command){
+    // outputs to the port
+    public boolean PortSender(String command) {
         try{
             serialPort.writeString(command);
-        }
-        catch(SerialPortException ex){
+
+        } catch(SerialPortException ex) {
             System.out.println("Error sending string: " + ex);
             return false;
+
         }
         return true;
+
     }
 
+    // class that is a port listener
     public class PortReader implements SerialPortEventListener {
 
         public void serialEvent(SerialPortEvent event) {
-            if(event.isRXCHAR() && event.getEventValue() > 0) {
+            if (event.isRXCHAR() && event.getEventValue() > 0) {
                 try {
                     String receivedData = serialPort.readString(event.getEventValue());
                     System.out.println("Received Response: " + receivedData);
-                }
-                catch (SerialPortException ex) {
+
+                } catch (SerialPortException ex) {
                     System.out.println("Error in receiving string from COM-port: " + ex);
+
                 }
             }
         }
     }
+
 }

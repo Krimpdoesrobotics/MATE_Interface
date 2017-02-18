@@ -4,7 +4,6 @@ package com.company;
  * Created by Richard on 2/17/2017.
  */
 import net.java.games.input.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Component;
@@ -13,9 +12,12 @@ public class ControllerInput {
     Controller[] Controllers;
     Controller Controller1;
 
+    // constructors
     public ControllerInput(){
+        // default constructor
 
     }
+
     public void ControllerComboBoxSelection(){
         Component SomeComponent = MainInterfaceFrame.getComponentByName("lblControllerDetails");
         Component SomeComponent2 = MainInterfaceFrame.getComponentByName("ControllerComboBox");
@@ -50,11 +52,17 @@ public class ControllerInput {
         }
     }
 
-    public void btnControllerConnectClicked(){
+    public void btnControllerConnectClicked() {
 
     }
 
-    public void btnControllerDisconnectClicked(){
+    public void btnControllerDisconnectClicked() {
+
+    }
+
+    // sets the portions of the controller into 8 regions
+    private void setRegions() {
+
 
     }
 }
