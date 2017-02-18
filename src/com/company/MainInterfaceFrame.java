@@ -14,7 +14,7 @@ public class MainInterfaceFrame extends JFrame {
     public SerialCommunications SerialCommunication = new SerialCommunications();
     public JPanel contentPane;
     public MainInterfaceFrame frame;
-    public ControllerInput LogitechController;
+    public ControllerInput LogitechController = new ControllerInput();
     /**
      * Launch the application.
      */

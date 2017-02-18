@@ -5,27 +5,37 @@ package com.company;
  */
 import net.java.games.input.*;
 
-public class ControllerInput
-{
-    Controller[] Controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
+import javax.swing.*;
+import java.awt.*;
+import java.awt.Component;
 
-    public void ControllerComboBoxSelection()
-    {
-        
-    }
+public class ControllerInput {
+    Controller[] Controllers;
 
-    public void btnControllerRefreshClicked()
-    {
+    public ControllerInput(){
 
     }
-
-    public void btnControllerConnectClicked()
-    {
+    public void ControllerComboBoxSelection(){
 
     }
 
-    public void btnControllerDisconnectClicked()
-    {
+    public void btnControllerRefreshClicked(){
+        Controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
+        Component SomeComponent = MainInterfaceFrame.getComponentByName("ControllerComboBox");
+        if(SomeComponent instanceof JComboBox){
+            JComboBox SomeComboBox = (JComboBox) SomeComponent;
+            SomeComboBox.removeAllItems();
+            for(int i = 0; i < Controllers.length; i++){
+                SomeComboBox.addItem(Controllers[i]);
+            }
+        }
+    }
+
+    public void btnControllerConnectClicked(){
+
+    }
+
+    public void btnControllerDisconnectClicked(){
 
     }
 }
