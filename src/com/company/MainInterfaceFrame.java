@@ -141,7 +141,7 @@ public class MainInterfaceFrame extends JFrame {
     }
     public boolean AdjFR(int power) //adjust the power of the front right motor
     {
-        String command; //
+        String command;
         String powerstr;
         powerstr = Integer.toString(power);
         command = "2" + powerstr.length();//selects motor and details length of command
