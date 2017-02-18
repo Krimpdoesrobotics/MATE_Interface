@@ -83,6 +83,10 @@ public class SerialCommunications {
 
     }
 
+    public boolean isOpen(){
+        return serialPort.isOpened();
+    }
+
     // outputs to the port
     public boolean PortSender(String command) {
         try{
