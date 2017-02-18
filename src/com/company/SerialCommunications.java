@@ -69,6 +69,9 @@ public class SerialCommunications {
     }
 
     public void PortSender(String command){
+        //message identifiers 1-6 motor set throttle         length byte    0-full reverse 128-no thrust 255-full forward
+        //                    7   gripper close open servo   length byte    0-0 degrees        180- 180 degrees
+        //                    8   gripper rotation servo     length byte    0-full reverse 128 no-rotation 255-full forward
         try{
             serialPort.writeString(command);
         }
