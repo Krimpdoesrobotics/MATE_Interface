@@ -5,22 +5,27 @@ package com.company;
  */
 import net.java.games.input.*;
 
-public class ControllerInput {
+public class ControllerInput
+{
     Controller[] Controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
 
-    public void ControllerComboBoxSelection(){
+    public void ControllerComboBoxSelection()
+    {
         
     }
 
-    public void btnControllerRefreshClicked(){
+    public void btnControllerRefreshClicked()
+    {
 
     }
 
-    public void btnControllerConnectClicked(){
+    public void btnControllerConnectClicked()
+    {
 
     }
 
-    public void btnControllerDisconnectClicked(){
+    public void btnControllerDisconnectClicked()
+    {
 
     }
 }
