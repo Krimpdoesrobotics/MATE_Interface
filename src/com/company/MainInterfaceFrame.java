@@ -79,7 +79,7 @@ public class MainInterfaceFrame extends JFrame {
 
         JLabel lblControllerDetails = new JLabel("No Controller Selected");
         lblControllerDetails.setName("lblControllerDetails");
-        lblControllerDetails.setBounds(new Rectangle(450, 50, 130, 20));
+        lblControllerDetails.setBounds(new Rectangle(750, 50, 1300, 800));
         contentPane.add(lblControllerDetails, BorderLayout.CENTER);
 
 		JComboBox ControllerComboBox = new JComboBox();

@@ -4,9 +4,10 @@ package com.company;
  * Created by Richard on 2/17/2017.
  */
 import net.java.games.input.*;
+import net.java.games.input.Component;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Component;
 
 public class ControllerInput {
     Controller[] Controllers;
@@ -19,35 +20,55 @@ public class ControllerInput {
     }
 
     public void ControllerComboBoxSelection(){
-        Component SomeComponent = MainInterfaceFrame.getComponentByName("lblControllerDetails");
-        Component SomeComponent2 = MainInterfaceFrame.getComponentByName("ControllerComboBox");
-        if(SomeComponent instanceof JLabel && SomeComponent2 instanceof JComboBox){
-            JLabel SomeLabel = (JLabel) SomeComponent;
-            JComboBox SomeComboBox = (JComboBox) SomeComponent2;
-            SomeLabel.setText("");
-            int counter = SomeComboBox.getSelectedIndex();
-            for(int i = 0; i < Controllers.length; i++){
-                if(Controllers[i].getType() == Controller.Type.GAMEPAD){
-                    if(counter == 0){
-                        Controller1 = Controllers[i];
-                        break;
+        JLabel SomeLabel = (JLabel) MainInterfaceFrame.getComponentByName("lblControllerDetails");
+        JComboBox SomeComboBox = (JComboBox) MainInterfaceFrame.getComponentByName("ControllerComboBox");
+        SomeLabel.setText("");
+        int counter = SomeComboBox.getSelectedIndex();
+        System.out.println(counter);
+        for(int i = 0; i < Controllers.length; i++) {
+            if (Controllers[i].getType() == Controller.Type.GAMEPAD) {
+                if (counter == 0) {
+                    String output = "<html>";
+                    output += Controllers[i].getName();
+                    output += "<BR>";
+                    output += "Type: " + Controllers[i].getType().toString();
+                    output += "<BR>";
+                    Component[] Components = Controllers[i].getComponents();
+                    output += "<BR>";
+                    output += "Component Count: " + Components.length;
+                    output += "<BR>";
+                    for(int j=0;j<Components.length;j++) {
+                        output += "Component " + j + ": " + Components[j].getName();
+                        output += "<BR>";
+                        output += "    Identifier: "+ Components[j].getIdentifier().getName();
+                        output += "    ComponentType: ";
+                        if (Components[j].isRelative()) {
+                            output += "Relative";
+                        } else {
+                            output += "Absolute";
+                        }
+                        if (Components[j].isAnalog()) {
+                            output += " Analog";
+                        } else {
+                            output += " Digital";
+                        }
+                        output += "<BR>";
                     }
-                    counter--;
+                    SomeLabel.setText(output);
+                    break;
                 }
+                counter--;
             }
         }
     }
 
     public void btnControllerRefreshClicked(){
         Controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
-        Component SomeComponent = MainInterfaceFrame.getComponentByName("ControllerComboBox");
-        if(SomeComponent instanceof JComboBox){
-            JComboBox SomeComboBox = (JComboBox) SomeComponent;
-            SomeComboBox.removeAllItems();
-            for(int i = 0; i < Controllers.length; i++){
-                if(Controllers[i].getType() == Controller.Type.GAMEPAD) {
-                    SomeComboBox.addItem(Controllers[i]);
-                }
+        JComboBox SomeComboBox = (JComboBox) MainInterfaceFrame.getComponentByName("ControllerComboBox");
+        SomeComboBox.removeAllItems();
+        for(int i = 0; i < Controllers.length; i++){
+            if(Controllers[i].getType() == Controller.Type.GAMEPAD) {
+                SomeComboBox.addItem(Controllers[i]);
             }
         }
     }
