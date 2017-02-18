@@ -11,7 +11,8 @@ import java.awt.*;
 
 public class ControllerInput {
     Controller[] Controllers;
-    Controller Controller1;
+    Controller Controller1; // the driver's controller
+    ControllerSetup controller;
 
     // constructors
     public ControllerInput(){
@@ -60,6 +61,7 @@ public class ControllerInput {
                 counter--;
             }
         }
+
     }
 
     public void btnControllerRefreshClicked(){
@@ -83,7 +85,33 @@ public class ControllerInput {
 
     // sets the portions of the controller into 8 regions
     private void setRegions() {
+        double forward_arc = 0.0;
+        double backward_arc = 0.0;
+        double right_arc = 0.0;
+        double left_arc = 0.0;
+        double topRight_arc = 0.0;
+        double topLeft_arc = 0.0;
+        double backRight_arc = 0.0;
+        double backLeft_arc = 0.0;
 
+        // COMPONENTS LIST //
+        // 0: Y AXIS ABSOLUTE ANALOG:
+        // 1: X AXIS ABSOLUTE ANALOG:
+        // 2: Y ROTATION ABSOLUTE ANALOG:
+        // 3: Y ROTATION ABSOLUTE ANALOG:
+        // 4: Z AXIS ABSOLUTE ANALOG:
+        // 5: BUTTON 0:
+        // 6: BUTTON 1:
+        // 7: BUTTON 2:
+        // 8: BUTTON 3:
+        // 9: BUTTON 4:
+        // 10: BUTTON 5:
+        // 11: BUTTON 6:
+        // 12: BUTTON 7:
+        // 13: BUTTON 8:
+        // 14: BUTTON 9:
+        // 15: HAT SWITCH:
+        // --------------- //
 
     }
 }
