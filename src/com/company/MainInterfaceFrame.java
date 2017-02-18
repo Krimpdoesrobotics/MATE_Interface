@@ -17,6 +17,8 @@ public class MainInterfaceFrame extends JFrame {
     private CustomPanel contentPane;
     private ControllerInput LogitechController = new ControllerInput();
     private Timer ControllerRefreshTimer;
+    private static DefaultListModel<String> modelSerialSent = new DefaultListModel<>();
+    private static DefaultListModel<String> modelSerialReceived = new DefaultListModel<>();
     private TimerTask timerTask = new TimerTask() {
 
         @Override
@@ -54,16 +56,67 @@ public class MainInterfaceFrame extends JFrame {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             // Draw Text
-            g.drawRect(150,550,200,200);
-            g.drawRect(450,550,200,200);
+            g.drawRect(50,300,200,200);
+            g.drawRect(175,550,200,200);
+            g.drawRect(425,550,200,200);
             if(LogitechController.getController1Connected()){
-                g.drawOval(245+(int)(LogitechController.getXValue()*100),645 +(int)(LogitechController.getYValue()*100),10,10);
-                g.drawOval(545+(int)(LogitechController.getXRotation()*100),645 +(int)(LogitechController.getYRotation()*100),10,10);
+                g.setColor(Color.BLUE);
+                int change = (int)(LogitechController.getZAxis()*100);
+                change *= -1;
+                if(change>0) {
+                    g.fillRect(400, 200, change, 50);
+                }else{
+                    g.fillRect(400+change,200,change*-1,50);
+                    //System.out.println(change);
+                }
+                g.setColor(Color.BLACK);
+                g.drawRect(300,200, 200, 50);
+                int DPadValue = LogitechController.getDPad();
+                int X, Y, SIZE1, SIZE2;
+                switch(DPadValue){
+                    case 0: X = 145 + 0; Y = 395 + 0; break;
+                    case 1: X = 145 - 100; Y = 395 - 100; break;
+                    case 2: X = 145 + 0; Y = 395 - 100; break;
+                    case 3: X = 145 + 100; Y = 395 - 100; break;
+                    case 4: X = 145 + 100; Y = 395 + 0; break;
+                    case 5: X = 145 + 100; Y = 395 + 100; break;
+                    case 6: X = 145 + 0; Y = 395 + 100; break;
+                    case 7: X = 145 - 100; Y = 395 + 100; break;
+                    case 8: X = 145 - 100; Y = 395 + 0; break;
+                    default: X = 0; Y = 0;
+                }
+                g.drawOval(X,Y,10,10);
+                for(int i = 0; i < 10; i++){
+                    if(LogitechController.getButton(i)) {
+                        g.setColor(Color.GREEN);
+                    }else{
+                        g.setColor(Color.RED);
+                    }
+                    switch(i){
+                        case 0: X = 620; Y = 440; SIZE1 = 60; SIZE2 = 60; break;
+                        case 1: X = 690; Y = 370; SIZE1 = 60; SIZE2 = 60; break;
+                        case 2: X = 550; Y = 370; SIZE1 = 60; SIZE2 = 60; break;
+                        case 3: X = 620; Y = 300; SIZE1 = 60; SIZE2 = 60; break;
+                        case 4: X = 50; Y = 250; SIZE1 = 200; SIZE2 = 30; break;
+                        case 5: X = 550; Y = 250; SIZE1 = 200; SIZE2 = 30; break;
+                        case 6: X = 300; Y = 350; SIZE1 = 80; SIZE2 = 100; break;
+                        case 7: X = 420; Y = 350; SIZE1 = 80; SIZE2 = 100; break;
+                        case 8: X = 50; Y = 550; SIZE1 = 75; SIZE2 = 100; break;
+                        case 9: X = 675; Y = 550; SIZE1 = 75; SIZE2 = 100; break;
+                        default: X = 0; Y = 0; SIZE1 = 0; SIZE2 = 0;
+                    }
+                    g.fillRect(X,Y,SIZE1,SIZE2);
+                    g.setColor(Color.BLACK);
+                    g.drawRect(X,Y,SIZE1,SIZE2);
+                }
+                g.drawOval(270+(int)(LogitechController.getXValue()*100),645 +(int)(LogitechController.getYValue()*100),10,10);
+                g.drawOval(520+(int)(LogitechController.getXRotation()*100),645 +(int)(LogitechController.getYRotation()*100),10,10);
             }
             else
             {
-                g.drawOval(245,645,10,10);
-                g.drawOval(545,645,10,10);
+                g.drawOval(145,395,10,10);
+                g.drawOval(270,645,10,10);
+                g.drawOval(520,645,10,10);
             }
         }
 
@@ -111,36 +164,56 @@ public class MainInterfaceFrame extends JFrame {
         btnSerialDisconnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialDisconnectClicked();}});
         contentPane.add(btnSerialDisconnect, BorderLayout.CENTER);
 
+        JLabel lblSerialSent = new JLabel("Sent Serial Messages");
+        lblSerialSent.setName("lblSerialSent");
+        lblSerialSent.setBounds(new Rectangle(625, 50, 130, 20));
+        contentPane.add(lblSerialSent, BorderLayout.CENTER);
+
+        JList<String> listSerialSent = new JList<>(modelSerialSent);
+        listSerialSent.setBounds(new Rectangle(625, 80, 175, 150));
+        listSerialSent.setName("listSerialSent");
+        contentPane.add(listSerialSent, BorderLayout.CENTER);
+
+        JLabel lblSerialReceived = new JLabel("Received Serial Messages");
+        lblSerialReceived.setName("lblSerialReceived");
+        lblSerialReceived.setBounds(new Rectangle(825, 50, 170, 20));
+        contentPane.add(lblSerialReceived, BorderLayout.CENTER);
+
+        JList<String> listSerialReceived = new JList<>(modelSerialReceived);
+        listSerialReceived.setBounds(new Rectangle(825, 80, 175, 150));
+        listSerialReceived.setName("listSerialReceived");
+        contentPane.add(listSerialReceived, BorderLayout.CENTER);
+
 		JLabel lblChooseController = new JLabel("Choose Controller");
 		lblChooseController.setName("lblChooseController");
-		lblChooseController.setBounds(new Rectangle(450, 50, 130, 20));
+		lblChooseController.setBounds(new Rectangle(350, 50, 130, 20));
 		contentPane.add(lblChooseController, BorderLayout.CENTER);
-
+        /*
         JLabel lblControllerDetails = new JLabel("No Controller Selected");
         lblControllerDetails.setName("lblControllerDetails");
         lblControllerDetails.setBounds(new Rectangle(750, 50, 1300, 800));
-        contentPane.add(lblControllerDetails, BorderLayout.CENTER);
+        contentPane.add(lblControllerDetails, BorderLayout.CENTER);*/
 
 		JComboBox ControllerComboBox = new JComboBox();
-		ControllerComboBox.setBounds(new Rectangle(450, 80, 130, 30));
+		ControllerComboBox.setBounds(new Rectangle(350, 80, 130, 30));
 		ControllerComboBox.setName("ControllerComboBox");
 		ControllerComboBox.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.ControllerComboBoxSelection();}});
 		contentPane.add(ControllerComboBox, BorderLayout.CENTER);
 
 		JButton btnControllerRefresh = new JButton("Refresh");
-		btnControllerRefresh.setBounds(new Rectangle(600, 50, 100, 40));
+		btnControllerRefresh.setBounds(new Rectangle(500, 50, 100, 40));
 		btnControllerRefresh.setName("btnControllerRefresh");
 		btnControllerRefresh.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnControllerRefreshClicked();}});
 		contentPane.add(btnControllerRefresh, BorderLayout.CENTER);
 
 		JButton btnControllerConnect = new JButton("Connect");
-		btnControllerConnect.setBounds(new Rectangle(600, 100, 100, 40));
+		btnControllerConnect.setBounds(new Rectangle(500, 100, 100, 40));
 		btnControllerConnect.setName("btnControllerConnect");
 		btnControllerConnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnControllerConnectClicked();}});
 		contentPane.add(btnControllerConnect, BorderLayout.CENTER);
 
 		JButton btnControllerDisconnect = new JButton("Disconnect");
-		btnControllerDisconnect.setBounds(new Rectangle(600, 150, 100, 40));
+		btnControllerDisconnect.setBounds(new Rectangle(500, 150, 100, 40));
 		btnControllerDisconnect.setName("btnControllerDisconnect");
 		btnControllerDisconnect.setVisible(false);
 		btnControllerDisconnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnControllerDisconnectClicked();}});
@@ -176,6 +249,15 @@ public class MainInterfaceFrame extends JFrame {
         }
         else return null;
     }
+
+    public static void addSerialSent(String obj){
+        modelSerialSent.addElement(obj);
+    }
+
+    public static void addSerialReceived(String obj){
+        modelSerialReceived.addElement(obj);
+    }
+
     public boolean AdjFL(int power) //adjust the power of the front left motor
     {
         String command;

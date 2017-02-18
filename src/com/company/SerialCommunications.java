@@ -5,6 +5,8 @@ package com.company;
  */
 
 import jssc.*;
+import sun.applet.Main;
+
 import java.awt.*;
 import javax.swing.JComboBox;
 
@@ -85,7 +87,7 @@ public class SerialCommunications {
     public boolean PortSender(String command) {
         try{
             serialPort.writeString(command);
-
+            MainInterfaceFrame.addSerialSent(command);
         } catch(SerialPortException ex) {
             System.out.println("Error sending string: " + ex);
             return false;
@@ -102,7 +104,7 @@ public class SerialCommunications {
             if (event.isRXCHAR() && event.getEventValue() > 0) {
                 try {
                     String receivedData = serialPort.readString(event.getEventValue());
-                    System.out.println("Received Response: " + receivedData);
+                    MainInterfaceFrame.addSerialReceived(receivedData);
 
                 } catch (SerialPortException ex) {
                     System.out.println("Error in receiving string from COM-port: " + ex);

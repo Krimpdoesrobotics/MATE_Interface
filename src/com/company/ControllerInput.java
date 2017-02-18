@@ -7,17 +7,12 @@ import net.java.games.input.*;
 import net.java.games.input.Component;
 import net.java.games.input.Event;
 import net.java.games.input.EventQueue;
-import sun.applet.Main;
 
-import javax.naming.ldap.Control;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.EventListener;
 
 public class ControllerInput {
-    private float XAxis,YAxis,XRotation,YRotation;
+    private float XAxis,YAxis,XRotation,YRotation,DPad,ZAxis;
+    private boolean[] buttons = new boolean[10];
     private Controller[] Controllers;
     private Controller Controller1;
     private Component[] Components1;
@@ -28,6 +23,7 @@ public class ControllerInput {
         YAxis = 0;
         XRotation = 0;
         YRotation = 0;
+        ZAxis = 0;
     }
 
     public void UpdateControllerComponents(){
@@ -52,29 +48,40 @@ public class ControllerInput {
                         XRotation = value;
                     }else if(comp.getIdentifier() == Component.Identifier.Axis.RY){
                         YRotation = value;
+                    }else if(comp.getIdentifier() == Component.Identifier.Axis.Z){
+                        ZAxis = value;
                     }
                 } else {
                     if(comp.getIdentifier() == Component.Identifier.Axis.POV){
+                        DPad = value;
                         buffer.append(value);
                     }else{
+                        int buttonnum = 0;
+                        for(int i = 0; i < 10; i++) {
+                            if (comp.getIdentifier().getName().contains(Integer.toString(i))) {
+                                buttonnum = i;
+                            }
+                        }
                         if(value==1.0f) {
-                            buffer.append("On");
+                            buffer.append("On"+Integer.toString(buttonnum));
+                            buttons[buttonnum] = true;
                         } else {
-                            buffer.append("Off");
+                            buffer.append("Off"+Integer.toString(buttonnum));
+                            buttons[buttonnum] = false;
                         }
                     }
                 }
-                System.out.println(buffer.toString());
+                //System.out.println(buffer.toString());
             }
         }
     }
 
     public void ControllerComboBoxSelection(){
-        JLabel SomeLabel = (JLabel) MainInterfaceFrame.getComponentByName("lblControllerDetails");
+        //JLabel SomeLabel = (JLabel) MainInterfaceFrame.getComponentByName("lblControllerDetails");
         JComboBox SomeComboBox = (JComboBox) MainInterfaceFrame.getComponentByName("ControllerComboBox");
-        SomeLabel.setText("");
+        //SomeLabel.setText("");
         int counter = SomeComboBox.getSelectedIndex();
-        System.out.println(counter);
+        //System.out.println(counter);
         for(int i = 0; i < Controllers.length; i++) {
             if (Controllers[i].getType() == Controller.Type.GAMEPAD) {
                 if (counter == 0) {
@@ -104,7 +111,7 @@ public class ControllerInput {
                         }
                         output += "<BR>";
                     }
-                    SomeLabel.setText(output);
+                    //System.out.println(output);
                     break;
                 }
                 counter--;
@@ -126,7 +133,7 @@ public class ControllerInput {
     public void btnControllerConnectClicked() {
         JComboBox SomeComboBox = (JComboBox) MainInterfaceFrame.getComponentByName("ControllerComboBox");
         int counter = SomeComboBox.getSelectedIndex();
-        System.out.println(counter);
+        //System.out.println(counter);
         for(int i = 0; i < Controllers.length; i++) {
             if (Controllers[i].getType() == Controller.Type.GAMEPAD) {
                 if (counter == 0) {
@@ -165,6 +172,18 @@ public class ControllerInput {
 
     public float getXRotation(){
         return XRotation;
+    }
+
+    public int getDPad(){
+        return (int)(DPad*8+.25);
+    }
+
+    public boolean getButton(int index){
+        return buttons[index];
+    }
+
+    public float getZAxis(){
+        return ZAxis;
     }
 
     // sets the portions of the controller into 8 regions
