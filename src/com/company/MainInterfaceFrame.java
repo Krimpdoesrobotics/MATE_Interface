@@ -8,12 +8,25 @@ import java.awt.event.*;
 import java.util.HashMap;
 import javax.swing.*;
 import javax.swing.border.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainInterfaceFrame extends JFrame {
     private static HashMap componentMap;
     private SerialCommunications SerialCommunication = new SerialCommunications();
-    private JPanel contentPane;
+    private CustomPanel contentPane;
     private ControllerInput LogitechController = new ControllerInput();
+    private Timer ControllerRefreshTimer;
+    private TimerTask timerTask = new TimerTask() {
+
+        @Override
+        public void run() {
+            // TODO Auto-generated method stub
+            //Invoke your function here
+            LogitechController.UpdateControllerComponents();
+            contentPane.Refresh();
+        }
+    };
     /**
      * Launch the application.
      */
@@ -30,15 +43,37 @@ public class MainInterfaceFrame extends JFrame {
         });
     }
 
+    public class CustomPanel extends JPanel{
+        private JPanel contentPanel;
+        public CustomPanel(){
+            contentPanel = new JPanel();
+            contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+            contentPanel.setLayout(new BorderLayout(0, 0));
+        }
+
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            // Draw Text
+            if(LogitechController.getController1Connected()){
+                g.drawOval(245+(int)(LogitechController.getXValue()*100),645 +(int)(LogitechController.getYValue()*100),10,10);
+            }
+            else
+            {
+                g.drawOval(245,645,10,10);
+            }
+        }
+
+        public void Refresh(){
+            repaint();
+        }
+    }
     /**
      * Create the frame.
      */
     public MainInterfaceFrame() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(25, 25, 1500, 900);
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(new BorderLayout(0, 0));
+        contentPane = new CustomPanel();
         setContentPane(contentPane);
 
         getContentPane().setLayout(null);
@@ -106,6 +141,9 @@ public class MainInterfaceFrame extends JFrame {
 		btnControllerDisconnect.setVisible(false);
 		btnControllerDisconnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnControllerDisconnectClicked();}});
 		contentPane.add(btnControllerDisconnect, BorderLayout.CENTER);
+
+        ControllerRefreshTimer = new Timer();
+        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,25,25);
 
         createComponentMap();
     }
