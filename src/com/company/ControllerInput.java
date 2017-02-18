@@ -7,14 +7,8 @@ import net.java.games.input.*;
 import net.java.games.input.Component;
 import net.java.games.input.Event;
 import net.java.games.input.EventQueue;
-import sun.applet.Main;
 
-import javax.naming.ldap.Control;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.EventListener;
 
 public class ControllerInput {
     private float XAxis,YAxis,XRotation,YRotation,DPad,ZAxis;
@@ -77,7 +71,7 @@ public class ControllerInput {
                         }
                     }
                 }
-                System.out.println(buffer.toString());
+                //System.out.println(buffer.toString());
             }
         }
     }
@@ -87,7 +81,7 @@ public class ControllerInput {
         JComboBox SomeComboBox = (JComboBox) MainInterfaceFrame.getComponentByName("ControllerComboBox");
         //SomeLabel.setText("");
         int counter = SomeComboBox.getSelectedIndex();
-        System.out.println(counter);
+        //System.out.println(counter);
         for(int i = 0; i < Controllers.length; i++) {
             if (Controllers[i].getType() == Controller.Type.GAMEPAD) {
                 if (counter == 0) {
@@ -117,7 +111,7 @@ public class ControllerInput {
                         }
                         output += "<BR>";
                     }
-                    System.out.println(output);
+                    //System.out.println(output);
                     break;
                 }
                 counter--;
@@ -139,7 +133,7 @@ public class ControllerInput {
     public void btnControllerConnectClicked() {
         JComboBox SomeComboBox = (JComboBox) MainInterfaceFrame.getComponentByName("ControllerComboBox");
         int counter = SomeComboBox.getSelectedIndex();
-        System.out.println(counter);
+        //System.out.println(counter);
         for(int i = 0; i < Controllers.length; i++) {
             if (Controllers[i].getType() == Controller.Type.GAMEPAD) {
                 if (counter == 0) {
