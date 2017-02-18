@@ -11,12 +11,29 @@ import java.awt.Component;
 
 public class ControllerInput {
     Controller[] Controllers;
+    Controller Controller1;
 
     public ControllerInput(){
 
     }
     public void ControllerComboBoxSelection(){
-
+        Component SomeComponent = MainInterfaceFrame.getComponentByName("lblControllerDetails");
+        Component SomeComponent2 = MainInterfaceFrame.getComponentByName("ControllerComboBox");
+        if(SomeComponent instanceof JLabel && SomeComponent2 instanceof JComboBox){
+            JLabel SomeLabel = (JLabel) SomeComponent;
+            JComboBox SomeComboBox = (JComboBox) SomeComponent2;
+            SomeLabel.setText("");
+            int counter = SomeComboBox.getSelectedIndex();
+            for(int i = 0; i < Controllers.length; i++){
+                if(Controllers[i].getType() == Controller.Type.GAMEPAD){
+                    if(counter == 0){
+                        Controller1 = Controllers[i];
+                        break;
+                    }
+                    counter--;
+                }
+            }
+        }
     }
 
     public void btnControllerRefreshClicked(){
