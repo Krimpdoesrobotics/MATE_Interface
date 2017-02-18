@@ -54,12 +54,16 @@ public class MainInterfaceFrame extends JFrame {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             // Draw Text
+            g.drawRect(150,550,200,200);
+            g.drawRect(450,550,200,200);
             if(LogitechController.getController1Connected()){
                 g.drawOval(245+(int)(LogitechController.getXValue()*100),645 +(int)(LogitechController.getYValue()*100),10,10);
+                g.drawOval(545+(int)(LogitechController.getXRotation()*100),645 +(int)(LogitechController.getYRotation()*100),10,10);
             }
             else
             {
                 g.drawOval(245,645,10,10);
+                g.drawOval(545,645,10,10);
             }
         }
 

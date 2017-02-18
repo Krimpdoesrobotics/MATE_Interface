@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 import java.util.EventListener;
 
 public class ControllerInput {
-    private float XAxis,YAxis,YRotation,ZRotation;
+    private float XAxis,YAxis,XRotation,YRotation;
     private Controller[] Controllers;
     private Controller Controller1;
     private Component[] Components1;
@@ -26,8 +26,8 @@ public class ControllerInput {
         // default constructor
         XAxis = 0;
         YAxis = 0;
+        XRotation = 0;
         YRotation = 0;
-        ZRotation = 0;
     }
 
     public void UpdateControllerComponents(){
@@ -48,10 +48,10 @@ public class ControllerInput {
                         XAxis = value;
                     }else if(comp.getIdentifier() == Component.Identifier.Axis.Y){
                         YAxis = value;
-                    }else if(comp.getIdentifier() == Component.Identifier.Axis.RY) {
+                    }else if(comp.getIdentifier() == Component.Identifier.Axis.RX) {
+                        XRotation = value;
+                    }else if(comp.getIdentifier() == Component.Identifier.Axis.RY){
                         YRotation = value;
-                    }else if(comp.getIdentifier() == Component.Identifier.Axis.RZ){
-                        ZRotation = value;
                     }
                 } else {
                     if(value==1.0f) {
@@ -153,6 +153,14 @@ public class ControllerInput {
 
     public float getXValue(){
         return XAxis;
+    }
+
+    public float getYRotation(){
+        return YRotation;
+    }
+
+    public float getXRotation(){
+        return XRotation;
     }
 
     // sets the portions of the controller into 8 regions
