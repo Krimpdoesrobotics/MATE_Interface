@@ -27,6 +27,10 @@ public class MainInterfaceFrame extends JFrame {
             //Invoke your function here
             LogitechController.UpdateControllerComponents();
             contentPane.Refresh();
+            UpdateArduino();
+            for(int i = 0; i < 16; i++){
+                LogitechController.setUpdated(i,false);
+            }
         }
     };
     /**
@@ -56,67 +60,163 @@ public class MainInterfaceFrame extends JFrame {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             // Draw Text
-            g.drawRect(50,300,200,200);
-            g.drawRect(175,550,200,200);
-            g.drawRect(425,550,200,200);
             if(LogitechController.getController1Connected()){
-                g.setColor(Color.BLUE);
-                int change = (int)(LogitechController.getZAxis()*100);
-                change *= -1;
-                if(change>0) {
-                    g.fillRect(400, 200, change, 50);
-                }else{
-                    g.fillRect(400+change,200,change*-1,50);
-                    //System.out.println(change);
-                }
-                g.setColor(Color.BLACK);
-                g.drawRect(300,200, 200, 50);
-                int DPadValue = LogitechController.getDPad();
-                int X, Y, SIZE1, SIZE2;
-                switch(DPadValue){
-                    case 0: X = 145 + 0; Y = 395 + 0; break;
-                    case 1: X = 145 - 100; Y = 395 - 100; break;
-                    case 2: X = 145 + 0; Y = 395 - 100; break;
-                    case 3: X = 145 + 100; Y = 395 - 100; break;
-                    case 4: X = 145 + 100; Y = 395 + 0; break;
-                    case 5: X = 145 + 100; Y = 395 + 100; break;
-                    case 6: X = 145 + 0; Y = 395 + 100; break;
-                    case 7: X = 145 - 100; Y = 395 + 100; break;
-                    case 8: X = 145 - 100; Y = 395 + 0; break;
-                    default: X = 0; Y = 0;
-                }
-                g.drawOval(X,Y,10,10);
-                for(int i = 0; i < 10; i++){
-                    if(LogitechController.getButton(i)) {
-                        g.setColor(Color.GREEN);
-                    }else{
-                        g.setColor(Color.RED);
+                if(LogitechController.getUpdated(4)) {
+                    g.setColor(Color.BLUE);
+                    int change = (int) (LogitechController.getZAxis() * 100);
+                    change *= -1;
+                    if (change > 0) {
+                        g.fillRect(400, 200, change, 50);
+                    } else {
+                        g.fillRect(400 + change, 200, change * -1, 50);
+                        //System.out.println(change);
                     }
-                    switch(i){
-                        case 0: X = 620; Y = 440; SIZE1 = 60; SIZE2 = 60; break;
-                        case 1: X = 690; Y = 370; SIZE1 = 60; SIZE2 = 60; break;
-                        case 2: X = 550; Y = 370; SIZE1 = 60; SIZE2 = 60; break;
-                        case 3: X = 620; Y = 300; SIZE1 = 60; SIZE2 = 60; break;
-                        case 4: X = 50; Y = 250; SIZE1 = 200; SIZE2 = 30; break;
-                        case 5: X = 550; Y = 250; SIZE1 = 200; SIZE2 = 30; break;
-                        case 6: X = 300; Y = 350; SIZE1 = 80; SIZE2 = 100; break;
-                        case 7: X = 420; Y = 350; SIZE1 = 80; SIZE2 = 100; break;
-                        case 8: X = 50; Y = 550; SIZE1 = 75; SIZE2 = 100; break;
-                        case 9: X = 675; Y = 550; SIZE1 = 75; SIZE2 = 100; break;
-                        default: X = 0; Y = 0; SIZE1 = 0; SIZE2 = 0;
-                    }
-                    g.fillRect(X,Y,SIZE1,SIZE2);
                     g.setColor(Color.BLACK);
-                    g.drawRect(X,Y,SIZE1,SIZE2);
+                    g.drawRect(300,200, 200, 50);
                 }
-                g.drawOval(270+(int)(LogitechController.getXValue()*100),645 +(int)(LogitechController.getYValue()*100),10,10);
-                g.drawOval(520+(int)(LogitechController.getXRotation()*100),645 +(int)(LogitechController.getYRotation()*100),10,10);
-            }
-            else
-            {
-                g.drawOval(145,395,10,10);
-                g.drawOval(270,645,10,10);
-                g.drawOval(520,645,10,10);
+                int X, Y, SIZE1, SIZE2;
+                if(LogitechController.getUpdated(15)) {
+                    int DPadValue = LogitechController.getDPad();
+                    switch (DPadValue) {
+                        case 0:
+                            X = 145 + 0;
+                            Y = 395 + 0;
+                            break;
+                        case 1:
+                            X = 145 - 100;
+                            Y = 395 - 100;
+                            break;
+                        case 2:
+                            X = 145 + 0;
+                            Y = 395 - 100;
+                            break;
+                        case 3:
+                            X = 145 + 100;
+                            Y = 395 - 100;
+                            break;
+                        case 4:
+                            X = 145 + 100;
+                            Y = 395 + 0;
+                            break;
+                        case 5:
+                            X = 145 + 100;
+                            Y = 395 + 100;
+                            break;
+                        case 6:
+                            X = 145 + 0;
+                            Y = 395 + 100;
+                            break;
+                        case 7:
+                            X = 145 - 100;
+                            Y = 395 + 100;
+                            break;
+                        case 8:
+                            X = 145 - 100;
+                            Y = 395 + 0;
+                            break;
+                        default:
+                            X = 0;
+                            Y = 0;
+                    }
+                    g.fillRect(50, 300, 200, 200);
+                    g.setColor(Color.YELLOW);
+                    g.fillOval(X, Y, 10, 10);
+                    g.drawLine(150, 400, X + 5, Y + 5);
+                    g.setColor(Color.BLACK);
+                }
+                if(LogitechController.getUpdated(0) || LogitechController.getUpdated(1)) {
+                    g.fillRect(175, 550, 200, 200);
+                    g.setColor(Color.YELLOW);
+                    g.fillOval(270 + (int) (LogitechController.getXValue() * 100), 645 + (int) (LogitechController.getYValue() * 100), 10, 10);
+                    g.drawLine(275, 650, 275 + (int) (LogitechController.getXValue() * 100), 650 + (int) (LogitechController.getYValue() * 100));
+                    g.setColor(Color.BLACK);
+                }
+                if(LogitechController.getUpdated(2)|| LogitechController.getUpdated(3)) {
+                    g.fillRect(425, 550, 200, 200);
+                    g.setColor(Color.YELLOW);
+                    g.fillOval(520 + (int) (LogitechController.getXRotation() * 100), 645 + (int) (LogitechController.getYRotation() * 100), 10, 10);
+                    g.drawLine(525, 650, 525 + (int) (LogitechController.getXRotation() * 100), 650 + (int) (LogitechController.getYRotation() * 100));
+                    g.setColor(Color.BLACK);
+                }
+                for(int i = 0; i < 10; i++){
+                    if(LogitechController.getUpdated(i+5)) {
+                        if (LogitechController.getButton(i)) {
+                            g.setColor(Color.GREEN);
+                        } else {
+                            g.setColor(Color.BLUE);
+                        }
+                        switch (i) {
+                            case 0:
+                                X = 620;
+                                Y = 440;
+                                SIZE1 = 60;
+                                SIZE2 = 60;
+                                break;
+                            case 1:
+                                X = 690;
+                                Y = 370;
+                                SIZE1 = 60;
+                                SIZE2 = 60;
+                                break;
+                            case 2:
+                                X = 550;
+                                Y = 370;
+                                SIZE1 = 60;
+                                SIZE2 = 60;
+                                break;
+                            case 3:
+                                X = 620;
+                                Y = 300;
+                                SIZE1 = 60;
+                                SIZE2 = 60;
+                                break;
+                            case 4:
+                                X = 50;
+                                Y = 250;
+                                SIZE1 = 200;
+                                SIZE2 = 30;
+                                break;
+                            case 5:
+                                X = 550;
+                                Y = 250;
+                                SIZE1 = 200;
+                                SIZE2 = 30;
+                                break;
+                            case 6:
+                                X = 300;
+                                Y = 350;
+                                SIZE1 = 80;
+                                SIZE2 = 100;
+                                break;
+                            case 7:
+                                X = 420;
+                                Y = 350;
+                                SIZE1 = 80;
+                                SIZE2 = 100;
+                                break;
+                            case 8:
+                                X = 50;
+                                Y = 550;
+                                SIZE1 = 75;
+                                SIZE2 = 100;
+                                break;
+                            case 9:
+                                X = 675;
+                                Y = 550;
+                                SIZE1 = 75;
+                                SIZE2 = 100;
+                                break;
+                            default:
+                                X = 0;
+                                Y = 0;
+                                SIZE1 = 0;
+                                SIZE2 = 0;
+                        }
+                        g.fillRect(X, Y, SIZE1, SIZE2);
+                        g.setColor(Color.BLACK);
+                        g.drawRect(X, Y, SIZE1, SIZE2);
+                    }
+                }
             }
         }
 
@@ -256,6 +356,12 @@ public class MainInterfaceFrame extends JFrame {
 
     public static void addSerialReceived(String obj){
         modelSerialReceived.addElement(obj);
+    }
+
+    public void UpdateArduino(){
+        if(SerialCommunication.isOpen()){
+
+        }
     }
 
     public boolean AdjFL(int power) //adjust the power of the front left motor

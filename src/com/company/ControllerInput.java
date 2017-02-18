@@ -13,6 +13,7 @@ import javax.swing.*;
 public class ControllerInput {
     private float XAxis,YAxis,XRotation,YRotation,DPad,ZAxis;
     private boolean[] buttons = new boolean[10];
+    private boolean[] updated = new boolean[16];
     private Controller[] Controllers;
     private Controller Controller1;
     private Component[] Components1;
@@ -24,6 +25,9 @@ public class ControllerInput {
         XRotation = 0;
         YRotation = 0;
         ZAxis = 0;
+        for(int i = 0; i < 16; i++){
+            setUpdated(i,true);
+        }
     }
 
     public void UpdateControllerComponents(){
@@ -42,24 +46,31 @@ public class ControllerInput {
                     buffer.append(value);
                     if(comp.getIdentifier() == Component.Identifier.Axis.X){
                         XAxis = value;
+                        updated[1] = true;
                     }else if(comp.getIdentifier() == Component.Identifier.Axis.Y){
                         YAxis = value;
+                        updated[0] = true;
                     }else if(comp.getIdentifier() == Component.Identifier.Axis.RX) {
                         XRotation = value;
+                        updated[3] = true;
                     }else if(comp.getIdentifier() == Component.Identifier.Axis.RY){
                         YRotation = value;
+                        updated[2] = true;
                     }else if(comp.getIdentifier() == Component.Identifier.Axis.Z){
                         ZAxis = value;
+                        updated[4] = true;
                     }
                 } else {
                     if(comp.getIdentifier() == Component.Identifier.Axis.POV){
                         DPad = value;
+                        updated[15] = true;
                         buffer.append(value);
                     }else{
                         int buttonnum = 0;
                         for(int i = 0; i < 10; i++) {
                             if (comp.getIdentifier().getName().contains(Integer.toString(i))) {
                                 buttonnum = i;
+                                updated[i+5] = true;
                             }
                         }
                         if(value==1.0f) {
@@ -111,7 +122,7 @@ public class ControllerInput {
                         }
                         output += "<BR>";
                     }
-                    //System.out.println(output);
+                    System.out.println(output);
                     break;
                 }
                 counter--;
@@ -184,6 +195,14 @@ public class ControllerInput {
 
     public float getZAxis(){
         return ZAxis;
+    }
+
+    public boolean getUpdated(int index){
+        return updated[index];
+    }
+
+    public void setUpdated(int index, boolean val){
+        updated[index] = val;
     }
 
     // sets the portions of the controller into 8 regions
