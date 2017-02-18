@@ -6,7 +6,6 @@ package com.company;
 
 import jssc.*;
 import java.awt.*;
-
 import javax.swing.JComboBox;
 
 public class SerialCommunications {
@@ -68,13 +67,15 @@ public class SerialCommunications {
         }
     }
 
-    public void PortSender(String command){
+    public boolean PortSender(String command){
         try{
             serialPort.writeString(command);
         }
         catch(SerialPortException ex){
-            System.out.println("Error sending string: "+ex);
+            System.out.println("Error sending string: " + ex);
+            return false;
         }
+        return true;
     }
 
     public class PortReader implements SerialPortEventListener {

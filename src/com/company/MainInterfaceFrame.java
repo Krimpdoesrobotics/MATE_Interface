@@ -5,9 +5,7 @@ package com.company;
  */
 import java.awt.*;
 import java.awt.event.*;
-
 import java.util.HashMap;
-
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -135,33 +133,57 @@ public class MainInterfaceFrame extends JFrame {
     }
     public boolean AdjFL(int power) //adjust the power of the front left motor
     {
-        //TODO implement this method
-        return true;//temporary - change when this method is implemented
+        String command;
+        String powerstr;
+        powerstr = Integer.toString(power);
+        command = "1" + powerstr.length();//selects motor and details length of command
+        command+= powerstr;
+        return SerialCommunication.PortSender(command);
     }
     public boolean AdjFR(int power) //adjust the power of the front right motor
     {
-        //TODO implement this method
-        return true;//temporary - change when this method is implemented
+        String command;
+        String powerstr;
+        powerstr = Integer.toString(power);
+        command = "2" + powerstr.length();//selects motor and details length of command
+        command+= powerstr;
+        return SerialCommunication.PortSender(command);
     }
     public boolean AdjBL(int power) //adjust the power of the back left motor
     {
-        //TODO implement this method
-        return true;//temporary - change when this method is implemented
+        String command;
+        String powerstr;
+        powerstr = Integer.toString(power);
+        command = "3" + powerstr.length();//selects motor and details length of command
+        command+= powerstr;
+        return SerialCommunication.PortSender(command);
     }
     public boolean AdjBR(int power) //adjust the power of the back right motor
     {
-        //TODO implement this method
-        return true;//temporary - change when this method is implemented
+        String command;
+        String powerstr;
+        powerstr = Integer.toString(power);
+        command = "4" + powerstr.length();//selects motor and details length of command
+        command+= powerstr;
+        return SerialCommunication.PortSender(command);
     }
     public boolean AdjVL(int power) //adjust the power of the vertical left motor
     {
-        //TODO implement this method
-        return true;//temporary - change when this method is implemented
+        String command;
+        String powerstr;
+        powerstr = Integer.toString(power);
+        command = "5" + powerstr.length();//selects motor and details length of command
+        command+= powerstr;
+        return SerialCommunication.PortSender(command);
     }
     public boolean AdjVR(int power) //adjust the power of the vertical right motor
     {
-        //TODO implement this method
-        return true;//temporary - change when this method is implemented
+        String command;
+        String powerstr;
+        powerstr = Integer.toString(power);
+        command = "6" + powerstr.length();//selects motor and details length of command
+        command+= powerstr;
+        return SerialCommunication.PortSender(command);
     }
     public boolean LJInput()//method to catch changes in left joystick position
     {
