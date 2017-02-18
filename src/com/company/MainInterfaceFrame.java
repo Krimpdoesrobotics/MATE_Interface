@@ -28,9 +28,6 @@ public class MainInterfaceFrame extends JFrame {
             LogitechController.UpdateControllerComponents();
             contentPane.Refresh();
             UpdateArduino();
-            for(int i = 0; i < 16; i++){
-                LogitechController.setUpdated(i,false);
-            }
         }
     };
     /**
@@ -61,7 +58,8 @@ public class MainInterfaceFrame extends JFrame {
             super.paintComponent(g);
             // Draw Text
             if(LogitechController.getController1Connected()){
-                if(LogitechController.getUpdated(4)) {
+                if(LogitechController.updated[4]) {
+                    LogitechController.updated[4] = false;
                     g.setColor(Color.BLUE);
                     int change = (int) (LogitechController.getZAxis() * 100);
                     change *= -1;
@@ -75,7 +73,8 @@ public class MainInterfaceFrame extends JFrame {
                     g.drawRect(300,200, 200, 50);
                 }
                 int X, Y, SIZE1, SIZE2;
-                if(LogitechController.getUpdated(15)) {
+                if(LogitechController.updated[15]) {
+                    LogitechController.updated[15] = false;
                     int DPadValue = LogitechController.getDPad();
                     switch (DPadValue) {
                         case 0:
@@ -124,14 +123,18 @@ public class MainInterfaceFrame extends JFrame {
                     g.drawLine(150, 400, X + 5, Y + 5);
                     g.setColor(Color.BLACK);
                 }
-                if(LogitechController.getUpdated(0) || LogitechController.getUpdated(1)) {
+                if(LogitechController.updated[0] || LogitechController.updated[1]) {
+                    LogitechController.updated[0] = false;
+                    LogitechController.updated[1] = false;
                     g.fillRect(175, 550, 200, 200);
                     g.setColor(Color.YELLOW);
                     g.fillOval(270 + (int) (LogitechController.getXValue() * 100), 645 + (int) (LogitechController.getYValue() * 100), 10, 10);
                     g.drawLine(275, 650, 275 + (int) (LogitechController.getXValue() * 100), 650 + (int) (LogitechController.getYValue() * 100));
                     g.setColor(Color.BLACK);
                 }
-                if(LogitechController.getUpdated(2)|| LogitechController.getUpdated(3)) {
+                if(LogitechController.updated[2]|| LogitechController.updated[3]) {
+                    LogitechController.updated[2] = false;
+                    LogitechController.updated[3] = false;
                     g.fillRect(425, 550, 200, 200);
                     g.setColor(Color.YELLOW);
                     g.fillOval(520 + (int) (LogitechController.getXRotation() * 100), 645 + (int) (LogitechController.getYRotation() * 100), 10, 10);
@@ -139,7 +142,8 @@ public class MainInterfaceFrame extends JFrame {
                     g.setColor(Color.BLACK);
                 }
                 for(int i = 0; i < 10; i++){
-                    if(LogitechController.getUpdated(i+5)) {
+                    if(LogitechController.updated[i+5]) {
+                        LogitechController.updated[i+5] = false;
                         if (LogitechController.getButton(i)) {
                             g.setColor(Color.GREEN);
                         } else {
@@ -221,6 +225,111 @@ public class MainInterfaceFrame extends JFrame {
         }
 
         public void Refresh(){
+            int X, Y, SIZE1, SIZE2;
+            for(int i = 0; i < 16; i++){
+                if(LogitechController.updated[i]){
+                    switch(i){
+                        case 0:
+                            X = 175;
+                            Y= 550;
+                            SIZE1= 200;
+                            SIZE2= 200;
+                            break;
+                        case 1:
+                            X = 175;
+                            Y= 550;
+                            SIZE1= 200;
+                            SIZE2= 200;
+                            break;
+                        case 2:
+                            X = 425;
+                            Y= 550;
+                            SIZE1= 200;
+                            SIZE2= 200;
+                            break;
+                        case 3:
+                            X = 425;
+                            Y= 550;
+                            SIZE1= 200;
+                            SIZE2= 200;
+                            break;
+                        case 4:
+                            X = 300;
+                            Y= 200;
+                            SIZE1= 200;
+                            SIZE2= 50;
+                            break;
+                        case 5:
+                            X = 620;
+                            Y = 440;
+                            SIZE1 = 60;
+                            SIZE2 = 60;
+                            break;
+                        case 6:
+                            X = 690;
+                            Y = 370;
+                            SIZE1 = 60;
+                            SIZE2 = 60;
+                            break;
+                        case 7:
+                            X = 550;
+                            Y = 370;
+                            SIZE1 = 60;
+                            SIZE2 = 60;
+                            break;
+                        case 8:
+                            X = 620;
+                            Y = 300;
+                            SIZE1 = 60;
+                            SIZE2 = 60;
+                            break;
+                        case 9:
+                            X = 50;
+                            Y = 250;
+                            SIZE1 = 200;
+                            SIZE2 = 30;
+                            break;
+                        case 10:
+                            X = 550;
+                            Y = 250;
+                            SIZE1 = 200;
+                            SIZE2 = 30;
+                            break;
+                        case 11:
+                            X = 300;
+                            Y = 350;
+                            SIZE1 = 80;
+                            SIZE2 = 100;
+                            break;
+                        case 12:
+                            X = 420;
+                            Y = 350;
+                            SIZE1 = 80;
+                            SIZE2 = 100;
+                            break;
+                        case 13:
+                            X = 50;
+                            Y = 550;
+                            SIZE1 = 75;
+                            SIZE2 = 100;
+                            break;
+                        case 14:
+                            X = 675;
+                            Y = 550;
+                            SIZE1 = 75;
+                            SIZE2 = 100;
+                            break;
+                        case 15:
+                            X = 50;
+                            Y= 300;
+                            SIZE1= 200;
+                            SIZE2= 200;
+                            break;
+                        default: X = 0; Y = 0; SIZE1 = 0; SIZE2 = 0;
+                    }
+                    repaint(X-5,Y-5,SIZE1+10,SIZE2+10);
+                }
+            }
             repaint();
         }
     }

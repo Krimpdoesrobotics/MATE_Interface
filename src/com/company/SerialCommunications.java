@@ -16,7 +16,7 @@ public class SerialCommunications {
     private String[] portNames;
     private String portSelected;
     private SerialPort serialPort;
-
+    private boolean Opened;
     // constructor
     public SerialCommunications() {
         // default constructor
@@ -51,6 +51,7 @@ public class SerialCommunications {
         try {
             portSelected = MainInterfaceFrame.getSelectedPort();
             serialPort = new SerialPort(portSelected);
+            Opened = true;
 
             serialPort.openPort();
 
@@ -75,6 +76,7 @@ public class SerialCommunications {
         MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(true);
         try {
             serialPort.closePort();
+            Opened=false;
 
         } catch (SerialPortException e) {
             e.printStackTrace();
@@ -84,7 +86,7 @@ public class SerialCommunications {
     }
 
     public boolean isOpen(){
-        return serialPort.isOpened();
+        return Opened;
     }
 
     // outputs to the port
