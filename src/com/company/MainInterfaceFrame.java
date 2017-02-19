@@ -58,8 +58,7 @@ public class MainInterfaceFrame extends JFrame {
             super.paintComponent(g);
             // Draw Text
             if(LogitechController.getController1Connected()){
-                if(LogitechController.updated[4]) {
-                    LogitechController.updated[4] = false;
+                if(true) {
                     g.setColor(Color.BLUE);
                     int change = (int) (LogitechController.getZAxis() * 100);
                     change *= -1;
@@ -73,8 +72,7 @@ public class MainInterfaceFrame extends JFrame {
                     g.drawRect(300,200, 200, 50);
                 }
                 int X, Y, SIZE1, SIZE2;
-                if(LogitechController.updated[15]) {
-                    LogitechController.updated[15] = false;
+                if(true) {
                     int DPadValue = LogitechController.getDPad();
                     switch (DPadValue) {
                         case 0:
@@ -123,18 +121,14 @@ public class MainInterfaceFrame extends JFrame {
                     g.drawLine(150, 400, X + 5, Y + 5);
                     g.setColor(Color.BLACK);
                 }
-                if(LogitechController.updated[0] || LogitechController.updated[1]) {
-                    LogitechController.updated[0] = false;
-                    LogitechController.updated[1] = false;
+                if(true) {
                     g.fillRect(175, 550, 200, 200);
                     g.setColor(Color.YELLOW);
                     g.fillOval(270 + (int) (LogitechController.getXValue() * 100), 645 + (int) (LogitechController.getYValue() * 100), 10, 10);
                     g.drawLine(275, 650, 275 + (int) (LogitechController.getXValue() * 100), 650 + (int) (LogitechController.getYValue() * 100));
                     g.setColor(Color.BLACK);
                 }
-                if(LogitechController.updated[2]|| LogitechController.updated[3]) {
-                    LogitechController.updated[2] = false;
-                    LogitechController.updated[3] = false;
+                if(true) {
                     g.fillRect(425, 550, 200, 200);
                     g.setColor(Color.YELLOW);
                     g.fillOval(520 + (int) (LogitechController.getXRotation() * 100), 645 + (int) (LogitechController.getYRotation() * 100), 10, 10);
@@ -142,8 +136,7 @@ public class MainInterfaceFrame extends JFrame {
                     g.setColor(Color.BLACK);
                 }
                 for(int i = 0; i < 10; i++){
-                    if(LogitechController.updated[i+5]) {
-                        LogitechController.updated[i+5] = false;
+                    if(true) {
                         if (LogitechController.getButton(i)) {
                             g.setColor(Color.GREEN);
                         } else {
@@ -330,7 +323,6 @@ public class MainInterfaceFrame extends JFrame {
                     repaint(X-5,Y-5,SIZE1+10,SIZE2+10);
                 }
             }
-            repaint();
         }
     }
     /**
