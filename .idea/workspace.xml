@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2ea6b67-79ca-46fe-8459-5b9f4fe1627a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$6.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$7.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$8.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$9.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$CustomPanel.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$CustomPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications$PortReader.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications$PortReader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java" afterPath="$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/SerialCommunications.java" afterPath="$PROJECT_DIR$/src/com/company/SerialCommunications.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,8 +21,8 @@
       <file leaf-file-name="SerialCommunications.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/SerialCommunications.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="125" column="75" lean-forward="true" selection-start-line="125" selection-start-column="75" selection-end-line="125" selection-end-column="75" />
+            <state relative-caret-position="271">
+              <caret line="121" column="52" lean-forward="true" selection-start-line="121" selection-start-column="52" selection-end-line="121" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -427,7 +417,14 @@
       <option name="project" value="LOCAL" />
       <updated>1487469959248</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Telemetry Working">
+      <created>1487470760431</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1487470760431</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -490,7 +487,8 @@
     <MESSAGE value="Just a test" />
     <MESSAGE value="added jinput (again)" />
     <MESSAGE value="Added support for manual serial commands" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added support for manual serial commands" />
+    <MESSAGE value="Telemetry Working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Telemetry Working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -639,8 +637,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/SerialCommunications.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="125" column="75" lean-forward="true" selection-start-line="125" selection-start-column="75" selection-end-line="125" selection-end-column="75" />
+        <state relative-caret-position="271">
+          <caret line="121" column="52" lean-forward="true" selection-start-line="121" selection-start-column="52" selection-end-line="121" selection-end-column="52" />
           <folding />
         </state>
       </provider>
