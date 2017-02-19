@@ -120,12 +120,14 @@ public class SerialCommunications {
                             juststared =false;
                         }*/
                         fullmessage += receivedData;
+                        System.out.println(fullmessage);
                         if(fullmessage.length() > 0) {
                             int messagelength;
                             while (fullmessage.length() > lastconsidered) {
                                 messagelength = Character.getNumericValue(fullmessage.charAt(lastconsidered));
+                                System.out.println(messagelength);
                                 if(fullmessage.length() > lastconsidered + messagelength) {
-                                    MainInterfaceFrame.addSerialReceived(fullmessage.substring(lastconsidered + 1, lastconsidered + messagelength));
+                                    MainInterfaceFrame.addSerialReceived(fullmessage.substring(lastconsidered + 1, lastconsidered + messagelength+1));
                                 }else{
                                     break;
                                 }

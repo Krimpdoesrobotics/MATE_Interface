@@ -2,6 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2ea6b67-79ca-46fe-8459-5b9f4fe1627a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$6.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$7.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$8.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$9.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$CustomPanel.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$CustomPanel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications$PortReader.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications$PortReader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java" afterPath="$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/SerialCommunications.java" afterPath="$PROJECT_DIR$/src/com/company/SerialCommunications.java" />
@@ -23,8 +31,8 @@
       <file leaf-file-name="SerialCommunications.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/SerialCommunications.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="126" column="91" lean-forward="false" selection-start-line="126" selection-start-column="91" selection-end-line="126" selection-end-column="91" />
+            <state relative-caret-position="371">
+              <caret line="125" column="75" lean-forward="true" selection-start-line="125" selection-start-column="75" selection-end-line="125" selection-end-column="75" />
               <folding />
             </state>
           </provider>
@@ -33,7 +41,7 @@
       <file leaf-file-name="ControllerInput.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/ControllerInput.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2775">
+            <state relative-caret-position="2925">
               <caret line="125" column="26" lean-forward="true" selection-start-line="125" selection-start-column="26" selection-end-line="125" selection-end-column="26" />
               <folding />
             </state>
@@ -43,8 +51,8 @@
       <file leaf-file-name="MainInterfaceFrame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="35" column="44" lean-forward="false" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
+            <state relative-caret-position="-900">
+              <caret line="435" column="30" lean-forward="false" selection-start-line="435" selection-start-column="30" selection-end-line="435" selection-end-column="30" />
               <folding>
                 <element signature="e#17178#17293#0" expanded="true" />
                 <element signature="e#17292#17293#0" expanded="true" />
@@ -412,7 +420,14 @@
       <option name="project" value="LOCAL" />
       <updated>1487465717629</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added support for manual serial commands">
+      <created>1487469959248</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1487469959248</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -474,7 +489,8 @@
     <MESSAGE value="Rov Monitor Started&#10;" />
     <MESSAGE value="Just a test" />
     <MESSAGE value="added jinput (again)" />
-    <option name="LAST_COMMIT_MESSAGE" value="added jinput (again)" />
+    <MESSAGE value="Added support for manual serial commands" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added support for manual serial commands" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -598,10 +614,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/ControllerInput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2925">
+          <caret line="125" column="26" lean-forward="true" selection-start-line="125" selection-start-column="26" selection-end-line="125" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="35" column="44" lean-forward="false" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
+        <state relative-caret-position="-900">
+          <caret line="435" column="30" lean-forward="false" selection-start-line="435" selection-start-column="30" selection-end-line="435" selection-end-column="30" />
           <folding>
             <element signature="e#17178#17293#0" expanded="true" />
             <element signature="e#17292#17293#0" expanded="true" />
@@ -613,18 +637,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/ControllerInput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2775">
-          <caret line="125" column="26" lean-forward="true" selection-start-line="125" selection-start-column="26" selection-end-line="125" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/SerialCommunications.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="126" column="91" lean-forward="false" selection-start-line="126" selection-start-column="91" selection-end-line="126" selection-end-column="91" />
+        <state relative-caret-position="371">
+          <caret line="125" column="75" lean-forward="true" selection-start-line="125" selection-start-column="75" selection-end-line="125" selection-end-column="75" />
           <folding />
         </state>
       </provider>
