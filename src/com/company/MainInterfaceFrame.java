@@ -3,6 +3,8 @@ package com.company;
 /**
  * Created by Richard on 2/17/2017.
  */
+import sun.rmi.runtime.Log;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
@@ -436,7 +438,7 @@ public class MainInterfaceFrame extends JFrame {
         contentPane.add(btnManualSerialSend, BorderLayout.CENTER);
 
         ControllerRefreshTimer = new Timer();
-        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,100,25);
+        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,100,200);
 
         createComponentMap();
     }
@@ -475,8 +477,28 @@ public class MainInterfaceFrame extends JFrame {
     }
 
     public void UpdateArduino(){
-        if(SerialCommunication.isOpen()){
+        if(SerialCommunication.isOpen() && LogitechController.getController1Connected()){
+            if(LogitechController.updated[0]||LogitechController.updated[1])
+            {
+                //updated joystick left
 
+            }
+            if(LogitechController.updated[2])
+            {
+                //updated joystick right y axis
+                AdjVL((int)((LogitechController.getYRotation()+1)*127.9));
+                AdjVR((int)((LogitechController.getYRotation()+1)*127.9));
+            }
+            if(LogitechController.updated[15])
+            {
+                //updated D-Pad
+
+            }
+        }
+        if(LogitechController.getController1Connected()) {
+            for (int i = 0; i < 16; i++) {
+                LogitechController.updated[i] = false;
+            }
         }
     }
 
