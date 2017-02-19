@@ -10,6 +10,7 @@ import javax.swing.*;
  */
 public class monitorGUI extends JFrame {
     JPanel backGroundPanel = new GradientPanel();
+    JLabel lblStatus = new JLabel("Status:");
 
 
 }
