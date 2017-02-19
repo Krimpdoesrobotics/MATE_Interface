@@ -63,13 +63,13 @@ public class MainInterfaceFrame extends JFrame {
                     int change = (int) (LogitechController.getZAxis() * 100);
                     change *= -1;
                     if (change > 0) {
-                        g.fillRect(400, 200, change, 50);
+                        g.fillRect(400, 250, change, 50);
                     } else {
-                        g.fillRect(400 + change, 200, change * -1, 50);
+                        g.fillRect(400 + change, 250, change * -1, 50);
                         //System.out.println(change);
                     }
                     g.setColor(Color.BLACK);
-                    g.drawRect(300,200, 200, 50);
+                    g.drawRect(300,250, 200, 50);
                 }
                 int X, Y, SIZE1, SIZE2;
                 if(true) {
@@ -248,7 +248,7 @@ public class MainInterfaceFrame extends JFrame {
                             break;
                         case 4:
                             X = 300;
-                            Y= 200;
+                            Y= 250;
                             SIZE1= 200;
                             SIZE2= 50;
                             break;
@@ -371,9 +371,11 @@ public class MainInterfaceFrame extends JFrame {
         contentPane.add(lblSerialSent, BorderLayout.CENTER);
 
         JList<String> listSerialSent = new JList<>(modelSerialSent);
-        listSerialSent.setBounds(new Rectangle(625, 80, 175, 150));
-        listSerialSent.setName("listSerialSent");
-        contentPane.add(listSerialSent, BorderLayout.CENTER);
+        JScrollPane scrollPaneSerialSent = new JScrollPane();
+        scrollPaneSerialSent.setViewportView(listSerialSent);
+        scrollPaneSerialSent.setName("scrollPaneSerialSent");
+        scrollPaneSerialSent.setBounds(new Rectangle(625, 80, 175, 150));
+        contentPane.add(scrollPaneSerialSent, BorderLayout.CENTER);
 
         JLabel lblSerialReceived = new JLabel("Received Serial Messages");
         lblSerialReceived.setName("lblSerialReceived");
@@ -381,9 +383,11 @@ public class MainInterfaceFrame extends JFrame {
         contentPane.add(lblSerialReceived, BorderLayout.CENTER);
 
         JList<String> listSerialReceived = new JList<>(modelSerialReceived);
-        listSerialReceived.setBounds(new Rectangle(825, 80, 175, 150));
-        listSerialReceived.setName("listSerialReceived");
-        contentPane.add(listSerialReceived, BorderLayout.CENTER);
+        JScrollPane scrollPaneSerialReceived = new JScrollPane();
+        scrollPaneSerialReceived.setViewportView(listSerialReceived);
+        scrollPaneSerialReceived.setName("scrollPaneSerialReceived");
+        scrollPaneSerialReceived.setBounds(new Rectangle(825, 80, 175, 150));
+        contentPane.add(scrollPaneSerialReceived, BorderLayout.CENTER);
 
 		JLabel lblChooseController = new JLabel("Choose Controller");
 		lblChooseController.setName("lblChooseController");
@@ -419,6 +423,17 @@ public class MainInterfaceFrame extends JFrame {
 		btnControllerDisconnect.setVisible(false);
 		btnControllerDisconnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnControllerDisconnectClicked();}});
 		contentPane.add(btnControllerDisconnect, BorderLayout.CENTER);
+
+		final JTextField txtManualSerialSend = new JTextField("");
+		txtManualSerialSend.setBounds(new Rectangle(50,200,200,30));
+		txtManualSerialSend.setName("txtManualSerialSend");
+		contentPane.add(txtManualSerialSend,BorderLayout.CENTER);
+
+        JButton btnManualSerialSend = new JButton("Send");
+        btnManualSerialSend.setBounds(new Rectangle(270, 200, 100, 30));
+        btnManualSerialSend.setName("btnManualSerialSend");
+        btnManualSerialSend.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.PortSender(txtManualSerialSend.getText().trim());}});
+        contentPane.add(btnManualSerialSend, BorderLayout.CENTER);
 
         ControllerRefreshTimer = new Timer();
         ControllerRefreshTimer.scheduleAtFixedRate(timerTask,25,25);

@@ -17,6 +17,9 @@ public class SerialCommunications {
     private String portSelected;
     private SerialPort serialPort;
     private boolean Opened;
+    private String fullmessage = new String();
+    private int lastconsidered = 0;
+    private boolean juststared = true;
     // constructor
     public SerialCommunications() {
         // default constructor
@@ -110,8 +113,26 @@ public class SerialCommunications {
             if (event.isRXCHAR() && event.getEventValue() > 0) {
                 try {
                     String receivedData = serialPort.readString(event.getEventValue());
-                    MainInterfaceFrame.addSerialReceived(receivedData);
-
+                    System.out.println(receivedData);
+                    if(receivedData.length() > 0) {
+                        /*if (juststared) {
+                            receivedData = receivedData.substring(1, receivedData.length() - 1);
+                            juststared =false;
+                        }*/
+                        fullmessage += receivedData;
+                        if(fullmessage.length() > 0) {
+                            int messagelength;
+                            while (fullmessage.length() > lastconsidered) {
+                                messagelength = Character.getNumericValue(fullmessage.charAt(lastconsidered));
+                                if(fullmessage.length() > lastconsidered + messagelength) {
+                                    MainInterfaceFrame.addSerialReceived(fullmessage.substring(lastconsidered + 1, lastconsidered + messagelength));
+                                }else{
+                                    break;
+                                }
+                                lastconsidered = lastconsidered + messagelength + 1;
+                            }
+                        }
+                    }
                 } catch (SerialPortException ex) {
                     System.out.println("Error in receiving string from COM-port: " + ex);
 
