@@ -13,7 +13,7 @@ import javax.swing.*;
 public class ControllerInput {
     private float XAxis,YAxis,XRotation,YRotation,DPad,ZAxis;
     private boolean[] buttons = new boolean[10];
-    private boolean[] updated = new boolean[16];
+    public boolean[] updated = new boolean[16];
     private Controller[] Controllers;
     private Controller Controller1;
     private Component[] Components1;
@@ -26,7 +26,7 @@ public class ControllerInput {
         YRotation = 0;
         ZAxis = 0;
         for(int i = 0; i < 16; i++){
-            setUpdated(i,true);
+            updated[i] = true;
         }
     }
 
@@ -195,14 +195,6 @@ public class ControllerInput {
 
     public float getZAxis(){
         return ZAxis;
-    }
-
-    public boolean getUpdated(int index){
-        return updated[index];
-    }
-
-    public void setUpdated(int index, boolean val){
-        updated[index] = val;
     }
 
     // sets the portions of the controller into 8 regions

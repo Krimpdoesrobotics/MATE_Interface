@@ -28,9 +28,6 @@ public class MainInterfaceFrame extends JFrame {
             LogitechController.UpdateControllerComponents();
             contentPane.Refresh();
             UpdateArduino();
-            for(int i = 0; i < 16; i++){
-                LogitechController.setUpdated(i,false);
-            }
         }
     };
     /**
@@ -61,21 +58,21 @@ public class MainInterfaceFrame extends JFrame {
             super.paintComponent(g);
             // Draw Text
             if(LogitechController.getController1Connected()){
-                if(LogitechController.getUpdated(4)) {
+                if(true) {
                     g.setColor(Color.BLUE);
                     int change = (int) (LogitechController.getZAxis() * 100);
                     change *= -1;
                     if (change > 0) {
-                        g.fillRect(400, 200, change, 50);
+                        g.fillRect(400, 250, change, 50);
                     } else {
-                        g.fillRect(400 + change, 200, change * -1, 50);
+                        g.fillRect(400 + change, 250, change * -1, 50);
                         //System.out.println(change);
                     }
                     g.setColor(Color.BLACK);
-                    g.drawRect(300,200, 200, 50);
+                    g.drawRect(300,250, 200, 50);
                 }
                 int X, Y, SIZE1, SIZE2;
-                if(LogitechController.getUpdated(15)) {
+                if(true) {
                     int DPadValue = LogitechController.getDPad();
                     switch (DPadValue) {
                         case 0:
@@ -124,14 +121,14 @@ public class MainInterfaceFrame extends JFrame {
                     g.drawLine(150, 400, X + 5, Y + 5);
                     g.setColor(Color.BLACK);
                 }
-                if(LogitechController.getUpdated(0) || LogitechController.getUpdated(1)) {
+                if(true) {
                     g.fillRect(175, 550, 200, 200);
                     g.setColor(Color.YELLOW);
                     g.fillOval(270 + (int) (LogitechController.getXValue() * 100), 645 + (int) (LogitechController.getYValue() * 100), 10, 10);
                     g.drawLine(275, 650, 275 + (int) (LogitechController.getXValue() * 100), 650 + (int) (LogitechController.getYValue() * 100));
                     g.setColor(Color.BLACK);
                 }
-                if(LogitechController.getUpdated(2)|| LogitechController.getUpdated(3)) {
+                if(true) {
                     g.fillRect(425, 550, 200, 200);
                     g.setColor(Color.YELLOW);
                     g.fillOval(520 + (int) (LogitechController.getXRotation() * 100), 645 + (int) (LogitechController.getYRotation() * 100), 10, 10);
@@ -139,7 +136,7 @@ public class MainInterfaceFrame extends JFrame {
                     g.setColor(Color.BLACK);
                 }
                 for(int i = 0; i < 10; i++){
-                    if(LogitechController.getUpdated(i+5)) {
+                    if(true) {
                         if (LogitechController.getButton(i)) {
                             g.setColor(Color.GREEN);
                         } else {
@@ -221,7 +218,111 @@ public class MainInterfaceFrame extends JFrame {
         }
 
         public void Refresh(){
-            repaint();
+            int X, Y, SIZE1, SIZE2;
+            for(int i = 0; i < 16; i++){
+                if(LogitechController.updated[i]){
+                    switch(i){
+                        case 0:
+                            X = 175;
+                            Y= 550;
+                            SIZE1= 200;
+                            SIZE2= 200;
+                            break;
+                        case 1:
+                            X = 175;
+                            Y= 550;
+                            SIZE1= 200;
+                            SIZE2= 200;
+                            break;
+                        case 2:
+                            X = 425;
+                            Y= 550;
+                            SIZE1= 200;
+                            SIZE2= 200;
+                            break;
+                        case 3:
+                            X = 425;
+                            Y= 550;
+                            SIZE1= 200;
+                            SIZE2= 200;
+                            break;
+                        case 4:
+                            X = 300;
+                            Y= 250;
+                            SIZE1= 200;
+                            SIZE2= 50;
+                            break;
+                        case 5:
+                            X = 620;
+                            Y = 440;
+                            SIZE1 = 60;
+                            SIZE2 = 60;
+                            break;
+                        case 6:
+                            X = 690;
+                            Y = 370;
+                            SIZE1 = 60;
+                            SIZE2 = 60;
+                            break;
+                        case 7:
+                            X = 550;
+                            Y = 370;
+                            SIZE1 = 60;
+                            SIZE2 = 60;
+                            break;
+                        case 8:
+                            X = 620;
+                            Y = 300;
+                            SIZE1 = 60;
+                            SIZE2 = 60;
+                            break;
+                        case 9:
+                            X = 50;
+                            Y = 250;
+                            SIZE1 = 200;
+                            SIZE2 = 30;
+                            break;
+                        case 10:
+                            X = 550;
+                            Y = 250;
+                            SIZE1 = 200;
+                            SIZE2 = 30;
+                            break;
+                        case 11:
+                            X = 300;
+                            Y = 350;
+                            SIZE1 = 80;
+                            SIZE2 = 100;
+                            break;
+                        case 12:
+                            X = 420;
+                            Y = 350;
+                            SIZE1 = 80;
+                            SIZE2 = 100;
+                            break;
+                        case 13:
+                            X = 50;
+                            Y = 550;
+                            SIZE1 = 75;
+                            SIZE2 = 100;
+                            break;
+                        case 14:
+                            X = 675;
+                            Y = 550;
+                            SIZE1 = 75;
+                            SIZE2 = 100;
+                            break;
+                        case 15:
+                            X = 50;
+                            Y= 300;
+                            SIZE1= 200;
+                            SIZE2= 200;
+                            break;
+                        default: X = 0; Y = 0; SIZE1 = 0; SIZE2 = 0;
+                    }
+                    repaint(X-5,Y-5,SIZE1+10,SIZE2+10);
+                }
+            }
         }
     }
     /**
@@ -270,9 +371,11 @@ public class MainInterfaceFrame extends JFrame {
         contentPane.add(lblSerialSent, BorderLayout.CENTER);
 
         JList<String> listSerialSent = new JList<>(modelSerialSent);
-        listSerialSent.setBounds(new Rectangle(625, 80, 175, 150));
-        listSerialSent.setName("listSerialSent");
-        contentPane.add(listSerialSent, BorderLayout.CENTER);
+        JScrollPane scrollPaneSerialSent = new JScrollPane();
+        scrollPaneSerialSent.setViewportView(listSerialSent);
+        scrollPaneSerialSent.setName("scrollPaneSerialSent");
+        scrollPaneSerialSent.setBounds(new Rectangle(625, 80, 175, 150));
+        contentPane.add(scrollPaneSerialSent, BorderLayout.CENTER);
 
         JLabel lblSerialReceived = new JLabel("Received Serial Messages");
         lblSerialReceived.setName("lblSerialReceived");
@@ -280,9 +383,11 @@ public class MainInterfaceFrame extends JFrame {
         contentPane.add(lblSerialReceived, BorderLayout.CENTER);
 
         JList<String> listSerialReceived = new JList<>(modelSerialReceived);
-        listSerialReceived.setBounds(new Rectangle(825, 80, 175, 150));
-        listSerialReceived.setName("listSerialReceived");
-        contentPane.add(listSerialReceived, BorderLayout.CENTER);
+        JScrollPane scrollPaneSerialReceived = new JScrollPane();
+        scrollPaneSerialReceived.setViewportView(listSerialReceived);
+        scrollPaneSerialReceived.setName("scrollPaneSerialReceived");
+        scrollPaneSerialReceived.setBounds(new Rectangle(825, 80, 175, 150));
+        contentPane.add(scrollPaneSerialReceived, BorderLayout.CENTER);
 
 		JLabel lblChooseController = new JLabel("Choose Controller");
 		lblChooseController.setName("lblChooseController");
@@ -319,8 +424,19 @@ public class MainInterfaceFrame extends JFrame {
 		btnControllerDisconnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnControllerDisconnectClicked();}});
 		contentPane.add(btnControllerDisconnect, BorderLayout.CENTER);
 
+		final JTextField txtManualSerialSend = new JTextField("");
+		txtManualSerialSend.setBounds(new Rectangle(50,200,200,30));
+		txtManualSerialSend.setName("txtManualSerialSend");
+		contentPane.add(txtManualSerialSend,BorderLayout.CENTER);
+
+        JButton btnManualSerialSend = new JButton("Send");
+        btnManualSerialSend.setBounds(new Rectangle(270, 200, 100, 30));
+        btnManualSerialSend.setName("btnManualSerialSend");
+        btnManualSerialSend.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.PortSender(txtManualSerialSend.getText().trim());}});
+        contentPane.add(btnManualSerialSend, BorderLayout.CENTER);
+
         ControllerRefreshTimer = new Timer();
-        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,25,25);
+        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,100,25);
 
         createComponentMap();
     }

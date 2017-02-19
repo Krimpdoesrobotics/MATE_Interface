@@ -16,7 +16,10 @@ public class SerialCommunications {
     private String[] portNames;
     private String portSelected;
     private SerialPort serialPort;
-
+    private boolean Opened;
+    private String fullmessage = new String();
+    private int lastconsidered = 0;
+    private boolean juststared = true;
     // constructor
     public SerialCommunications() {
         // default constructor
@@ -51,6 +54,7 @@ public class SerialCommunications {
         try {
             portSelected = MainInterfaceFrame.getSelectedPort();
             serialPort = new SerialPort(portSelected);
+            Opened = true;
 
             serialPort.openPort();
 
@@ -75,6 +79,7 @@ public class SerialCommunications {
         MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(true);
         try {
             serialPort.closePort();
+            Opened=false;
 
         } catch (SerialPortException e) {
             e.printStackTrace();
@@ -84,7 +89,7 @@ public class SerialCommunications {
     }
 
     public boolean isOpen(){
-        return serialPort.isOpened();
+        return Opened;
     }
 
     // outputs to the port
@@ -108,8 +113,28 @@ public class SerialCommunications {
             if (event.isRXCHAR() && event.getEventValue() > 0) {
                 try {
                     String receivedData = serialPort.readString(event.getEventValue());
-                    MainInterfaceFrame.addSerialReceived(receivedData);
-
+                    System.out.println(receivedData);
+                    if(receivedData.length() > 0) {
+                        /*if (juststared) {
+                            receivedData = receivedData.substring(1, receivedData.length() - 1);
+                            juststared =false;
+                        }*/
+                        fullmessage += receivedData;
+                        System.out.println(fullmessage);
+                        if(fullmessage.length() > 0) {
+                            int messagelength;
+                            while (fullmessage.length() > lastconsidered) {
+                                messagelength = Character.getNumericValue(fullmessage.charAt(lastconsidered));
+                                System.out.println(messagelength);
+                                if(fullmessage.length() > lastconsidered + messagelength) {
+                                    MainInterfaceFrame.addSerialReceived(fullmessage.substring(lastconsidered + 1, lastconsidered + messagelength+1));
+                                }else{
+                                    break;
+                                }
+                                lastconsidered = lastconsidered + messagelength + 1;
+                            }
+                        }
+                    }
                 } catch (SerialPortException ex) {
                     System.out.println("Error in receiving string from COM-port: " + ex);
 
