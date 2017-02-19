@@ -19,6 +19,6 @@ public class Button extends JPanel {
     private Color myBackColor = new Color(70,100,150);
     private Color myForeGroundColor = new Color(255,255,255);
 
-    public Button(String Caption, )
+    //public Button(String Caption, )
 
 }
