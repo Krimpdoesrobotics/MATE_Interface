@@ -3,8 +3,6 @@ package com.company;
 /**
  * Created by Richard on 2/17/2017.
  */
-import sun.rmi.runtime.Log;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
@@ -28,7 +26,7 @@ public class MainInterfaceFrame extends JFrame {
         public void run() {
             // TODO Auto-generated method stub
             //Invoke your function here
-            LogitechController.UpdateControllerComponents();
+            LogitechController.UpdateController1Components();
             contentPane.Refresh();
             UpdateArduino();
         }
@@ -51,6 +49,7 @@ public class MainInterfaceFrame extends JFrame {
 
     public class CustomPanel extends JPanel{
         private JPanel contentPanel;
+
         public CustomPanel(){
             contentPanel = new JPanel();
             contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -417,14 +416,14 @@ public class MainInterfaceFrame extends JFrame {
 		JButton btnControllerConnect = new JButton("Connect");
 		btnControllerConnect.setBounds(new Rectangle(500, 100, 100, 40));
 		btnControllerConnect.setName("btnControllerConnect");
-		btnControllerConnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnControllerConnectClicked();}});
+		btnControllerConnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnController1ConnectClicked();}});
 		contentPane.add(btnControllerConnect, BorderLayout.CENTER);
 
 		JButton btnControllerDisconnect = new JButton("Disconnect");
 		btnControllerDisconnect.setBounds(new Rectangle(500, 150, 100, 40));
 		btnControllerDisconnect.setName("btnControllerDisconnect");
 		btnControllerDisconnect.setVisible(false);
-		btnControllerDisconnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnControllerDisconnectClicked();}});
+		btnControllerDisconnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnController1DisconnectClicked();}});
 		contentPane.add(btnControllerDisconnect, BorderLayout.CENTER);
 
 		final JTextField txtManualSerialSend = new JTextField("");

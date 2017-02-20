@@ -1,5 +1,4 @@
 package com.company;
-
 /**
  * Created by Richard on 2/17/2017.
  */
@@ -11,12 +10,13 @@ import net.java.games.input.EventQueue;
 import javax.swing.*;
 
 public class ControllerInput {
-    private float XAxis,YAxis,XRotation,YRotation,DPad,ZAxis;
-    private boolean[] buttons = new boolean[10];
-    public boolean[] updated = new boolean[16];
-    private Controller[] Controllers;
-    private Controller Controller1;
-    private Component[] Components1;
+    private float XAxis, YAxis, XRotation, YRotation, DPad, ZAxis; // Value of each axis
+    private boolean[] buttons = new boolean[10];                   // array of the buttons we have and whether or not they are in use -BOOL-
+    public boolean[] updated = new boolean[16];                    // whether or not the pads or buttons have been updated
+    private Controller[] Controllers; // this temporarily holds an array of controllers that can be accesed.
+    private Controller Controller1;   // Driver controller
+    private Component[] Components;   //
+
     // constructors
     public ControllerInput(){
         // default constructor
@@ -30,8 +30,8 @@ public class ControllerInput {
         }
     }
 
-    public void UpdateControllerComponents(){
-        if(Controller1!=null){
+    public void UpdateController1Components(){
+        if(Controller1 != null) {
             Controller1.poll();
             EventQueue queue = Controller1.getEventQueue();
             Event event = new Event();
@@ -44,40 +44,43 @@ public class ControllerInput {
                 float value = event.getValue();
                 if(comp.isAnalog()) {
                     buffer.append(value);
-                    if(comp.getIdentifier() == Component.Identifier.Axis.X){
-                        XAxis = value;
-                        updated[1] = true;
-                    }else if(comp.getIdentifier() == Component.Identifier.Axis.Y){
+                    //
+                    // checks all the analog sticks
+                    //
+                    if(comp.getIdentifier() == Component.Identifier.Axis.Y) {
                         YAxis = value;
                         updated[0] = true;
-                    }else if(comp.getIdentifier() == Component.Identifier.Axis.RX) {
-                        XRotation = value;
-                        updated[3] = true;
-                    }else if(comp.getIdentifier() == Component.Identifier.Axis.RY){
+                    } else if(comp.getIdentifier() == Component.Identifier.Axis.X) {
+                        XAxis = value;
+                        updated[1] = true;
+                    } else if(comp.getIdentifier() == Component.Identifier.Axis.RY) {
                         YRotation = value;
                         updated[2] = true;
-                    }else if(comp.getIdentifier() == Component.Identifier.Axis.Z){
+                    } else if(comp.getIdentifier() == Component.Identifier.Axis.RX) {
+                        XRotation = value;
+                        updated[3] = true;
+                    } else if(comp.getIdentifier() == Component.Identifier.Axis.Z) {
                         ZAxis = value;
                         updated[4] = true;
                     }
                 } else {
-                    if(comp.getIdentifier() == Component.Identifier.Axis.POV){
+                    if(comp.getIdentifier() == Component.Identifier.Axis.POV) {
                         DPad = value;
                         updated[15] = true;
                         buffer.append(value);
-                    }else{
+                    } else {
                         int buttonnum = 0;
                         for(int i = 0; i < 10; i++) {
-                            if (comp.getIdentifier().getName().contains(Integer.toString(i))) {
+                            if(comp.getIdentifier().getName().contains(Integer.toString(i))) {
                                 buttonnum = i;
                                 updated[i+5] = true;
                             }
                         }
-                        if(value==1.0f) {
-                            buffer.append("On"+Integer.toString(buttonnum));
+                        if(value == 1.0f) {
+                            buffer.append("On" + Integer.toString(buttonnum));
                             buttons[buttonnum] = true;
                         } else {
-                            buffer.append("Off"+Integer.toString(buttonnum));
+                            buffer.append("Off" + Integer.toString(buttonnum));
                             buttons[buttonnum] = false;
                         }
                     }
@@ -105,22 +108,29 @@ public class ControllerInput {
                     output += "<BR>";
                     output += "Component Count: " + Components.length;
                     output += "<BR>";
-                    for(int j=0;j<Components.length;j++) {
+                    for(int j = 0; j < Components.length; j++) {
                         output += "Component " + j + ": " + Components[j].getName();
                         output += "<BR>";
                         output += "    Identifier: "+ Components[j].getIdentifier().getName();
                         output += "    ComponentType: ";
+                        //
+                        // Checks to see if the value is absolute or relative
+                        //
                         if (Components[j].isRelative()) {
                             output += "Relative";
                         } else {
                             output += "Absolute";
                         }
+                        //
+                        // Checks to see if the connection is analog or digital
+                        //
                         if (Components[j].isAnalog()) {
                             output += " Analog";
                         } else {
                             output += " Digital";
                         }
                         output += "<BR>";
+
                     }
                     System.out.println(output);
                     break;
@@ -131,6 +141,7 @@ public class ControllerInput {
     }
 
     public void btnControllerRefreshClicked(){
+        // refreshes all controllers, not just a specific one
         Controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
         JComboBox SomeComboBox = (JComboBox) MainInterfaceFrame.getComponentByName("ControllerComboBox");
         SomeComboBox.removeAllItems();
@@ -141,7 +152,7 @@ public class ControllerInput {
         }
     }
 
-    public void btnControllerConnectClicked() {
+    public void btnController1ConnectClicked() {
         JComboBox SomeComboBox = (JComboBox) MainInterfaceFrame.getComponentByName("ControllerComboBox");
         int counter = SomeComboBox.getSelectedIndex();
         //System.out.println(counter);
@@ -156,15 +167,16 @@ public class ControllerInput {
         }
         MainInterfaceFrame.getComponentByName("btnControllerConnect").setVisible(false);
         MainInterfaceFrame.getComponentByName("btnControllerDisconnect").setVisible(true);
-        Components1 = Controller1.getComponents();
+        Components = Controller1.getComponents();
     }
-    public void btnControllerDisconnectClicked() {
+    public void btnController1DisconnectClicked() {
         MainInterfaceFrame.getComponentByName("btnControllerConnect").setVisible(true);
         MainInterfaceFrame.getComponentByName("btnControllerDisconnect").setVisible(false);
         Controller1 = null;
-        Components1 = null;
+        Components = null;
     }
 
+    // gets
     public boolean getController1Connected(){
         return (Controller1 != null);
     }
@@ -187,35 +199,37 @@ public class ControllerInput {
 
     public int getDPad(){
         return (int)(DPad*8+.25);
-    }
+    } // EXPLAIN
 
-    public boolean getDPadLeft(){
-        int DPadVal = getDPad();
-        if(DPadVal == 1 || DPadVal == 7 || DPadVal == 8) return true;
-        else return false;
-    }
+        // gets the specific pads
+        public boolean getDPadLeft(){
+            int DPadVal = getDPad();
+            if(DPadVal == 1 || DPadVal == 7 || DPadVal == 8) return true;
+            else return false;
+        }
 
-    public boolean getDPadRight(){
-        int DPadVal = getDPad();
-        if(DPadVal == 3 || DPadVal == 4 || DPadVal == 5) return true;
-        else return false;
-    }
+        public boolean getDPadRight(){
+            int DPadVal = getDPad();
+            if(DPadVal == 3 || DPadVal == 4 || DPadVal == 5) return true;
+            else return false;
+        }
 
-    public boolean getDPadUp(){
-        int DPadVal = getDPad();
-        if(DPadVal == 1 || DPadVal == 2 || DPadVal == 3) return true;
-        else return false;
-    }
+        public boolean getDPadUp(){
+            int DPadVal = getDPad();
+            if(DPadVal == 1 || DPadVal == 2 || DPadVal == 3) return true;
+            else return false;
+        }
 
-    public boolean getDPadDown(){
-        int DPadVal = getDPad();
-        if(DPadVal == 5 || DPadVal == 6 || DPadVal == 7) return true;
-        else return false;
-    }
+        public boolean getDPadDown(){
+            int DPadVal = getDPad();
+            if(DPadVal == 5 || DPadVal == 6 || DPadVal == 7) return true;
+            else return false;
+        }
 
-    public boolean getButton(int index){
-        return buttons[index];
-    }
+        // gets which button or buttons is pressed
+        public boolean getButton(int index){
+            return buttons[index];
+        }
 
     public float getZAxis(){
         return ZAxis;
