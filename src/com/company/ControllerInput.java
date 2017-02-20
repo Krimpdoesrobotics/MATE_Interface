@@ -15,7 +15,7 @@ public class ControllerInput {
     public boolean[] updated = new boolean[16];                    // whether or not the pads or buttons have been updated
     private Controller[] Controllers; // this temporarily holds an array of controllers that can be accesed.
     private Controller Controller1;   // Driver controller
-    private Component[] Components;   //
+    private Component[] Components;   // Components of the controller
 
     // constructors
     public ControllerInput(){
