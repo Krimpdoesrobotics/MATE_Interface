@@ -189,6 +189,30 @@ public class ControllerInput {
         return (int)(DPad*8+.25);
     }
 
+    public boolean getDPadLeft(){
+        int DPadVal = getDPad();
+        if(DPadVal == 1 || DPadVal == 7 || DPadVal == 8) return true;
+        else return false;
+    }
+
+    public boolean getDPadRight(){
+        int DPadVal = getDPad();
+        if(DPadVal == 3 || DPadVal == 4 || DPadVal == 5) return true;
+        else return false;
+    }
+
+    public boolean getDPadUp(){
+        int DPadVal = getDPad();
+        if(DPadVal == 1 || DPadVal == 2 || DPadVal == 3) return true;
+        else return false;
+    }
+
+    public boolean getDPadDown(){
+        int DPadVal = getDPad();
+        if(DPadVal == 5 || DPadVal == 6 || DPadVal == 7) return true;
+        else return false;
+    }
+
     public boolean getButton(int index){
         return buttons[index];
     }
