@@ -438,7 +438,7 @@ public class MainInterfaceFrame extends JFrame {
         contentPane.add(btnManualSerialSend, BorderLayout.CENTER);
 
         ControllerRefreshTimer = new Timer();
-        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,100,100);
+        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,100,50);
 
         createComponentMap();
     }
@@ -481,22 +481,22 @@ public class MainInterfaceFrame extends JFrame {
 
     public static void addSerialSent(String obj){
         modelSerialSent.addElement(obj);
-        if(modelSerialSent.getSize() > 100){
-            modelSerialSent.removeRange(0,50);
+        if(modelSerialSent.getSize() > 25){
+            modelSerialSent.removeRange(0,13);
         }
     }
 
     public static void addSerialReceived(String obj){
         modelSerialReceived.addElement(obj);
-        if(modelSerialReceived.getSize() > 100){
-            modelSerialReceived.removeRange(0,50);
+        if(modelSerialReceived.getSize() > 25){
+            modelSerialReceived.removeRange(0,13);
         }
     }
 
     public void UpdateArduino(){
         if(SerialCommunication.isOpen() && LogitechController.getController1Connected()){
             timerCounter++;
-            if(timerCounter >=10){
+            if(timerCounter >=100){
                 timerCounter = 0;
                 SerialCommunication.PortSender("9");
             }
@@ -508,8 +508,8 @@ public class MainInterfaceFrame extends JFrame {
             if(LogitechController.updated[2])
             {
                 //updated joystick right y axis
-                AdjVL((int)((LogitechController.getYRotation()+1)*127.9));
-                AdjVR((int)((LogitechController.getYRotation()+1)*127.9));
+                AdjVL((int)((LogitechController.getYRotation()-1)*-127.9));
+                AdjVR((int)((LogitechController.getYRotation()-1)*-127.9));
             }
             if(LogitechController.updated[15])
             {
@@ -518,6 +518,8 @@ public class MainInterfaceFrame extends JFrame {
                     AdjGripperRotation(60);
                 }else if(LogitechController.getDPadRight()){
                     AdjGripperRotation(120);
+                }else{
+                    AdjGripperRotation(90);
                 }
                 if(LogitechController.getDPadUp()) {
                     AdjGripperClamp(20);
