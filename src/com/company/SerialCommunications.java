@@ -1,9 +1,7 @@
 package com.company;
-
 /**
  * Created by Richard on 2/17/2017.
  */
-
 import jssc.*;
 import sun.applet.Main;
 
@@ -19,7 +17,7 @@ public class SerialCommunications {
     private boolean Opened;
     private String fullmessage = new String();
     private int lastconsidered = 0;
-    private boolean juststared = true;
+
     // constructor
     public SerialCommunications() {
         // default constructor

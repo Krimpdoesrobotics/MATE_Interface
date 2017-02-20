@@ -10,12 +10,14 @@ import net.java.games.input.EventQueue;
 import javax.swing.*;
 
 public class ControllerInput {
+    // instance variables
+    // private data
     private float XAxis, YAxis, XRotation, YRotation, DPad, ZAxis; // Value of each axis
     private boolean[] buttons = new boolean[10];                   // array of the buttons we have and whether or not they are in use -BOOL-
     public boolean[] updated = new boolean[16];                    // whether or not the pads or buttons have been updated
-    private Controller[] Controllers; // this temporarily holds an array of controllers that can be accesed.
+    private Controller[] Controllers; // this temporarily holds an array of controllers that can be accessed.
     private Controller Controller1;   // Driver controller
-    private Component[] Components;   // Components of the controller
+    private Component[] Components;   // different controller components. Used for checking if active
 
     // constructors
     public ControllerInput(){
@@ -25,11 +27,15 @@ public class ControllerInput {
         XRotation = 0;
         YRotation = 0;
         ZAxis = 0;
+        //
+        // sets all of the updates
+        //
         for(int i = 0; i < 16; i++){
             updated[i] = true;
         }
     }
 
+    // update
     public void UpdateController1Components(){
         if(Controller1 != null) {
             Controller1.poll();
@@ -90,6 +96,7 @@ public class ControllerInput {
         }
     }
 
+    // This outputs all of the controller functions
     public void ControllerComboBoxSelection(){
         //JLabel SomeLabel = (JLabel) MainInterfaceFrame.getComponentByName("lblControllerDetails");
         JComboBox SomeComboBox = (JComboBox) MainInterfaceFrame.getComponentByName("ControllerComboBox");
@@ -140,6 +147,7 @@ public class ControllerInput {
         }
     }
 
+    // refresh
     public void btnControllerRefreshClicked(){
         // refreshes all controllers, not just a specific one
         Controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
@@ -152,6 +160,7 @@ public class ControllerInput {
         }
     }
 
+    // connections
     public void btnController1ConnectClicked() {
         JComboBox SomeComboBox = (JComboBox) MainInterfaceFrame.getComponentByName("ControllerComboBox");
         int counter = SomeComboBox.getSelectedIndex();
