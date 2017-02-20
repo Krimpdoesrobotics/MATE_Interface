@@ -21,6 +21,7 @@ public class MainInterfaceFrame extends JFrame {
     private Timer ControllerRefreshTimer;
     private static DefaultListModel<String> modelSerialSent = new DefaultListModel<>();
     private static DefaultListModel<String> modelSerialReceived = new DefaultListModel<>();
+    private int timerCounter = 0;
     private TimerTask timerTask = new TimerTask() {
 
         @Override
@@ -443,6 +444,17 @@ public class MainInterfaceFrame extends JFrame {
         createComponentMap();
     }
 
+    public static void scrollDown(){
+        Component SomeComponent = getComponentByName("scrollPaneSerialReceived");
+        Component SomeComponent2 = getComponentByName("scrollPaneSerialSent");
+        if(SomeComponent instanceof JScrollPane && SomeComponent2 instanceof  JScrollPane){
+            JScrollPane ScrollPaneReceived = (JScrollPane) SomeComponent;
+            JScrollPane ScrollPaneSent = (JScrollPane) SomeComponent2;
+            ScrollPaneReceived.getVerticalScrollBar().setValue(ScrollPaneReceived.getVerticalScrollBar().getMaximum());
+            ScrollPaneSent.getVerticalScrollBar().setValue(ScrollPaneSent.getVerticalScrollBar().getMaximum());
+        }
+    }
+
     public void createComponentMap() {
         componentMap = new HashMap<String,Component>();
         Component[] components = getContentPane().getComponents();
@@ -470,14 +482,25 @@ public class MainInterfaceFrame extends JFrame {
 
     public static void addSerialSent(String obj){
         modelSerialSent.addElement(obj);
+        if(modelSerialSent.getSize() > 100){
+            modelSerialSent.removeRange(0,50);
+        }
     }
 
     public static void addSerialReceived(String obj){
         modelSerialReceived.addElement(obj);
+        if(modelSerialReceived.getSize() > 100){
+            modelSerialReceived.removeRange(0,50);
+        }
     }
 
     public void UpdateArduino(){
         if(SerialCommunication.isOpen() && LogitechController.getController1Connected()){
+            timerCounter++;
+            if(timerCounter >=10){
+                timerCounter = 0;
+                SerialCommunication.PortSender("9");
+            }
             if(LogitechController.updated[0]||LogitechController.updated[1])
             {
                 //updated joystick left

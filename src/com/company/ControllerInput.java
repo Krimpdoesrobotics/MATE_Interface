@@ -242,7 +242,7 @@ public class ControllerInput {
         // 6: BUTTON 1: B Button
         // 7: BUTTON 2: X Button
         // 8: BUTTON 3: Y Button
-        // 9: BUTTON 4: L Button (not working ATM)
+        // 9: BUTTON 4: L Button (not working well ATM)
         // 10: BUTTON 5: R Button
         // 11: BUTTON 6: Back Button
         // 12: BUTTON 7: Start Button
