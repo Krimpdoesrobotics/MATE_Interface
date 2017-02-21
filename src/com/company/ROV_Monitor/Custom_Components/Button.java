@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * Created by bandi on 2/18/2017.
  */
-public class Button extends JPanel {
+public class Button extends JComponent {
     private String myCaption;
     private int myVerticalLength;
     private int myHorizontalLength;
@@ -73,7 +73,15 @@ public class Button extends JPanel {
         int totalHeight = this.myTopSpacing + this.myHeight + this.myBottomSpacing;
         int totalWidth = this.myLeftSpacing + this.myHorizontalLength + this.myRightSpacing;
 
+        g.drawRect(0,0,totalWidth, totalHeight);
 
+        g.setColor(new Color(50,130,130));
+
+        g.drawRoundRect(this.myLeftSpacing, this.myTopSpacing,this.myHorizontalLength, this.myHeight,25,25);
+        g.setColor(this.myBackColor);
+        g.drawRoundRect(this.myLeftSpacing, this.myTopSpacing,this.myHorizontalLength, this.myHeight,25,25);
+        g.setColor(this.myForeGroundColor);
+       //TODO: g.drawString(this.myCaption, (((this.myHorizontalLength/2)+this.myLeftSpacing),(((this.myHeight/2))));
 
     }
 
