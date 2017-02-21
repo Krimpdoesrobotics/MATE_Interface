@@ -500,7 +500,7 @@ public class MainInterfaceFrame extends JFrame {
             timerCounter++;
             if(timerCounter >=100){
                 timerCounter = 0;
-                SerialCommunication.PortSender("9");
+                SerialCommunication.PortSender("0");
             }
             if(LogitechController.updated[0]||LogitechController.updated[1])
             {
@@ -630,12 +630,12 @@ public class MainInterfaceFrame extends JFrame {
     }
     public boolean AdjGripperRotation(int pos){
         String command;
-        command = "8" + Integer.toString(Integer.toString(pos).length())+Integer.toString(pos);
+        command = "3" + Integer.toString(Integer.toString(pos).length())+Integer.toString(pos);
         return SerialCommunication.PortSender(command);
     }
     public boolean AdjGripperClamp(int pos){
         String command;
-        command = "7" + Integer.toString(Integer.toString(pos).length())+Integer.toString(pos);
+        command = "2" + Integer.toString(Integer.toString(pos).length())+Integer.toString(pos);
         return SerialCommunication.PortSender(command);
     }
     public boolean AdjFL(int power) //adjust the power of the front left motor
@@ -643,7 +643,7 @@ public class MainInterfaceFrame extends JFrame {
         String command;
         String powerstr;
         powerstr = Integer.toString(power);
-        command = "1" + Integer.toString(powerstr.length());//selects motor and details length of command
+        command = "11" + Integer.toString(powerstr.length());//selects motor and details length of command
         command+= powerstr;
         return SerialCommunication.PortSender(command);
     }
@@ -652,7 +652,7 @@ public class MainInterfaceFrame extends JFrame {
         String command;
         String powerstr;
         powerstr = Integer.toString(power);
-        command = "2" + Integer.toString(powerstr.length());//selects motor and details length of command
+        command = "12" + Integer.toString(powerstr.length());//selects motor and details length of command
         command+= powerstr;
         return SerialCommunication.PortSender(command);
     }
@@ -661,7 +661,7 @@ public class MainInterfaceFrame extends JFrame {
         String command;
         String powerstr;
         powerstr = Integer.toString(power);
-        command = "3" + Integer.toString(powerstr.length());//selects motor and details length of command
+        command = "13" + Integer.toString(powerstr.length());//selects motor and details length of command
         command+= powerstr;
         return SerialCommunication.PortSender(command);
     }
@@ -670,7 +670,7 @@ public class MainInterfaceFrame extends JFrame {
         String command;
         String powerstr;
         powerstr = Integer.toString(power);
-        command = "4" + Integer.toString(powerstr.length());//selects motor and details length of command
+        command = "14" + Integer.toString(powerstr.length());//selects motor and details length of command
         command+= powerstr;
         return SerialCommunication.PortSender(command);
     }
@@ -679,7 +679,7 @@ public class MainInterfaceFrame extends JFrame {
         String command;
         String powerstr;
         powerstr = Integer.toString(power);
-        command = "5" + Integer.toString(powerstr.length());//selects motor and details length of command
+        command = "15" + Integer.toString(powerstr.length());//selects motor and details length of command
         command+= powerstr;
         return SerialCommunication.PortSender(command);
     }
@@ -688,7 +688,7 @@ public class MainInterfaceFrame extends JFrame {
         String command;
         String powerstr;
         powerstr = Integer.toString(power);
-        command = "6" + Integer.toString(powerstr.length());//selects motor and details length of command
+        command = "16" + Integer.toString(powerstr.length());//selects motor and details length of command
         command+= powerstr;
         return SerialCommunication.PortSender(command);
     }
