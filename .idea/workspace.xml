@@ -14,7 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
+    <option name="PATCH_PATH" value="C:\Users\julia\IdeaProjects\MATE_Interface" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
@@ -45,8 +45,8 @@
       <file leaf-file-name="MainInterfaceFrame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="531" column="27" lean-forward="false" selection-start-line="531" selection-start-column="27" selection-end-line="531" selection-end-column="27" />
+            <state relative-caret-position="-86">
+              <caret line="585" column="48" lean-forward="true" selection-start-line="585" selection-start-column="48" selection-end-line="585" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -581,7 +581,14 @@
       <option name="project" value="LOCAL" />
       <updated>1487718786886</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Setup 8 analog stick regions">
+      <created>1487719764619</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1487719764619</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -651,7 +658,8 @@
     <MESSAGE value="Added refresh to GUI" />
     <MESSAGE value="Something happened?" />
     <MESSAGE value="Updated motor control code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated motor control code" />
+    <MESSAGE value="Setup 8 analog stick regions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Setup 8 analog stick regions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1225,8 +1233,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="531" column="27" lean-forward="false" selection-start-line="531" selection-start-column="27" selection-end-line="531" selection-end-column="27" />
+        <state relative-caret-position="-86">
+          <caret line="585" column="48" lean-forward="true" selection-start-line="585" selection-start-column="48" selection-end-line="585" selection-end-column="48" />
           <folding />
         </state>
       </provider>

@@ -514,22 +514,87 @@ public class MainInterfaceFrame extends JFrame {
                 }else if(y < 0){
                     angle += Math.PI * 2;
                 }
+                double power;
                 if(angle > Math.PI /8 && angle < 3*Math.PI / 8){
                     //diag fr
+                    power = Math.sqrt(x*x+y*y)/Math.sqrt(2);
+                    if(power > 1){
+                        power = 1;
+                    }
+                    AdjFL((int)((power-1)*-90));
+                    AdjFR((int)((power-1)*-90));
+                    AdjBL((int)((power-1)*-90));
+                    AdjBR((int)((power-1)*-90));
                 }else if(angle > 3*Math.PI /8 && angle < 5*Math.PI / 8){
                     //front
+                    power = Math.abs(y);
+                    if(power > 1){
+                        power = 1;
+                    }
+                    AdjFL((int)((power-1)*-90));
+                    AdjFR((int)((power-1)*-90));
+                    AdjBL((int)((power-1)*-90));
+                    AdjBR((int)((power-1)*-90));
                 }else if(angle > 5*Math.PI /8 && angle < 7*Math.PI / 8){
                     //diag fl
+                    power = Math.sqrt(x*x+y*y)/Math.sqrt(2);
+                    if(power > 1){
+                        power = 1;
+                    }
+                    AdjFL((int)((power-1)*-90));
+                    AdjFR((int)((power-1)*-90));
+                    AdjBL((int)((power-1)*-90));
+                    AdjBR((int)((power-1)*-90));
                 }else if(angle > 7*Math.PI /8 && angle < 9*Math.PI / 8){
                     //left
+                    power = Math.abs(x);
+                    if(power > 1){
+                        power = 1;
+                    }
+                    AdjFL((int)((power-1)*-90));
+                    AdjFR((int)((power-1)*-90));
+                    AdjBL((int)((power-1)*-90));
+                    AdjBR((int)((power-1)*-90));
                 }else if(angle > 9*Math.PI /8 && angle < 11*Math.PI / 8){
                     //diag bl
+                    power = Math.sqrt(x*x+y*y)/Math.sqrt(2);
+                    if(power > 1){
+                        power = 1;
+                    }
+                    AdjFL((int)((power-1)*-90));
+                    AdjFR((int)((power-1)*-90));
+                    AdjBL((int)((power-1)*-90));
+                    AdjBR((int)((power-1)*-90));
                 }else if(angle > 11*Math.PI /8 && angle < 13*Math.PI / 8){
                     //back
+                    power = Math.abs(y);
+                    if(power > 1){
+                        power = 1;
+                    }
+                    AdjFL((int)((power-1)*-90));
+                    AdjFR((int)((power-1)*-90));
+                    AdjBL((int)((power-1)*-90));
+                    AdjBR((int)((power-1)*-90));
                 }else if(angle > 13*Math.PI /8 && angle < 15*Math.PI / 8){
                     //diag br
+                    power = Math.sqrt(x*x+y*y)/Math.sqrt(2);
+                    if(power > 1){
+                        power = 1;
+                    }
+                    AdjFL((int)((power-1)*-90));
+                    AdjFR((int)((power-1)*-90));
+                    AdjBL((int)((power-1)*-90));
+                    AdjBR((int)((power-1)*-90));
                 }else{
                     //right
+                    power = Math.abs(x);
+                    if(power > 1){
+                        power = 1;
+                    }
+                    AdjFL((int)((power-1)*-90));
+                    AdjFR((int)((power-1)*-90));
+                    AdjBL((int)((power-1)*-90));
+                    AdjBR((int)((power-1)*-90));
                 }
             }
             if(LogitechController.updated[2])
