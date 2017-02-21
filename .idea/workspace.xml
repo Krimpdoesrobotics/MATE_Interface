@@ -45,8 +45,8 @@
       <file leaf-file-name="MainInterfaceFrame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-86">
-              <caret line="585" column="48" lean-forward="true" selection-start-line="585" selection-start-column="48" selection-end-line="585" selection-end-column="48" />
+            <state relative-caret-position="464">
+              <caret line="597" column="17" lean-forward="true" selection-start-line="597" selection-start-column="17" selection-end-line="597" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -588,7 +588,14 @@
       <option name="project" value="LOCAL" />
       <updated>1487719764619</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Updated code for 8 analog stick regions">
+      <created>1487720065610</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1487720065610</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -659,7 +666,8 @@
     <MESSAGE value="Something happened?" />
     <MESSAGE value="Updated motor control code" />
     <MESSAGE value="Setup 8 analog stick regions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Setup 8 analog stick regions" />
+    <MESSAGE value="Updated code for 8 analog stick regions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated code for 8 analog stick regions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1233,8 +1241,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-86">
-          <caret line="585" column="48" lean-forward="true" selection-start-line="585" selection-start-column="48" selection-end-line="585" selection-end-column="48" />
+        <state relative-caret-position="464">
+          <caret line="597" column="17" lean-forward="true" selection-start-line="597" selection-start-column="17" selection-end-line="597" selection-end-column="17" />
           <folding />
         </state>
       </provider>
