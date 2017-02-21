@@ -506,7 +506,31 @@ public class MainInterfaceFrame extends JFrame {
             {
                 //updated joystick left
                 //assume fr and fl motors face to front, br and bl motors to the back
-
+                float x = LogitechController.getXValue();
+                float y = LogitechController.getYValue();
+                double angle = Math.atan(y/x);
+                if(x < 0){
+                    angle += Math.PI;
+                }else if(y < 0){
+                    angle += Math.PI * 2;
+                }
+                if(angle > Math.PI /8 && angle < 3*Math.PI / 8){
+                    //diag fr
+                }else if(angle > 3*Math.PI /8 && angle < 5*Math.PI / 8){
+                    //front
+                }else if(angle > 5*Math.PI /8 && angle < 7*Math.PI / 8){
+                    //diag fl
+                }else if(angle > 7*Math.PI /8 && angle < 9*Math.PI / 8){
+                    //left
+                }else if(angle > 9*Math.PI /8 && angle < 11*Math.PI / 8){
+                    //diag bl
+                }else if(angle > 11*Math.PI /8 && angle < 13*Math.PI / 8){
+                    //back
+                }else if(angle > 13*Math.PI /8 && angle < 15*Math.PI / 8){
+                    //diag br
+                }else{
+                    //right
+                }
             }
             if(LogitechController.updated[2])
             {
