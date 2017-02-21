@@ -213,25 +213,25 @@ public class ControllerInput {
         // gets the specific pads
         public boolean getDPadLeft(){
             int DPadVal = getDPad();
-            if(DPadVal == 1 || DPadVal == 7 || DPadVal == 8) return true;
+            if(DPadVal == 8) return true;
             else return false;
         }
 
         public boolean getDPadRight(){
             int DPadVal = getDPad();
-            if(DPadVal == 3 || DPadVal == 4 || DPadVal == 5) return true;
+            if(DPadVal == 4) return true;
             else return false;
         }
 
         public boolean getDPadUp(){
             int DPadVal = getDPad();
-            if(DPadVal == 1 || DPadVal == 2 || DPadVal == 3) return true;
+            if(DPadVal == 2) return true;
             else return false;
         }
 
         public boolean getDPadDown(){
             int DPadVal = getDPad();
-            if(DPadVal == 5 || DPadVal == 6 || DPadVal == 7) return true;
+            if(DPadVal == 6) return true;
             else return false;
         }
 

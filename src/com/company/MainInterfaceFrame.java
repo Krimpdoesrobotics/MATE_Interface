@@ -3,6 +3,8 @@ package com.company;
 /**
  * Created by Richard on 2/17/2017.
  */
+import sun.rmi.runtime.Log;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
@@ -446,12 +448,12 @@ public class MainInterfaceFrame extends JFrame {
     public static void scrollDown(){
         Component SomeComponent = getComponentByName("scrollPaneSerialReceived");
         Component SomeComponent2 = getComponentByName("scrollPaneSerialSent");
-        if(SomeComponent instanceof JScrollPane && SomeComponent2 instanceof  JScrollPane){
+        /*if(SomeComponent instanceof JScrollPane && SomeComponent2 instanceof  JScrollPane){
             JScrollPane ScrollPaneReceived = (JScrollPane) SomeComponent;
             JScrollPane ScrollPaneSent = (JScrollPane) SomeComponent2;
             ScrollPaneReceived.getVerticalScrollBar().setValue(ScrollPaneReceived.getVerticalScrollBar().getMaximum());
             ScrollPaneSent.getVerticalScrollBar().setValue(ScrollPaneSent.getVerticalScrollBar().getMaximum());
-        }
+        }*/
     }
 
     public void createComponentMap() {
@@ -503,13 +505,14 @@ public class MainInterfaceFrame extends JFrame {
             if(LogitechController.updated[0]||LogitechController.updated[1])
             {
                 //updated joystick left
+                //assume fr and fl motors face to front, br and bl motors to the back
 
             }
             if(LogitechController.updated[2])
             {
                 //updated joystick right y axis
-                AdjVL((int)((LogitechController.getYRotation()-1)*-127.9));
-                AdjVR((int)((LogitechController.getYRotation()-1)*-127.9));
+                AdjVL((int)((LogitechController.getYRotation()-1)*-90));
+                AdjVR((int)((LogitechController.getYRotation()-1)*-90));
             }
             if(LogitechController.updated[15])
             {
@@ -521,10 +524,12 @@ public class MainInterfaceFrame extends JFrame {
                 }else{
                     AdjGripperRotation(90);
                 }
-                if(LogitechController.getDPadUp()) {
+                if (LogitechController.getDPadUp()) {
                     AdjGripperClamp(20);
-                }else if(LogitechController.getDPadDown()){
+                } else if (LogitechController.getDPadDown()) {
                     AdjGripperClamp(10);
+                } else {
+                    AdjGripperClamp(15);
                 }
             }
         }

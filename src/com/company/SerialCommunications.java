@@ -52,9 +52,9 @@ public class SerialCommunications {
         try {
             portSelected = MainInterfaceFrame.getSelectedPort();
             serialPort = new SerialPort(portSelected);
-            Opened = true;
 
             serialPort.openPort();
+            Opened = true;
 
             serialPort.setParams(SerialPort.BAUDRATE_9600,
                     SerialPort.DATABITS_8,
@@ -121,6 +121,12 @@ public class SerialCommunications {
                         System.out.println(fullmessage);
                         if(fullmessage.length() > 0) {
                             int messagelength;
+                            //
+                            // breaks up the message into the motor
+                            // then length of incoming string
+                            // then motor speed
+                            // 8-2-20
+                            //
                             while (fullmessage.length() > lastconsidered) {
                                 messagelength = Character.getNumericValue(fullmessage.charAt(lastconsidered));
                                 System.out.println(messagelength);
