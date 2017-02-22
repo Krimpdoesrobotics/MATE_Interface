@@ -3,6 +3,8 @@ package com.company;
 /**
  * Created by Richard on 2/17/2017.
  */
+import sun.rmi.runtime.Log;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
@@ -446,12 +448,12 @@ public class MainInterfaceFrame extends JFrame {
     public static void scrollDown(){
         Component SomeComponent = getComponentByName("scrollPaneSerialReceived");
         Component SomeComponent2 = getComponentByName("scrollPaneSerialSent");
-        if(SomeComponent instanceof JScrollPane && SomeComponent2 instanceof  JScrollPane){
+        /*if(SomeComponent instanceof JScrollPane && SomeComponent2 instanceof  JScrollPane){
             JScrollPane ScrollPaneReceived = (JScrollPane) SomeComponent;
             JScrollPane ScrollPaneSent = (JScrollPane) SomeComponent2;
             ScrollPaneReceived.getVerticalScrollBar().setValue(ScrollPaneReceived.getVerticalScrollBar().getMaximum());
             ScrollPaneSent.getVerticalScrollBar().setValue(ScrollPaneSent.getVerticalScrollBar().getMaximum());
-        }
+        }*/
     }
 
     public void createComponentMap() {
@@ -498,18 +500,108 @@ public class MainInterfaceFrame extends JFrame {
             timerCounter++;
             if(timerCounter >=100){
                 timerCounter = 0;
-                SerialCommunication.PortSender("9");
+                SerialCommunication.PortSender("0");
             }
             if(LogitechController.updated[0]||LogitechController.updated[1])
             {
                 //updated joystick left
-
+                //assume fr and fl motors face to front, br and bl motors to the back
+                float x = LogitechController.getXValue();
+                float y = LogitechController.getYValue();
+                double angle = Math.atan(y/x);
+                if(x < 0){
+                    angle += Math.PI;
+                }else if(y < 0){
+                    angle += Math.PI * 2;
+                }
+                double power;
+                if(angle > Math.PI /8 && angle < 3*Math.PI / 8){
+                    //diag fr
+                    power = Math.sqrt(x*x+y*y)/Math.sqrt(2);
+                    if(power > 1){
+                        power = 1;
+                    }
+                    AdjFL((int)((power-1)*-90));
+                    AdjFR(0);
+                    AdjBL(0);
+                    AdjBR((int)(-(power-1)*-90));
+                }else if(angle > 3*Math.PI /8 && angle < 5*Math.PI / 8){
+                    //front
+                    power = Math.abs(y);
+                    if(power > 1){
+                        power = 1;
+                    }
+                    AdjFL((int)((power-1)*-90));
+                    AdjFR((int)((power-1)*-90));
+                    AdjBL((int)(-(power-1)*-90));
+                    AdjBR((int)(-(power-1)*-90));
+                }else if(angle > 5*Math.PI /8 && angle < 7*Math.PI / 8){
+                    //diag fl
+                    power = Math.sqrt(x*x+y*y)/Math.sqrt(2);
+                    if(power > 1){
+                        power = 1;
+                    }
+                    AdjFL(0);
+                    AdjFR((int)((power-1)*-90));
+                    AdjBL((int)(-(power-1)*-90));
+                    AdjBR(0);
+                }else if(angle > 7*Math.PI /8 && angle < 9*Math.PI / 8){
+                    //left
+                    power = Math.abs(x);
+                    if(power > 1){
+                        power = 1;
+                    }
+                    AdjFL((int)(-(power-1)*-90));
+                    AdjFR((int)((power-1)*-90));
+                    AdjBL((int)(-(power-1)*-90));
+                    AdjBR((int)((power-1)*-90));
+                }else if(angle > 9*Math.PI /8 && angle < 11*Math.PI / 8){
+                    //diag bl
+                    power = Math.sqrt(x*x+y*y)/Math.sqrt(2);
+                    if(power > 1){
+                        power = 1;
+                    }
+                    AdjFL((int)(-(power-1)*-90));
+                    AdjFR(0);
+                    AdjBL(0);
+                    AdjBR((int)((power-1)*-90));
+                }else if(angle > 11*Math.PI /8 && angle < 13*Math.PI / 8){
+                    //back
+                    power = Math.abs(y);
+                    if(power > 1){
+                        power = 1;
+                    }
+                    AdjFL((int)(-(power-1)*-90));
+                    AdjFR((int)(-(power-1)*-90));
+                    AdjBL((int)((power-1)*-90));
+                    AdjBR((int)((power-1)*-90));
+                }else if(angle > 13*Math.PI /8 && angle < 15*Math.PI / 8){
+                    //diag br
+                    power = Math.sqrt(x*x+y*y)/Math.sqrt(2);
+                    if(power > 1){
+                        power = 1;
+                    }
+                    AdjFL(0);
+                    AdjFR((int)(-(power-1)*-90));
+                    AdjBL((int)((power-1)*-90));
+                    AdjBR(0);
+                }else{
+                    //right
+                    power = Math.abs(x);
+                    if(power > 1){
+                        power = 1;
+                    }
+                    AdjFL((int)((power-1)*-90));
+                    AdjFR((int)(-(power-1)*-90));
+                    AdjBL((int)((power-1)*-90));
+                    AdjBR((int)(-(power-1)*-90));
+                }
             }
             if(LogitechController.updated[2])
             {
                 //updated joystick right y axis
-                AdjVL((int)((LogitechController.getYRotation()-1)*-127.9));
-                AdjVR((int)((LogitechController.getYRotation()-1)*-127.9));
+                AdjVL((int)((LogitechController.getYRotation()-1)*-90));
+                AdjVR((int)((LogitechController.getYRotation()-1)*-90));
             }
             if(LogitechController.updated[15])
             {
@@ -521,10 +613,12 @@ public class MainInterfaceFrame extends JFrame {
                 }else{
                     AdjGripperRotation(90);
                 }
-                if(LogitechController.getDPadUp()) {
+                if (LogitechController.getDPadUp()) {
                     AdjGripperClamp(20);
-                }else if(LogitechController.getDPadDown()){
+                } else if (LogitechController.getDPadDown()) {
                     AdjGripperClamp(10);
+                } else {
+                    AdjGripperClamp(15);
                 }
             }
         }
@@ -536,12 +630,12 @@ public class MainInterfaceFrame extends JFrame {
     }
     public boolean AdjGripperRotation(int pos){
         String command;
-        command = "8" + Integer.toString(Integer.toString(pos).length())+Integer.toString(pos);
+        command = "3" + Integer.toString(Integer.toString(pos).length())+Integer.toString(pos);
         return SerialCommunication.PortSender(command);
     }
     public boolean AdjGripperClamp(int pos){
         String command;
-        command = "7" + Integer.toString(Integer.toString(pos).length())+Integer.toString(pos);
+        command = "2" + Integer.toString(Integer.toString(pos).length())+Integer.toString(pos);
         return SerialCommunication.PortSender(command);
     }
     public boolean AdjFL(int power) //adjust the power of the front left motor
@@ -549,7 +643,7 @@ public class MainInterfaceFrame extends JFrame {
         String command;
         String powerstr;
         powerstr = Integer.toString(power);
-        command = "1" + Integer.toString(powerstr.length());//selects motor and details length of command
+        command = "11" + Integer.toString(powerstr.length());//selects motor and details length of command
         command+= powerstr;
         return SerialCommunication.PortSender(command);
     }
@@ -558,7 +652,7 @@ public class MainInterfaceFrame extends JFrame {
         String command;
         String powerstr;
         powerstr = Integer.toString(power);
-        command = "2" + Integer.toString(powerstr.length());//selects motor and details length of command
+        command = "12" + Integer.toString(powerstr.length());//selects motor and details length of command
         command+= powerstr;
         return SerialCommunication.PortSender(command);
     }
@@ -567,7 +661,7 @@ public class MainInterfaceFrame extends JFrame {
         String command;
         String powerstr;
         powerstr = Integer.toString(power);
-        command = "3" + Integer.toString(powerstr.length());//selects motor and details length of command
+        command = "13" + Integer.toString(powerstr.length());//selects motor and details length of command
         command+= powerstr;
         return SerialCommunication.PortSender(command);
     }
@@ -576,7 +670,7 @@ public class MainInterfaceFrame extends JFrame {
         String command;
         String powerstr;
         powerstr = Integer.toString(power);
-        command = "4" + Integer.toString(powerstr.length());//selects motor and details length of command
+        command = "14" + Integer.toString(powerstr.length());//selects motor and details length of command
         command+= powerstr;
         return SerialCommunication.PortSender(command);
     }
@@ -585,7 +679,7 @@ public class MainInterfaceFrame extends JFrame {
         String command;
         String powerstr;
         powerstr = Integer.toString(power);
-        command = "5" + Integer.toString(powerstr.length());//selects motor and details length of command
+        command = "15" + Integer.toString(powerstr.length());//selects motor and details length of command
         command+= powerstr;
         return SerialCommunication.PortSender(command);
     }
@@ -594,7 +688,7 @@ public class MainInterfaceFrame extends JFrame {
         String command;
         String powerstr;
         powerstr = Integer.toString(power);
-        command = "6" + Integer.toString(powerstr.length());//selects motor and details length of command
+        command = "16" + Integer.toString(powerstr.length());//selects motor and details length of command
         command+= powerstr;
         return SerialCommunication.PortSender(command);
     }
