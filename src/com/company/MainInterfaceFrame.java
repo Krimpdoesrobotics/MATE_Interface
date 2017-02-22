@@ -605,7 +605,7 @@ public class MainInterfaceFrame extends JFrame {
             }
             if(LogitechController.updated[5]){
                 if(LogitechController.getButton(0)) {
-                    AdjPumpSpeed(1);
+                    AdjPumpSpeed(180);
                 }else{
                     AdjPumpSpeed(0);
                 }
