@@ -603,6 +603,13 @@ public class MainInterfaceFrame extends JFrame {
                 AdjVL((int)((LogitechController.getYRotation()-1)*-90));
                 AdjVR((int)((LogitechController.getYRotation()-1)*-90));
             }
+            if(LogitechController.updated[5]){
+                if(LogitechController.getButton(0)) {
+                    AdjPumpSpeed(1);
+                }else{
+                    AdjPumpSpeed(0);
+                }
+            }
             if(LogitechController.updated[15])
             {
                 //updated D-Pad
@@ -628,69 +635,34 @@ public class MainInterfaceFrame extends JFrame {
             }
         }
     }
+    public boolean AdjPumpSpeed(int pos){
+        return SendCommand("4",pos);
+    }
     public boolean AdjGripperRotation(int pos){
-        String command;
-        command = "3" + Integer.toString(Integer.toString(pos).length())+Integer.toString(pos);
-        return SerialCommunication.PortSender(command);
+        return SendCommand("3",pos);
     }
     public boolean AdjGripperClamp(int pos){
-        String command;
-        command = "2" + Integer.toString(Integer.toString(pos).length())+Integer.toString(pos);
-        return SerialCommunication.PortSender(command);
+        return SendCommand("2",pos);
     }
-    public boolean AdjFL(int power) //adjust the power of the front left motor
-    {
-        String command;
-        String powerstr;
-        powerstr = Integer.toString(power);
-        command = "11" + Integer.toString(powerstr.length());//selects motor and details length of command
-        command+= powerstr;
-        return SerialCommunication.PortSender(command);
+    public boolean AdjFL(int power){ //adjust the power of the front left motor
+        return SendCommand("11",power);
     }
-    public boolean AdjFR(int power) //adjust the power of the front right motor
-    {
-        String command;
-        String powerstr;
-        powerstr = Integer.toString(power);
-        command = "12" + Integer.toString(powerstr.length());//selects motor and details length of command
-        command+= powerstr;
-        return SerialCommunication.PortSender(command);
+    public boolean AdjFR(int power){ //adjust the power of the front right motor
+        return SendCommand("12",power);
     }
-    public boolean AdjBL(int power) //adjust the power of the back left motor
-    {
-        String command;
-        String powerstr;
-        powerstr = Integer.toString(power);
-        command = "13" + Integer.toString(powerstr.length());//selects motor and details length of command
-        command+= powerstr;
-        return SerialCommunication.PortSender(command);
+    public boolean AdjBL(int power){ //adjust the power of the back left motor
+        return SendCommand("13",power);
     }
-    public boolean AdjBR(int power) //adjust the power of the back right motor
-    {
-        String command;
-        String powerstr;
-        powerstr = Integer.toString(power);
-        command = "14" + Integer.toString(powerstr.length());//selects motor and details length of command
-        command+= powerstr;
-        return SerialCommunication.PortSender(command);
+    public boolean AdjBR(int power){ //adjust the power of the back right motor
+        return SendCommand("14",power);
     }
-    public boolean AdjVL(int power) //adjust the power of the vertical left motor
-    {
-        String command;
-        String powerstr;
-        powerstr = Integer.toString(power);
-        command = "15" + Integer.toString(powerstr.length());//selects motor and details length of command
-        command+= powerstr;
-        return SerialCommunication.PortSender(command);
+    public boolean AdjVL(int power){ //adjust the power of the vertical left motor
+        return SendCommand("15",power);
     }
-    public boolean AdjVR(int power) //adjust the power of the vertical right motor
-    {
-        String command;
-        String powerstr;
-        powerstr = Integer.toString(power);
-        command = "16" + Integer.toString(powerstr.length());//selects motor and details length of command
-        command+= powerstr;
-        return SerialCommunication.PortSender(command);
+    public boolean AdjVR(int power){ //adjust the power of the vertical right motor
+        return SendCommand("16",power);
     }
-
+    public boolean SendCommand(String identifier, int command){
+        return SerialCommunication.PortSender(identifier+Integer.toString(Integer.toString(command).length())+Integer.toString(command));
+    }
 }
