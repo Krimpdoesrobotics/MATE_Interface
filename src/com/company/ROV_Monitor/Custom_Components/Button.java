@@ -21,9 +21,8 @@ public class Button extends JComponent {
     private Color myBackColor = new Color(70,100,150);
     private Color myForeGroundColor = new Color(255,255,255);
 
-    public Button(String Caption, int VerticalLength, int HorizontalLength,int Height, int LeftSpacing, int RightSpacing, int TopSpacing, int BottomSpacing){
+    public Button(String Caption, int HorizontalLength,int Height, int LeftSpacing, int RightSpacing, int TopSpacing, int BottomSpacing){
         this.myCaption = Caption;
-        this.myVerticalLength  = VerticalLength;
         this.myHorizontalLength = HorizontalLength;
         this.myHeight = Height;
         this.myLeftSpacing = LeftSpacing;
@@ -75,13 +74,22 @@ public class Button extends JComponent {
 
         g.drawRect(0,0,totalWidth, totalHeight);
 
-        g.setColor(new Color(50,130,130));
+        g.setColor(new Color(50,50,100));
+        System.out.println("Left button spacing:" + this.myLeftSpacing + " Right Button Spacing:" +
+                this.myRightSpacing + " Top Button Spacing:" + this.myTopSpacing + " Bottom Button Spacing:"
+                + this.myBottomSpacing + "Button Length: " + this.myHorizontalLength + "Button Height" +
+                this.myVerticalLength);
 
-        g.drawRoundRect(this.myLeftSpacing, this.myTopSpacing,this.myHorizontalLength, this.myHeight,25,25);
+        g.fillRoundRect(this.myLeftSpacing, this.myTopSpacing,this.myHorizontalLength,
+                this.myHeight,25,25);
         g.setColor(this.myBackColor);
-        g.drawRoundRect(this.myLeftSpacing, this.myTopSpacing,this.myHorizontalLength, this.myHeight,25,25);
+        g.fillRoundRect(this.myLeftSpacing, this.myTopSpacing,this.myHorizontalLength - 3,
+                this.myHeight - 3,25,25);
         g.setColor(this.myForeGroundColor);
-       //TODO: g.drawString(this.myCaption, (((this.myHorizontalLength/2)+this.myLeftSpacing),(((this.myHeight/2))));
+        Font font20Pt = new Font("Helvetica" , Font.PLAIN, 20);
+        g.setFont(font20Pt);
+        g.drawString(this.myCaption, (((this.myHorizontalLength/2)+this.myLeftSpacing)) -
+                (this.myCaption.length()*5), ((this.myHeight/2)+this.myTopSpacing) + 5);
 
     }
 
