@@ -508,6 +508,8 @@ public class MainInterfaceFrame extends JFrame {
                 //assume fr and fl motors face to front, br and bl motors to the back
                 float x = LogitechController.getXValue();
                 float y = LogitechController.getYValue();
+                AdjFL(255);
+                /*
                 double angle = Math.atan(y/x);
                 if(x < 0){
                     angle += Math.PI;
@@ -521,87 +523,87 @@ public class MainInterfaceFrame extends JFrame {
                     if(power > 1){
                         power = 1;
                     }
-                    AdjFL((int)((power-1)*-90));
-                    AdjFR(0);
-                    AdjBL(0);
-                    AdjBR((int)(-(power-1)*-90));
+                    AdjFL((int)((power+1)*127)+1);
+                    AdjFR(128);
+                    AdjBL(128);
+                    AdjBR((int)((power-1)*-127)+1);
                 }else if(angle > 3*Math.PI /8 && angle < 5*Math.PI / 8){
                     //front
                     power = Math.abs(y);
                     if(power > 1){
                         power = 1;
                     }
-                    AdjFL((int)((power-1)*-90));
-                    AdjFR((int)((power-1)*-90));
-                    AdjBL((int)(-(power-1)*-90));
-                    AdjBR((int)(-(power-1)*-90));
+                    AdjFL((int)((power+1)*127)+1);
+                    AdjFR((int)((power+1)*127)+1);
+                    AdjBL((int)((power-1)*-127)+1);
+                    AdjBR((int)((power-1)*-127)+1);
                 }else if(angle > 5*Math.PI /8 && angle < 7*Math.PI / 8){
                     //diag fl
                     power = Math.sqrt(x*x+y*y)/Math.sqrt(2);
                     if(power > 1){
                         power = 1;
                     }
-                    AdjFL(0);
-                    AdjFR((int)((power-1)*-90));
-                    AdjBL((int)(-(power-1)*-90));
-                    AdjBR(0);
+                    AdjFL(128);
+                    AdjFR((int)((power+1)*127)+1);
+                    AdjBL((int)((power-1)*-127)+1);
+                    AdjBR(128);
                 }else if(angle > 7*Math.PI /8 && angle < 9*Math.PI / 8){
                     //left
                     power = Math.abs(x);
                     if(power > 1){
                         power = 1;
                     }
-                    AdjFL((int)(-(power-1)*-90));
-                    AdjFR((int)((power-1)*-90));
-                    AdjBL((int)(-(power-1)*-90));
-                    AdjBR((int)((power-1)*-90));
+                    AdjFL((int)((power-1)*-127)+1);
+                    AdjFR((int)((power+1)*127)+1);
+                    AdjBL((int)((power-1)*-127)+1);
+                    AdjBR((int)((power+1)*127)+1);
                 }else if(angle > 9*Math.PI /8 && angle < 11*Math.PI / 8){
                     //diag bl
                     power = Math.sqrt(x*x+y*y)/Math.sqrt(2);
                     if(power > 1){
                         power = 1;
                     }
-                    AdjFL((int)(-(power-1)*-90));
-                    AdjFR(0);
-                    AdjBL(0);
-                    AdjBR((int)((power-1)*-90));
+                    AdjFL((int)((power-1)*-127)+1);
+                    AdjFR(128);
+                    AdjBL(128);
+                    AdjBR((int)((power+1)*127)+1);
                 }else if(angle > 11*Math.PI /8 && angle < 13*Math.PI / 8){
                     //back
                     power = Math.abs(y);
                     if(power > 1){
                         power = 1;
                     }
-                    AdjFL((int)(-(power-1)*-90));
-                    AdjFR((int)(-(power-1)*-90));
-                    AdjBL((int)((power-1)*-90));
-                    AdjBR((int)((power-1)*-90));
+                    AdjFL((int)((power-1)*-127)+1);
+                    AdjFR((int)((power-1)*-127)+1);
+                    AdjBL((int)((power+1)*127)+1);
+                    AdjBR((int)((power+1)*127)+1);
                 }else if(angle > 13*Math.PI /8 && angle < 15*Math.PI / 8){
                     //diag br
                     power = Math.sqrt(x*x+y*y)/Math.sqrt(2);
                     if(power > 1){
                         power = 1;
                     }
-                    AdjFL(0);
-                    AdjFR((int)(-(power-1)*-90));
-                    AdjBL((int)((power-1)*-90));
-                    AdjBR(0);
+                    AdjFL(128);
+                    AdjFR((int)((power-1)*-127)+1);
+                    AdjBL((int)((power+1)*127)+1);
+                    AdjBR(128);
                 }else{
                     //right
                     power = Math.abs(x);
                     if(power > 1){
                         power = 1;
                     }
-                    AdjFL((int)((power-1)*-90));
-                    AdjFR((int)(-(power-1)*-90));
-                    AdjBL((int)((power-1)*-90));
-                    AdjBR((int)(-(power-1)*-90));
-                }
+                    AdjFL((int)((power+1)*127)+1);
+                    AdjFR((int)((power-1)*-127)+1);
+                    AdjBL((int)((power+1)*127)+1);
+                    AdjBR((int)((power-1)*-127)+1);
+                }*/
             }
             if(LogitechController.updated[2])
             {
                 //updated joystick right y axis
-                AdjVL((int)((LogitechController.getYRotation()-1)*-90));
-                AdjVR((int)((LogitechController.getYRotation()-1)*-90));
+                AdjVL((int)((LogitechController.getYRotation()-1)*-127)+1);
+                AdjVR((int)((LogitechController.getYRotation()-1)*-127)+1);
             }
             if(LogitechController.updated[5]){
                 if(LogitechController.getButton(0)) {
@@ -621,9 +623,9 @@ public class MainInterfaceFrame extends JFrame {
                     AdjGripperRotation(90);
                 }
                 if (LogitechController.getDPadUp()) {
-                    AdjGripperClamp(20);
+                    AdjGripperClamp(17);
                 } else if (LogitechController.getDPadDown()) {
-                    AdjGripperClamp(10);
+                    AdjGripperClamp(13);
                 } else {
                     AdjGripperClamp(15);
                 }
