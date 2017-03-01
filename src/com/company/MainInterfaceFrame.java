@@ -131,6 +131,7 @@ public class MainInterfaceFrame extends JFrame {
                     g.fillOval(270 + (int) (LogitechController.getXValue() * 100), 645 + (int) (LogitechController.getYValue() * 100), 10, 10);
                     g.drawLine(275, 650, 275 + (int) (LogitechController.getXValue() * 100), 650 + (int) (LogitechController.getYValue() * 100));
                     g.setColor(Color.BLACK);
+
                 }
                 if(true) {
                     g.fillRect(425, 550, 200, 200);
@@ -223,6 +224,7 @@ public class MainInterfaceFrame extends JFrame {
 
         public void Refresh(){
             int X, Y, SIZE1, SIZE2;
+
             for(int i = 0; i < 16; i++){
                 if(LogitechController.updated[i]){
                     switch(i){

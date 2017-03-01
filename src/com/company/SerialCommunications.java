@@ -17,11 +17,9 @@ public class SerialCommunications {
     private boolean Opened;
     private String fullmessage = new String();
     private int lastconsidered = 0;
-
     // constructor
     public SerialCommunications() {
         // default constructor
-
     }
 
     // refresh
@@ -30,7 +28,6 @@ public class SerialCommunications {
         // refreshes the port so if the port changes, it will update.
         //
         refreshPortList();
-
     }
     private void refreshPortList() {
         portNames = SerialPortList.getPortNames();
@@ -42,7 +39,6 @@ public class SerialCommunications {
                 SomeComboBox.addItem(portNames[i]);
             }
         }
-
     }
 
     // connection
@@ -52,25 +48,18 @@ public class SerialCommunications {
         try {
             portSelected = MainInterfaceFrame.getSelectedPort();
             serialPort = new SerialPort(portSelected);
-
             serialPort.openPort();
             Opened = true;
-
             serialPort.setParams(SerialPort.BAUDRATE_9600,
                     SerialPort.DATABITS_8,
                     SerialPort.STOPBITS_1,
                     SerialPort.PARITY_NONE);
-
             serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN |
                     SerialPort.FLOWCONTROL_RTSCTS_OUT);
-
             serialPort.addEventListener(new PortReader(), SerialPort.MASK_RXCHAR);
-
         } catch (SerialPortException ex) {
             System.out.println("There are an error on writing string to port: " + ex);
-
         }
-
     }
     public void btnSerialDisconnectClicked() {
         MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(false);
@@ -78,12 +67,9 @@ public class SerialCommunications {
         try {
             serialPort.closePort();
             Opened=false;
-
         } catch (SerialPortException e) {
             e.printStackTrace();
-
         }
-
     }
 
     public boolean isOpen(){
@@ -98,10 +84,8 @@ public class SerialCommunications {
         } catch(SerialPortException ex) {
             System.out.println("Error sending string: " + ex);
             return false;
-
         }
         return true;
-
     }
 
     // class that is a port listener
@@ -113,10 +97,6 @@ public class SerialCommunications {
                     String receivedData = serialPort.readString(event.getEventValue());
                     //System.out.println(receivedData);
                     if(receivedData.length() > 0) {
-                        /*if (juststared) {
-                            receivedData = receivedData.substring(1, receivedData.length() - 1);
-                            juststared =false;
-                        }*/
                         fullmessage += receivedData;
                         System.out.println(fullmessage);
                         if(fullmessage.length() > 0) {
