@@ -3,8 +3,6 @@ package com.company;
 /**
  * Created by Richard on 2/17/2017.
  */
-import sun.rmi.runtime.Log;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
@@ -27,7 +25,9 @@ public class MainInterfaceFrame extends JFrame {
         @Override
         public void run() {
             // TODO Auto-generated method stub
-            //Invoke your function here
+            //
+            // Invoke your function here
+            //
             LogitechController.UpdateController1Components();
             contentPane.Refresh();
             UpdateArduino();
@@ -490,22 +490,21 @@ public class MainInterfaceFrame extends JFrame {
         }
     }
 
-    public static void addSerialReceived(String obj){
+    public static void addSerialReceived(String obj) {
         modelSerialReceived.addElement(obj);
-        if(modelSerialReceived.getSize() > 25){
+        if(modelSerialReceived.getSize() > 25) {
             modelSerialReceived.removeRange(0,13);
         }
     }
 
     public void UpdateArduino(){
-        if(SerialCommunication.isOpen() && LogitechController.getController1Connected()){
+        if(SerialCommunication.isOpen() && LogitechController.getController1Connected()) {
             timerCounter++;
-            if(timerCounter >=100){
+            if (timerCounter >=100) {
                 timerCounter = 0;
                 SerialCommunication.PortSender("0");
             }
-            if(LogitechController.updated[0]||LogitechController.updated[1])
-            {
+            if(LogitechController.updated[0]||LogitechController.updated[1])  {
                 //updated joystick left
                 //assume fr and fl motors face to front, br and bl motors to the back
                 float x = LogitechController.getXValue();
@@ -601,27 +600,25 @@ public class MainInterfaceFrame extends JFrame {
                     AdjBR((int)((power-1)*-127)+1);
                 }*/
             }
-            if(LogitechController.updated[2])
-            {
+            if (LogitechController.updated[2]) {
                 //updated joystick right y axis
                 AdjVL((int)((LogitechController.getYRotation()-1)*-127)+1);
                 AdjVR((int)((LogitechController.getYRotation()-1)*-127)+1);
             }
-            if(LogitechController.updated[5]){
+            if (LogitechController.updated[5]) {
                 if(LogitechController.getButton(0)) {
                     AdjPumpSpeed(180);
-                }else{
+                } else {
                     AdjPumpSpeed(0);
                 }
             }
-            if(LogitechController.updated[15])
-            {
+            if (LogitechController.updated[15]) {
                 //updated D-Pad
                 if(LogitechController.getDPadLeft()){
                     AdjGripperRotation(60);
-                }else if(LogitechController.getDPadRight()){
+                } else if (LogitechController.getDPadRight()){
                     AdjGripperRotation(120);
-                }else{
+                } else {
                     AdjGripperRotation(90);
                 }
                 if (LogitechController.getDPadUp()) {
@@ -639,6 +636,8 @@ public class MainInterfaceFrame extends JFrame {
             }
         }
     }
+
+    // Adjusters that go to the serial code
     public boolean AdjPumpSpeed(int pos){
         return SendCommand("4",pos);
     }
@@ -669,4 +668,5 @@ public class MainInterfaceFrame extends JFrame {
     public boolean SendCommand(String identifier, int command){
         return SerialCommunication.PortSender(identifier+Integer.toString(Integer.toString(command).length())+Integer.toString(command));
     }
+
 }
