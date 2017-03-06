@@ -6,7 +6,7 @@ import net.java.games.input.*;
 import net.java.games.input.Component;
 import net.java.games.input.Event;
 import net.java.games.input.EventQueue;
-
+import net.java.games.input.DefaultControllerEnvironment;
 import javax.swing.*;
 
 public class ControllerInput {
@@ -18,6 +18,7 @@ public class ControllerInput {
     private Controller[] Controllers; // this temporarily holds an array of controllers that can be accessed.
     private Controller Controller1;   // Driver controller
     private Component[] Components;   // different controller components. Used for checking if active
+    private DefaultControllerEnvironment ce = new DefaultControllerEnvironment();
 
     // constructors
     public ControllerInput(){
@@ -38,7 +39,11 @@ public class ControllerInput {
     // update
     public void UpdateController1Components(){
         if(Controller1 != null) {
-            Controller1.poll();
+            try {
+                Controller1.poll();
+            }catch(Exception ex){
+
+            }
             EventQueue queue = Controller1.getEventQueue();
             Event event = new Event();
             while(queue.getNextEvent(event)) {
@@ -150,6 +155,7 @@ public class ControllerInput {
     // refresh
     public void btnControllerRefreshClicked(){
         // refreshes all controllers, not just a specific one
+
         Controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
         JComboBox SomeComboBox = (JComboBox) MainInterfaceFrame.getComponentByName("ControllerComboBox");
         SomeComboBox.removeAllItems();
@@ -210,69 +216,56 @@ public class ControllerInput {
         return (int)(DPad*8+.25);
     } // EXPLAIN
 
-        // gets the specific pads
-        public boolean getDPadLeft(){
-            int DPadVal = getDPad();
-            if(DPadVal == 8) return true;
-            else return false;
-        }
+    // gets the specific pads
+    public boolean getDPadLeft(){
+        int DPadVal = getDPad();
+        if(DPadVal == 8) return true;
+        else return false;
+    }
 
-        public boolean getDPadRight(){
-            int DPadVal = getDPad();
-            if(DPadVal == 4) return true;
-            else return false;
-        }
+    public boolean getDPadRight(){
+        int DPadVal = getDPad();
+        if(DPadVal == 4) return true;
+        else return false;
+    }
 
-        public boolean getDPadUp(){
-            int DPadVal = getDPad();
-            if(DPadVal == 2) return true;
-            else return false;
-        }
+    public boolean getDPadUp(){
+        int DPadVal = getDPad();
+        if(DPadVal == 2) return true;
+        else return false;
+    }
 
-        public boolean getDPadDown(){
-            int DPadVal = getDPad();
-            if(DPadVal == 6) return true;
-            else return false;
-        }
+    public boolean getDPadDown(){
+        int DPadVal = getDPad();
+        if(DPadVal == 6) return true;
+        else return false;
+    }
 
-        // gets which button or buttons is pressed
-        public boolean getButton(int index){
-            return buttons[index];
-        }
+    // gets which button or buttons is pressed
+    public boolean getButton(int index){
+        return buttons[index];
+    }
 
     public float getZAxis(){
         return ZAxis;
     }
 
-    // sets the portions of the controller into 8 regions
-    private void setRegions() {
-        double forward_arc = 0.0;
-        double backward_arc = 0.0;
-        double right_arc = 0.0;
-        double left_arc = 0.0;
-        double topRight_arc = 0.0;
-        double topLeft_arc = 0.0;
-        double backRight_arc = 0.0;
-        double backLeft_arc = 0.0;
-
-        // COMPONENTS LIST //
-        // 0: Y AXIS ABSOLUTE ANALOG: Left Stick X
-        // 1: X AXIS ABSOLUTE ANALOG: Left Stick Y
-        // 2: X ROTATION ABSOLUTE ANALOG: Right Stick X
-        // 3: Y ROTATION ABSOLUTE ANALOG: Right Stick Y
-        // 4: Z AXIS ABSOLUTE ANALOG: Sum of Left Trigger(+) and Right Trigger(-)
-        // 5: BUTTON 0: A Button
-        // 6: BUTTON 1: B Button
-        // 7: BUTTON 2: X Button
-        // 8: BUTTON 3: Y Button
-        // 9: BUTTON 4: L Button (not working well ATM)
-        // 10: BUTTON 5: R Button
-        // 11: BUTTON 6: Back Button
-        // 12: BUTTON 7: Start Button
-        // 13: BUTTON 8: L Stick Push Down
-        // 14: BUTTON 9: R Stick Push Down
-        // 15: HAT SWITCH: D Pad 0 Nothing .125 FL .25 F, .375 FR, etc..... 1.0 L
-        // --------------- //
-
-    }
+    // COMPONENTS LIST //
+    // 0: Y AXIS ABSOLUTE ANALOG: Left Stick X
+    // 1: X AXIS ABSOLUTE ANALOG: Left Stick Y
+    // 2: X ROTATION ABSOLUTE ANALOG: Right Stick X
+    // 3: Y ROTATION ABSOLUTE ANALOG: Right Stick Y
+    // 4: Z AXIS ABSOLUTE ANALOG: Sum of Left Trigger(+) and Right Trigger(-)
+    // 5: BUTTON 0: A Button
+    // 6: BUTTON 1: B Button
+    // 7: BUTTON 2: X Button
+    // 8: BUTTON 3: Y Button
+    // 9: BUTTON 4: L Button (not working well ATM)
+    // 10: BUTTON 5: R Button
+    // 11: BUTTON 6: Back Button
+    // 12: BUTTON 7: Start Button
+    // 13: BUTTON 8: L Stick Push Down
+    // 14: BUTTON 9: R Stick Push Down
+    // 15: HAT SWITCH: D Pad 0 Nothing .125 FL .25 F, .375 FR, etc..... 1.0 L
+    // --------------- //
 }
