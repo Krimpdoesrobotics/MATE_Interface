@@ -7,6 +7,7 @@ import net.java.games.input.Component;
 import net.java.games.input.Event;
 import net.java.games.input.EventQueue;
 import net.java.games.input.DefaultControllerEnvironment;
+
 import javax.swing.*;
 
 public class ControllerInput {
