@@ -18,7 +18,7 @@ public class Button extends JComponent {
     private boolean pushed;
 
     //These default values can be changed if needed
-    private Color myBackColor = new Color(70,100,150);
+    private Color myBackColor = new Color(80,120,160);
     private Color myForeGroundColor = new Color(255,255,255);
 
     public Button(String Caption, int HorizontalLength,int Height, int LeftSpacing, int RightSpacing, int TopSpacing, int BottomSpacing){
@@ -60,6 +60,10 @@ public class Button extends JComponent {
         this.myBottomSpacing = BottomSpacing;
     }
 
+    public void setBackColor(Color backColor){this.myBackColor = backColor;}
+
+    public void setForeColor(Color foreColor){this.myForeGroundColor = foreColor;}
+
     public void press(){
         this.pushed = true;
     }
@@ -90,7 +94,6 @@ public class Button extends JComponent {
         g.setFont(font20Pt);
         g.drawString(this.myCaption, (((this.myHorizontalLength/2)+this.myLeftSpacing)) -
                 (this.myCaption.length()*5), ((this.myHeight/2)+this.myTopSpacing) + 5);
-
     }
 
 
