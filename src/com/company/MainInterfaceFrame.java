@@ -495,6 +495,15 @@ public class MainInterfaceFrame extends JFrame {
         if(modelSerialReceived.getSize() > 25) {
             modelSerialReceived.removeRange(0,13);
         }
+        switch(obj.charAt(0)){
+            case '0':
+                //error occurred in arduino
+            case '1':
+                int motornum = Character.getNumericValue(obj.charAt(1));
+                //update motors
+            case '2':
+                //update gripper
+        }
     }
 
     public void UpdateArduino(){
