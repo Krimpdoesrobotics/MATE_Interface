@@ -20,6 +20,7 @@ public class MainInterfaceFrame extends JFrame {
     private static DefaultListModel<String> modelSerialSent = new DefaultListModel<>();
     private static DefaultListModel<String> modelSerialReceived = new DefaultListModel<>();
     private int timerCounter = 0;
+    private int powerScaling = 1;   //this is from .1 to 1, and acts as a multiplier for power
     private TimerTask timerTask = new TimerTask() {
 
         @Override
@@ -76,7 +77,7 @@ public class MainInterfaceFrame extends JFrame {
                     g.drawRect(300,250, 200, 50);
                 }
                 int X, Y, SIZE1, SIZE2;
-                if(true) {
+                if(true) {  //This chunk deals with the d pad
                     int DPadValue = LogitechController.getDPad();
                     switch (DPadValue) {
                         case 0:
@@ -513,104 +514,22 @@ public class MainInterfaceFrame extends JFrame {
                 timerCounter = 0;
                 SerialCommunication.PortSender("0");
             }
-            if(LogitechController.updated[0]||LogitechController.updated[1])  {
-                //updated joystick left
-                //assume fr and fl motors face to front, br and bl motors to the back
-                float x = LogitechController.getXValue();
-                float y = LogitechController.getYValue();
-                AdjFL(255);
-                /*
-                double angle = Math.atan(y/x);
-                if(x < 0){
-                    angle += Math.PI;
-                }else if(y < 0){
-                    angle += Math.PI * 2;
-                }
-                double power;
-                if(angle > Math.PI /8 && angle < 3*Math.PI / 8){
-                    //diag fr
-                    power = Math.sqrt(x*x+y*y)/Math.sqrt(2);
-                    if(power > 1){
-                        power = 1;
-                    }
-                    AdjFL((int)((power+1)*127)+1);
-                    AdjFR(128);
-                    AdjBL(128);
-                    AdjBR((int)((power-1)*-127)+1);
-                }else if(angle > 3*Math.PI /8 && angle < 5*Math.PI / 8){
-                    //front
-                    power = Math.abs(y);
-                    if(power > 1){
-                        power = 1;
-                    }
-                    AdjFL((int)((power+1)*127)+1);
-                    AdjFR((int)((power+1)*127)+1);
-                    AdjBL((int)((power-1)*-127)+1);
-                    AdjBR((int)((power-1)*-127)+1);
-                }else if(angle > 5*Math.PI /8 && angle < 7*Math.PI / 8){
-                    //diag fl
-                    power = Math.sqrt(x*x+y*y)/Math.sqrt(2);
-                    if(power > 1){
-                        power = 1;
-                    }
-                    AdjFL(128);
-                    AdjFR((int)((power+1)*127)+1);
-                    AdjBL((int)((power-1)*-127)+1);
-                    AdjBR(128);
-                }else if(angle > 7*Math.PI /8 && angle < 9*Math.PI / 8){
-                    //left
-                    power = Math.abs(x);
-                    if(power > 1){
-                        power = 1;
-                    }
-                    AdjFL((int)((power-1)*-127)+1);
-                    AdjFR((int)((power+1)*127)+1);
-                    AdjBL((int)((power-1)*-127)+1);
-                    AdjBR((int)((power+1)*127)+1);
-                }else if(angle > 9*Math.PI /8 && angle < 11*Math.PI / 8){
-                    //diag bl
-                    power = Math.sqrt(x*x+y*y)/Math.sqrt(2);
-                    if(power > 1){
-                        power = 1;
-                    }
-                    AdjFL((int)((power-1)*-127)+1);
-                    AdjFR(128);
-                    AdjBL(128);
-                    AdjBR((int)((power+1)*127)+1);
-                }else if(angle > 11*Math.PI /8 && angle < 13*Math.PI / 8){
-                    //back
-                    power = Math.abs(y);
-                    if(power > 1){
-                        power = 1;
-                    }
-                    AdjFL((int)((power-1)*-127)+1);
-                    AdjFR((int)((power-1)*-127)+1);
-                    AdjBL((int)((power+1)*127)+1);
-                    AdjBR((int)((power+1)*127)+1);
-                }else if(angle > 13*Math.PI /8 && angle < 15*Math.PI / 8){
-                    //diag br
-                    power = Math.sqrt(x*x+y*y)/Math.sqrt(2);
-                    if(power > 1){
-                        power = 1;
-                    }
-                    AdjFL(128);
-                    AdjFR((int)((power-1)*-127)+1);
-                    AdjBL((int)((power+1)*127)+1);
-                    AdjBR(128);
-                }else{
-                    //right
-                    power = Math.abs(x);
-                    if(power > 1){
-                        power = 1;
-                    }
-                    AdjFL((int)((power+1)*127)+1);
-                    AdjFR((int)((power-1)*-127)+1);
-                    AdjBL((int)((power+1)*127)+1);
-                    AdjBR((int)((power-1)*-127)+1);
-                }*/
+            if(LogitechController.updated[0] || LogitechController.updated[1])
+            {
+                //joystick that will control lateral movement
+                //This is the left controler and is controlled by 'values'
+                double xVal = LogitechController.getXValue();//from -1 to 1
+                double yVal = LogitechController.getYValue();//from -1 to 1
+                double rotation = Math.atan2(xVal,yVal);//radians, from -pi to pi
+                double magnitude = Math.sqrt(xVal*xVal + yVal * yVal);
+                int power = (int)((double)127 * magnitude);
+                //determine region
+
+
             }
-            if (LogitechController.updated[2]) {
-                //updated joystick right y axis
+            if (LogitechController.updated[2] || LogitechController.updated[3])
+            {
+                //joystick that will contol vertical movement and turning
                 AdjVL((int)((LogitechController.getYRotation()-1)*-127)+1);
                 AdjVR((int)((LogitechController.getYRotation()-1)*-127)+1);
             }

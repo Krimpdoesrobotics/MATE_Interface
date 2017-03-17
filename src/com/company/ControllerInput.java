@@ -100,6 +100,7 @@ public class ControllerInput {
                 //System.out.println(buffer.toString());
             }
         }
+
     }
 
     // This outputs all of the controller functions
