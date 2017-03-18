@@ -532,35 +532,35 @@ public class MainInterfaceFrame extends JFrame
                 int power = (int)((double)127 * magnitude);
                 //determine region (1 = forward, 2 = forward and right, 3 = right, 4 = back and right, 5 = back, 6 = back and left, 7 = left, 8 = forward and left)
                 int region = 0;
-                if(rotation <= (5.0*pi)/8.0 && rotation > (3.0*pi)/8.0)
+                if(rotation <= (5.0*pi)/8.0 && rotation >= (3.0*pi)/8.0)
                 {
                     region = 1;
                 }
-                if(rotation <= (3.0*pi)/8.0 && rotation > pi/8.0)
+                if(rotation <= (3.0*pi)/8.0 && rotation >= pi/8.0)
                 {
                     region = 2;
                 }
-                if(rotation <= pi/8.0 && rotation > -pi/8.0)
+                if(rotation <= pi/8.0 && rotation >= -pi/8.0)
                 {
                     region = 3;
                 }
-                if(rotation <= -pi/8.0 && rotation > (-3.0*pi)/8.0)
+                if(rotation <= -pi/8.0 && rotation >= (-3.0*pi)/8.0)
                 {
                     region = 4;
                 }
-                if(rotation <= (-3.0*pi)/8.0 && rotation > (-5.0*pi)/8.0)
+                if(rotation <= (-3.0*pi)/8.0 && rotation >= (-5.0*pi)/8.0)
                 {
                     region = 5;
                 }
-                if(rotation <= (-5.0*pi)/8.0 && rotation > (-7.0*pi)/8.0)
+                if(rotation <= (-5.0*pi)/8.0 && rotation >= (-7.0*pi)/8.0)
                 {
                     region = 6;
                 }
-                if(rotation <= (-7.0*pi)/8.0 && rotation > (7.0*pi)/8.0)
+                if(rotation <= (-7.0*pi)/8.0 || rotation >= (7.0*pi)/8.0)
                 {
                     region = 7;
                 }
-                if(rotation <= (7.0*pi)/8.0 && rotation > (5.0*pi)/8.0)
+                if(rotation <= (7.0*pi)/8.0 && rotation >= (5.0*pi)/8.0)
                 {
                     region = 8;
                 }
@@ -634,13 +634,32 @@ public class MainInterfaceFrame extends JFrame
 
 
             }
-            //
-            // Right Stick to turn the robot and/or move it up or down.
-            //
-            if (LogitechController.updated[2] || LogitechController.updated[3]) {
-                //joystick that will control vertical movement and turning
-                AdjVL((int)((LogitechController.getYRotation()-1)*-127)+1);
-                AdjVR((int)((LogitechController.getYRotation()-1)*-127)+1);
+            if (LogitechController.updated[2] || LogitechController.updated[3])
+            {
+                //joystick that will contol vertical movement and turning
+                double xVal = LogitechController.getXRotation();//from -1 to 1
+                double yVal = LogitechController.getYRotation();//from -1 to 1
+                double rotation = Math.atan2(xVal,yVal);//radians, from -pi to pi
+                double magnitude = Math.sqrt(xVal*xVal + yVal * yVal);
+                int power = (int)((double)127 * magnitude);
+                //determine region (1 = up, 2 = turn right, 3 = down, 4 = turn left)
+                int region = 0;
+                if(rotation <= (3.0*pi)/4.0 && rotation >= pi/4.0)
+                {
+                    region = 1;
+                }
+                if(rotation <= pi/4.0 && rotation >= (-1.0*pi)/4.0)
+                {
+                    region = 2;
+                }
+                if(rotation <= (-1.0*pi)/4.0 && rotation >= (-3.0*pi)/4.0)
+                {
+                    region = 3;
+                }
+                if(rotation <= (-3.0*pi)/4.0 || rotation >= (3.0*pi)/4.0)
+                {
+                    region = 4;
+                }
             }
             //
             // A Button that pumps in fluid for collection
