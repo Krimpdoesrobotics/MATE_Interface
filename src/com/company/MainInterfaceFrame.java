@@ -529,7 +529,7 @@ public class MainInterfaceFrame extends JFrame
                 double yVal = LogitechController.getYValue();//from -1 to 1
                 double rotation = Math.atan2(yVal,xVal); //radians, from -pi to pi
                 double magnitude = Math.sqrt(xVal * xVal + yVal * yVal);
-                int power = (int)((double)127 * magnitude);
+                int power = (int)((double)65 * magnitude * powerScaling);
                 //determine region (1 = forward, 2 = forward and right, 3 = right, 4 = back and right, 5 = back, 6 = back and left, 7 = left, 8 = forward and left)
                 int region = 0;
                 if(rotation <= (5.0*pi)/8.0 && rotation >= (3.0*pi)/8.0)
@@ -571,63 +571,63 @@ public class MainInterfaceFrame extends JFrame
                         //forward
                         AdjFL(power);
                         AdjFR(power);
-                        AdjBL(-1 * power);
-                        AdjBR(-1 * power);
+                        AdjBL((-1 * power) + 90);
+                        AdjBR((-1 * power) + 90);
                         break;
                     }
                     case 2:
                     {
                         //forward right
-                        AdjFL((int)((double)power * reverseEfficencyHandicap));
-                        AdjBR(-1 * power);
+                        AdjFL(((int)((double)power * reverseEfficencyHandicap)) + 90);
+                        AdjBR((-1 * power) + 90);
                         break;
                     }
                     case 3:
                     {
                         //right
-                        AdjFL(power);
-                        AdjFR(-1 *power);
-                        AdjBL(power);
-                        AdjBR(-1 *power);
+                        AdjFL(power + 90);
+                        AdjFR((-1 *power) + 90);
+                        AdjBL(power + 90);
+                        AdjBR((-1 *power) + 90);
                         break;
                     }
                     case 4:
                     {
                         //backward right
-                        AdjFR(-1 * power);
-                        AdjBL((int)((double)power * reverseEfficencyHandicap));
+                        AdjFR((-1 * power) + 90);
+                        AdjBL(((int)((double)power * reverseEfficencyHandicap)) + 90);
                         break;
                     }
                     case 5:
                     {
                         //backward
-                        AdjFL(-1 * power);
-                        AdjFR(-1 * power);
-                        AdjBL(power);
-                        AdjBR(power);
+                        AdjFL((-1 * power) + 90);
+                        AdjFR((-1 * power) + 90);
+                        AdjBL(power + 90);
+                        AdjBR(power + 90);
                         break;
                     }
                     case 6:
                     {
                         //backward left
-                        AdjFL(-1 * power);
-                        AdjBR((int)((double)power * reverseEfficencyHandicap));
+                        AdjFL((-1 * power) + 90);
+                        AdjBR(((int)((double)power * reverseEfficencyHandicap)) + 90);
                         break;
                     }
                     case 7:
                     {
                         //left
-                        AdjFL(-1 * power);
-                        AdjFR(power);
-                        AdjBL(-1 * power);
-                        AdjBR(power);
+                        AdjFL((-1 * power) + 90);
+                        AdjFR(power + 90);
+                        AdjBL((-1 * power) + 90);
+                        AdjBR(power + 90);
                         break;
                     }
                     case 8:
                     {
                         //forward left
-                        AdjFR((int)((double)power * reverseEfficencyHandicap));
-                        AdjBL(-1 * power);
+                        AdjFR(((int)((double)power * reverseEfficencyHandicap)) + 90);
+                        AdjBL((-1 * power) + 90);
                         break;
                     }
                 }
@@ -641,7 +641,7 @@ public class MainInterfaceFrame extends JFrame
                 double yVal = LogitechController.getYRotation();//from -1 to 1
                 double rotation = Math.atan2(yVal,xVal);//radians, from -pi to pi
                 double magnitude = Math.sqrt(xVal*xVal + yVal * yVal);
-                int power = (int)((double)127 * magnitude);
+                int power = (int)((double)65 * magnitude * powerScaling);
                 //determine region (1 = up, 2 = turn right, 3 = down, 4 = turn left)
                 int region = 0;
                 if(rotation <= (3.0*pi)/4.0 && rotation >= pi/4.0)
@@ -665,33 +665,33 @@ public class MainInterfaceFrame extends JFrame
                     case 1:
                     {
                         //up
-                        AdjVL(power);
-                        AdjVL(power);
+                        AdjVL(power + 90);
+                        AdjVL(power + 90);
                         break;
                     }
                     case 2:
                     {
                         //turn right
-                        AdjFL(power);
-                        AdjFR(-1 * power);
-                        AdjBL(-1 * power);
-                        AdjBR(power);
+                        AdjFL(power + 90);
+                        AdjFR((-1 * power) + 90);
+                        AdjBL((-1 * power) + 90);
+                        AdjBR(power + 90);
                         break;
                     }
                     case 3:
                     {
                         //down
-                        AdjVL(-1 * power);
-                        AdjVR(-1 * power);
+                        AdjVL((-1 * power) + 90);
+                        AdjVR((-1 * power) + 90);
                         break;
                     }
                     case 4:
                     {
                         //turn left
-                        AdjFL(-1 * power);
-                        AdjFR(power);
-                        AdjBL(power);
-                        AdjBR(-1 * power);
+                        AdjFL((-1 * power) + 90);
+                        AdjFR(power + 90);
+                        AdjBL(power + 90);
+                        AdjBR((-1 * power) + 90);
                         break;
                     }
                 }
