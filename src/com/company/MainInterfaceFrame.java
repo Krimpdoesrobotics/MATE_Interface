@@ -24,6 +24,8 @@ public class MainInterfaceFrame extends JFrame
     private static DefaultListModel<String> modelSerialReceived = new DefaultListModel<>();
     private int timerCounter = 0;
     private int powerScaling = 1;   // this is from .1 to 1, and acts as a multiplier for power
+    private boolean isControllerOne = false;
+    private boolean isControllerTwo = false;
     private TimerTask timerTask = new TimerTask() {
 
         @Override
@@ -634,6 +636,9 @@ public class MainInterfaceFrame extends JFrame
 
 
             }
+            //
+            // Right Stick controls turning left n' right and up n' down
+            //
             if (LogitechController.updated[2] || LogitechController.updated[3])
             {
                 //joystick that will contol vertical movement and turning
@@ -694,6 +699,26 @@ public class MainInterfaceFrame extends JFrame
                         AdjBR((-1 * power) + 90);
                         break;
                     }
+                }
+            }
+            //
+            //
+            //
+            if (LogitechController.updated[12] && LogitechController.updated[7]) {
+                if (isControllerOne == false) {
+                    isControllerOne = true;
+                } else {
+                    isControllerOne = false;
+                }
+            }
+            //
+            //
+            //
+            if (LogitechController.updated[12] && LogitechController.updated[8]) {
+                if (isControllerTwo == false) {
+                    isControllerTwo = true;
+                } else {
+                    isControllerTwo = false;
                 }
             }
             //
