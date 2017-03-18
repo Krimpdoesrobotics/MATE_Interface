@@ -615,7 +615,7 @@ public class MainInterfaceFrame extends JFrame
             //
             // Left Stick to move the robot forward, backward, left, or right.
             //
-            if(LogitechController.updated[0] || LogitechController.updated[1])
+            if((LogitechController.updated[0] || LogitechController.updated[1]) && isControllerOne)
             {
                 //
                 // joystick that will control lateral movement
@@ -733,7 +733,7 @@ public class MainInterfaceFrame extends JFrame
             //
             // Right Stick controls turning left n' right and up n' down
             //
-            if (LogitechController.updated[2] || LogitechController.updated[3])
+            if ((LogitechController.updated[2] || LogitechController.updated[3]) && isControllerOne)
             {
                 //joystick that will contol vertical movement and turning
                 double xVal = LogitechController.getXRotation();//from -1 to 1
@@ -796,7 +796,7 @@ public class MainInterfaceFrame extends JFrame
                 }
             }
             //
-            //
+            // makes the controller a One controller
             //
             if (LogitechController.updated[12] && LogitechController.updated[7]) {
                 if (isControllerOne == false) {
@@ -806,7 +806,7 @@ public class MainInterfaceFrame extends JFrame
                 }
             }
             //
-            //
+            // makes the controller a Two controller
             //
             if (LogitechController.updated[12] && LogitechController.updated[8]) {
                 if (isControllerTwo == false) {
@@ -818,7 +818,7 @@ public class MainInterfaceFrame extends JFrame
             //
             // A Button that pumps in fluid for collection
             //
-            if (LogitechController.updated[5])
+            if (LogitechController.updated[5] && isControllerTwo)
             {
                 if(LogitechController.getButton(0))
                 {
@@ -832,7 +832,7 @@ public class MainInterfaceFrame extends JFrame
             //
             // B Button that pumps out fluid in case of error
             //
-            if (LogitechController.updated[6])
+            if (LogitechController.updated[6] && isControllerTwo)
             {
                 if(LogitechController.getButton(0))
                 {
@@ -846,7 +846,7 @@ public class MainInterfaceFrame extends JFrame
             //
             // D-Pad controls the Gripper control
             //
-            if (LogitechController.updated[15])
+            if (LogitechController.updated[15] && isControllerTwo)
             {
                 // updated D-Pad
                 if(LogitechController.getDPadLeft())
