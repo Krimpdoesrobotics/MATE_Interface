@@ -23,7 +23,7 @@ public class MainInterfaceFrame extends JFrame
     private static DefaultListModel<String> modelSerialSent = new DefaultListModel<>();
     private static DefaultListModel<String> modelSerialReceived = new DefaultListModel<>();
     private int timerCounter = 0;
-    private int powerScaling = 1;   //this is from .1 to 1, and acts as a multiplier for power
+    private int powerScaling = 1;   // this is from .1 to 1, and acts as a multiplier for power
     private TimerTask timerTask = new TimerTask() {
 
         @Override
@@ -517,14 +517,18 @@ public class MainInterfaceFrame extends JFrame
                 timerCounter = 0;
                 SerialCommunication.PortSender("0");
             }
-            if(LogitechController.updated[0] || LogitechController.updated[1])
-            {
-                //joystick that will control lateral movement
-                //This is the left controler and is controlled by 'values'
+            //
+            // Left Stick to move the robot forward, backward, left, or right.
+            //
+            if(LogitechController.updated[0] || LogitechController.updated[1]) {
+                //
+                // joystick that will control lateral movement
+                // This is the left controller and is controlled by 'values'
+                //
                 double xVal = LogitechController.getXValue();//from -1 to 1
                 double yVal = LogitechController.getYValue();//from -1 to 1
-                double rotation = Math.atan2(xVal,yVal);//radians, from -pi to pi
-                double magnitude = Math.sqrt(xVal*xVal + yVal * yVal);
+                double rotation = Math.atan2(xVal,yVal); //radians, from -pi to pi
+                double magnitude = Math.sqrt(xVal * xVal + yVal * yVal);
                 int power = (int)((double)127 * magnitude);
                 //determine region (1 = forward, 2 = forward and right, 3 = right, 4 = back and right, 5 = back, 6 = back and left, 7 = left, 8 = forward and left)
                 int region = 0;
@@ -630,12 +634,17 @@ public class MainInterfaceFrame extends JFrame
 
 
             }
-            if (LogitechController.updated[2] || LogitechController.updated[3])
-            {
-                //joystick that will contol vertical movement and turning
+            //
+            // Right Stick to turn the robot and/or move it up or down.
+            //
+            if (LogitechController.updated[2] || LogitechController.updated[3]) {
+                //joystick that will control vertical movement and turning
                 AdjVL((int)((LogitechController.getYRotation()-1)*-127)+1);
                 AdjVR((int)((LogitechController.getYRotation()-1)*-127)+1);
             }
+            //
+            // A Button that pumps in fluid for collection
+            //
             if (LogitechController.updated[5]) {
                 if(LogitechController.getButton(0)) {
                     AdjPumpSpeed(180);
@@ -643,8 +652,21 @@ public class MainInterfaceFrame extends JFrame
                     AdjPumpSpeed(0);
                 }
             }
+            //
+            // B Button that pumps out fluid in case of error
+            //
+            if (LogitechController.updated[6]) {
+                if(LogitechController.getButton(0)) {
+                    AdjPumpSpeed(-180);
+                } else {
+                    AdjPumpSpeed(0);
+                }
+            }
+            //
+            // D-Pad controls the Gripper control
+            //
             if (LogitechController.updated[15]) {
-                //updated D-Pad
+                // updated D-Pad
                 if(LogitechController.getDPadLeft()){
                     AdjGripperRotation(60);
                 } else if (LogitechController.getDPadRight()){
@@ -699,5 +721,24 @@ public class MainInterfaceFrame extends JFrame
     public boolean SendCommand(String identifier, int command){
         return SerialCommunication.PortSender(identifier+Integer.toString(Integer.toString(command).length())+Integer.toString(command));
     }
+
+    // COMPONENTS LIST //
+    // 0: Y AXIS ABSOLUTE ANALOG: Left Stick X
+    // 1: X AXIS ABSOLUTE ANALOG: Left Stick Y
+    // 2: X ROTATION ABSOLUTE ANALOG: Right Stick X
+    // 3: Y ROTATION ABSOLUTE ANALOG: Right Stick Y
+    // 4: Z AXIS ABSOLUTE ANALOG: Sum of Left Trigger(+) and Right Trigger(-)
+    // 5: BUTTON 0: A Button (PUMP IN)
+    // 6: BUTTON 1: B Button (PUMP OUT)
+    // 7: BUTTON 2: X Button (YOU ARE DRIVER 1)
+    // 8: BUTTON 3: Y Button (YOU ARE DRIVER 2)
+    // 9: BUTTON 4: L Button (not working well ATM)
+    // 10: BUTTON 5: R Button
+    // 11: BUTTON 6: Back Button
+    // 12: BUTTON 7: Start Button (MAKES YOU DRIVER)
+    // 13: BUTTON 8: L Stick Push Down
+    // 14: BUTTON 9: R Stick Push Down
+    // 15: HAT SWITCH: D Pad 0 Nothing .125 FL .25 F, .375 FR, etc..... 1.0 L
+    // --------------- //
 
 }
