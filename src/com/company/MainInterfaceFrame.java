@@ -24,10 +24,12 @@ public class MainInterfaceFrame extends JFrame
     private static DefaultListModel<String> modelSerialReceived = new DefaultListModel<>();
     private int timerCounter = 0;
     private int powerScaling = 1;   // this is from .1 to 1, and acts as a multiplier for power
-    private TimerTask timerTask = new TimerTask() {
+    private TimerTask timerTask = new TimerTask()
+    {
 
         @Override
-        public void run() {
+        public void run()
+        {
             // TODO Auto-generated method stub
             //
             // Invoke your function here
@@ -40,33 +42,44 @@ public class MainInterfaceFrame extends JFrame
     /**
      * Launch the application.
      */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
+    public static void main(String[] args)
+    {
+        EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+                try
+                {
                     MainInterfaceFrame frame = new MainInterfaceFrame();
                     frame.setVisible(true);
-                } catch (Exception e) {
+                }
+                catch (Exception e)
+                {
                     e.printStackTrace();
                 }
             }
         });
     }
 
-    public class CustomPanel extends JPanel{
+    public class CustomPanel extends JPanel
+    {
         private JPanel contentPanel;
 
-        public CustomPanel(){
+        public CustomPanel()
+        {
             contentPanel = new JPanel();
             contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
             contentPanel.setLayout(new BorderLayout(0, 0));
         }
 
-        public void paintComponent(Graphics g) {
+        public void paintComponent(Graphics g)
+        {
             super.paintComponent(g);
             // Draw Text
-            if(LogitechController.getController1Connected()){
-                if(true) {
+            if(LogitechController.getController1Connected())
+            {
+                if(true)
+                {
                     g.setColor(Color.BLUE);
                     int change = (int) (LogitechController.getZAxis() * 100);
                     change *= -1;
@@ -80,7 +93,8 @@ public class MainInterfaceFrame extends JFrame
                     g.drawRect(300,250, 200, 50);
                 }
                 int X, Y, SIZE1, SIZE2;
-                if(true) {  //This chunk deals with the d pad
+                if(true)
+                {  //This chunk deals with the d pad
                     int DPadValue = LogitechController.getDPad();
                     switch (DPadValue) {
                         case 0:
@@ -129,7 +143,8 @@ public class MainInterfaceFrame extends JFrame
                     g.drawLine(150, 400, X + 5, Y + 5);
                     g.setColor(Color.BLACK);
                 }
-                if(true) {
+                if(true)
+                {
                     g.fillRect(175, 550, 200, 200);
                     g.setColor(Color.YELLOW);
                     g.fillOval(270 + (int) (LogitechController.getXValue() * 100), 645 + (int) (LogitechController.getYValue() * 100), 10, 10);
@@ -137,86 +152,113 @@ public class MainInterfaceFrame extends JFrame
                     g.setColor(Color.BLACK);
 
                 }
-                if(true) {
+                if(true)
+                {
                     g.fillRect(425, 550, 200, 200);
                     g.setColor(Color.YELLOW);
                     g.fillOval(520 + (int) (LogitechController.getXRotation() * 100), 645 + (int) (LogitechController.getYRotation() * 100), 10, 10);
                     g.drawLine(525, 650, 525 + (int) (LogitechController.getXRotation() * 100), 650 + (int) (LogitechController.getYRotation() * 100));
                     g.setColor(Color.BLACK);
                 }
-                for(int i = 0; i < 10; i++){
-                    if(true) {
-                        if (LogitechController.getButton(i)) {
+                for(int i = 0; i < 10; i++)
+                {
+                    if(true)
+                    {
+                        if (LogitechController.getButton(i))
+                        {
                             g.setColor(Color.GREEN);
-                        } else {
+                        }
+                        else
+                        {
                             g.setColor(Color.BLUE);
                         }
                         switch (i) {
-                            case 0:
+                            case 0: {
                                 X = 620;
                                 Y = 440;
                                 SIZE1 = 60;
                                 SIZE2 = 60;
                                 break;
+                            }
                             case 1:
+                            {
                                 X = 690;
                                 Y = 370;
                                 SIZE1 = 60;
                                 SIZE2 = 60;
                                 break;
+                            }
                             case 2:
+                            {
                                 X = 550;
                                 Y = 370;
                                 SIZE1 = 60;
                                 SIZE2 = 60;
                                 break;
+                            }
                             case 3:
+                            {
                                 X = 620;
                                 Y = 300;
                                 SIZE1 = 60;
                                 SIZE2 = 60;
                                 break;
+                            }
                             case 4:
+                            {
                                 X = 50;
                                 Y = 250;
                                 SIZE1 = 200;
                                 SIZE2 = 30;
                                 break;
+                            }
                             case 5:
+                            {
                                 X = 550;
                                 Y = 250;
                                 SIZE1 = 200;
                                 SIZE2 = 30;
                                 break;
+                            }
                             case 6:
+                            {
                                 X = 300;
                                 Y = 350;
                                 SIZE1 = 80;
                                 SIZE2 = 100;
                                 break;
+                            }
                             case 7:
+                            {
                                 X = 420;
                                 Y = 350;
                                 SIZE1 = 80;
                                 SIZE2 = 100;
                                 break;
+                            }
                             case 8:
+                            {
                                 X = 50;
                                 Y = 550;
                                 SIZE1 = 75;
                                 SIZE2 = 100;
                                 break;
+                            }
                             case 9:
+                            {
                                 X = 675;
                                 Y = 550;
                                 SIZE1 = 75;
                                 SIZE2 = 100;
                                 break;
+                            }
                             default:
+                            {
                                 X = 0;
                                 Y = 0;
                                 SIZE1 = 0;
                                 SIZE2 = 0;
+                            }
                         }
                         g.fillRect(X, Y, SIZE1, SIZE2);
                         g.setColor(Color.BLACK);
@@ -226,108 +268,144 @@ public class MainInterfaceFrame extends JFrame
             }
         }
 
-        public void Refresh(){
+        public void Refresh()
+        {
             int X, Y, SIZE1, SIZE2;
 
-            for(int i = 0; i < 16; i++){
-                if(LogitechController.updated[i]){
-                    switch(i){
+            for(int i = 0; i < 16; i++)
+            {
+                if(LogitechController.updated[i])
+                {
+                    switch(i)
+                    {
                         case 0:
+                        {
                             X = 175;
-                            Y= 550;
-                            SIZE1= 200;
-                            SIZE2= 200;
+                            Y = 550;
+                            SIZE1 = 200;
+                            SIZE2 = 200;
                             break;
+                        }
                         case 1:
+                        {
                             X = 175;
-                            Y= 550;
-                            SIZE1= 200;
-                            SIZE2= 200;
+                            Y = 550;
+                            SIZE1 = 200;
+                            SIZE2 = 200;
                             break;
+                        }
                         case 2:
+                        {
                             X = 425;
-                            Y= 550;
-                            SIZE1= 200;
-                            SIZE2= 200;
+                            Y = 550;
+                            SIZE1 = 200;
+                            SIZE2 = 200;
                             break;
+                        }
                         case 3:
+                        {
                             X = 425;
-                            Y= 550;
-                            SIZE1= 200;
-                            SIZE2= 200;
+                            Y = 550;
+                            SIZE1 = 200;
+                            SIZE2 = 200;
                             break;
+                        }
                         case 4:
+                        {
                             X = 300;
-                            Y= 250;
-                            SIZE1= 200;
-                            SIZE2= 50;
+                            Y = 250;
+                            SIZE1 = 200;
+                            SIZE2 = 50;
                             break;
+                        }
                         case 5:
+                        {
                             X = 620;
                             Y = 440;
                             SIZE1 = 60;
                             SIZE2 = 60;
                             break;
+                        }
                         case 6:
+                        {
                             X = 690;
                             Y = 370;
                             SIZE1 = 60;
                             SIZE2 = 60;
                             break;
+                        }
                         case 7:
+                        {
                             X = 550;
                             Y = 370;
                             SIZE1 = 60;
                             SIZE2 = 60;
                             break;
+                        }
                         case 8:
+                        {
                             X = 620;
                             Y = 300;
                             SIZE1 = 60;
                             SIZE2 = 60;
                             break;
+                        }
                         case 9:
+                        {
                             X = 50;
                             Y = 250;
                             SIZE1 = 200;
                             SIZE2 = 30;
                             break;
+                        }
                         case 10:
+                        {
                             X = 550;
                             Y = 250;
                             SIZE1 = 200;
                             SIZE2 = 30;
                             break;
+                        }
                         case 11:
+                        {
                             X = 300;
                             Y = 350;
                             SIZE1 = 80;
                             SIZE2 = 100;
                             break;
+                        }
                         case 12:
+                        {
                             X = 420;
                             Y = 350;
                             SIZE1 = 80;
                             SIZE2 = 100;
                             break;
+                        }
                         case 13:
+                        {
                             X = 50;
                             Y = 550;
                             SIZE1 = 75;
                             SIZE2 = 100;
                             break;
+                        }
                         case 14:
+                        {
                             X = 675;
                             Y = 550;
                             SIZE1 = 75;
                             SIZE2 = 100;
                             break;
+                        }
                         case 15:
+                        {
                             X = 50;
-                            Y= 300;
-                            SIZE1= 200;
-                            SIZE2= 200;
+                            Y = 300;
+                            SIZE1 = 200;
+                            SIZE2 = 200;
                             break;
+                        }
                         default: X = 0; Y = 0; SIZE1 = 0; SIZE2 = 0;
                     }
                     repaint(X-5,Y-5,SIZE1+10,SIZE2+10);
@@ -338,7 +416,8 @@ public class MainInterfaceFrame extends JFrame
     /**
      * Create the frame.
      */
-    public MainInterfaceFrame() {
+    public MainInterfaceFrame()
+    {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(25, 25, 1500, 900);
         contentPane = new CustomPanel();
@@ -451,7 +530,8 @@ public class MainInterfaceFrame extends JFrame
         createComponentMap();
     }
 
-    public static void scrollDown(){
+    public static void scrollDown()
+    {
         Component SomeComponent = getComponentByName("scrollPaneSerialReceived");
         Component SomeComponent2 = getComponentByName("scrollPaneSerialSent");
         /*if(SomeComponent instanceof JScrollPane && SomeComponent2 instanceof  JScrollPane){
@@ -462,44 +542,55 @@ public class MainInterfaceFrame extends JFrame
         }*/
     }
 
-    public void createComponentMap() {
+    public void createComponentMap()
+    {
         componentMap = new HashMap<String,Component>();
         Component[] components = getContentPane().getComponents();
-        for (int i=0; i < components.length; i++) {
+        for (int i=0; i < components.length; i++)
+        {
             componentMap.put(components[i].getName(), components[i]);
             System.out.println(components[i].getName());
         }
     }
 
-    public static Component getComponentByName(String name) {
-        if (componentMap.containsKey(name)) {
+    public static Component getComponentByName(String name)
+    {
+        if (componentMap.containsKey(name))
+        {
             return (Component) componentMap.get(name);
         }
         else return null;
     }
 
-    public static String getSelectedPort(){
+    public static String getSelectedPort()
+    {
         Component SomeComponent = getComponentByName("serialComboBox");
-        if(SomeComponent instanceof JComboBox){
+        if(SomeComponent instanceof JComboBox)
+        {
             JComboBox SomeComboBox = (JComboBox) SomeComponent;
             return (String) SomeComboBox.getSelectedItem();
         }
         else return null;
     }
 
-    public static void addSerialSent(String obj){
+    public static void addSerialSent(String obj)
+    {
         modelSerialSent.addElement(obj);
-        if(modelSerialSent.getSize() > 25){
+        if(modelSerialSent.getSize() > 25)
+        {
             modelSerialSent.removeRange(0,13);
         }
     }
 
-    public static void addSerialReceived(String obj) {
+    public static void addSerialReceived(String obj)
+    {
         modelSerialReceived.addElement(obj);
-        if(modelSerialReceived.getSize() > 25) {
+        if(modelSerialReceived.getSize() > 25)
+        {
             modelSerialReceived.removeRange(0,13);
         }
-        switch(obj.charAt(0)){
+        switch(obj.charAt(0))
+        {
             case '0':
                 //error occurred in arduino
             case '1':
@@ -510,17 +601,21 @@ public class MainInterfaceFrame extends JFrame
         }
     }
 
-    public void UpdateArduino(){
-        if(SerialCommunication.isOpen() && LogitechController.getController1Connected()) {
+    public void UpdateArduino()
+    {
+        if(SerialCommunication.isOpen() && LogitechController.getController1Connected())
+        {
             timerCounter++;
-            if (timerCounter >=100) {
+            if (timerCounter >=100)
+            {
                 timerCounter = 0;
                 SerialCommunication.PortSender("0");
             }
             //
             // Left Stick to move the robot forward, backward, left, or right.
             //
-            if(LogitechController.updated[0] || LogitechController.updated[1]) {
+            if(LogitechController.updated[0] || LogitechController.updated[1])
+            {
                 //
                 // joystick that will control lateral movement
                 // This is the left controller and is controlled by 'values'
@@ -699,80 +794,111 @@ public class MainInterfaceFrame extends JFrame
             //
             // A Button that pumps in fluid for collection
             //
-            if (LogitechController.updated[5]) {
-                if(LogitechController.getButton(0)) {
+            if (LogitechController.updated[5])
+            {
+                if(LogitechController.getButton(0))
+                {
                     AdjPumpSpeed(180);
-                } else {
+                }
+                else
+                {
                     AdjPumpSpeed(0);
                 }
             }
             //
             // B Button that pumps out fluid in case of error
             //
-            if (LogitechController.updated[6]) {
-                if(LogitechController.getButton(0)) {
+            if (LogitechController.updated[6])
+            {
+                if(LogitechController.getButton(0))
+                {
                     AdjPumpSpeed(-180);
-                } else {
+                }
+                else
+                {
                     AdjPumpSpeed(0);
                 }
             }
             //
             // D-Pad controls the Gripper control
             //
-            if (LogitechController.updated[15]) {
+            if (LogitechController.updated[15])
+            {
                 // updated D-Pad
-                if(LogitechController.getDPadLeft()){
+                if(LogitechController.getDPadLeft())
+                {
                     AdjGripperRotation(60);
-                } else if (LogitechController.getDPadRight()){
+                }
+                else if (LogitechController.getDPadRight())
+                {
                     AdjGripperRotation(120);
-                } else {
+                }
+                else
+                {
                     AdjGripperRotation(90);
                 }
-                if (LogitechController.getDPadUp()) {
+                if (LogitechController.getDPadUp())
+                {
                     AdjGripperClamp(17);
-                } else if (LogitechController.getDPadDown()) {
+                }
+                else if (LogitechController.getDPadDown())
+                {
                     AdjGripperClamp(13);
-                } else {
+                }
+                else
+                {
                     AdjGripperClamp(15);
                 }
             }
         }
-        if(LogitechController.getController1Connected()) {
-            for (int i = 0; i < 16; i++) {
+        if(LogitechController.getController1Connected())
+        {
+            for (int i = 0; i < 16; i++)
+            {
                 LogitechController.updated[i] = false;
             }
         }
     }
 
     // Adjusters that go to the serial code
-    public boolean AdjPumpSpeed(int pos){
+    public boolean AdjPumpSpeed(int pos)
+    {
         return SendCommand("4",pos);
     }
-    public boolean AdjGripperRotation(int pos){
+    public boolean AdjGripperRotation(int pos)
+    {
         return SendCommand("3",pos);
     }
-    public boolean AdjGripperClamp(int pos){
+    public boolean AdjGripperClamp(int pos)
+    {
         return SendCommand("2",pos);
     }
-    public boolean AdjFL(int power){ //adjust the power of the front left motor
+    public boolean AdjFL(int power)
+    { //adjust the power of the front left motor
         return SendCommand("11",power);
     }
-    public boolean AdjFR(int power){ //adjust the power of the front right motor
+    public boolean AdjFR(int power)
+    { //adjust the power of the front right motor
         return SendCommand("12",power);
     }
-    public boolean AdjBL(int power){ //adjust the power of the back left motor
+    public boolean AdjBL(int power)
+    { //adjust the power of the back left motor
         return SendCommand("13",power);
     }
-    public boolean AdjBR(int power){ //adjust the power of the back right motor
+    public boolean AdjBR(int power)
+    { //adjust the power of the back right motor
         return SendCommand("14",power);
     }
-    public boolean AdjVL(int power){ //adjust the power of the vertical left motor
+    public boolean AdjVL(int power)
+    { //adjust the power of the vertical left motor
         return SendCommand("15",power);
     }
-    public boolean AdjVR(int power){ //adjust the power of the vertical right motor
+    public boolean AdjVR(int power)
+    { //adjust the power of the vertical right motor
         return SendCommand("16",power);
     }
-    public boolean SendCommand(String identifier, int command){
+    public boolean SendCommand(String identifier, int command)
+    {
         return SerialCommunication.PortSender(identifier+Integer.toString(Integer.toString(command).length())+Integer.toString(command));
     }
 
