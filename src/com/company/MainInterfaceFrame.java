@@ -527,7 +527,7 @@ public class MainInterfaceFrame extends JFrame
                 //
                 double xVal = LogitechController.getXValue();//from -1 to 1
                 double yVal = LogitechController.getYValue();//from -1 to 1
-                double rotation = Math.atan2(xVal,yVal); //radians, from -pi to pi
+                double rotation = Math.atan2(yVal,xVal); //radians, from -pi to pi
                 double magnitude = Math.sqrt(xVal * xVal + yVal * yVal);
                 int power = (int)((double)127 * magnitude);
                 //determine region (1 = forward, 2 = forward and right, 3 = right, 4 = back and right, 5 = back, 6 = back and left, 7 = left, 8 = forward and left)
@@ -639,7 +639,7 @@ public class MainInterfaceFrame extends JFrame
                 //joystick that will contol vertical movement and turning
                 double xVal = LogitechController.getXRotation();//from -1 to 1
                 double yVal = LogitechController.getYRotation();//from -1 to 1
-                double rotation = Math.atan2(xVal,yVal);//radians, from -pi to pi
+                double rotation = Math.atan2(yVal,xVal);//radians, from -pi to pi
                 double magnitude = Math.sqrt(xVal*xVal + yVal * yVal);
                 int power = (int)((double)127 * magnitude);
                 //determine region (1 = up, 2 = turn right, 3 = down, 4 = turn left)
@@ -659,6 +659,41 @@ public class MainInterfaceFrame extends JFrame
                 if(rotation <= (-3.0*pi)/4.0 || rotation >= (3.0*pi)/4.0)
                 {
                     region = 4;
+                }
+                switch(region)
+                {
+                    case 1:
+                    {
+                        //up
+                        AdjVL(power);
+                        AdjVL(power);
+                        break;
+                    }
+                    case 2:
+                    {
+                        //turn right
+                        AdjFL(power);
+                        AdjFR(-1 * power);
+                        AdjBL(-1 * power);
+                        AdjBR(power);
+                        break;
+                    }
+                    case 3:
+                    {
+                        //down
+                        AdjVL(-1 * power);
+                        AdjVR(-1 * power);
+                        break;
+                    }
+                    case 4:
+                    {
+                        //turn left
+                        AdjFL(-1 * power);
+                        AdjFR(power);
+                        AdjBL(power);
+                        AdjBR(-1 * power);
+                        break;
+                    }
                 }
             }
             //
