@@ -11,7 +11,10 @@ import javax.swing.border.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainInterfaceFrame extends JFrame {
+public class MainInterfaceFrame extends JFrame
+{
+    private final double pi = 3.14159;
+    private final double reverseEfficencyHandicap = 1;
     private static HashMap componentMap;
     private SerialCommunications SerialCommunication = new SerialCommunications();
     private CustomPanel contentPane;
@@ -523,7 +526,107 @@ public class MainInterfaceFrame extends JFrame {
                 double rotation = Math.atan2(xVal,yVal);//radians, from -pi to pi
                 double magnitude = Math.sqrt(xVal*xVal + yVal * yVal);
                 int power = (int)((double)127 * magnitude);
-                //determine region
+                //determine region (1 = forward, 2 = forward and right, 3 = right, 4 = back and right, 5 = back, 6 = back and left, 7 = left, 8 = forward and left)
+                int region = 0;
+                if(rotation <= (5.0*pi)/8.0 && rotation > (3.0*pi)/8.0)
+                {
+                    region = 1;
+                }
+                if(rotation <= (3.0*pi)/8.0 && rotation > pi/8.0)
+                {
+                    region = 2;
+                }
+                if(rotation <= pi/8.0 && rotation > -pi/8.0)
+                {
+                    region = 3;
+                }
+                if(rotation <= -pi/8.0 && rotation > (-3.0*pi)/8.0)
+                {
+                    region = 4;
+                }
+                if(rotation <= (-3.0*pi)/8.0 && rotation > (-5.0*pi)/8.0)
+                {
+                    region = 5;
+                }
+                if(rotation <= (-5.0*pi)/8.0 && rotation > (-7.0*pi)/8.0)
+                {
+                    region = 6;
+                }
+                if(rotation <= (-7.0*pi)/8.0 && rotation > (7.0*pi)/8.0)
+                {
+                    region = 7;
+                }
+                if(rotation <= (7.0*pi)/8.0 && rotation > (5.0*pi)/8.0)
+                {
+                    region = 8;
+                }
+                switch(region)
+                {
+                    case 1:
+                    {
+                        //forward
+                        AdjFL(power);
+                        AdjFR(power);
+                        AdjBL(-1 * power);
+                        AdjBR(-1 * power);
+                        break;
+                    }
+                    case 2:
+                    {
+                        //forward right
+                        AdjFL((int)((double)power * reverseEfficencyHandicap));
+                        AdjBR(-1 * power);
+                        break;
+                    }
+                    case 3:
+                    {
+                        //right
+                        AdjFL(power);
+                        AdjFR(-1 *power);
+                        AdjBL(power);
+                        AdjBR(-1 *power);
+                        break;
+                    }
+                    case 4:
+                    {
+                        //backward right
+                        AdjFR(-1 * power);
+                        AdjBL((int)((double)power * reverseEfficencyHandicap));
+                        break;
+                    }
+                    case 5:
+                    {
+                        //backward
+                        AdjFL(-1 * power);
+                        AdjFR(-1 * power);
+                        AdjBL(power);
+                        AdjBR(power);
+                        break;
+                    }
+                    case 6:
+                    {
+                        //backward left
+                        AdjFL(-1 * power);
+                        AdjBR((int)((double)power * reverseEfficencyHandicap));
+                        break;
+                    }
+                    case 7:
+                    {
+                        //left
+                        AdjFL(-1 * power);
+                        AdjFR(power);
+                        AdjBL(-1 * power);
+                        AdjBR(power);
+                        break;
+                    }
+                    case 8:
+                    {
+                        //forward left
+                        AdjFR((int)((double)power * reverseEfficencyHandicap));
+                        AdjBL(-1 * power);
+                        break;
+                    }
+                }
 
 
             }
