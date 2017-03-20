@@ -13,7 +13,9 @@ import java.util.TimerTask;
 
 public class MainInterfaceFrame extends JFrame
 {
-    private final double pi = 3.14159;
+    private final double pi = 3.14159
+    private gripperRotation = 0;
+    private gripperClamp = 0;
     private final double reverseEfficencyHandicap = 1;
     private static HashMap componentMap;
     private SerialCommunications SerialCommunication = new SerialCommunications();
