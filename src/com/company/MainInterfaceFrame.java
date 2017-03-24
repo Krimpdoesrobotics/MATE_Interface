@@ -13,9 +13,9 @@ import java.util.TimerTask;
 
 public class MainInterfaceFrame extends JFrame
 {
-    private final double pi = 3.14159
-    private gripperRotation = 0;
-    private gripperClamp = 0;
+    private final double pi = 3.14159;
+    private double gripperRotation = 0.0;
+    private double gripperClamp = 0.0;
     private final double reverseEfficencyHandicap = 1;
     private static HashMap componentMap;
     private SerialCommunications SerialCommunication = new SerialCommunications();
@@ -461,6 +461,18 @@ public class MainInterfaceFrame extends JFrame
         lblSerialSent.setName("lblSerialSent");
         lblSerialSent.setBounds(new Rectangle(625, 50, 130, 20));
         contentPane.add(lblSerialSent, BorderLayout.CENTER);
+
+        //
+        JLabel lblGripperPositionName = new JLabel("Gripper's Current Position");
+        lblGripperPositionName.setName("lblGripperPosName");
+        lblGripperPositionName.setBounds(new Rectangle(625, 50, 130, 20));
+        contentPane.add(lblGripperPositionName, BorderLayout.EAST);
+
+        JLabel lblGripperPosition = new JLabel("");
+        lblGripperPosition.setName("lblGripperPos");
+        lblGripperPosition.setBounds(new Rectangle(625, 50, 130, 20));
+        contentPane.add(lblGripperPosition, BorderLayout.EAST);
+        //
 
         JList<String> listSerialSent = new JList<>(modelSerialSent);
         JScrollPane scrollPaneSerialSent = new JScrollPane();
