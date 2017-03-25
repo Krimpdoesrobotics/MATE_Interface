@@ -7,7 +7,7 @@ import com.company.RandomStuff.*;
  * Created by julia on 3/25/2017.
  */
 public class Paintings {
-    public int x, y, width, height, type;
+    private int x, y, width, height, type;
     private Color BorderColor;
     private boolean Updated;
     public Paintings(int x1, int y1, int width1, int height1, int type1, Color BorderColor1, BooleanH Updated1){

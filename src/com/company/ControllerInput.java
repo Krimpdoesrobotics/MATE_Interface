@@ -21,7 +21,7 @@ public class ControllerInput {
     // private data
     private double XAxis, YAxis, XRotation, YRotation, DPad, ZAxis; // Value of each axis
     private boolean[] buttons = new boolean[10];                   // array of the buttons we have and whether or not they are in use -BOOL-
-    private boolean[] updated = new boolean[16];                    // whether or not the pads or buttons have been updated
+    private BooleanH[] updated = new BooleanH[16];                    // whether or not the pads or buttons have been updated
     private boolean LeftAnalogUpdated, RightAnalogUpdated;
     private Controller[] Controllers; // this temporarily holds an array of controllers that can be accessed.
     private Controller Controller1;   // Driver controller
@@ -42,7 +42,7 @@ public class ControllerInput {
         // sets all of the updates
         //
         for(int i = 0; i < 16; i++){
-            updated[i] = true;
+            updated[i] = BooleanH.newBooleanH(true);
         }
     }
 
@@ -70,35 +70,35 @@ public class ControllerInput {
                     //
                     if(comp.getIdentifier() == Component.Identifier.Axis.Y) {
                         YAxis = event.getValue();
-                        updated[0] = true;
+                        updated[0].setBoolean(true);
                         LeftAnalogUpdated = true;
                     } else if(comp.getIdentifier() == Component.Identifier.Axis.X) {
                         XAxis = event.getValue();
-                        updated[1] = true;
+                        updated[1].setBoolean(true);
                         LeftAnalogUpdated = true;
                     } else if(comp.getIdentifier() == Component.Identifier.Axis.RY) {
                         YRotation = event.getValue();
-                        updated[2] = true;
+                        updated[2].setBoolean(true);
                         RightAnalogUpdated = true;
                     } else if(comp.getIdentifier() == Component.Identifier.Axis.RX) {
                         XRotation = event.getValue();
-                        updated[3] = true;
+                        updated[3].setBoolean(true);
                         RightAnalogUpdated = true;
                     } else if(comp.getIdentifier() == Component.Identifier.Axis.Z) {
                         ZAxis = event.getValue();
-                        updated[4] = true;
+                        updated[4].setBoolean(true);
                     }
                 } else {
                     if(comp.getIdentifier() == Component.Identifier.Axis.POV) {
                         DPad = value;
-                        updated[15] = true;
+                        updated[15].setBoolean(true);
                         buffer.append(value);
                     } else {
                         int buttonnum = 0;
                         for(int i = 0; i < 10; i++) {
                             if(comp.getIdentifier().getName().contains(Integer.toString(i))) {
                                 buttonnum = i;
-                                updated[i+5] = true;
+                                updated[i+5].setBoolean(true);
                             }
                         }
                         if(value >0.5) {
@@ -267,9 +267,9 @@ public class ControllerInput {
 
     public BooleanH getButtonH(int index){return BooleanH.newBooleanH(buttons[index]);}
 
-    public boolean getUpdated(int index) { return updated[index];}
+    public boolean getUpdated(int index) { return updated[index].getBoolean();}
 
-    public BooleanH getUpdatedH(int index){return BooleanH.newBooleanH(updated[index]);}
+    public BooleanH getUpdatedH(int index){return updated[index];}
 
     public double getZAxis(){
         return ZAxis;
@@ -291,7 +291,7 @@ public class ControllerInput {
 
     public void resetUpdated(){
         for(int i = 0; i < 16; i++){
-            updated[i] =false;
+            updated[i].setBoolean(false);
         }
         LeftAnalogUpdated =false;
         RightAnalogUpdated =false;

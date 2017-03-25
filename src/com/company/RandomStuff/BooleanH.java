@@ -15,4 +15,7 @@ public class BooleanH{
         BooleanH stuff = new BooleanH(a);
         return stuff;
     }
+    public void setBoolean(boolean a){
+        this.a = a;
+    }
 }
