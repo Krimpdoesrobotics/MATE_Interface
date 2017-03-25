@@ -3,6 +3,8 @@ package com.company;
 /**
  * Created by Richard on 2/17/2017.
  */
+import com.sun.deploy.util.SyncFileAccess;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
@@ -13,6 +15,7 @@ import java.util.TimerTask;
 
 public class MainInterfaceFrame extends JFrame
 {
+    private final int NumGraphics = 22;
     private final double pi = 3.14159;
     private double gripperRotation = 0.0;
     private double gripperClamp = 0.0;
@@ -28,6 +31,10 @@ public class MainInterfaceFrame extends JFrame
     private int powerScaling = 1;   // this is from .1 to 1, and acts as a multiplier for power
     private boolean isControllerOne = false;
     private boolean isControllerTwo = false;
+    private boolean newTelemetryReceived =false;
+    private static double motorSpeeds[] = new double[6];
+    private static double CameraServoTilt = 0;
+    private static double CameraServoPan = 0;
     private TimerTask timerTask = new TimerTask() {
 
         @Override
@@ -47,6 +54,10 @@ public class MainInterfaceFrame extends JFrame
      */
     public static void main(String[] args)
     {
+        for(int i = 0; i < 6; i++){
+            motorSpeeds[i] = 0;
+        }
+
         EventQueue.invokeLater(new Runnable()
         {
             public void run()
@@ -64,358 +75,7 @@ public class MainInterfaceFrame extends JFrame
         });
     }
 
-    public class CustomPanel extends JPanel
-    {
-        private JPanel contentPanel;
 
-        public CustomPanel()
-        {
-            contentPanel = new JPanel();
-            contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-            contentPanel.setLayout(new BorderLayout(0, 0));
-        }
-
-        public void paintComponent(Graphics g)
-        {
-            super.paintComponent(g);
-            // Draw Text
-            if(LogitechController.getController1Connected())
-            {
-                if(true)
-                {
-                    g.setColor(Color.BLUE);
-                    int change = (int) (LogitechController.getZAxis() * 100);
-                    change *= -1;
-                    if (change > 0) {
-                        g.fillRect(400, 250, change, 50);
-                    } else {
-                        g.fillRect(400 + change, 250, change * -1, 50);
-                        //System.out.println(change);
-                    }
-                    g.setColor(Color.BLACK);
-                    g.drawRect(300,250, 200, 50);
-                }
-                int X, Y, SIZE1, SIZE2;
-                if(true)
-                {  //This chunk deals with the d pad
-                    int DPadValue = LogitechController.getDPad();
-                    switch (DPadValue) {
-                        case 0:
-                            X = 145 + 0;
-                            Y = 395 + 0;
-                            break;
-                        case 1:
-                            X = 145 - 100;
-                            Y = 395 - 100;
-                            break;
-                        case 2:
-                            X = 145 + 0;
-                            Y = 395 - 100;
-                            break;
-                        case 3:
-                            X = 145 + 100;
-                            Y = 395 - 100;
-                            break;
-                        case 4:
-                            X = 145 + 100;
-                            Y = 395 + 0;
-                            break;
-                        case 5:
-                            X = 145 + 100;
-                            Y = 395 + 100;
-                            break;
-                        case 6:
-                            X = 145 + 0;
-                            Y = 395 + 100;
-                            break;
-                        case 7:
-                            X = 145 - 100;
-                            Y = 395 + 100;
-                            break;
-                        case 8:
-                            X = 145 - 100;
-                            Y = 395 + 0;
-                            break;
-                        default:
-                            X = 0;
-                            Y = 0;
-                    }
-                    g.fillRect(50, 300, 200, 200);
-                    g.setColor(Color.YELLOW);
-                    g.fillOval(X, Y, 10, 10);
-                    g.drawLine(150, 400, X + 5, Y + 5);
-                    g.setColor(Color.BLACK);
-                }
-                if(true)
-                {
-                    g.fillRect(175, 550, 200, 200);
-                    g.setColor(Color.YELLOW);
-                    g.fillOval(270 + (int) (LogitechController.getXValue() * 100), 645 + (int) (LogitechController.getYValue() * 100), 10, 10);
-                    g.drawLine(275, 650, 275 + (int) (LogitechController.getXValue() * 100), 650 + (int) (LogitechController.getYValue() * 100));
-                    g.setColor(Color.BLACK);
-
-                }
-                if(true)
-                {
-                    g.fillRect(425, 550, 200, 200);
-                    g.setColor(Color.YELLOW);
-                    g.fillOval(520 + (int) (LogitechController.getXRotation() * 100), 645 + (int) (LogitechController.getYRotation() * 100), 10, 10);
-                    g.drawLine(525, 650, 525 + (int) (LogitechController.getXRotation() * 100), 650 + (int) (LogitechController.getYRotation() * 100));
-                    g.setColor(Color.BLACK);
-                }
-                for(int i = 0; i < 10; i++)
-                {
-                    if(true)
-                    {
-                        if (LogitechController.getButton(i))
-                        {
-                            g.setColor(Color.GREEN);
-                        }
-                        else
-                        {
-                            g.setColor(Color.BLUE);
-                        }
-                        switch (i) {
-                            case 0: {
-                                X = 620;
-                                Y = 440;
-                                SIZE1 = 60;
-                                SIZE2 = 60;
-                                break;
-                            }
-                            case 1:
-                            {
-                                X = 690;
-                                Y = 370;
-                                SIZE1 = 60;
-                                SIZE2 = 60;
-                                break;
-                            }
-                            case 2:
-                            {
-                                X = 550;
-                                Y = 370;
-                                SIZE1 = 60;
-                                SIZE2 = 60;
-                                break;
-                            }
-                            case 3:
-                            {
-                                X = 620;
-                                Y = 300;
-                                SIZE1 = 60;
-                                SIZE2 = 60;
-                                break;
-                            }
-                            case 4:
-                            {
-                                X = 50;
-                                Y = 250;
-                                SIZE1 = 200;
-                                SIZE2 = 30;
-                                break;
-                            }
-                            case 5:
-                            {
-                                X = 550;
-                                Y = 250;
-                                SIZE1 = 200;
-                                SIZE2 = 30;
-                                break;
-                            }
-                            case 6:
-                            {
-                                X = 300;
-                                Y = 350;
-                                SIZE1 = 80;
-                                SIZE2 = 100;
-                                break;
-                            }
-                            case 7:
-                            {
-                                X = 420;
-                                Y = 350;
-                                SIZE1 = 80;
-                                SIZE2 = 100;
-                                break;
-                            }
-                            case 8:
-                            {
-                                X = 50;
-                                Y = 550;
-                                SIZE1 = 75;
-                                SIZE2 = 100;
-                                break;
-                            }
-                            case 9:
-                            {
-                                X = 675;
-                                Y = 550;
-                                SIZE1 = 75;
-                                SIZE2 = 100;
-                                break;
-                            }
-                            default:
-                            {
-                                X = 0;
-                                Y = 0;
-                                SIZE1 = 0;
-                                SIZE2 = 0;
-                            }
-                        }
-                        g.fillRect(X, Y, SIZE1, SIZE2);
-                        g.setColor(Color.BLACK);
-                        g.drawRect(X, Y, SIZE1, SIZE2);
-                    }
-                }
-            }
-        }
-
-        public void Refresh()
-        {
-            int X, Y, SIZE1, SIZE2;
-
-            for(int i = 0; i < 16; i++)
-            {
-                if(LogitechController.updated[i])
-                {
-                    switch(i)
-                    {
-                        case 0:
-                        {
-                            X = 175;
-                            Y = 550;
-                            SIZE1 = 200;
-                            SIZE2 = 200;
-                            break;
-                        }
-                        case 1:
-                        {
-                            X = 175;
-                            Y = 550;
-                            SIZE1 = 200;
-                            SIZE2 = 200;
-                            break;
-                        }
-                        case 2:
-                        {
-                            X = 425;
-                            Y = 550;
-                            SIZE1 = 200;
-                            SIZE2 = 200;
-                            break;
-                        }
-                        case 3:
-                        {
-                            X = 425;
-                            Y = 550;
-                            SIZE1 = 200;
-                            SIZE2 = 200;
-                            break;
-                        }
-                        case 4:
-                        {
-                            X = 300;
-                            Y = 250;
-                            SIZE1 = 200;
-                            SIZE2 = 50;
-                            break;
-                        }
-                        case 5:
-                        {
-                            X = 620;
-                            Y = 440;
-                            SIZE1 = 60;
-                            SIZE2 = 60;
-                            break;
-                        }
-                        case 6:
-                        {
-                            X = 690;
-                            Y = 370;
-                            SIZE1 = 60;
-                            SIZE2 = 60;
-                            break;
-                        }
-                        case 7:
-                        {
-                            X = 550;
-                            Y = 370;
-                            SIZE1 = 60;
-                            SIZE2 = 60;
-                            break;
-                        }
-                        case 8:
-                        {
-                            X = 620;
-                            Y = 300;
-                            SIZE1 = 60;
-                            SIZE2 = 60;
-                            break;
-                        }
-                        case 9:
-                        {
-                            X = 50;
-                            Y = 250;
-                            SIZE1 = 200;
-                            SIZE2 = 30;
-                            break;
-                        }
-                        case 10:
-                        {
-                            X = 550;
-                            Y = 250;
-                            SIZE1 = 200;
-                            SIZE2 = 30;
-                            break;
-                        }
-                        case 11:
-                        {
-                            X = 300;
-                            Y = 350;
-                            SIZE1 = 80;
-                            SIZE2 = 100;
-                            break;
-                        }
-                        case 12:
-                        {
-                            X = 420;
-                            Y = 350;
-                            SIZE1 = 80;
-                            SIZE2 = 100;
-                            break;
-                        }
-                        case 13:
-                        {
-                            X = 50;
-                            Y = 550;
-                            SIZE1 = 75;
-                            SIZE2 = 100;
-                            break;
-                        }
-                        case 14:
-                        {
-                            X = 675;
-                            Y = 550;
-                            SIZE1 = 75;
-                            SIZE2 = 100;
-                            break;
-                        }
-                        case 15:
-                        {
-                            X = 50;
-                            Y = 300;
-                            SIZE1 = 200;
-                            SIZE2 = 200;
-                            break;
-                        }
-                        default: X = 0; Y = 0; SIZE1 = 0; SIZE2 = 0;
-                    }
-                    repaint(X-5,Y-5,SIZE1+10,SIZE2+10);
-                }
-            }
-        }
-    }
     /**
      * Create the frame.
      */
@@ -423,7 +83,53 @@ public class MainInterfaceFrame extends JFrame
     {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(25, 25, 1500, 900);
-        contentPane = new CustomPanel();
+        contentPane = new CustomPanel(22,LogitechController.getController1Connected());
+
+        contentPane.InterfaceElements[0] = new Paintings(175,550,200,200,0,Color.BLACK,LogitechController.getLeftAnalogUpdated());
+        contentPane.InterfaceElements[0].setReferenceType0(LogitechController.getXValue(),LogitechController.getYValue(),Color.BLACK,Color.CYAN);
+        contentPane.InterfaceElements[1] = new Paintings(425,550,200,200,0,Color.BLACK,LogitechController.getRightAnalogUpdated());
+        contentPane.InterfaceElements[1].setReferenceType0(LogitechController.getXRotation(),LogitechController.getYRotation(),Color.BLACK,Color.CYAN);
+        contentPane.InterfaceElements[2] = new Paintings(300,250,200,50,3,Color.BLACK,LogitechController.getUpdated(4));
+        contentPane.InterfaceElements[2].setReferenceType34(LogitechController.getZAxis(),Color.WHITE,Color.BLUE);
+        contentPane.InterfaceElements[3] = new Paintings(620,440,60,60,2,Color.BLACK,LogitechController.getUpdated(5));
+        contentPane.InterfaceElements[3].setReferenceType2(LogitechController.getButton(0),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[4] = new Paintings(690,370,60,60,2,Color.BLACK,LogitechController.getUpdated(6));
+        contentPane.InterfaceElements[4].setReferenceType2(LogitechController.getButton(1),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[5] = new Paintings(550,370,60,60,2,Color.BLACK,LogitechController.getUpdated(7));
+        contentPane.InterfaceElements[5].setReferenceType2(LogitechController.getButton(2),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[6] = new Paintings(620,300,60,60,2,Color.BLACK,LogitechController.getUpdated(8));
+        contentPane.InterfaceElements[6].setReferenceType2(LogitechController.getButton(3),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[7] = new Paintings(50,250,200,30,2,Color.BLACK,LogitechController.getUpdated(9));
+        contentPane.InterfaceElements[7].setReferenceType2(LogitechController.getButton(4),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[8] = new Paintings(550,250,200,30,2,Color.BLACK,LogitechController.getUpdated(10));
+        contentPane.InterfaceElements[8].setReferenceType2(LogitechController.getButton(5),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[9] = new Paintings(300,350,80,100,2,Color.BLACK,LogitechController.getUpdated(11));
+        contentPane.InterfaceElements[9].setReferenceType2(LogitechController.getButton(6),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[10] = new Paintings(420,350,80,100,2,Color.BLACK,LogitechController.getUpdated(12));
+        contentPane.InterfaceElements[10].setReferenceType2(LogitechController.getButton(7),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[11] = new Paintings(50,550,75,100,2,Color.BLACK,LogitechController.getUpdated(13));
+        contentPane.InterfaceElements[11].setReferenceType2(LogitechController.getButton(8),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[12] = new Paintings(675,550,75,100,2,Color.BLACK,LogitechController.getUpdated(14));
+        contentPane.InterfaceElements[12].setReferenceType2(LogitechController.getButton(9),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[13] = new Paintings(50,300,200,200,1,Color.BLACK,LogitechController.getUpdated(15));
+        contentPane.InterfaceElements[13].setReferenceType1(LogitechController.getDPad(),Color.BLACK, Color.CYAN);
+        contentPane.InterfaceElements[14] = new Paintings(800,300,80,200,4,Color.BLACK,newTelemetryReceived);
+        contentPane.InterfaceElements[14].setReferenceType34(motorSpeeds[0],Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[15] = new Paintings(900,300,80,200,4,Color.BLACK,newTelemetryReceived);
+        contentPane.InterfaceElements[15].setReferenceType34(motorSpeeds[1],Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[16] = new Paintings(1000,300,80,200,4,Color.BLACK,newTelemetryReceived);
+        contentPane.InterfaceElements[16].setReferenceType34(motorSpeeds[2],Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[17] = new Paintings(1100,300,80,200,4,Color.BLACK,newTelemetryReceived);
+        contentPane.InterfaceElements[17].setReferenceType34(motorSpeeds[3],Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[18] = new Paintings(1200,300,80,200,4,Color.BLACK,newTelemetryReceived);
+        contentPane.InterfaceElements[18].setReferenceType34(motorSpeeds[4],Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[19] = new Paintings(1300,300,80,200,4,Color.BLACK,newTelemetryReceived);
+        contentPane.InterfaceElements[19].setReferenceType34(motorSpeeds[5],Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[20] = new Paintings(800,550,200,30,4,Color.BLACK,newTelemetryReceived);
+        contentPane.InterfaceElements[20].setReferenceType34(CameraServoTilt,Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[21] = new Paintings(1050,550,200,30,4,Color.BLACK,newTelemetryReceived);
+        contentPane.InterfaceElements[21].setReferenceType34(CameraServoPan,Color.CYAN,Color.BLACK);
+
         setContentPane(contentPane);
 
         getContentPane().setLayout(null);
@@ -456,6 +162,13 @@ public class MainInterfaceFrame extends JFrame
         btnSerialDisconnect.setVisible(false);
         btnSerialDisconnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialDisconnectClicked();}});
         contentPane.add(btnSerialDisconnect, BorderLayout.CENTER);
+
+        JButton btnSerialSendRefresh= new JButton("Send Refresh");
+        btnSerialSendRefresh.setBounds(new Rectangle(75, 150, 100, 40));
+        btnSerialSendRefresh.setName("btnSerialSendRefresh");
+        btnSerialSendRefresh.setVisible(false);
+        btnSerialSendRefresh.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialDisconnectClicked();}});
+        contentPane.add(btnSerialSendRefresh, BorderLayout.CENTER);
 
         JLabel lblSerialSent = new JLabel("Sent Serial Messages");
         lblSerialSent.setName("lblSerialSent");
@@ -549,12 +262,12 @@ public class MainInterfaceFrame extends JFrame
     {
         Component SomeComponent = getComponentByName("scrollPaneSerialReceived");
         Component SomeComponent2 = getComponentByName("scrollPaneSerialSent");
-        /*if(SomeComponent instanceof JScrollPane && SomeComponent2 instanceof  JScrollPane){
+        if(SomeComponent instanceof JScrollPane && SomeComponent2 instanceof  JScrollPane){
             JScrollPane ScrollPaneReceived = (JScrollPane) SomeComponent;
             JScrollPane ScrollPaneSent = (JScrollPane) SomeComponent2;
             ScrollPaneReceived.getVerticalScrollBar().setValue(ScrollPaneReceived.getVerticalScrollBar().getMaximum());
             ScrollPaneSent.getVerticalScrollBar().setValue(ScrollPaneSent.getVerticalScrollBar().getMaximum());
-        }*/
+        }
     }
 
     public void createComponentMap()
@@ -609,7 +322,7 @@ public class MainInterfaceFrame extends JFrame
             case '0':
                 //error occurred in arduino
             case '1':
-                int motornum = Character.getNumericValue(obj.charAt(1));
+                //int motornum = Character.getNumericValue(obj.charAt(1));
                 //update motors
             case '2':
                 //update gripper
@@ -629,7 +342,7 @@ public class MainInterfaceFrame extends JFrame
             //
             // Left Stick to move the robot forward, backward, left, or right.
             //
-            if((LogitechController.updated[0] || LogitechController.updated[1]) && isControllerOne)
+            if(LogitechController.getLeftAnalogUpdated())
             {
                 //
                 // joystick that will control lateral movement
@@ -637,7 +350,9 @@ public class MainInterfaceFrame extends JFrame
                 //
                 double xVal = LogitechController.getXValue();//from -1 to 1
                 double yVal = LogitechController.getYValue();//from -1 to 1
-                double rotation = Math.atan2(yVal,xVal); //radians, from -pi to pi
+                AdjFL((int)((xVal*90)+90));
+                AdjFR((int)((yVal*90)+90));
+                /*double rotation = Math.atan2(yVal,xVal); //radians, from -pi to pi
                 double magnitude = Math.sqrt(xVal * xVal + yVal * yVal);
                 int power = (int)((double)65 * magnitude * powerScaling);
                 //determine region (1 = forward, 2 = forward and right, 3 = right, 4 = back and right, 5 = back, 6 = back and left, 7 = left, 8 = forward and left)
@@ -740,14 +455,14 @@ public class MainInterfaceFrame extends JFrame
                         AdjBL((-1 * power) + 90);
                         break;
                     }
-                }
+                }*/
 
 
             }
             //
             // Right Stick controls turning left n' right and up n' down
             //
-            if ((LogitechController.updated[2] || LogitechController.updated[3]) && isControllerOne)
+            if (LogitechController.getRightAnalogUpdated())
             {
                 //joystick that will contol vertical movement and turning
                 double xVal = LogitechController.getXRotation();//from -1 to 1
@@ -810,57 +525,9 @@ public class MainInterfaceFrame extends JFrame
                 }
             }
             //
-            // makes the controller a One controller
-            //
-            if (LogitechController.updated[12] && LogitechController.updated[7]) {
-                if (isControllerOne == false) {
-                    isControllerOne = true;
-                } else {
-                    isControllerOne = false;
-                }
-            }
-            //
-            // makes the controller a Two controller
-            //
-            if (LogitechController.updated[12] && LogitechController.updated[8]) {
-                if (isControllerTwo == false) {
-                    isControllerTwo = true;
-                } else {
-                    isControllerTwo = false;
-                }
-            }
-            //
-            // A Button that pumps in fluid for collection
-            //
-            if (LogitechController.updated[5] && isControllerTwo)
-            {
-                if(LogitechController.getButton(0))
-                {
-                    AdjPumpSpeed(180);
-                }
-                else
-                {
-                    AdjPumpSpeed(0);
-                }
-            }
-            //
-            // B Button that pumps out fluid in case of error
-            //
-            if (LogitechController.updated[6] && isControllerTwo)
-            {
-                if(LogitechController.getButton(0))
-                {
-                    AdjPumpSpeed(-180);
-                }
-                else
-                {
-                    AdjPumpSpeed(0);
-                }
-            }
-            //
             // D-Pad controls the Gripper control
             //
-            if (LogitechController.updated[15] && isControllerTwo)
+            if (LogitechController.getUpdated(15))
             {
                 // updated D-Pad
                 if(LogitechController.getDPadLeft())
@@ -889,13 +556,7 @@ public class MainInterfaceFrame extends JFrame
                 }
             }
         }
-        if(LogitechController.getController1Connected())
-        {
-            for (int i = 0; i < 16; i++)
-            {
-                LogitechController.updated[i] = false;
-            }
-        }
+        if(LogitechController.getController1Connected()){LogitechController.resetUpdated();}
     }
 
     // Adjusters that go to the serial code

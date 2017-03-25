@@ -14,7 +14,7 @@ public class SerialCommunications {
     private String[] portNames;
     private String portSelected;
     private SerialPort serialPort;
-    private boolean Opened;
+    private boolean Opened =false;
     private String fullmessage = new String();
     private int lastconsidered = 0;
     // constructor
@@ -45,6 +45,7 @@ public class SerialCommunications {
     public void btnSerialConnectClicked() {
         MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(false);
         MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(true);
+        MainInterfaceFrame.getComponentByName("btnSerialSendRefresh").setVisible(true);
         try {
             portSelected = MainInterfaceFrame.getSelectedPort();
             serialPort = new SerialPort(portSelected);
@@ -64,6 +65,7 @@ public class SerialCommunications {
     public void btnSerialDisconnectClicked() {
         MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(false);
         MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(true);
+        MainInterfaceFrame.getComponentByName("btnSerialSendRefresh").setVisible(false);
         try {
             serialPort.closePort();
             Opened=false;
@@ -72,6 +74,11 @@ public class SerialCommunications {
         }
     }
 
+    public void btnSerialSendRefreshClicked(){
+        if(isOpen()){
+            PortSender("A");
+        }
+    }
     public boolean isOpen(){
         return Opened;
     }

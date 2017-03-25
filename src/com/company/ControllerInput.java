@@ -13,9 +13,10 @@ import javax.swing.*;
 public class ControllerInput {
     // instance variables
     // private data
-    private float XAxis, YAxis, XRotation, YRotation, DPad, ZAxis; // Value of each axis
+    private double XAxis, YAxis, XRotation, YRotation, DPad, ZAxis; // Value of each axis
     private boolean[] buttons = new boolean[10];                   // array of the buttons we have and whether or not they are in use -BOOL-
-    public boolean[] updated = new boolean[16];                    // whether or not the pads or buttons have been updated
+    private boolean[] updated = new boolean[16];                    // whether or not the pads or buttons have been updated
+    private boolean LeftAnalogUpdated, RightAnalogUpdated;
     private Controller[] Controllers; // this temporarily holds an array of controllers that can be accessed.
     private Controller Controller1;   // Driver controller
     private Component[] Components;   // different controller components. Used for checking if active
@@ -53,7 +54,7 @@ public class ControllerInput {
                 buffer.append(event.getNanos()).append(", ");
                 Component comp = event.getComponent();
                 buffer.append(comp.getName()).append(" changed to ");
-                float value = event.getValue();
+                double value = event.getValue();
                 if(comp.isAnalog()) {
                     buffer.append(value);
                     //
@@ -62,15 +63,19 @@ public class ControllerInput {
                     if(comp.getIdentifier() == Component.Identifier.Axis.Y) {
                         YAxis = value;
                         updated[0] = true;
+                        LeftAnalogUpdated = true;
                     } else if(comp.getIdentifier() == Component.Identifier.Axis.X) {
                         XAxis = value;
                         updated[1] = true;
+                        LeftAnalogUpdated = true;
                     } else if(comp.getIdentifier() == Component.Identifier.Axis.RY) {
                         YRotation = value;
                         updated[2] = true;
+                        RightAnalogUpdated = true;
                     } else if(comp.getIdentifier() == Component.Identifier.Axis.RX) {
                         XRotation = value;
                         updated[3] = true;
+                        RightAnalogUpdated = true;
                     } else if(comp.getIdentifier() == Component.Identifier.Axis.Z) {
                         ZAxis = value;
                         updated[4] = true;
@@ -198,19 +203,19 @@ public class ControllerInput {
         return (Controller1 != null);
     }
 
-    public float getYValue(){
+    public double getYValue(){
         return YAxis;
     }
 
-    public float getXValue(){
+    public double getXValue(){
         return XAxis;
     }
 
-    public float getYRotation(){
+    public double getYRotation(){
         return YRotation;
     }
 
-    public float getXRotation(){
+    public double getXRotation(){
         return XRotation;
     }
 
@@ -248,10 +253,25 @@ public class ControllerInput {
         return buttons[index];
     }
 
-    public float getZAxis(){
+    public boolean getUpdated(int index) { return updated[index];}
+
+    public double getZAxis(){
         return ZAxis;
     }
 
+    public boolean getLeftAnalogUpdated(){
+        return LeftAnalogUpdated;
+    }
+
+    public boolean getRightAnalogUpdated(){
+        return RightAnalogUpdated;
+    }
+
+    public void resetUpdated(){
+        for(int i = 0; i < 16; i++){
+            updated[i] =false;
+        }
+    }
     // COMPONENTS LIST //
     // 0: Y AXIS ABSOLUTE ANALOG: Left Stick X
     // 1: X AXIS ABSOLUTE ANALOG: Left Stick Y
