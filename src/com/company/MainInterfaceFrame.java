@@ -355,7 +355,9 @@ public class MainInterfaceFrame extends JFrame
                 /*double rotation = Math.atan2(yVal,xVal); //radians, from -pi to pi
                 double magnitude = Math.sqrt(xVal * xVal + yVal * yVal);
                 int power = (int)((double)65 * magnitude * powerScaling);
-                //determine region (1 = forward, 2 = forward and right, 3 = right, 4 = back and right, 5 = back, 6 = back and left, 7 = left, 8 = forward and left)
+                //
+                // determine region (1 = forward, 2 = forward and right, 3 = right, 4 = back and right, 5 = back, 6 = back and left, 7 = left, 8 = forward and left)
+                //
                 int region = 0;
                 if(rotation <= (5.0*pi)/8.0 && rotation >= (3.0*pi)/8.0)
                 {
@@ -560,6 +562,7 @@ public class MainInterfaceFrame extends JFrame
     }
 
     // Adjusters that go to the serial code
+    public boolean AdjFlashLight(int power) { return SendCommand("10", power); }
     public boolean AdjPumpSpeed(int pos)
     {
         return SendCommand("4",pos);
@@ -613,7 +616,7 @@ public class MainInterfaceFrame extends JFrame
     // 8: BUTTON 3: Y Button (YOU ARE DRIVER 2)
     // 9: BUTTON 4: L Button (not working well ATM)
     // 10: BUTTON 5: R Button
-    // 11: BUTTON 6: Back Button
+    // 11: BUTTON 6: Back Button (Flash Light On/Off)
     // 12: BUTTON 7: Start Button (MAKES YOU DRIVER)
     // 13: BUTTON 8: L Stick Push Down
     // 14: BUTTON 9: R Stick Push Down
