@@ -13,34 +13,28 @@ public class CustomPanel extends JPanel
     public Paintings InterfaceElements[] = new Paintings[1];
     private int NumGraphics;
     private JPanel contentPanel;
-    private boolean Condition;
-    /* 0:
-    *
-    *
-    *
-    */
-    public CustomPanel(int NumGraphics1, boolean Condition1) {
+    public CustomPanel(int NumGraphics1) {
         contentPanel = new JPanel();
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPanel.setLayout(new BorderLayout(0, 0));
         NumGraphics = NumGraphics1;
         InterfaceElements = new Paintings[NumGraphics];
-        Condition = Condition1;
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (Condition) {
-            for (int i = 0; i < NumGraphics; i++) {
-                InterfaceElements[i].GenericRepaint(g);
-            }
+        for (int i = 0; i < NumGraphics; i++) {
+            InterfaceElements[i].GenericRepaint(g);
         }
     }
     public void Refresh()
     {
+        boolean changed = false;
         for(int i = 0; i < NumGraphics; i++){
             if(InterfaceElements[i].getUpdated()){
                 repaint(InterfaceElements[i].getRect());
+                changed = true;
             }
         }
+        if(changed){System.out.println(0);}
     }
 }

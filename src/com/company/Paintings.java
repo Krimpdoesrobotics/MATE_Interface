@@ -1,28 +1,31 @@
 package com.company;
 
 import java.awt.*;
+import com.company.RandomStuff.*;
 
 /**
  * Created by julia on 3/25/2017.
  */
 public class Paintings {
-    private int x, y, width, height, type;
+    public int x, y, width, height, type;
     private Color BorderColor;
     private boolean Updated;
-    public Paintings(int x1, int y1, int width1, int height1, int type1, Color BorderColor1, boolean Updated1){
+    public Paintings(int x1, int y1, int width1, int height1, int type1, Color BorderColor1, BooleanH Updated1){
         x = x1;
         y = y1;
         width = width1;
         height = height1;
         type = type1;
         BorderColor = BorderColor1;
-        Updated = Updated1;
+        Updated = Updated1.getBoolean();
     }
     public boolean GenericRepaint(Graphics g){
         switch(type){
             case 0: return RepaintType0(g);
             case 1: return RepaintType1(g);
             case 2: return RepaintType2(g);
+            case 3: return RepaintType3(g);
+            case 4: return RepaintType4(g);
             default: return false;
         }
     }
@@ -35,10 +38,10 @@ public class Paintings {
     //type 0: controller analog stick
     private double xval, yval;
     private Color BackGroundColor, StickColor;
-    public boolean setReferenceType0(double xval1, double yval1, Color BackGroundColor1, Color StickColor1){
+    public boolean setReferenceType0(DoubleH xval1, DoubleH yval1, Color BackGroundColor1, Color StickColor1){
         if(type == 0){
-            xval = xval1;
-            yval = yval1;
+            xval = xval1.getDouble();
+            yval = yval1.getDouble();
             BackGroundColor = BackGroundColor1;
             StickColor = StickColor1;
         }
@@ -57,9 +60,9 @@ public class Paintings {
     }
     //type 1: DPad
     private int DPadValue;
-    public boolean setReferenceType1(int DPad1, Color BackGroundColor1, Color StickColor1){
+    public boolean setReferenceType1(IntH DPad1, Color BackGroundColor1, Color StickColor1){
         if(type == 1){
-            DPadValue = DPad1;
+            DPadValue = DPad1.getInt();
             BackGroundColor = BackGroundColor1;
             StickColor = StickColor1;
         }
@@ -90,9 +93,9 @@ public class Paintings {
     //type 2: Analog Button
     private Color StateOn, StateOff;
     private boolean isOn;
-    public boolean setReferenceType2(boolean isOn1, Color StateOn1, Color StateOff1){
+    public boolean setReferenceType2(BooleanH isOn1, Color StateOn1, Color StateOff1){
         if(type == 2){
-            isOn = isOn1;
+            isOn = isOn1.getBoolean();
             StateOn = StateOn1;
             StateOff = StateOff1;
         }
@@ -115,9 +118,9 @@ public class Paintings {
     //type 4: vertical display
     private Color FillColor, OuterColor;
     private double FillAmount;
-    public boolean setReferenceType34(double FillAmount1, Color FillColor1,Color OuterColor1){
+    public boolean setReferenceType34(DoubleH FillAmount1, Color FillColor1,Color OuterColor1){
         if(type == 3 || type == 4){
-            FillAmount = FillAmount1;
+            FillAmount = FillAmount1.getDouble();
             FillColor = FillColor1;
             OuterColor = OuterColor1;
         }
@@ -129,10 +132,11 @@ public class Paintings {
             g.fillRect(x,y,width,height);
             g.setColor(FillColor);
             if(FillAmount > 0){
-                g.fillRect(x+(width/2),y,(int)(x+(double)(width/2)+(FillAmount*width/2)),y+height);
+                g.fillRect(x+(width/2),y,(int)(FillAmount*(width/2)),height);
             }else{
-                g.fillRect((int)(x+(double)(width/2)+(FillAmount*width/2)),y,x+(width/2),y+height);
+                g.fillRect((int)(x+(width/2)+(FillAmount*(width/2))),y,(int)(FillAmount*(width/-2)),height);
             }
+            if(FillAmount != 0){System.out.println(FillAmount);}
             g.setColor(BorderColor);
             g.drawRect(x,y,width,height);
         }
@@ -144,10 +148,11 @@ public class Paintings {
             g.fillRect(x,y,width,height);
             g.setColor(FillColor);
             if(FillAmount > 0){
-                g.fillRect(x,(int)(y+(double)(height/2)-(FillAmount*height/2)),x+width,y+height/2);
+                g.fillRect(x,(int)(y+(height/2)-(FillAmount*(height/2))),width,(int)(FillAmount*(height/-2)));
             }else{
-                g.fillRect(x,y+height/2,x+width,(int)(y+(double)(height/2)-(FillAmount*height/2)));
+                g.fillRect(x,y+height/2,width,(int)(FillAmount*(height/2)));
             }
+            if(FillAmount != 0){System.out.println(FillAmount);}
             g.setColor(BorderColor);
             g.drawRect(x,y,width,height);
         }

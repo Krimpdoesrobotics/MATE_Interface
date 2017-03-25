@@ -30,6 +30,8 @@ public class ControllerInput {
         XRotation = 0;
         YRotation = 0;
         ZAxis = 0;
+        LeftAnalogUpdated =true;
+        RightAnalogUpdated =true;
         //
         // sets all of the updates
         //
@@ -61,23 +63,23 @@ public class ControllerInput {
                     // checks all the analog sticks
                     //
                     if(comp.getIdentifier() == Component.Identifier.Axis.Y) {
-                        YAxis = value;
+                        YAxis = event.getValue();
                         updated[0] = true;
                         LeftAnalogUpdated = true;
                     } else if(comp.getIdentifier() == Component.Identifier.Axis.X) {
-                        XAxis = value;
+                        XAxis = event.getValue();
                         updated[1] = true;
                         LeftAnalogUpdated = true;
                     } else if(comp.getIdentifier() == Component.Identifier.Axis.RY) {
-                        YRotation = value;
+                        YRotation = event.getValue();
                         updated[2] = true;
                         RightAnalogUpdated = true;
                     } else if(comp.getIdentifier() == Component.Identifier.Axis.RX) {
-                        XRotation = value;
+                        XRotation = event.getValue();
                         updated[3] = true;
                         RightAnalogUpdated = true;
                     } else if(comp.getIdentifier() == Component.Identifier.Axis.Z) {
-                        ZAxis = value;
+                        ZAxis = event.getValue();
                         updated[4] = true;
                     }
                 } else {
@@ -93,7 +95,7 @@ public class ControllerInput {
                                 updated[i+5] = true;
                             }
                         }
-                        if(value == 1.0f) {
+                        if(value >0.5) {
                             buffer.append("On" + Integer.toString(buttonnum));
                             buttons[buttonnum] = true;
                         } else {
@@ -102,7 +104,7 @@ public class ControllerInput {
                         }
                     }
                 }
-                //System.out.println(buffer.toString());
+                System.out.println(buffer.toString());
             }
         }
 
@@ -271,6 +273,8 @@ public class ControllerInput {
         for(int i = 0; i < 16; i++){
             updated[i] =false;
         }
+        LeftAnalogUpdated =false;
+        RightAnalogUpdated =false;
     }
     // COMPONENTS LIST //
     // 0: Y AXIS ABSOLUTE ANALOG: Left Stick X

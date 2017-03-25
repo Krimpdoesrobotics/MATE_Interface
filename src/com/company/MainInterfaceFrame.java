@@ -3,15 +3,16 @@ package com.company;
 /**
  * Created by Richard on 2/17/2017.
  */
-import com.sun.deploy.util.SyncFileAccess;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
 import javax.swing.*;
-import javax.swing.border.*;
 import java.util.Timer;
 import java.util.TimerTask;
+import static com.company.RandomStuff.IntH.newIntH;
+import static com.company.RandomStuff.DoubleH.newDoubleH;
+import static com.company.RandomStuff.BooleanH.newBooleanH;
 
 public class MainInterfaceFrame extends JFrame
 {
@@ -47,6 +48,7 @@ public class MainInterfaceFrame extends JFrame
             LogitechController.UpdateController1Components();
             contentPane.Refresh();
             UpdateArduino();
+            if(LogitechController.getController1Connected()){LogitechController.resetUpdated();}
         }
     };
     /**
@@ -83,52 +85,52 @@ public class MainInterfaceFrame extends JFrame
     {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(25, 25, 1500, 900);
-        contentPane = new CustomPanel(22,LogitechController.getController1Connected());
+        contentPane = new CustomPanel(NumGraphics);
 
-        contentPane.InterfaceElements[0] = new Paintings(175,550,200,200,0,Color.BLACK,LogitechController.getLeftAnalogUpdated());
-        contentPane.InterfaceElements[0].setReferenceType0(LogitechController.getXValue(),LogitechController.getYValue(),Color.BLACK,Color.CYAN);
-        contentPane.InterfaceElements[1] = new Paintings(425,550,200,200,0,Color.BLACK,LogitechController.getRightAnalogUpdated());
-        contentPane.InterfaceElements[1].setReferenceType0(LogitechController.getXRotation(),LogitechController.getYRotation(),Color.BLACK,Color.CYAN);
-        contentPane.InterfaceElements[2] = new Paintings(300,250,200,50,3,Color.BLACK,LogitechController.getUpdated(4));
-        contentPane.InterfaceElements[2].setReferenceType34(LogitechController.getZAxis(),Color.WHITE,Color.BLUE);
-        contentPane.InterfaceElements[3] = new Paintings(620,440,60,60,2,Color.BLACK,LogitechController.getUpdated(5));
-        contentPane.InterfaceElements[3].setReferenceType2(LogitechController.getButton(0),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[4] = new Paintings(690,370,60,60,2,Color.BLACK,LogitechController.getUpdated(6));
-        contentPane.InterfaceElements[4].setReferenceType2(LogitechController.getButton(1),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[5] = new Paintings(550,370,60,60,2,Color.BLACK,LogitechController.getUpdated(7));
-        contentPane.InterfaceElements[5].setReferenceType2(LogitechController.getButton(2),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[6] = new Paintings(620,300,60,60,2,Color.BLACK,LogitechController.getUpdated(8));
-        contentPane.InterfaceElements[6].setReferenceType2(LogitechController.getButton(3),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[7] = new Paintings(50,250,200,30,2,Color.BLACK,LogitechController.getUpdated(9));
-        contentPane.InterfaceElements[7].setReferenceType2(LogitechController.getButton(4),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[8] = new Paintings(550,250,200,30,2,Color.BLACK,LogitechController.getUpdated(10));
-        contentPane.InterfaceElements[8].setReferenceType2(LogitechController.getButton(5),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[9] = new Paintings(300,350,80,100,2,Color.BLACK,LogitechController.getUpdated(11));
-        contentPane.InterfaceElements[9].setReferenceType2(LogitechController.getButton(6),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[10] = new Paintings(420,350,80,100,2,Color.BLACK,LogitechController.getUpdated(12));
-        contentPane.InterfaceElements[10].setReferenceType2(LogitechController.getButton(7),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[11] = new Paintings(50,550,75,100,2,Color.BLACK,LogitechController.getUpdated(13));
-        contentPane.InterfaceElements[11].setReferenceType2(LogitechController.getButton(8),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[12] = new Paintings(675,550,75,100,2,Color.BLACK,LogitechController.getUpdated(14));
-        contentPane.InterfaceElements[12].setReferenceType2(LogitechController.getButton(9),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[13] = new Paintings(50,300,200,200,1,Color.BLACK,LogitechController.getUpdated(15));
-        contentPane.InterfaceElements[13].setReferenceType1(LogitechController.getDPad(),Color.BLACK, Color.CYAN);
-        contentPane.InterfaceElements[14] = new Paintings(800,300,80,200,4,Color.BLACK,newTelemetryReceived);
-        contentPane.InterfaceElements[14].setReferenceType34(motorSpeeds[0],Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[15] = new Paintings(900,300,80,200,4,Color.BLACK,newTelemetryReceived);
-        contentPane.InterfaceElements[15].setReferenceType34(motorSpeeds[1],Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[16] = new Paintings(1000,300,80,200,4,Color.BLACK,newTelemetryReceived);
-        contentPane.InterfaceElements[16].setReferenceType34(motorSpeeds[2],Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[17] = new Paintings(1100,300,80,200,4,Color.BLACK,newTelemetryReceived);
-        contentPane.InterfaceElements[17].setReferenceType34(motorSpeeds[3],Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[18] = new Paintings(1200,300,80,200,4,Color.BLACK,newTelemetryReceived);
-        contentPane.InterfaceElements[18].setReferenceType34(motorSpeeds[4],Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[19] = new Paintings(1300,300,80,200,4,Color.BLACK,newTelemetryReceived);
-        contentPane.InterfaceElements[19].setReferenceType34(motorSpeeds[5],Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[20] = new Paintings(800,550,200,30,4,Color.BLACK,newTelemetryReceived);
-        contentPane.InterfaceElements[20].setReferenceType34(CameraServoTilt,Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[21] = new Paintings(1050,550,200,30,4,Color.BLACK,newTelemetryReceived);
-        contentPane.InterfaceElements[21].setReferenceType34(CameraServoPan,Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[0] = new Paintings(175,550,200,200,0,Color.BLACK,newBooleanH(LogitechController.getLeftAnalogUpdated()));
+        contentPane.InterfaceElements[0].setReferenceType0(newDoubleH(LogitechController.getXValue()),newDoubleH(LogitechController.getYValue()),Color.BLACK,Color.CYAN);
+        contentPane.InterfaceElements[1] = new Paintings(425,550,200,200,0,Color.BLACK,newBooleanH(LogitechController.getRightAnalogUpdated()));
+        contentPane.InterfaceElements[1].setReferenceType0(newDoubleH(LogitechController.getXRotation()),newDoubleH(LogitechController.getYRotation()),Color.BLACK,Color.CYAN);
+        contentPane.InterfaceElements[2] = new Paintings(300,250,200,50,3,Color.BLACK,newBooleanH(LogitechController.getUpdated(4)));
+        contentPane.InterfaceElements[2].setReferenceType34(newDoubleH(LogitechController.getZAxis()),Color.WHITE,Color.BLUE);
+        contentPane.InterfaceElements[3] = new Paintings(620,440,60,60,2,Color.BLACK,newBooleanH(LogitechController.getUpdated(5)));
+        contentPane.InterfaceElements[3].setReferenceType2(newBooleanH(LogitechController.getButton(0)),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[4] = new Paintings(690,370,60,60,2,Color.BLACK,newBooleanH(LogitechController.getUpdated(6)));
+        contentPane.InterfaceElements[4].setReferenceType2(newBooleanH(LogitechController.getButton(1)),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[5] = new Paintings(550,370,60,60,2,Color.BLACK,newBooleanH(LogitechController.getUpdated(7)));
+        contentPane.InterfaceElements[5].setReferenceType2(newBooleanH(LogitechController.getButton(2)),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[6] = new Paintings(620,300,60,60,2,Color.BLACK,newBooleanH(LogitechController.getUpdated(8)));
+        contentPane.InterfaceElements[6].setReferenceType2(newBooleanH(LogitechController.getButton(3)),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[7] = new Paintings(50,250,200,30,2,Color.BLACK,newBooleanH(LogitechController.getUpdated(9)));
+        contentPane.InterfaceElements[7].setReferenceType2(newBooleanH(LogitechController.getButton(4)),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[8] = new Paintings(550,250,200,30,2,Color.BLACK,newBooleanH(LogitechController.getUpdated(10)));
+        contentPane.InterfaceElements[8].setReferenceType2(newBooleanH(LogitechController.getButton(5)),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[9] = new Paintings(300,350,80,100,2,Color.BLACK,newBooleanH(LogitechController.getUpdated(11)));
+        contentPane.InterfaceElements[9].setReferenceType2(newBooleanH(LogitechController.getButton(6)),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[10] = new Paintings(420,350,80,100,2,Color.BLACK,newBooleanH(LogitechController.getUpdated(12)));
+        contentPane.InterfaceElements[10].setReferenceType2(newBooleanH(LogitechController.getButton(7)),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[11] = new Paintings(50,550,75,100,2,Color.BLACK,newBooleanH(LogitechController.getUpdated(13)));
+        contentPane.InterfaceElements[11].setReferenceType2(newBooleanH(LogitechController.getButton(8)),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[12] = new Paintings(675,550,75,100,2,Color.BLACK,newBooleanH(LogitechController.getUpdated(14)));
+        contentPane.InterfaceElements[12].setReferenceType2(newBooleanH(LogitechController.getButton(9)),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[13] = new Paintings(50,300,200,200,1,Color.BLACK,newBooleanH(LogitechController.getUpdated(15)));
+        contentPane.InterfaceElements[13].setReferenceType1(newIntH(LogitechController.getDPad()),Color.BLACK, Color.CYAN);
+        contentPane.InterfaceElements[14] = new Paintings(800,300,80,200,4,Color.BLACK,newBooleanH(newTelemetryReceived));
+        contentPane.InterfaceElements[14].setReferenceType34(newDoubleH(motorSpeeds[0]),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[15] = new Paintings(900,300,80,200,4,Color.BLACK,newBooleanH(newTelemetryReceived));
+        contentPane.InterfaceElements[15].setReferenceType34(newDoubleH(motorSpeeds[1]),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[16] = new Paintings(1000,300,80,200,4,Color.BLACK,newBooleanH(newTelemetryReceived));
+        contentPane.InterfaceElements[16].setReferenceType34(newDoubleH(motorSpeeds[2]),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[17] = new Paintings(1100,300,80,200,4,Color.BLACK,newBooleanH(newTelemetryReceived));
+        contentPane.InterfaceElements[17].setReferenceType34(newDoubleH(motorSpeeds[3]),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[18] = new Paintings(1200,300,80,200,4,Color.BLACK,newBooleanH(newTelemetryReceived));
+        contentPane.InterfaceElements[18].setReferenceType34(newDoubleH(motorSpeeds[4]),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[19] = new Paintings(1300,300,80,200,4,Color.BLACK,newBooleanH(newTelemetryReceived));
+        contentPane.InterfaceElements[19].setReferenceType34(newDoubleH(motorSpeeds[5]),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[20] = new Paintings(800,550,200,30,3,Color.BLACK,newBooleanH(newTelemetryReceived));
+        contentPane.InterfaceElements[20].setReferenceType34(newDoubleH(CameraServoTilt),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[21] = new Paintings(1050,550,200,30,3,Color.BLACK,newBooleanH(newTelemetryReceived));
+        contentPane.InterfaceElements[21].setReferenceType34(newDoubleH(CameraServoPan),Color.CYAN,Color.BLACK);
 
         setContentPane(contentPane);
 
@@ -253,7 +255,7 @@ public class MainInterfaceFrame extends JFrame
         contentPane.add(btnManualSerialSend, BorderLayout.CENTER);
 
         ControllerRefreshTimer = new Timer();
-        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,100,50);
+        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,6000,60);
 
         createComponentMap();
     }
@@ -558,7 +560,6 @@ public class MainInterfaceFrame extends JFrame
                 }
             }
         }
-        if(LogitechController.getController1Connected()){LogitechController.resetUpdated();}
     }
 
     // Adjusters that go to the serial code
