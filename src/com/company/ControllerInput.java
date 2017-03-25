@@ -2,6 +2,9 @@ package com.company;
 /**
  * Created by Richard on 2/17/2017.
  */
+import com.company.RandomStuff.BooleanH;
+import com.company.RandomStuff.DoubleH;
+import com.company.RandomStuff.IntH;
 import net.java.games.input.*;
 import net.java.games.input.Component;
 import net.java.games.input.Event;
@@ -9,6 +12,9 @@ import net.java.games.input.EventQueue;
 import net.java.games.input.DefaultControllerEnvironment;
 
 import javax.swing.*;
+
+import static com.company.RandomStuff.DoubleH.newDoubleH;
+import static com.company.RandomStuff.IntH.newIntH;
 
 public class ControllerInput {
     // instance variables
@@ -205,25 +211,29 @@ public class ControllerInput {
         return (Controller1 != null);
     }
 
-    public double getYValue(){
-        return YAxis;
-    }
+    public double getYValue(){return YAxis;}
 
-    public double getXValue(){
-        return XAxis;
-    }
+    public DoubleH getYValueH(){return newDoubleH(YAxis);}
 
-    public double getYRotation(){
-        return YRotation;
-    }
+    public double getXValue(){return XAxis;}
+
+    public DoubleH getXValueH(){return newDoubleH(XAxis);}
+
+    public double getYRotation(){return YRotation;}
+
+    public DoubleH getYRotationH(){return newDoubleH(YRotation);}
 
     public double getXRotation(){
         return XRotation;
     }
 
+    public DoubleH getXRotationH(){return newDoubleH(XRotation);}
+
     public int getDPad(){
         return (int)(DPad*8+.25);
     } // EXPLAIN
+
+    public IntH getDPadH(){ return newIntH(getDPad());}
 
     // gets the specific pads
     public boolean getDPadLeft(){
@@ -255,19 +265,29 @@ public class ControllerInput {
         return buttons[index];
     }
 
+    public BooleanH getButtonH(int index){return BooleanH.newBooleanH(buttons[index]);}
+
     public boolean getUpdated(int index) { return updated[index];}
+
+    public BooleanH getUpdatedH(int index){return BooleanH.newBooleanH(updated[index]);}
 
     public double getZAxis(){
         return ZAxis;
     }
 
+    public DoubleH  getZAxisH(){ return newDoubleH(ZAxis);}
+
     public boolean getLeftAnalogUpdated(){
         return LeftAnalogUpdated;
     }
 
+    public BooleanH getLeftAnalogUpdatedH(){return BooleanH.newBooleanH(LeftAnalogUpdated);}
+
     public boolean getRightAnalogUpdated(){
         return RightAnalogUpdated;
     }
+
+    public BooleanH getRightAnalogUpdatedH(){return BooleanH.newBooleanH(RightAnalogUpdated);}
 
     public void resetUpdated(){
         for(int i = 0; i < 16; i++){
