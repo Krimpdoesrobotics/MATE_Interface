@@ -48,7 +48,7 @@ public class MainInterfaceFrame extends JFrame
             LogitechController.UpdateController1Components();
             contentPane.Refresh();
             UpdateArduino();
-            if(LogitechController.getController1Connected()){LogitechController.resetUpdated();}
+            if(LogitechController.getController(0).isConnected()){LogitechController.getController(0).resetUpdated();}
         }
     };
     /**
@@ -87,34 +87,34 @@ public class MainInterfaceFrame extends JFrame
         setBounds(25, 25, 1500, 900);
         contentPane = new CustomPanel(NumGraphics);
 
-        contentPane.InterfaceElements[0] = new Paintings(175,550,200,200,0,Color.BLACK,LogitechController.getLeftAnalogUpdatedH());
-        contentPane.InterfaceElements[0].setReferenceType0(LogitechController.getXValueH(),LogitechController.getYValueH(),Color.BLACK,Color.CYAN);
-        contentPane.InterfaceElements[1] = new Paintings(425,550,200,200,0,Color.BLACK,LogitechController.getRightAnalogUpdatedH());
-        contentPane.InterfaceElements[1].setReferenceType0(LogitechController.getXRotationH(),LogitechController.getYRotationH(),Color.BLACK,Color.CYAN);
-        contentPane.InterfaceElements[2] = new Paintings(300,250,200,50,3,Color.BLACK,LogitechController.getUpdatedH(4));
-        contentPane.InterfaceElements[2].setReferenceType34(LogitechController.getZAxisH(),Color.WHITE,Color.BLUE);
-        contentPane.InterfaceElements[3] = new Paintings(620,440,60,60,2,Color.BLACK,LogitechController.getUpdatedH(5));
-        contentPane.InterfaceElements[3].setReferenceType2(LogitechController.getButtonH(0),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[4] = new Paintings(690,370,60,60,2,Color.BLACK,LogitechController.getUpdatedH(6));
-        contentPane.InterfaceElements[4].setReferenceType2(LogitechController.getButtonH(1),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[5] = new Paintings(550,370,60,60,2,Color.BLACK,LogitechController.getUpdatedH(7));
-        contentPane.InterfaceElements[5].setReferenceType2(LogitechController.getButtonH(2),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[6] = new Paintings(620,300,60,60,2,Color.BLACK,LogitechController.getUpdatedH(8));
-        contentPane.InterfaceElements[6].setReferenceType2(LogitechController.getButtonH(3),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[7] = new Paintings(50,250,200,30,2,Color.BLACK,LogitechController.getUpdatedH(9));
-        contentPane.InterfaceElements[7].setReferenceType2(LogitechController.getButtonH(4),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[8] = new Paintings(550,250,200,30,2,Color.BLACK,LogitechController.getUpdatedH(10));
-        contentPane.InterfaceElements[8].setReferenceType2(LogitechController.getButtonH(5),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[9] = new Paintings(300,350,80,100,2,Color.BLACK,LogitechController.getUpdatedH(11));
-        contentPane.InterfaceElements[9].setReferenceType2(LogitechController.getButtonH(6),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[10] = new Paintings(420,350,80,100,2,Color.BLACK,LogitechController.getUpdatedH(12));
-        contentPane.InterfaceElements[10].setReferenceType2(LogitechController.getButtonH(7),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[11] = new Paintings(50,550,75,100,2,Color.BLACK,LogitechController.getUpdatedH(13));
-        contentPane.InterfaceElements[11].setReferenceType2(LogitechController.getButtonH(8),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[12] = new Paintings(675,550,75,100,2,Color.BLACK,LogitechController.getUpdatedH(14));
-        contentPane.InterfaceElements[12].setReferenceType2(LogitechController.getButtonH(9),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[13] = new Paintings(50,300,200,200,1,Color.BLACK,LogitechController.getUpdatedH(15));
-        contentPane.InterfaceElements[13].setReferenceType1(LogitechController.getDPadH(),Color.BLACK, Color.CYAN);
+        contentPane.InterfaceElements[0] = new Paintings(175,550,200,200,0,Color.BLACK,LogitechController.getController(0).getLeftAnalogUpdatedH());
+        contentPane.InterfaceElements[0].setReferenceType0(LogitechController.getController(0).getXValueH(),LogitechController.getController(0).getYValueH(),Color.BLACK,Color.CYAN);
+        contentPane.InterfaceElements[1] = new Paintings(425,550,200,200,0,Color.BLACK,LogitechController.getController(0).getRightAnalogUpdatedH());
+        contentPane.InterfaceElements[1].setReferenceType0(LogitechController.getController(0).getXRotationH(),LogitechController.getController(0).getYRotationH(),Color.BLACK,Color.CYAN);
+        contentPane.InterfaceElements[2] = new Paintings(300,250,200,50,3,Color.BLACK,LogitechController.getController(0).getUpdatedH(4));
+        contentPane.InterfaceElements[2].setReferenceType34(LogitechController.getController(0).getZAxisH(),Color.WHITE,Color.BLUE);
+        contentPane.InterfaceElements[3] = new Paintings(620,440,60,60,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(5));
+        contentPane.InterfaceElements[3].setReferenceType2(LogitechController.getController(0).getButtonH(0),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[4] = new Paintings(690,370,60,60,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(6));
+        contentPane.InterfaceElements[4].setReferenceType2(LogitechController.getController(0).getButtonH(1),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[5] = new Paintings(550,370,60,60,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(7));
+        contentPane.InterfaceElements[5].setReferenceType2(LogitechController.getController(0).getButtonH(2),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[6] = new Paintings(620,300,60,60,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(8));
+        contentPane.InterfaceElements[6].setReferenceType2(LogitechController.getController(0).getButtonH(3),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[7] = new Paintings(50,250,200,30,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(9));
+        contentPane.InterfaceElements[7].setReferenceType2(LogitechController.getController(0).getButtonH(4),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[8] = new Paintings(550,250,200,30,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(10));
+        contentPane.InterfaceElements[8].setReferenceType2(LogitechController.getController(0).getButtonH(5),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[9] = new Paintings(300,350,80,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(11));
+        contentPane.InterfaceElements[9].setReferenceType2(LogitechController.getController(0).getButtonH(6),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[10] = new Paintings(420,350,80,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(12));
+        contentPane.InterfaceElements[10].setReferenceType2(LogitechController.getController(0).getButtonH(7),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[11] = new Paintings(50,550,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(13));
+        contentPane.InterfaceElements[11].setReferenceType2(LogitechController.getController(0).getButtonH(8),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[12] = new Paintings(675,550,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(14));
+        contentPane.InterfaceElements[12].setReferenceType2(LogitechController.getController(0).getButtonH(9),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[13] = new Paintings(50,300,200,200,1,Color.BLACK,LogitechController.getController(0).getUpdatedH(15));
+        contentPane.InterfaceElements[13].setReferenceType1(LogitechController.getController(0).getDPadH(),Color.BLACK, Color.CYAN);
         contentPane.InterfaceElements[14] = new Paintings(800,300,80,200,4,Color.BLACK,newBooleanH(newTelemetryReceived));
         contentPane.InterfaceElements[14].setReferenceType34(newDoubleH(motorSpeeds[0]),Color.CYAN,Color.BLACK);
         contentPane.InterfaceElements[15] = new Paintings(900,300,80,200,4,Color.BLACK,newBooleanH(newTelemetryReceived));
@@ -177,11 +177,11 @@ public class MainInterfaceFrame extends JFrame
         lblSerialSent.setBounds(new Rectangle(625, 50, 130, 20));
         contentPane.add(lblSerialSent, BorderLayout.CENTER);
 
-        //
+        /*
         JLabel lblGripperPositionName = new JLabel("Gripper's Current Position");
         lblGripperPositionName.setName("lblGripperPosName");
         lblGripperPositionName.setBounds(new Rectangle(625, 50, 130, 20));
-        contentPane.add(lblGripperPositionName, BorderLayout.EAST);
+        contentPane.add(lblGripperPositionName, BorderLayout.EAST);*/
 
         JLabel lblGripperPosition = new JLabel("");
         lblGripperPosition.setName("lblGripperPos");
@@ -333,7 +333,7 @@ public class MainInterfaceFrame extends JFrame
 
     public void UpdateArduino()
     {
-        if(SerialCommunication.isOpen() && LogitechController.getController1Connected())
+        if(SerialCommunication.isOpen() && LogitechController.getController(0).isConnected())
         {
             timerCounter++;
             if (timerCounter >=100)
@@ -344,14 +344,14 @@ public class MainInterfaceFrame extends JFrame
             //
             // Left Stick to move the robot forward, backward, left, or right.
             //
-            if(LogitechController.getLeftAnalogUpdated())
+            if(LogitechController.getController(0).getLeftAnalogUpdated())
             {
                 //
                 // joystick that will control lateral movement
                 // This is the left controller and is controlled by 'values'
                 //
-                double xVal = LogitechController.getXValue();//from -1 to 1
-                double yVal = LogitechController.getYValue();//from -1 to 1
+                double xVal = LogitechController.getController(0).getXValue();//from -1 to 1
+                double yVal = LogitechController.getController(0).getYValue();//from -1 to 1
                 AdjFL((int)((xVal*90)+90));
                 AdjFR((int)((yVal*90)+90));
                 /*double rotation = Math.atan2(yVal,xVal); //radians, from -pi to pi
@@ -466,11 +466,11 @@ public class MainInterfaceFrame extends JFrame
             //
             // Right Stick controls turning left n' right and up n' down
             //
-            if (LogitechController.getRightAnalogUpdated())
+            if (LogitechController.getController(0).getRightAnalogUpdated())
             {
                 //joystick that will contol vertical movement and turning
-                double xVal = LogitechController.getXRotation();//from -1 to 1
-                double yVal = LogitechController.getYRotation();//from -1 to 1
+                double xVal = LogitechController.getController(0).getXRotation();//from -1 to 1
+                double yVal = LogitechController.getController(0).getYRotation();//from -1 to 1
                 double rotation = Math.atan2(yVal,xVal);//radians, from -pi to pi
                 double magnitude = Math.sqrt(xVal*xVal + yVal * yVal);
                 int power = (int)((double)65 * magnitude * powerScaling);
@@ -531,14 +531,14 @@ public class MainInterfaceFrame extends JFrame
             //
             // D-Pad controls the Gripper control
             //
-            if (LogitechController.getUpdated(15))
+            if (LogitechController.getController(0).getUpdated(15))
             {
                 // updated D-Pad
-                if(LogitechController.getDPadLeft())
+                if(LogitechController.getController(0).getDPadLeft())
                 {
                     AdjGripperRotation(60);
                 }
-                else if (LogitechController.getDPadRight())
+                else if (LogitechController.getController(0).getDPadRight())
                 {
                     AdjGripperRotation(120);
                 }
@@ -546,11 +546,11 @@ public class MainInterfaceFrame extends JFrame
                 {
                     AdjGripperRotation(90);
                 }
-                if (LogitechController.getDPadUp())
+                if (LogitechController.getController(0).getDPadUp())
                 {
                     AdjGripperClamp(17);
                 }
-                else if (LogitechController.getDPadDown())
+                else if (LogitechController.getController(0).getDPadDown())
                 {
                     AdjGripperClamp(13);
                 }
