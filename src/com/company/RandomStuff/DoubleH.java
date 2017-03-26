@@ -15,4 +15,7 @@ public class DoubleH{
         DoubleH stuff = new DoubleH(a);
         return stuff;
     }
+    public void setDouble(double a){
+        this.a = a;
+    }
 }

@@ -33,6 +33,7 @@ public class CustomPanel extends JPanel
             if(InterfaceElements[i].getUpdated()){
                 repaint(InterfaceElements[i].getRect());
                 changed = true;
+                System.out.print(i);
             }
         }
         if(changed){System.out.println(0);}

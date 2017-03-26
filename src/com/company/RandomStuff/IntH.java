@@ -15,4 +15,7 @@ public class IntH{
         IntH stuff = new IntH(a);
         return stuff;
     }
+    public void setInt(int a){
+        this.a = a;
+    }
 }

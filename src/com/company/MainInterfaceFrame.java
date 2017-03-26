@@ -255,7 +255,7 @@ public class MainInterfaceFrame extends JFrame
         contentPane.add(btnManualSerialSend, BorderLayout.CENTER);
 
         ControllerRefreshTimer = new Timer();
-        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,6000,60);
+        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,6000,70);
 
         createComponentMap();
     }
