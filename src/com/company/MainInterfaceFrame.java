@@ -20,17 +20,13 @@ import static com.company.RandomStuff.BooleanH.newBooleanH;
 public class MainInterfaceFrame extends JFrame
 {
     private final int NumGraphics = 22;
-    private final double pi = 3.14159;
-    private final double reverseEfficencyHandicap = 1;
     private static HashMap componentMap;
-    private SerialCommunications SerialCommunication = new SerialCommunications();
+    private SerialCommunications SerialCommunication;
     private CustomPanel contentPane;
     private ControllerInput LogitechController = new ControllerInput();
     private Timer ControllerRefreshTimer;
     private static DefaultListModel<String> modelSerialSent = new DefaultListModel<>();
     private static DefaultListModel<String> modelSerialReceived = new DefaultListModel<>();
-    private int timerCounter = 0;
-    private int powerScaling = 1;   // this is from .1 to 1, and acts as a multiplier for power
     private TimerTask timerTask = new TimerTask() {
 
         @Override
@@ -41,10 +37,15 @@ public class MainInterfaceFrame extends JFrame
             // Invoke your function here
             //
             LogitechController.UpdateController1Components();
+            if(SerialCommunication.isOpen() && LogitechController.getController(0).isConnected()) {
+                SerialCommunication.getRobot().updateVariables();
+            }
             contentPane.Refresh();
-            UpdateArduino();
+            if(SerialCommunication.isOpen()) {
+                SerialCommunication.getRobot().resetUpdated();
+                SerialCommunication.sendRobotInfo();
+            }
             if(LogitechController.getController(0).isConnected()){LogitechController.getController(0).resetUpdated();}
-            SerialCommunication.getRobot().resetUpdated();
         }
     };
     /**
@@ -75,6 +76,8 @@ public class MainInterfaceFrame extends JFrame
      */
     public MainInterfaceFrame()
     {
+        SerialCommunication = new SerialCommunications(LogitechController.getController(0));
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(25, 25, 1500, 900);
         contentPane = new CustomPanel(NumGraphics);
@@ -247,13 +250,12 @@ public class MainInterfaceFrame extends JFrame
         contentPane.add(btnManualSerialSend, BorderLayout.CENTER);
 
         ControllerRefreshTimer = new Timer();
-        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,70);
+        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,1000);
 
         createComponentMap();
     }
 
-    public static void scrollDown()
-    {
+    public static void scrollDown()    {
         Component SomeComponent = getComponentByName("scrollPaneSerialReceived");
         Component SomeComponent2 = getComponentByName("scrollPaneSerialSent");
         if(SomeComponent instanceof JScrollPane && SomeComponent2 instanceof  JScrollPane){
@@ -264,28 +266,23 @@ public class MainInterfaceFrame extends JFrame
         }
     }
 
-    public void createComponentMap()
-    {
+    public void createComponentMap()    {
         componentMap = new HashMap<String,Component>();
         Component[] components = getContentPane().getComponents();
-        for (int i=0; i < components.length; i++)
-        {
+        for (int i=0; i < components.length; i++)        {
             componentMap.put(components[i].getName(), components[i]);
             System.out.println(components[i].getName());
         }
     }
 
-    public static Component getComponentByName(String name)
-    {
-        if (componentMap.containsKey(name))
-        {
+    public static Component getComponentByName(String name)    {
+        if (componentMap.containsKey(name))        {
             return (Component) componentMap.get(name);
         }
         else return null;
     }
 
-    public static String getSelectedPort()
-    {
+    public static String getSelectedPort()    {
         Component SomeComponent = getComponentByName("serialComboBox");
         if(SomeComponent instanceof JComboBox){
             JComboBox SomeComboBox = (JComboBox) SomeComponent;
@@ -294,294 +291,18 @@ public class MainInterfaceFrame extends JFrame
         else return null;
     }
 
-    public static void addSerialSent(String obj)
-    {
+    public static void addSerialSent(String obj)    {
         modelSerialSent.addElement(obj);
-        if(modelSerialSent.getSize() > 25){
+        if(modelSerialSent.size() > 27){
             modelSerialSent.removeRange(0,13);
         }
     }
 
-    public static void addSerialReceived(String obj)
-    {
+    public static void addSerialReceived(String obj)    {
         modelSerialReceived.addElement(obj);
-        if(modelSerialReceived.getSize() > 25){
+        if(modelSerialReceived.size() > 27){
             modelSerialReceived.removeRange(0,13);
         }
-    }
-
-    public void UpdateArduino()
-    {
-        if(SerialCommunication.isOpen() && LogitechController.getController(0).isConnected())
-        {
-            timerCounter++;
-            if (timerCounter >=7)
-            {
-                timerCounter = 0;
-                SerialCommunication.PortSender("00");
-            }
-            //
-            // Left Stick to move the robot forward, backward, left, or right.
-            //
-            if(LogitechController.getController(0).getLeftAnalogUpdated())
-            {
-                //
-                // joystick that will control lateral movement
-                // This is the left controller and is controlled by 'values'
-                //
-                double xVal = LogitechController.getController(0).getXValue();//from -1 to 1
-                double yVal = LogitechController.getController(0).getYValue();//from -1 to 1
-                AdjFL((int)((xVal*90)+90));
-                AdjFR((int)((yVal*90)+90));
-                double rotation = Math.atan2(yVal,xVal); //radians, from -pi to pi
-                double magnitude = Math.sqrt(xVal * xVal + yVal * yVal);
-                int power = (int)((double)65 * magnitude * powerScaling);
-                //
-                // determine region (1 = forward, 2 = forward and right, 3 = right, 4 = back and right, 5 = back, 6 = back and left, 7 = left, 8 = forward and left)
-                //
-                int region = 0;
-                if(rotation <= (5.0*pi)/8.0 && rotation >= (3.0*pi)/8.0)
-                {
-                    region = 1;
-                }
-                if(rotation <= (3.0*pi)/8.0 && rotation >= pi/8.0)
-                {
-                    region = 2;
-                }
-                if(rotation <= pi/8.0 && rotation >= -pi/8.0)
-                {
-                    region = 3;
-                }
-                if(rotation <= -pi/8.0 && rotation >= (-3.0*pi)/8.0)
-                {
-                    region = 4;
-                }
-                if(rotation <= (-3.0*pi)/8.0 && rotation >= (-5.0*pi)/8.0)
-                {
-                    region = 5;
-                }
-                if(rotation <= (-5.0*pi)/8.0 && rotation >= (-7.0*pi)/8.0)
-                {
-                    region = 6;
-                }
-                if(rotation <= (-7.0*pi)/8.0 || rotation >= (7.0*pi)/8.0)
-                {
-                    region = 7;
-                }
-                if(rotation <= (7.0*pi)/8.0 && rotation >= (5.0*pi)/8.0)
-                {
-                    region = 8;
-                }
-                switch(region)
-                {
-                    case 1:
-                    {
-                        //forward
-                        AdjFL(power);
-                        AdjFR(power);
-                        AdjBL((-1 * power) + 90);
-                        AdjBR((-1 * power) + 90);
-                        break;
-                    }
-                    case 2:
-                    {
-                        //forward right
-                        AdjFL(((int)((double)power * reverseEfficencyHandicap)) + 90);
-                        AdjBR((-1 * power) + 90);
-                        break;
-                    }
-                    case 3:
-                    {
-                        //right
-                        AdjFL(power + 90);
-                        AdjFR((-1 *power) + 90);
-                        AdjBL(power + 90);
-                        AdjBR((-1 *power) + 90);
-                        break;
-                    }
-                    case 4:
-                    {
-                        //backward right
-                        AdjFR((-1 * power) + 90);
-                        AdjBL(((int)((double)power * reverseEfficencyHandicap)) + 90);
-                        break;
-                    }
-                    case 5:
-                    {
-                        //backward
-                        AdjFL((-1 * power) + 90);
-                        AdjFR((-1 * power) + 90);
-                        AdjBL(power + 90);
-                        AdjBR(power + 90);
-                        break;
-                    }
-                    case 6:
-                    {
-                        //backward left
-                        AdjFL((-1 * power) + 90);
-                        AdjBR(((int)((double)power * reverseEfficencyHandicap)) + 90);
-                        break;
-                    }
-                    case 7:
-                    {
-                        //left
-                        AdjFL((-1 * power) + 90);
-                        AdjFR(power + 90);
-                        AdjBL((-1 * power) + 90);
-                        AdjBR(power + 90);
-                        break;
-                    }
-                    case 8:
-                    {
-                        //forward left
-                        AdjFR(((int)((double)power * reverseEfficencyHandicap)) + 90);
-                        AdjBL((-1 * power) + 90);
-                        break;
-                    }
-                }
-
-
-            }
-            //
-            // Right Stick controls turning left n' right and up n' down
-            //
-            if (LogitechController.getController(0).getRightAnalogUpdated())
-            {
-                //joystick that will contol vertical movement and turning
-                double xVal = LogitechController.getController(0).getXRotation();//from -1 to 1
-                double yVal = LogitechController.getController(0).getYRotation();//from -1 to 1
-                double rotation = Math.atan2(yVal,xVal);//radians, from -pi to pi
-                double magnitude = Math.sqrt(xVal*xVal + yVal * yVal);
-                int power = (int)((double)65 * magnitude * powerScaling);
-                //determine region (1 = up, 2 = turn right, 3 = down, 4 = turn left)
-                int region = 0;
-                if(rotation <= (3.0*pi)/4.0 && rotation >= pi/4.0)
-                {
-                    region = 1;
-                }
-                if(rotation <= pi/4.0 && rotation >= (-1.0*pi)/4.0)
-                {
-                    region = 2;
-                }
-                if(rotation <= (-1.0*pi)/4.0 && rotation >= (-3.0*pi)/4.0)
-                {
-                    region = 3;
-                }
-                if(rotation <= (-3.0*pi)/4.0 || rotation >= (3.0*pi)/4.0)
-                {
-                    region = 4;
-                }
-                switch(region)
-                {
-                    case 1:
-                    {
-                        //up
-                        AdjVL(power + 90);
-                        AdjVL(power + 90);
-                        break;
-                    }
-                    case 2:
-                    {
-                        //turn right
-                        AdjFL(power + 90);
-                        AdjFR((-1 * power) + 90);
-                        AdjBL((-1 * power) + 90);
-                        AdjBR(power + 90);
-                        break;
-                    }
-                    case 3:
-                    {
-                        //down
-                        AdjVL((-1 * power) + 90);
-                        AdjVR((-1 * power) + 90);
-                        break;
-                    }
-                    case 4:
-                    {
-                        //turn left
-                        AdjFL((-1 * power) + 90);
-                        AdjFR(power + 90);
-                        AdjBL(power + 90);
-                        AdjBR((-1 * power) + 90);
-                        break;
-                    }
-                }
-            }
-            //
-            // D-Pad controls the Gripper control
-            //
-            if (LogitechController.getController(0).getUpdated(15))
-            {
-                // updated D-Pad
-                if(LogitechController.getController(0).getDPadLeft())
-                {
-                    AdjGripperRotation(60);
-                }
-                else if (LogitechController.getController(0).getDPadRight())
-                {
-                    AdjGripperRotation(120);
-                }
-                else
-                {
-                    AdjGripperRotation(90);
-                }
-                if (LogitechController.getController(0).getDPadUp())
-                {
-                    AdjGripperClamp(17);
-                }
-                else if (LogitechController.getController(0).getDPadDown())
-                {
-                    AdjGripperClamp(13);
-                }
-                else
-                {
-                    AdjGripperClamp(15);
-                }
-            }
-        }
-    }
-
-    // Adjusters that go to the serial code
-    public boolean AdjFlashLight(int power) { return SendCommand("10", power); }
-    public boolean AdjPumpSpeed(int pos)
-    {
-        return SendCommand("4",pos);
-    }
-    public boolean AdjGripperRotation(int pos)
-    {
-        return SendCommand("3",pos);
-    }
-    public boolean AdjGripperClamp(int pos)
-    {
-        return SendCommand("2",pos);
-    }
-    public boolean AdjFL(int power)
-    { //adjust the power of the front left motor
-        return SendCommand("11",power);
-    }
-    public boolean AdjFR(int power)
-    { //adjust the power of the front right motor
-        return SendCommand("12",power);
-    }
-    public boolean AdjBL(int power)
-    { //adjust the power of the back left motor
-        return SendCommand("13",power);
-    }
-    public boolean AdjBR(int power)
-    { //adjust the power of the back right motor
-        return SendCommand("14",power);
-    }
-    public boolean AdjVL(int power)
-    { //adjust the power of the vertical left motor
-        return SendCommand("15",power);
-    }
-    public boolean AdjVR(int power)
-    { //adjust the power of the vertical right motor
-        return SendCommand("16",power);
-    }
-    public boolean SendCommand(String identifier, int command)
-    {
-        return SerialCommunication.PortSender(identifier+Integer.toString(Integer.toString(command).length())+Integer.toString(command));
     }
 
     // COMPONENTS LIST //

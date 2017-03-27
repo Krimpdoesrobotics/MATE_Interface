@@ -16,18 +16,31 @@ public class SerialCommunications
     private String portSelected;
     private SerialPort serialPort;
     private boolean Opened =false;
-    private String fullmessage = new String();
+    private String fullmessage;
     private int lastconsidered = 0;
-    private RobotInfo Robot = new RobotInfo();
+    private RobotInfo Robot;
+    private int currentUpdate = 0;
 
     // constructor
-    public SerialCommunications()
+    public SerialCommunications(GamepadController controller)
     {
+        Robot = new RobotInfo(controller);
         // default constructor
     }
 
     public RobotInfo getRobot(){
         return Robot;
+    }
+
+    public void sendRobotInfo(){
+        for(int i = 0; i < 6; i++){
+            PortSender(String.valueOf((int)((Robot.getMotorSpeed(i).getDouble()*90)+90)));
+            PortSender(",");
+        }
+        PortSender(String.valueOf((int)((Robot.getGripperRotation().getDouble()*90)+90)));
+        PortSender(",");
+        PortSender(String.valueOf((int)((Robot.getGripperClamp().getDouble()*90)+90)));
+        PortSender(",");
     }
     // refresh
     public void btnSerialRefreshClicked()
@@ -130,33 +143,46 @@ public class SerialCommunications
                         System.out.println(fullmessage);
                         if (fullmessage.length() > 0)
                         {
-                            int messagelength;
+                            int messageend, messagecontent;
+                            messageend = -1;
                             //
                             // breaks up the message into the motor
                             // then length of incoming string
                             // then motor speed
                             // 8-2-20
                             //
-                            while (fullmessage.length() > lastconsidered)
-                            {
-                                messagelength = Character.getNumericValue(fullmessage.charAt(lastconsidered));
-                                System.out.println(messagelength);
-                                if (fullmessage.length() > lastconsidered + messagelength)
-                                {
-                                    MainInterfaceFrame.addSerialReceived(fullmessage.substring(lastconsidered + 1, lastconsidered + messagelength+1));
-                                    MainInterfaceFrame.scrollDown();
-                                } else {
+                            while (fullmessage.length() > lastconsidered) {
+                                for(int i = lastconsidered+1; i < fullmessage.length(); i++){
+                                    if(fullmessage.charAt(i) == ','){
+                                        messageend = i-1;
+                                        break;
+                                    }
+                                }
+                                if(messageend > -1){
+                                    messagecontent = Integer.getInteger(fullmessage.substring(lastconsidered,messageend));
+
+                                    switch(currentUpdate){
+                                        case 6:
+                                            Robot.setGripperRotation((((double) messagecontent)-90)/90);
+                                            break;
+                                        case 7:
+                                            Robot.setGripperClamp((((double) messagecontent)-90)/90);
+                                            currentUpdate = -1;
+                                            String someString = fullmessage.substring(messageend+1);
+                                            fullmessage = someString;
+                                            messageend = -1;
+                                            break;
+                                        default:
+                                            Robot.setMotorSpeed(currentUpdate,(((double) messagecontent)-90)/90);
+                                            break;
+                                    }
+                                    lastconsidered = messageend+1;
+                                    currentUpdate++;
+                                }else{
                                     break;
                                 }
-                                lastconsidered = lastconsidered + messagelength + 1;
                             }
                         }
-                    }
-                    if (fullmessage.length() > 50)
-                    {
-                        String someString = fullmessage.substring(25);
-                        fullmessage = someString;
-                        lastconsidered -= 25;
                     }
                 } catch (SerialPortException ex) {
                     System.out.println("Error in receiving string from COM-port: " + ex);
