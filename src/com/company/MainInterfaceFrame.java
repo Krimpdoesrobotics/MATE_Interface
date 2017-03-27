@@ -4,6 +4,9 @@ package com.company;
  * Created by Richard on 2/17/2017.
  */
 
+import com.company.RandomStuff.BooleanH;
+import com.company.RandomStuff.DoubleH;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
@@ -32,10 +35,10 @@ public class MainInterfaceFrame extends JFrame
     private int powerScaling = 1;   // this is from .1 to 1, and acts as a multiplier for power
     private boolean isControllerOne = false;
     private boolean isControllerTwo = false;
-    private boolean newTelemetryReceived =false;
-    private static double motorSpeeds[] = new double[6];
-    private static double CameraServoTilt = 0;
-    private static double CameraServoPan = 0;
+    private static BooleanH newTelemetryReceived = newBooleanH(false);
+    private static DoubleH motorSpeeds[] = new DoubleH[6];
+    private static DoubleH GripperServoTurn = newDoubleH(0);
+    private static DoubleH GripperServoClamp = newDoubleH(0);
     private TimerTask timerTask = new TimerTask() {
 
         @Override
@@ -49,6 +52,7 @@ public class MainInterfaceFrame extends JFrame
             contentPane.Refresh();
             UpdateArduino();
             if(LogitechController.getController(0).isConnected()){LogitechController.getController(0).resetUpdated();}
+            newTelemetryReceived.setBoolean(false);
         }
     };
     /**
@@ -57,7 +61,7 @@ public class MainInterfaceFrame extends JFrame
     public static void main(String[] args)
     {
         for(int i = 0; i < 6; i++){
-            motorSpeeds[i] = 0;
+            motorSpeeds[i] =newDoubleH(0);
         }
 
         EventQueue.invokeLater(new Runnable()
@@ -115,22 +119,22 @@ public class MainInterfaceFrame extends JFrame
         contentPane.InterfaceElements[12].setReferenceType2(LogitechController.getController(0).getButtonH(9),Color.RED, Color.GREEN);
         contentPane.InterfaceElements[13] = new Paintings(50,300,200,200,1,Color.BLACK,LogitechController.getController(0).getUpdatedH(15));
         contentPane.InterfaceElements[13].setReferenceType1(LogitechController.getController(0).getDPadH(),Color.BLACK, Color.CYAN);
-        contentPane.InterfaceElements[14] = new Paintings(800,300,80,200,4,Color.BLACK,newBooleanH(newTelemetryReceived));
-        contentPane.InterfaceElements[14].setReferenceType34(newDoubleH(motorSpeeds[0]),Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[15] = new Paintings(900,300,80,200,4,Color.BLACK,newBooleanH(newTelemetryReceived));
-        contentPane.InterfaceElements[15].setReferenceType34(newDoubleH(motorSpeeds[1]),Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[16] = new Paintings(1000,300,80,200,4,Color.BLACK,newBooleanH(newTelemetryReceived));
-        contentPane.InterfaceElements[16].setReferenceType34(newDoubleH(motorSpeeds[2]),Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[17] = new Paintings(1100,300,80,200,4,Color.BLACK,newBooleanH(newTelemetryReceived));
-        contentPane.InterfaceElements[17].setReferenceType34(newDoubleH(motorSpeeds[3]),Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[18] = new Paintings(1200,300,80,200,4,Color.BLACK,newBooleanH(newTelemetryReceived));
-        contentPane.InterfaceElements[18].setReferenceType34(newDoubleH(motorSpeeds[4]),Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[19] = new Paintings(1300,300,80,200,4,Color.BLACK,newBooleanH(newTelemetryReceived));
-        contentPane.InterfaceElements[19].setReferenceType34(newDoubleH(motorSpeeds[5]),Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[20] = new Paintings(800,550,200,30,3,Color.BLACK,newBooleanH(newTelemetryReceived));
-        contentPane.InterfaceElements[20].setReferenceType34(newDoubleH(CameraServoTilt),Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[21] = new Paintings(1050,550,200,30,3,Color.BLACK,newBooleanH(newTelemetryReceived));
-        contentPane.InterfaceElements[21].setReferenceType34(newDoubleH(CameraServoPan),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[14] = new Paintings(800,300,80,200,4,Color.BLACK,newTelemetryReceived);
+        contentPane.InterfaceElements[14].setReferenceType34(motorSpeeds[0],Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[15] = new Paintings(900,300,80,200,4,Color.BLACK,newTelemetryReceived);
+        contentPane.InterfaceElements[15].setReferenceType34(motorSpeeds[1],Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[16] = new Paintings(1000,300,80,200,4,Color.BLACK,newTelemetryReceived);
+        contentPane.InterfaceElements[16].setReferenceType34(motorSpeeds[2],Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[17] = new Paintings(1100,300,80,200,4,Color.BLACK,newTelemetryReceived);
+        contentPane.InterfaceElements[17].setReferenceType34(motorSpeeds[3],Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[18] = new Paintings(1200,300,80,200,4,Color.BLACK,newTelemetryReceived);
+        contentPane.InterfaceElements[18].setReferenceType34(motorSpeeds[4],Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[19] = new Paintings(1300,300,80,200,4,Color.BLACK,newTelemetryReceived);
+        contentPane.InterfaceElements[19].setReferenceType34(motorSpeeds[5],Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[20] = new Paintings(800,550,200,30,3,Color.BLACK,newTelemetryReceived);
+        contentPane.InterfaceElements[20].setReferenceType34(GripperServoClamp,Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[21] = new Paintings(1050,550,200,30,3,Color.BLACK,newTelemetryReceived);
+        contentPane.InterfaceElements[21].setReferenceType34(GripperServoTurn,Color.CYAN,Color.BLACK);
 
         setContentPane(contentPane);
 
@@ -169,7 +173,7 @@ public class MainInterfaceFrame extends JFrame
         btnSerialSendRefresh.setBounds(new Rectangle(75, 150, 100, 40));
         btnSerialSendRefresh.setName("btnSerialSendRefresh");
         btnSerialSendRefresh.setVisible(false);
-        btnSerialSendRefresh.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialDisconnectClicked();}});
+        btnSerialSendRefresh.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialSendRefreshClicked();}});
         contentPane.add(btnSerialSendRefresh, BorderLayout.CENTER);
 
         JLabel lblSerialSent = new JLabel("Sent Serial Messages");
@@ -255,7 +259,7 @@ public class MainInterfaceFrame extends JFrame
         contentPane.add(btnManualSerialSend, BorderLayout.CENTER);
 
         ControllerRefreshTimer = new Timer();
-        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,6000,70);
+        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,70);
 
         createComponentMap();
     }
@@ -324,10 +328,23 @@ public class MainInterfaceFrame extends JFrame
             case '0':
                 //error occurred in arduino
             case '1':
-                //int motornum = Character.getNumericValue(obj.charAt(1));
                 //update motors
+                int motornum = Character.getNumericValue(obj.charAt(1));
+                motorSpeeds[motornum].setDouble((Double.parseDouble(obj.substring(2))-90)/65);
+                newTelemetryReceived.setBoolean(true);
+                break;
             case '2':
                 //update gripper
+                switch(obj.charAt(1)){
+                    case '0':
+                        GripperServoTurn.setDouble(((double)(Integer.parseInt(obj.substring(2))/90))-1);
+                        newTelemetryReceived.setBoolean(true);
+                        break;
+                    case '1':
+                        GripperServoTurn.setDouble(((double)(Integer.parseInt(obj.substring(2))/90))-1);
+                        newTelemetryReceived.setBoolean(true);
+                        break;
+                }
         }
     }
 
@@ -336,10 +353,10 @@ public class MainInterfaceFrame extends JFrame
         if(SerialCommunication.isOpen() && LogitechController.getController(0).isConnected())
         {
             timerCounter++;
-            if (timerCounter >=100)
+            if (timerCounter >=7)
             {
                 timerCounter = 0;
-                SerialCommunication.PortSender("0");
+                SerialCommunication.PortSender("00");
             }
             //
             // Left Stick to move the robot forward, backward, left, or right.
@@ -354,7 +371,7 @@ public class MainInterfaceFrame extends JFrame
                 double yVal = LogitechController.getController(0).getYValue();//from -1 to 1
                 AdjFL((int)((xVal*90)+90));
                 AdjFR((int)((yVal*90)+90));
-                /*double rotation = Math.atan2(yVal,xVal); //radians, from -pi to pi
+                double rotation = Math.atan2(yVal,xVal); //radians, from -pi to pi
                 double magnitude = Math.sqrt(xVal * xVal + yVal * yVal);
                 int power = (int)((double)65 * magnitude * powerScaling);
                 //
@@ -459,7 +476,7 @@ public class MainInterfaceFrame extends JFrame
                         AdjBL((-1 * power) + 90);
                         break;
                     }
-                }*/
+                }
 
 
             }
