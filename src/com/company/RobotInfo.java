@@ -14,7 +14,6 @@ public class RobotInfo {
     private int timerCounter = 0;
     private int powerScaling = 1;   // this is from .1 to 1, and acts as a multiplier for power
 
-
     private DoubleH motorSpeeds[] = new DoubleH[6];
     private DoubleH gripperRotation = newDoubleH(0);
     private DoubleH gripperClamp = newDoubleH(0);
@@ -53,8 +52,6 @@ public class RobotInfo {
             //
             double xVal = controller.getXValue();//from -1 to 1
             double yVal = controller.getYValue();//from -1 to 1
-            AdjFL((int)((xVal*90)+90));
-            AdjFR((int)((yVal*90)+90));
             double rotation = Math.atan2(yVal,xVal); //radians, from -pi to pi
             double magnitude = Math.sqrt(xVal * xVal + yVal * yVal);
             int power = (int)((double)65 * magnitude * powerScaling);
@@ -62,40 +59,31 @@ public class RobotInfo {
             // determine region (1 = forward, 2 = forward and right, 3 = right, 4 = back and right, 5 = back, 6 = back and left, 7 = left, 8 = forward and left)
             //
             int region = 0;
-            if(rotation <= (5.0*pi)/8.0 && rotation >= (3.0*pi)/8.0)
-            {
+            if(rotation <= (5.0*pi)/8.0 && rotation >= (3.0*pi)/8.0){
                 region = 1;
             }
-            if(rotation <= (3.0*pi)/8.0 && rotation >= pi/8.0)
-            {
+            if(rotation <= (3.0*pi)/8.0 && rotation >= pi/8.0){
                 region = 2;
             }
-            if(rotation <= pi/8.0 && rotation >= -pi/8.0)
-            {
+            if(rotation <= pi/8.0 && rotation >= -pi/8.0){
                 region = 3;
             }
-            if(rotation <= -pi/8.0 && rotation >= (-3.0*pi)/8.0)
-            {
+            if(rotation <= -pi/8.0 && rotation >= (-3.0*pi)/8.0){
                 region = 4;
             }
-            if(rotation <= (-3.0*pi)/8.0 && rotation >= (-5.0*pi)/8.0)
-            {
+            if(rotation <= (-3.0*pi)/8.0 && rotation >= (-5.0*pi)/8.0){
                 region = 5;
             }
-            if(rotation <= (-5.0*pi)/8.0 && rotation >= (-7.0*pi)/8.0)
-            {
+            if(rotation <= (-5.0*pi)/8.0 && rotation >= (-7.0*pi)/8.0){
                 region = 6;
             }
-            if(rotation <= (-7.0*pi)/8.0 || rotation >= (7.0*pi)/8.0)
-            {
+            if(rotation <= (-7.0*pi)/8.0 || rotation >= (7.0*pi)/8.0){
                 region = 7;
             }
-            if(rotation <= (7.0*pi)/8.0 && rotation >= (5.0*pi)/8.0)
-            {
+            if(rotation <= (7.0*pi)/8.0 && rotation >= (5.0*pi)/8.0){
                 region = 8;
             }
-            switch(region)
-            {
+            switch(region){
                 case 1:
                 {
                     //forward
