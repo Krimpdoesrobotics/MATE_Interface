@@ -21,8 +21,6 @@ public class MainInterfaceFrame extends JFrame
 {
     private final int NumGraphics = 22;
     private final double pi = 3.14159;
-    private double gripperRotation = 0.0;
-    private double gripperClamp = 0.0;
     private final double reverseEfficencyHandicap = 1;
     private static HashMap componentMap;
     private SerialCommunications SerialCommunication = new SerialCommunications();
@@ -33,12 +31,6 @@ public class MainInterfaceFrame extends JFrame
     private static DefaultListModel<String> modelSerialReceived = new DefaultListModel<>();
     private int timerCounter = 0;
     private int powerScaling = 1;   // this is from .1 to 1, and acts as a multiplier for power
-    private boolean isControllerOne = false;
-    private boolean isControllerTwo = false;
-    private static BooleanH newTelemetryReceived = newBooleanH(false);
-    private static DoubleH motorSpeeds[] = new DoubleH[6];
-    private static DoubleH GripperServoTurn = newDoubleH(0);
-    private static DoubleH GripperServoClamp = newDoubleH(0);
     private TimerTask timerTask = new TimerTask() {
 
         @Override
@@ -52,7 +44,7 @@ public class MainInterfaceFrame extends JFrame
             contentPane.Refresh();
             UpdateArduino();
             if(LogitechController.getController(0).isConnected()){LogitechController.getController(0).resetUpdated();}
-            newTelemetryReceived.setBoolean(false);
+            SerialCommunication.getRobot().resetUpdated();
         }
     };
     /**
@@ -60,10 +52,6 @@ public class MainInterfaceFrame extends JFrame
      */
     public static void main(String[] args)
     {
-        for(int i = 0; i < 6; i++){
-            motorSpeeds[i] =newDoubleH(0);
-        }
-
         EventQueue.invokeLater(new Runnable()
         {
             public void run()
@@ -119,22 +107,22 @@ public class MainInterfaceFrame extends JFrame
         contentPane.InterfaceElements[12].setReferenceType2(LogitechController.getController(0).getButtonH(9),Color.RED, Color.GREEN);
         contentPane.InterfaceElements[13] = new Paintings(50,300,200,200,1,Color.BLACK,LogitechController.getController(0).getUpdatedH(15));
         contentPane.InterfaceElements[13].setReferenceType1(LogitechController.getController(0).getDPadH(),Color.BLACK, Color.CYAN);
-        contentPane.InterfaceElements[14] = new Paintings(800,300,80,200,4,Color.BLACK,newTelemetryReceived);
-        contentPane.InterfaceElements[14].setReferenceType34(motorSpeeds[0],Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[15] = new Paintings(900,300,80,200,4,Color.BLACK,newTelemetryReceived);
-        contentPane.InterfaceElements[15].setReferenceType34(motorSpeeds[1],Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[16] = new Paintings(1000,300,80,200,4,Color.BLACK,newTelemetryReceived);
-        contentPane.InterfaceElements[16].setReferenceType34(motorSpeeds[2],Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[17] = new Paintings(1100,300,80,200,4,Color.BLACK,newTelemetryReceived);
-        contentPane.InterfaceElements[17].setReferenceType34(motorSpeeds[3],Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[18] = new Paintings(1200,300,80,200,4,Color.BLACK,newTelemetryReceived);
-        contentPane.InterfaceElements[18].setReferenceType34(motorSpeeds[4],Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[19] = new Paintings(1300,300,80,200,4,Color.BLACK,newTelemetryReceived);
-        contentPane.InterfaceElements[19].setReferenceType34(motorSpeeds[5],Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[20] = new Paintings(800,550,200,30,3,Color.BLACK,newTelemetryReceived);
-        contentPane.InterfaceElements[20].setReferenceType34(GripperServoClamp,Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[21] = new Paintings(1050,550,200,30,3,Color.BLACK,newTelemetryReceived);
-        contentPane.InterfaceElements[21].setReferenceType34(GripperServoTurn,Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[14] = new Paintings(800,300,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(0));
+        contentPane.InterfaceElements[14].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[15] = new Paintings(900,300,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(1));
+        contentPane.InterfaceElements[15].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[16] = new Paintings(1000,300,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(2));
+        contentPane.InterfaceElements[16].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[17] = new Paintings(1100,300,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(3));
+        contentPane.InterfaceElements[17].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[18] = new Paintings(1200,300,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(4));
+        contentPane.InterfaceElements[18].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[19] = new Paintings(1300,300,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(5));
+        contentPane.InterfaceElements[19].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[20] = new Paintings(800,550,200,30,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(6));
+        contentPane.InterfaceElements[20].setReferenceType34(SerialCommunication.getRobot().getGripperRotation(),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[21] = new Paintings(1050,550,200,30,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(7));
+        contentPane.InterfaceElements[21].setReferenceType34(SerialCommunication.getRobot().getGripperClamp(),Color.CYAN,Color.BLACK);
 
         setContentPane(contentPane);
 
@@ -299,8 +287,7 @@ public class MainInterfaceFrame extends JFrame
     public static String getSelectedPort()
     {
         Component SomeComponent = getComponentByName("serialComboBox");
-        if(SomeComponent instanceof JComboBox)
-        {
+        if(SomeComponent instanceof JComboBox){
             JComboBox SomeComboBox = (JComboBox) SomeComponent;
             return (String) SomeComboBox.getSelectedItem();
         }
@@ -310,8 +297,7 @@ public class MainInterfaceFrame extends JFrame
     public static void addSerialSent(String obj)
     {
         modelSerialSent.addElement(obj);
-        if(modelSerialSent.getSize() > 25)
-        {
+        if(modelSerialSent.getSize() > 25){
             modelSerialSent.removeRange(0,13);
         }
     }
@@ -319,32 +305,8 @@ public class MainInterfaceFrame extends JFrame
     public static void addSerialReceived(String obj)
     {
         modelSerialReceived.addElement(obj);
-        if(modelSerialReceived.getSize() > 25)
-        {
+        if(modelSerialReceived.getSize() > 25){
             modelSerialReceived.removeRange(0,13);
-        }
-        switch(obj.charAt(0))
-        {
-            case '0':
-                //error occurred in arduino
-            case '1':
-                //update motors
-                int motornum = Character.getNumericValue(obj.charAt(1));
-                motorSpeeds[motornum].setDouble((Double.parseDouble(obj.substring(2))-90)/65);
-                newTelemetryReceived.setBoolean(true);
-                break;
-            case '2':
-                //update gripper
-                switch(obj.charAt(1)){
-                    case '0':
-                        GripperServoTurn.setDouble(((double)(Integer.parseInt(obj.substring(2))/90))-1);
-                        newTelemetryReceived.setBoolean(true);
-                        break;
-                    case '1':
-                        GripperServoTurn.setDouble(((double)(Integer.parseInt(obj.substring(2))/90))-1);
-                        newTelemetryReceived.setBoolean(true);
-                        break;
-                }
         }
     }
 

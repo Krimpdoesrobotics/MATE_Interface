@@ -2,8 +2,8 @@ package com.company;
 /**
  * Created by Richard on 2/17/2017.
  */
+import com.company.RandomStuff.BooleanH;
 import jssc.*;
-import sun.applet.Main;
 
 import java.awt.*;
 import javax.swing.JComboBox;
@@ -18,6 +18,7 @@ public class SerialCommunications
     private boolean Opened =false;
     private String fullmessage = new String();
     private int lastconsidered = 0;
+    private RobotInfo Robot = new RobotInfo();
 
     // constructor
     public SerialCommunications()
@@ -25,6 +26,9 @@ public class SerialCommunications
         // default constructor
     }
 
+    public RobotInfo getRobot(){
+        return Robot;
+    }
     // refresh
     public void btnSerialRefreshClicked()
     {
