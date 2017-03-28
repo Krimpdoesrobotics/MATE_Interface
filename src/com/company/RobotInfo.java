@@ -13,7 +13,6 @@ public class RobotInfo {
     private final double reverseEfficencyHandicap = 1;
     private int timerCounter = 0;
     private int powerScaling = 1;   // this is from .1 to 1, and acts as a multiplier for power
-
     private DoubleH motorSpeeds[] = new DoubleH[6];
     private DoubleH gripperRotation = newDoubleH(0);
     private DoubleH gripperClamp = newDoubleH(0);
@@ -28,224 +27,148 @@ public class RobotInfo {
         }
         this.controller = controller;
     }
+    private double constrain(double x, double min, double max){
+        if(x < min)
+            return min;
+        else if(x > max)
+            return max;
+        else
+            return x;
+    }
     public DoubleH getMotorSpeed(int index){return motorSpeeds[index];}
     public DoubleH getGripperRotation(){return gripperRotation;}
     public DoubleH getGripperClamp(){return gripperClamp;}
     public BooleanH getUpdated(int index){return Updated[index];}
-    public void setMotorSpeed(int index, double a){motorSpeeds[index].setDouble(a); Updated[index].setBoolean(true);}
-    public void setGripperRotation(double a){gripperRotation.setDouble(a); Updated[6].setBoolean(true);}
-    public void setGripperClamp(double a){gripperClamp.setDouble(a); Updated[7].setBoolean(true);}
+    public void setMotorSpeed(int index, double a){motorSpeeds[index].setDouble(constrain(a,-1,1)); Updated[index].setBoolean(true);}
+    public void setGripperRotation(double a){gripperRotation.setDouble(constrain(a,-1,1)); Updated[6].setBoolean(true);}
+    public void setGripperClamp(double a){gripperClamp.setDouble(constrain(a,-1,1)); Updated[7].setBoolean(true);}
     public void resetUpdated(){
-        for(int i = 0; i < 8; i++){
+        for(int i = 0; i < 8; i++)
             Updated[i].setBoolean(false);
-        }
     }
     public void updateVariables(){
-        //
         // Left Stick to move the robot forward, backward, left, or right.
-        //
-        if(controller.getLeftAnalogUpdated())
-        {
-            //
+        if(controller.getLeftAnalogUpdated()) {
             // joystick that will control lateral movement
             // This is the left controller and is controlled by 'values'
-            //
             double xVal = controller.getXValue();//from -1 to 1
             double yVal = controller.getYValue();//from -1 to 1
-            double rotation = Math.atan2(yVal,xVal); //radians, from -pi to pi
-            double magnitude = Math.sqrt(xVal * xVal + yVal * yVal);
-            int power = (int)((double)65 * magnitude * powerScaling);
-            //
+            double rotation = Math.atan2(yVal, xVal); //radians, from -pi to pi
+            double power;
             // determine region (1 = forward, 2 = forward and right, 3 = right, 4 = back and right, 5 = back, 6 = back and left, 7 = left, 8 = forward and left)
-            //
-            int region = 0;
-            if(rotation <= (5.0*pi)/8.0 && rotation >= (3.0*pi)/8.0){
-                region = 1;
+            if (rotation <= (5.0 * pi) / 8.0 && rotation >= (3.0 * pi) / 8.0) {
+                //forward
+                power = Math.abs(yVal * powerScaling);
+                setMotorSpeed(0,power);
+                setMotorSpeed(1,power);
+                setMotorSpeed(2,-power);
+                setMotorSpeed(3,-power);
+            } else if (rotation <= (3.0 * pi) / 8.0 && rotation >= pi / 8.0) {
+                //forward right
+                power = Math.sqrt(xVal*xVal+yVal*yVal) * powerScaling;
+                setMotorSpeed(0,power*reverseEfficencyHandicap);
+                setMotorSpeed(1,0);
+                setMotorSpeed(2,0);
+                setMotorSpeed(3,-power);
+            } else if (rotation <= pi / 8.0 && rotation >= -pi / 8.0) {
+                //right
+                power = Math.abs(xVal);
+                setMotorSpeed(0,power);
+                setMotorSpeed(1,-power);
+                setMotorSpeed(2,power);
+                setMotorSpeed(3,-power);
+            } else if (rotation <= -pi / 8.0 && rotation >= (-3.0 * pi) / 8.0) {
+                //backward right
+                power = Math.sqrt(xVal*xVal+yVal*yVal) * powerScaling;
+                setMotorSpeed(0,0);
+                setMotorSpeed(1,-power);
+                setMotorSpeed(2,power*reverseEfficencyHandicap);
+                setMotorSpeed(3,0);
+            } else if (rotation <= (-3.0 * pi) / 8.0 && rotation >= (-5.0 * pi) / 8.0) {
+                //backward
+                power = Math.abs(yVal);
+                setMotorSpeed(0,-power);
+                setMotorSpeed(1,-power);
+                setMotorSpeed(2,power);
+                setMotorSpeed(3,power);
+            } else if (rotation <= (-5.0 * pi) / 8.0 && rotation >= (-7.0 * pi) / 8.0) {
+                //backward left
+                power = Math.sqrt(xVal*xVal+yVal*yVal) * powerScaling;
+                setMotorSpeed(0,-power);
+                setMotorSpeed(1,0);
+                setMotorSpeed(2,0);
+                setMotorSpeed(3,power*reverseEfficencyHandicap);
+            } else if (rotation <= (-7.0 * pi) / 8.0 || rotation >= (7.0 * pi) / 8.0) {
+                //left
+                power = Math.abs(yVal);
+                setMotorSpeed(0,-power);
+                setMotorSpeed(1,power);
+                setMotorSpeed(2,-power);
+                setMotorSpeed(3,power);
+            } else if (rotation <= (7.0 * pi) / 8.0 && rotation >= (5.0 * pi) / 8.0) {
+                //forward left
+                power = Math.sqrt(xVal*xVal+yVal*yVal) * powerScaling;
+                setMotorSpeed(0,0);
+                setMotorSpeed(1,power*reverseEfficencyHandicap);
+                setMotorSpeed(2,-power);
+                setMotorSpeed(3,0);
             }
-            if(rotation <= (3.0*pi)/8.0 && rotation >= pi/8.0){
-                region = 2;
-            }
-            if(rotation <= pi/8.0 && rotation >= -pi/8.0){
-                region = 3;
-            }
-            if(rotation <= -pi/8.0 && rotation >= (-3.0*pi)/8.0){
-                region = 4;
-            }
-            if(rotation <= (-3.0*pi)/8.0 && rotation >= (-5.0*pi)/8.0){
-                region = 5;
-            }
-            if(rotation <= (-5.0*pi)/8.0 && rotation >= (-7.0*pi)/8.0){
-                region = 6;
-            }
-            if(rotation <= (-7.0*pi)/8.0 || rotation >= (7.0*pi)/8.0){
-                region = 7;
-            }
-            if(rotation <= (7.0*pi)/8.0 && rotation >= (5.0*pi)/8.0){
-                region = 8;
-            }
-            switch(region){
-                case 1:
-                {
-                    //forward
-                    AdjFL(power);
-                    AdjFR(power);
-                    AdjBL((-1 * power) + 90);
-                    AdjBR((-1 * power) + 90);
-                    break;
-                }
-                case 2:
-                {
-                    //forward right
-                    AdjFL(((int)((double)power * reverseEfficencyHandicap)) + 90);
-                    AdjBR((-1 * power) + 90);
-                    break;
-                }
-                case 3:
-                {
-                    //right
-                    AdjFL(power + 90);
-                    AdjFR((-1 *power) + 90);
-                    AdjBL(power + 90);
-                    AdjBR((-1 *power) + 90);
-                    break;
-                }
-                case 4:
-                {
-                    //backward right
-                    AdjFR((-1 * power) + 90);
-                    AdjBL(((int)((double)power * reverseEfficencyHandicap)) + 90);
-                    break;
-                }
-                case 5:
-                {
-                    //backward
-                    AdjFL((-1 * power) + 90);
-                    AdjFR((-1 * power) + 90);
-                    AdjBL(power + 90);
-                    AdjBR(power + 90);
-                    break;
-                }
-                case 6:
-                {
-                    //backward left
-                    AdjFL((-1 * power) + 90);
-                    AdjBR(((int)((double)power * reverseEfficencyHandicap)) + 90);
-                    break;
-                }
-                case 7:
-                {
-                    //left
-                    AdjFL((-1 * power) + 90);
-                    AdjFR(power + 90);
-                    AdjBL((-1 * power) + 90);
-                    AdjBR(power + 90);
-                    break;
-                }
-                case 8:
-                {
-                    //forward left
-                    AdjFR(((int)((double)power * reverseEfficencyHandicap)) + 90);
-                    AdjBL((-1 * power) + 90);
-                    break;
-                }
-            }
-
-
         }
-        //
         // Right Stick controls turning left n' right and up n' down
         //
-        if (controller.getRightAnalogUpdated())
-        {
+        if (controller.getRightAnalogUpdated()){
             //joystick that will contol vertical movement and turning
             double xVal = controller.getXRotation();//from -1 to 1
             double yVal = controller.getYRotation();//from -1 to 1
             double rotation = Math.atan2(yVal,xVal);//radians, from -pi to pi
-            double magnitude = Math.sqrt(xVal*xVal + yVal * yVal);
-            int power = (int)((double)65 * magnitude * powerScaling);
+            //double magnitude = Math.sqrt(xVal*xVal + yVal * yVal);
+            //int power = (int)((double)65 * magnitude * powerScaling);
+            double power;
             //determine region (1 = up, 2 = turn right, 3 = down, 4 = turn left)
-            int region = 0;
-            if(rotation <= (3.0*pi)/4.0 && rotation >= pi/4.0)
-            {
-                region = 1;
-            }
-            if(rotation <= pi/4.0 && rotation >= (-1.0*pi)/4.0)
-            {
-                region = 2;
-            }
-            if(rotation <= (-1.0*pi)/4.0 && rotation >= (-3.0*pi)/4.0)
-            {
-                region = 3;
-            }
-            if(rotation <= (-3.0*pi)/4.0 || rotation >= (3.0*pi)/4.0)
-            {
-                region = 4;
-            }
-            switch(region)
-            {
-                case 1:
-                {
-                    //up
-                    AdjVL(power + 90);
-                    AdjVL(power + 90);
-                    break;
-                }
-                case 2:
-                {
-                    //turn right
-                    AdjFL(power + 90);
-                    AdjFR((-1 * power) + 90);
-                    AdjBL((-1 * power) + 90);
-                    AdjBR(power + 90);
-                    break;
-                }
-                case 3:
-                {
-                    //down
-                    AdjVL((-1 * power) + 90);
-                    AdjVR((-1 * power) + 90);
-                    break;
-                }
-                case 4:
-                {
-                    //turn left
-                    AdjFL((-1 * power) + 90);
-                    AdjFR(power + 90);
-                    AdjBL(power + 90);
-                    AdjBR((-1 * power) + 90);
-                    break;
-                }
+            if(rotation <= (3.0*pi)/4.0 && rotation >= pi/4.0){
+                //up
+                power = Math.abs(yVal) * powerScaling;
+                setMotorSpeed(4,power);
+                setMotorSpeed(5,power);
+            }else if(rotation <= pi/4.0 && rotation >= (-1.0*pi)/4.0) {
+                power = Math.abs(xVal) * powerScaling;
+                setMotorSpeed(0,power+getMotorSpeed(0).getDouble());
+                setMotorSpeed(1,-power+getMotorSpeed(1).getDouble());
+                setMotorSpeed(2,-power+getMotorSpeed(2).getDouble());
+                setMotorSpeed(3,power+getMotorSpeed(3).getDouble());
+                setMotorSpeed(4,0);
+                setMotorSpeed(5,0);
+            }else if(rotation <= (-1.0*pi)/4.0 && rotation >= (-3.0*pi)/4.0) {
+                power = Math.abs(yVal) * powerScaling;
+                setMotorSpeed(4,-power);
+                setMotorSpeed(5,-power);
+            }else if(rotation <= (-3.0*pi)/4.0 || rotation >= (3.0*pi)/4.0)  {
+                power = Math.abs(xVal) * powerScaling;
+                setMotorSpeed(0,-power+getMotorSpeed(0).getDouble());
+                setMotorSpeed(1,power+getMotorSpeed(1).getDouble());
+                setMotorSpeed(2,power+getMotorSpeed(2).getDouble());
+                setMotorSpeed(3,-power+getMotorSpeed(3).getDouble());
+                setMotorSpeed(4,0);
+                setMotorSpeed(5,0);
             }
         }
-        //
         // D-Pad controls the Gripper control
-        //
-        if (controller.getUpdated(15))
-        {
+        if (controller.getUpdated(15)){
             // updated D-Pad
-            if(controller.getDPadLeft())
-            {
-                AdjGripperRotation(60);
+            if(controller.getDPadLeft()){gripperRotation.setDouble(-0.5);}
+            else if (controller.getDPadRight()){gripperRotation.setDouble(0.5);}
+            else{gripperRotation.setDouble(0);}
+            if (controller.getDPadUp()){
+                gripperClamp.setDouble(gripperClamp.getDouble()+0.05);
+                if(gripperClamp.getDouble() > 1){
+                    gripperClamp.setDouble(1);
+                }
             }
-            else if (controller.getDPadRight())
-            {
-                AdjGripperRotation(120);
-            }
-            else
-            {
-                AdjGripperRotation(90);
-            }
-            if (controller.getDPadUp())
-            {
-                AdjGripperClamp(17);
-            }
-            else if (controller.getDPadDown())
-            {
-                AdjGripperClamp(13);
-            }
-            else
-            {
-                AdjGripperClamp(15);
+            else if (controller.getDPadDown()){
+                gripperClamp.setDouble(gripperClamp.getDouble()-0.05);
+                if(gripperClamp.getDouble() < -1){
+                    gripperClamp.setDouble(-1);
+                }
             }
         }
     }
