@@ -33,14 +33,16 @@ public class SerialCommunications
     }
 
     public void sendRobotInfo(){
+        String stuff = "";
         for(int i = 0; i < 6; i++){
-            PortSender(String.valueOf((int)((Robot.getMotorSpeed(i).getDouble()*90)+90)));
-            PortSender(",");
+            stuff+=String.valueOf((int)((Robot.getMotorSpeed(i).getDouble()*90)+90));
+            stuff+=",";
         }
-        PortSender(String.valueOf((int)((Robot.getGripperRotation().getDouble()*90)+90)));
-        PortSender(",");
-        PortSender(String.valueOf((int)((Robot.getGripperClamp().getDouble()*90)+90)));
-        PortSender(",");
+        stuff+=String.valueOf((int)((Robot.getGripperRotation().getDouble()*90)+90));
+        stuff += ",";
+        stuff+=String.valueOf((int)((Robot.getGripperClamp().getDouble()*90)+90));
+        stuff += ",";
+        PortSender(stuff);
     }
     // refresh
     public void btnSerialRefreshClicked()
@@ -160,7 +162,7 @@ public class SerialCommunications
                                 }
                                 if(messageend > -1){
                                     messagecontent = Integer.getInteger(fullmessage.substring(lastconsidered,messageend));
-
+                                    MainInterfaceFrame.addSerialReceived(String.valueOf(messagecontent));
                                     switch(currentUpdate){
                                         case 6:
                                             Robot.setGripperRotation((((double) messagecontent)-90)/90);

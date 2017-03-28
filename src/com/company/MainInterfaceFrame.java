@@ -250,7 +250,7 @@ public class MainInterfaceFrame extends JFrame
         contentPane.add(btnManualSerialSend, BorderLayout.CENTER);
 
         ControllerRefreshTimer = new Timer();
-        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,100);
+        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,1000);
 
         createComponentMap();
     }
@@ -293,14 +293,14 @@ public class MainInterfaceFrame extends JFrame
 
     public static void addSerialSent(String obj)    {
         modelSerialSent.addElement(obj);
-        if(modelSerialSent.size() > 27){
+        if(modelSerialSent.capacity()> 27){
             modelSerialSent.removeRange(0,13);
         }
     }
 
     public static void addSerialReceived(String obj)    {
         modelSerialReceived.addElement(obj);
-        if(modelSerialReceived.size() > 27){
+        if(modelSerialReceived.capacity() > 27){
             modelSerialReceived.removeRange(0,13);
         }
     }
