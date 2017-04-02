@@ -1,21 +1,13 @@
 package com.company;
-
 /**
  * Created by Richard on 2/17/2017.
  */
-
-import com.company.RandomStuff.BooleanH;
-import com.company.RandomStuff.DoubleH;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
 import javax.swing.*;
 import java.util.Timer;
 import java.util.TimerTask;
-import static com.company.RandomStuff.IntH.newIntH;
-import static com.company.RandomStuff.DoubleH.newDoubleH;
-import static com.company.RandomStuff.BooleanH.newBooleanH;
 
 public class MainInterfaceFrame extends JFrame
 {
@@ -28,10 +20,8 @@ public class MainInterfaceFrame extends JFrame
     private static DefaultListModel<String> modelSerialSent = new DefaultListModel<>();
     private static DefaultListModel<String> modelSerialReceived = new DefaultListModel<>();
     private TimerTask timerTask = new TimerTask() {
-
         @Override
-        public void run()
-        {
+        public void run(){
             // TODO Auto-generated method stub
             //
             // Invoke your function here
@@ -51,31 +41,22 @@ public class MainInterfaceFrame extends JFrame
     /**
      * Launch the application.
      */
-    public static void main(String[] args)
-    {
-        EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
-                try
-                {
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run()  {
+                try {
                     MainInterfaceFrame frame = new MainInterfaceFrame();
                     frame.setVisible(true);
-                }
-                catch (Exception e)
-                {
+                }catch (Exception e){
                     e.printStackTrace();
                 }
             }
         });
     }
-
-
     /**
      * Create the frame.
      */
-    public MainInterfaceFrame()
-    {
+    public MainInterfaceFrame()    {
         SerialCommunication = new SerialCommunications(LogitechController.getController(0),LogitechController.getController(1));
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -176,13 +157,13 @@ public class MainInterfaceFrame extends JFrame
         JLabel lblGripperPositionName = new JLabel("Gripper's Current Position");
         lblGripperPositionName.setName("lblGripperPosName");
         lblGripperPositionName.setBounds(new Rectangle(625, 50, 130, 20));
-        contentPane.add(lblGripperPositionName, BorderLayout.EAST);*/
+        contentPane.add(lblGripperPositionName, BorderLayout.EAST);
 
         JLabel lblGripperPosition = new JLabel("");
         lblGripperPosition.setName("lblGripperPos");
         lblGripperPosition.setBounds(new Rectangle(625, 50, 130, 20));
         contentPane.add(lblGripperPosition, BorderLayout.EAST);
-        //
+        */
 
         JList<String> listSerialSent = new JList<>(modelSerialSent);
         JScrollPane scrollPaneSerialSent = new JScrollPane();

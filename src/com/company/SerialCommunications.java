@@ -38,12 +38,13 @@ public class SerialCommunications
         String stuff = "";
         for(int i = 0; i < 6; i++){
             stuff+=String.valueOf((int)((ControllerRobot.getMotorSpeed(i).getDouble()*90)+90));
-            stuff+=",";
+            stuff += ",";
         }
         stuff+=String.valueOf((int)((ControllerRobot.getGripperRotation().getDouble()*90)+90));
         stuff += ",";
         stuff+=String.valueOf((int)((ControllerRobot.getGripperClamp().getDouble()*90)+90));
         stuff += ",";
+        System.out.print(stuff);
         PortSender(stuff);
     }
     // refresh
