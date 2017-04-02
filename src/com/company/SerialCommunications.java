@@ -69,13 +69,11 @@ public class SerialCommunications
     }
 
     // connection
-    public void btnSerialConnectClicked()
-    {
+    public void btnSerialConnectClicked() {
         MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(false);
         MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(true);
         MainInterfaceFrame.getComponentByName("btnSerialSendRefresh").setVisible(true);
-        try
-        {
+        try   {
             portSelected = MainInterfaceFrame.getSelectedPort();
             serialPort = new SerialPort(portSelected);
             serialPort.openPort();
@@ -113,15 +111,11 @@ public class SerialCommunications
             PortSender("A");
         }
     }
-    public boolean isOpen(){
-        return Opened;
-    }
+    public boolean isOpen(){return Opened;}
 
     // outputs to the port
-    public boolean PortSender(String command)
-    {
-        try
-        {
+    public boolean PortSender(String command) {
+        try {
             serialPort.writeString(command);
             MainInterfaceFrame.addSerialSent(command);
         } catch(SerialPortException ex) {
@@ -131,7 +125,6 @@ public class SerialCommunications
         return true;
     }
 
-    // class that is a port listener
     public class PortReader implements SerialPortEventListener
     {
         public void serialEvent(SerialPortEvent event)
@@ -141,7 +134,7 @@ public class SerialCommunications
                 try
                 {
                     String receivedData = serialPort.readString(event.getEventValue());
-                    //System.out.println(receivedData);
+                    System.out.print(receivedData);
                     if(receivedData.length() > 0)
                     {
                         fullmessage += receivedData;
