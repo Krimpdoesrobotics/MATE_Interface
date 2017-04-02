@@ -38,11 +38,11 @@ public class MainInterfaceFrame extends JFrame
             //
             LogitechController.UpdateController1Components();
             if(SerialCommunication.isOpen() && LogitechController.getController(0).isConnected()) {
-                SerialCommunication.getRobot().updateVariables();
+                SerialCommunication.getControllerRobot().updateVariables();
             }
             contentPane.Refresh();
             if(SerialCommunication.isOpen()) {
-                SerialCommunication.getRobot().resetUpdated();
+                SerialCommunication.getControllerRobot().resetUpdated();
                 SerialCommunication.sendRobotInfo();
             }
             if(LogitechController.getController(0).isConnected()){LogitechController.getController(0).resetUpdated();}
@@ -76,7 +76,7 @@ public class MainInterfaceFrame extends JFrame
      */
     public MainInterfaceFrame()
     {
-        SerialCommunication = new SerialCommunications(LogitechController.getController(0));
+        SerialCommunication = new SerialCommunications(LogitechController.getController(0),LogitechController.getController(1));
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(25, 25, 1500, 900);

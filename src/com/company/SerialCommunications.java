@@ -19,28 +19,30 @@ public class SerialCommunications
     private String fullmessage;
     private int lastconsidered = 0;
     private RobotInfo Robot;
+    private ControllerRobotInfo ControllerRobot;
     private int currentUpdate = 0;
 
     // constructor
-    public SerialCommunications(GamepadController controller)
+    public SerialCommunications(GamepadController controller1, GamepadController controller2)
     {
-        Robot = new RobotInfo(controller);
+        Robot = new RobotInfo();
+        ControllerRobot = new ControllerRobotInfo(controller1,controller2);
         // default constructor
     }
 
-    public RobotInfo getRobot(){
-        return Robot;
-    }
+    public RobotInfo getRobot(){return Robot;}
+
+    public ControllerRobotInfo getControllerRobot(){return ControllerRobot;}
 
     public void sendRobotInfo(){
         String stuff = "";
         for(int i = 0; i < 6; i++){
-            stuff+=String.valueOf((int)((Robot.getMotorSpeed(i).getDouble()*90)+90));
+            stuff+=String.valueOf((int)((ControllerRobot.getMotorSpeed(i).getDouble()*90)+90));
             stuff+=",";
         }
-        stuff+=String.valueOf((int)((Robot.getGripperRotation().getDouble()*90)+90));
+        stuff+=String.valueOf((int)((ControllerRobot.getGripperRotation().getDouble()*90)+90));
         stuff += ",";
-        stuff+=String.valueOf((int)((Robot.getGripperClamp().getDouble()*90)+90));
+        stuff+=String.valueOf((int)((ControllerRobot.getGripperClamp().getDouble()*90)+90));
         stuff += ",";
         PortSender(stuff);
     }
