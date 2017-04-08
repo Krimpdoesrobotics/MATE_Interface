@@ -6,7 +6,7 @@ import com.company.RandomStuff.*;
 import static com.company.RandomStuff.DoubleH.newDoubleH;
 
 /**
- * Created by julia on 3/25/2017.
+ * Created by richard on 3/25/2017.
  */
 public class Paintings
 {

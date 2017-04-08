@@ -20,6 +20,7 @@ public class MainInterfaceFrame extends JFrame
     private static DefaultListModel<String> modelSerialSent = new DefaultListModel<>();
     private static DefaultListModel<String> modelSerialReceived = new DefaultListModel<>();
     private TimerTask timerTask = new TimerTask() {
+
         @Override
         public void run(){
             // TODO Auto-generated method stub
@@ -60,12 +61,14 @@ public class MainInterfaceFrame extends JFrame
         SerialCommunication = new SerialCommunications(LogitechController.getController(0),LogitechController.getController(1));
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(25, 25, 1500, 900);
+        setMinimumSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth() + 60, (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
+        setLocation(-10,0);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         contentPane = new CustomPanel(NumGraphics);
 
-        contentPane.InterfaceElements[0] = new Paintings(175,550,200,200,0,Color.BLACK,LogitechController.getController(0).getLeftAnalogUpdatedH());
+        contentPane.InterfaceElements[0] = new Paintings(175,525,200,200,0,Color.BLACK,LogitechController.getController(0).getLeftAnalogUpdatedH());
         contentPane.InterfaceElements[0].setReferenceType0(LogitechController.getController(0).getXValueH(),LogitechController.getController(0).getYValueH(),Color.BLACK,Color.CYAN);
-        contentPane.InterfaceElements[1] = new Paintings(425,550,200,200,0,Color.BLACK,LogitechController.getController(0).getRightAnalogUpdatedH());
+        contentPane.InterfaceElements[1] = new Paintings(425,525,200,200,0,Color.BLACK,LogitechController.getController(0).getRightAnalogUpdatedH());
         contentPane.InterfaceElements[1].setReferenceType0(LogitechController.getController(0).getXRotationH(),LogitechController.getController(0).getYRotationH(),Color.BLACK,Color.CYAN);
         contentPane.InterfaceElements[2] = new Paintings(300,250,200,50,3,Color.BLACK,LogitechController.getController(0).getUpdatedH(4));
         contentPane.InterfaceElements[2].setReferenceType34(LogitechController.getController(0).getZAxisH(),Color.WHITE,Color.BLUE);
@@ -85,30 +88,31 @@ public class MainInterfaceFrame extends JFrame
         contentPane.InterfaceElements[9].setReferenceType2(LogitechController.getController(0).getButtonH(6),Color.RED, Color.GREEN);
         contentPane.InterfaceElements[10] = new Paintings(420,350,80,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(12));
         contentPane.InterfaceElements[10].setReferenceType2(LogitechController.getController(0).getButtonH(7),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[11] = new Paintings(50,550,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(13));
+        contentPane.InterfaceElements[11] = new Paintings(50,525,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(13));
         contentPane.InterfaceElements[11].setReferenceType2(LogitechController.getController(0).getButtonH(8),Color.RED, Color.GREEN);
-        contentPane.InterfaceElements[12] = new Paintings(675,550,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(14));
+        contentPane.InterfaceElements[12] = new Paintings(675,525,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(14));
         contentPane.InterfaceElements[12].setReferenceType2(LogitechController.getController(0).getButtonH(9),Color.RED, Color.GREEN);
         contentPane.InterfaceElements[13] = new Paintings(50,300,200,200,1,Color.BLACK,LogitechController.getController(0).getUpdatedH(15));
         contentPane.InterfaceElements[13].setReferenceType1(LogitechController.getController(0).getDPadH(),Color.BLACK, Color.CYAN);
-        contentPane.InterfaceElements[14] = new Paintings(800,300,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(0));
+        contentPane.InterfaceElements[14] = new Paintings(110,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(0));
         contentPane.InterfaceElements[14].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[15] = new Paintings(900,300,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(1));
+        contentPane.InterfaceElements[15] = new Paintings(210,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(1));
         contentPane.InterfaceElements[15].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[16] = new Paintings(1000,300,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(2));
+        contentPane.InterfaceElements[16] = new Paintings(310,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(2));
         contentPane.InterfaceElements[16].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[17] = new Paintings(1100,300,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(3));
+        contentPane.InterfaceElements[17] = new Paintings(410,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(3));
         contentPane.InterfaceElements[17].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[18] = new Paintings(1200,300,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(4));
+        contentPane.InterfaceElements[18] = new Paintings(510,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(4));
         contentPane.InterfaceElements[18].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[19] = new Paintings(1300,300,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(5));
+        contentPane.InterfaceElements[19] = new Paintings(610,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(5));
         contentPane.InterfaceElements[19].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[20] = new Paintings(800,550,200,30,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(6));
+        contentPane.InterfaceElements[20] = new Paintings(710,755,200,30,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(6));
         contentPane.InterfaceElements[20].setReferenceType34(SerialCommunication.getRobot().getGripperRotation(),Color.CYAN,Color.BLACK);
-        contentPane.InterfaceElements[21] = new Paintings(1050,550,200,30,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(7));
+        contentPane.InterfaceElements[21] = new Paintings(710,855,200,30,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(7));
         contentPane.InterfaceElements[21].setReferenceType34(SerialCommunication.getRobot().getGripperClamp(),Color.CYAN,Color.BLACK);
 
         setContentPane(contentPane);
+        setBackground(new Color(0, 100, 100, 255));
 
         getContentPane().setLayout(null);
 
@@ -153,18 +157,6 @@ public class MainInterfaceFrame extends JFrame
         lblSerialSent.setBounds(new Rectangle(625, 50, 130, 20));
         contentPane.add(lblSerialSent, BorderLayout.CENTER);
 
-        /*
-        JLabel lblGripperPositionName = new JLabel("Gripper's Current Position");
-        lblGripperPositionName.setName("lblGripperPosName");
-        lblGripperPositionName.setBounds(new Rectangle(625, 50, 130, 20));
-        contentPane.add(lblGripperPositionName, BorderLayout.EAST);
-
-        JLabel lblGripperPosition = new JLabel("");
-        lblGripperPosition.setName("lblGripperPos");
-        lblGripperPosition.setBounds(new Rectangle(625, 50, 130, 20));
-        contentPane.add(lblGripperPosition, BorderLayout.EAST);
-        */
-
         JList<String> listSerialSent = new JList<>(modelSerialSent);
         JScrollPane scrollPaneSerialSent = new JScrollPane();
         scrollPaneSerialSent.setViewportView(listSerialSent);
@@ -188,11 +180,6 @@ public class MainInterfaceFrame extends JFrame
 		lblChooseController.setName("lblChooseController");
 		lblChooseController.setBounds(new Rectangle(350, 50, 130, 20));
 		contentPane.add(lblChooseController, BorderLayout.CENTER);
-        /*
-        JLabel lblControllerDetails = new JLabel("No Controller Selected");
-        lblControllerDetails.setName("lblControllerDetails");
-        lblControllerDetails.setBounds(new Rectangle(750, 50, 1300, 800));
-        contentPane.add(lblControllerDetails, BorderLayout.CENTER);*/
 
 		JComboBox ControllerComboBox = new JComboBox();
 		ControllerComboBox.setBounds(new Rectangle(350, 80, 130, 30));
