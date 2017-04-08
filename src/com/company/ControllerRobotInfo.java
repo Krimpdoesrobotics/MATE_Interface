@@ -81,7 +81,7 @@ public class ControllerRobotInfo extends RobotInfo {
                 setMotorSpeed(3,0);
             }
         }
-        // Right Stick controls turning left n' right and up n' down
+        // Right Stick controls turning left and right, up and down
         //
         if (controller1.getRightAnalogUpdated()){
             //joystick that will contol vertical movement and turning
