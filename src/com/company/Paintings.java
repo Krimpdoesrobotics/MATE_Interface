@@ -10,6 +10,8 @@ import static com.company.RandomStuff.DoubleH.newDoubleH;
  */
 public class Paintings
 {
+    // instance variables
+    // private data
     private int x, y, width, height, type;
     private Color BorderColor;
     private BooleanH Updated;
