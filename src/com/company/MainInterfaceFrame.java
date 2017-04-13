@@ -2,8 +2,11 @@ package com.company;
 /**
  * Created by Richard on 2/17/2017.
  */
+import javafx.scene.shape.Line;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.*;
@@ -72,39 +75,39 @@ public class MainInterfaceFrame extends JFrame
         //Right Analog stick display
         contentPane.InterfaceElements[1] = new Paintings(425,525,200,200,0,Color.BLACK,LogitechController.getController(0).getRightAnalogUpdatedH());
         contentPane.InterfaceElements[1].setReferenceType0(LogitechController.getController(0).getXRotationH(),LogitechController.getController(0).getYRotationH(),Color.BLACK,Color.CYAN);
-        //WTF
+        //Up or down
         contentPane.InterfaceElements[2] = new Paintings(300,250,200,50,3,Color.BLACK,LogitechController.getController(0).getUpdatedH(4));
-        contentPane.InterfaceElements[2].setReferenceType34(LogitechController.getController(0).getZAxisH(),Color.WHITE,Color.BLUE);
+        contentPane.InterfaceElements[2].setReferenceType34(LogitechController.getController(0).getZAxisH(),Color.WHITE,Color.CYAN);
         //button maybe A
         contentPane.InterfaceElements[3] = new Paintings(620,440,60,60,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(5));
-        contentPane.InterfaceElements[3].setReferenceType2(LogitechController.getController(0).getButtonH(0),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[3].setReferenceType2(LogitechController.getController(0).getButtonH(0),Color.WHITE, Color.CYAN);
         //button maybe B
         contentPane.InterfaceElements[4] = new Paintings(690,370,60,60,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(6));
-        contentPane.InterfaceElements[4].setReferenceType2(LogitechController.getController(0).getButtonH(1),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[4].setReferenceType2(LogitechController.getController(0).getButtonH(1),Color.WHITE, Color.CYAN);
         //button maybe x
         contentPane.InterfaceElements[5] = new Paintings(550,370,60,60,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(7));
-        contentPane.InterfaceElements[5].setReferenceType2(LogitechController.getController(0).getButtonH(2),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[5].setReferenceType2(LogitechController.getController(0).getButtonH(2),Color.WHITE, Color.CYAN);
         //button maybe y
         contentPane.InterfaceElements[6] = new Paintings(620,300,60,60,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(8));
-        contentPane.InterfaceElements[6].setReferenceType2(LogitechController.getController(0).getButtonH(3),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[6].setReferenceType2(LogitechController.getController(0).getButtonH(3),Color.WHITE, Color.CYAN);
         //button maybe L
         contentPane.InterfaceElements[7] = new Paintings(50,250,200,30,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(9));
-        contentPane.InterfaceElements[7].setReferenceType2(LogitechController.getController(0).getButtonH(4),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[7].setReferenceType2(LogitechController.getController(0).getButtonH(4),Color.WHITE, Color.CYAN);
         //button maybe R
         contentPane.InterfaceElements[8] = new Paintings(550,250,200,30,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(10));
-        contentPane.InterfaceElements[8].setReferenceType2(LogitechController.getController(0).getButtonH(5),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[8].setReferenceType2(LogitechController.getController(0).getButtonH(5),Color.WHITE, Color.CYAN);
         //button maybe back
         contentPane.InterfaceElements[9] = new Paintings(300,350,80,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(11));
-        contentPane.InterfaceElements[9].setReferenceType2(LogitechController.getController(0).getButtonH(6),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[9].setReferenceType2(LogitechController.getController(0).getButtonH(6),Color.WHITE, Color.CYAN);
         //button maybe start
         contentPane.InterfaceElements[10] = new Paintings(420,350,80,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(12));
-        contentPane.InterfaceElements[10].setReferenceType2(LogitechController.getController(0).getButtonH(7),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[10].setReferenceType2(LogitechController.getController(0).getButtonH(7),Color.WHITE, Color.CYAN);
         //button maybe L-stick
         contentPane.InterfaceElements[11] = new Paintings(50,525,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(13));
-        contentPane.InterfaceElements[11].setReferenceType2(LogitechController.getController(0).getButtonH(8),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[11].setReferenceType2(LogitechController.getController(0).getButtonH(8),Color.WHITE, Color.CYAN);
         //button maybe R-stick
         contentPane.InterfaceElements[12] = new Paintings(675,525,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(14));
-        contentPane.InterfaceElements[12].setReferenceType2(LogitechController.getController(0).getButtonH(9),Color.RED, Color.GREEN);
+        contentPane.InterfaceElements[12].setReferenceType2(LogitechController.getController(0).getButtonH(9),Color.WHITE, Color.CYAN);
         //d-pad display
         contentPane.InterfaceElements[13] = new Paintings(50,300,200,200,1,Color.BLACK,LogitechController.getController(0).getUpdatedH(15));
         contentPane.InterfaceElements[13].setReferenceType1(LogitechController.getController(0).getDPadH(),Color.BLACK, Color.CYAN);
@@ -239,29 +242,62 @@ public class MainInterfaceFrame extends JFrame
         btnManualSerialSend.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.PortSender(txtManualSerialSend.getText().trim());}});
         contentPane.add(btnManualSerialSend, BorderLayout.CENTER);
 
+        // line to seperate
+
+        JLabel lblBorder = new JLabel();
+        lblBorder.setBounds(1040, 0, 20, (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight());
+        lblBorder.setOpaque(true);
+        lblBorder.setBackground(Color.BLACK);
+        contentPane.add(lblBorder, BorderLayout.CENTER);
+
         // checkboxes and the tasks variables
 
         ArrayList<JCheckBox> arrChkTasks = new ArrayList<>();
         ArrayList<JLabel> arrLblTasks = new ArrayList<>();
+        ArrayList<Integer> arrTasksPoints = new ArrayList<>();
         JLabel lblTasks = new JLabel("Tasks to be Completed");
-        JLabel lblPointBox = new JLabel();
         JLabel lblPoints = new JLabel();
         final int totalTasks = 20;
 
+        // makes boxes
+        lblTasks.setOpaque(true);
+        lblTasks.setBackground(Color.WHITE);
+        lblTasks.setBounds(1100, 50, 600, 40);
+        lblTasks.setHorizontalAlignment(SwingConstants.CENTER);
+        contentPane.add(lblTasks, BorderLayout.CENTER);
+
         for (int l = 0; l < totalTasks; l++) {
+            // points
+            arrTasksPoints.add(0);
+
             // labels
-            arrLblTasks.get(l).setBounds(1100, 50 + (l * 150), 200, 100);
+            arrLblTasks.add(new JLabel());
+            arrLblTasks.get(l).setOpaque(true);
+            arrLblTasks.get(l).setBackground(Color.WHITE);
+            arrLblTasks.get(l).setBounds(1100, 100 + (l * 40), 50, 40);
+            arrLblTasks.get(l).setHorizontalAlignment(SwingConstants.CENTER);
+            arrLblTasks.get(l).setText(String.valueOf(arrTasksPoints.get(l)));
             contentPane.add(arrLblTasks.get(l), BorderLayout.CENTER);
 
             // checkboxes
-            arrChkTasks.get(l).setBounds(1325, 50 + (l * 150), 400, 100);
+            arrChkTasks.add(new JCheckBox());
+            arrChkTasks.get(l).setBackground(Color.BLACK);
+            arrChkTasks.get(l).setBounds(1160, 100 + (l * 40), 540, 40);
             contentPane.add(arrChkTasks.get(l), BorderLayout.CENTER);
         }
+
+        lblPoints.setBounds(1100, 910, 600, 40);
+        lblPoints.setOpaque(true);
+        lblPoints.setBackground(Color.WHITE);
+        lblPoints.setHorizontalAlignment(SwingConstants.CENTER);
+        contentPane.add(lblPoints, BorderLayout.CENTER);
 
         // timer
         ControllerRefreshTimer = new Timer();
         ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,1000);
 
+        // colour
+        contentPane.setBackground(new Color(0, 200, 150, 255));
         createComponentMap();
     }
 
