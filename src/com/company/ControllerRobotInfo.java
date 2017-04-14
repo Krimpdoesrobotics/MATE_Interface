@@ -126,20 +126,16 @@ public class ControllerRobotInfo extends RobotInfo
         // D-Pad controls the Gripper control
         if (controller1.getUpdated(15)){
             // updated D-Pad
-            if(controller1.getDPadLeft()){getGripperRotation().setDouble(-0.5);}
-            else if (controller1.getDPadRight()){getGripperRotation().setDouble(0.5);}
-            else{getGripperRotation().setDouble(0);}
+            if(controller1.getDPadLeft()){setGripperRotation(-0.5);}
+            else if (controller1.getDPadRight()){setGripperRotation(0.5);}
+            else{setGripperRotation(0);}
             if (controller1.getDPadUp()){
-                getGripperClamp().setDouble(getGripperClamp().getDouble()+0.05);
-                if(getGripperClamp().getDouble() > 1){
-                    getGripperClamp().setDouble(1);
-                }
+                setGripperClamp(getGripperClamp().getDouble()+0.05);
+                if(getGripperClamp().getDouble() > 1){setGripperClamp(1);}
             }
             else if (controller1.getDPadDown()){
-                getGripperClamp().setDouble(getGripperClamp().getDouble()-0.05);
-                if(getGripperClamp().getDouble() < -1){
-                    getGripperClamp().setDouble(-1);
-                }
+                setGripperClamp(getGripperClamp().getDouble()-0.05);
+                if(getGripperClamp().getDouble() < -1){getGripperClamp().setDouble(-1);}
             }
         }
     }

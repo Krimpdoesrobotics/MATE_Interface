@@ -14,20 +14,23 @@ public class SerialCommunications
     // private data
     private String[] portNames;
     private String portSelected;
-    private SerialPort serialPort;
+    private static SerialPort serialPort;
     private boolean Opened =false;
+    private static byte[] Buffer = new byte[8];
+    private static int BufferState = 0;
     private String fullmessage;
     private int lastconsidered = 0;
-    private RobotInfo Robot;
+    private static RobotInfo Robot= new RobotInfo();
     private ControllerRobotInfo ControllerRobot;
     private int currentUpdate = 0;
 
     // constructor
     public SerialCommunications(GamepadController controller1, GamepadController controller2)
     {
-        Robot = new RobotInfo();
         ControllerRobot = new ControllerRobotInfo(controller1,controller2);
         // default constructor
+        for(int i = 0; i < 8; i++)
+            Buffer[i] = 0;
     }
 
     public RobotInfo getRobot(){return Robot;}
@@ -35,17 +38,10 @@ public class SerialCommunications
     public ControllerRobotInfo getControllerRobot(){return ControllerRobot;}
 
     public void sendRobotInfo(){
-        String stuff = "";
-        for(int i = 0; i < 6; i++){
-            stuff+=String.valueOf((int)((ControllerRobot.getMotorSpeed(i).getDouble()*90)+90));
-            stuff += ",";
-        }
-        stuff+=String.valueOf((int)((ControllerRobot.getGripperRotation().getDouble()*90)+90));
-        stuff += ",";
-        stuff+=String.valueOf((int)((ControllerRobot.getGripperClamp().getDouble()*90)+90));
-        stuff += ",";
-        System.out.print(stuff);
-        PortSender(stuff);
+        for(int i = 0; i < 6; i++)
+            PortSend((byte)(ControllerRobot.getMotorSpeed(i).getDouble()*90));
+        PortSend((byte)(ControllerRobot.getGripperRotation().getDouble()*90));
+        PortSend((byte)(ControllerRobot.getGripperClamp().getDouble()*90));
     }
     // refresh
     public void btnSerialRefreshClicked()
@@ -104,17 +100,18 @@ public class SerialCommunications
         }
     }
 
-    public void btnSerialSendRefreshClicked()
+    /*public void btnSerialSendRefreshClicked()
     {
         if(isOpen())
         {
             PortSender("A");
         }
-    }
+    }*/
+
     public boolean isOpen(){return Opened;}
 
     // outputs to the port
-    public boolean PortSender(String command) {
+    /*public boolean PortSender(String command) {
         try {
             serialPort.writeString(command);
             MainInterfaceFrame.addSerialSent(command);
@@ -123,9 +120,21 @@ public class SerialCommunications
             return false;
         }
         return true;
+    }*/
+
+    public boolean PortSend(byte val){
+        if(isOpen()){
+            try{
+                serialPort.writeByte(val);
+                return true;
+            } catch (SerialPortException ex){
+                System.out.println("Error sending byte: "+ex);
+            }
+        }
+        return false;
     }
 
-    public class PortReader implements SerialPortEventListener
+    private static class PortReader implements SerialPortEventListener
     {
         public void serialEvent(SerialPortEvent event)
         {
@@ -133,10 +142,24 @@ public class SerialCommunications
             {
                 try
                 {
-                    String receivedData = serialPort.readString(event.getEventValue());
+                    byte temparray[] = serialPort.readBytes(event.getEventValue());
+                    for(byte a: temparray){
+                        if(BufferState == 8){
+                            for(int i = 0; i < 6; i++)
+                                Robot.setMotorSpeed(i,(double)(Buffer[i]/128));
+                            Robot.setGripperRotation((double)(Buffer[6]/128));
+                            Robot.setGripperClamp((double)(Buffer[7]/128));
+                            Buffer[0] = a;
+                            BufferState = 1;
+                        }else{
+                            Buffer[BufferState] = a;
+                            BufferState++;
+                        }
+                    }
+                        
+                    /*String receivedData = serialPort.readString(event.getEventValue());
                     System.out.print(receivedData);
-                    if(receivedData.length() > 0)
-                    {
+                    if(receivedData.length() > 0) {
                         fullmessage += receivedData;
                         System.out.println(fullmessage);
                         if (fullmessage.length() > 0)
@@ -181,7 +204,7 @@ public class SerialCommunications
                                 }
                             }
                         }
-                    }
+                    }*/
                 } catch (SerialPortException ex) {
                     System.out.println("Error in receiving string from COM-port: " + ex);
                 }

@@ -168,12 +168,12 @@ public class MainInterfaceFrame extends JFrame
         btnSerialDisconnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialDisconnectClicked();}});
         contentPane.add(btnSerialDisconnect, BorderLayout.CENTER);
         // send refresh button
-        JButton btnSerialSendRefresh= new JButton("Send Refresh");
+        /*JButton btnSerialSendRefresh= new JButton("Send Refresh");
         btnSerialSendRefresh.setBounds(new Rectangle(75, 150, 100, 40));
         btnSerialSendRefresh.setName("btnSerialSendRefresh");
         btnSerialSendRefresh.setVisible(false);
         btnSerialSendRefresh.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialSendRefreshClicked();}});
-        contentPane.add(btnSerialSendRefresh, BorderLayout.CENTER);
+        contentPane.add(btnSerialSendRefresh, BorderLayout.CENTER);*/
         // sent serial messages display label
         JLabel lblSerialSent = new JLabel("Sent Serial Messages");
         lblSerialSent.setName("lblSerialSent");
@@ -229,7 +229,7 @@ public class MainInterfaceFrame extends JFrame
 		btnControllerDisconnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnController1DisconnectClicked();}});
 		contentPane.add(btnControllerDisconnect, BorderLayout.CENTER);
         // send serial message text box
-		final JTextField txtManualSerialSend = new JTextField("");
+		/*final JTextField txtManualSerialSend = new JTextField("");
 		txtManualSerialSend.setBounds(new Rectangle(50,200,200,30));
 		txtManualSerialSend.setName("txtManualSerialSend");
 		contentPane.add(txtManualSerialSend,BorderLayout.CENTER);
@@ -238,7 +238,7 @@ public class MainInterfaceFrame extends JFrame
         btnManualSerialSend.setBounds(new Rectangle(270, 200, 100, 30));
         btnManualSerialSend.setName("btnManualSerialSend");
         btnManualSerialSend.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.PortSender(txtManualSerialSend.getText().trim());}});
-        contentPane.add(btnManualSerialSend, BorderLayout.CENTER);
+        contentPane.add(btnManualSerialSend, BorderLayout.CENTER);*/
 
         // line to seperate
 
