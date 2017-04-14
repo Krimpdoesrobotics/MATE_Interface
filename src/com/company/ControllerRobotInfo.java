@@ -3,19 +3,23 @@ package com.company;
 /**
  * Created by richard on 4/2/17.
  */
-public class ControllerRobotInfo extends RobotInfo {
+public class ControllerRobotInfo extends RobotInfo
+{
     private final double pi = 3.14159;
     private final double reverseEfficencyHandicap = 1;
     private int timerCounter = 0;
     private int powerScaling = 1;   // this is from .1 to 1, and acts as a multiplier for power
     private GamepadController controller1, controller2;
-    public ControllerRobotInfo(GamepadController controller1, GamepadController controller2){
+    public ControllerRobotInfo(GamepadController controller1, GamepadController controller2)
+    {
         this.controller1 = controller1;
         this.controller2 = controller2;
     }
-    public void updateVariables(){
+    public void updateVariables()
+    {
         // Left Stick to move the robot forward, backward, left, or right.
-        if(controller1.getLeftAnalogUpdated()) {
+        if(controller1.getLeftAnalogUpdated())
+        {
             // joystick that will control lateral movement
             // This is the left controller and is controlled by 'values'
             double xVal = controller1.getXValue();//from -1 to 1
@@ -81,7 +85,7 @@ public class ControllerRobotInfo extends RobotInfo {
                 setMotorSpeed(3,0);
             }
         }
-        // Right Stick controls turning left n' right and up n' down
+        // Right Stick controls turning left and right, up and down
         //
         if (controller1.getRightAnalogUpdated()){
             //joystick that will contol vertical movement and turning

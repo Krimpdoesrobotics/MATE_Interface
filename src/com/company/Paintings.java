@@ -6,10 +6,12 @@ import com.company.RandomStuff.*;
 import static com.company.RandomStuff.DoubleH.newDoubleH;
 
 /**
- * Created by julia on 3/25/2017.
+ * Created by richard on 3/25/2017.
  */
 public class Paintings
 {
+    // instance variables
+    // private data
     private int x, y, width, height, type;
     private Color BorderColor;
     private BooleanH Updated;
