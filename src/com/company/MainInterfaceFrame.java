@@ -2,11 +2,9 @@ package com.company;
 /**
  * Created by Richard on 2/17/2017.
  */
-import javafx.scene.shape.Line;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.*;
