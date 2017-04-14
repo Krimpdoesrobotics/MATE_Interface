@@ -257,9 +257,7 @@ public class MainInterfaceFrame extends JFrame
     }
 
     public static Component getComponentByName(String name)    {
-        if (componentMap.containsKey(name))        {
-            return (Component) componentMap.get(name);
-        }
+        if (componentMap.containsKey(name))  return (Component) componentMap.get(name);
         else return null;
     }
 

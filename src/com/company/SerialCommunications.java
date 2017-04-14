@@ -143,16 +143,16 @@ public class SerialCommunications
                         {
                             int messageend, messagecontent;
                             messageend = -1;
-                            //
-                            // breaks up the message into the motor
-                            // then length of incoming string
-                            // then motor speed
-                            // 8-2-20
-                            //
                             while (fullmessage.length() > lastconsidered) {
                                 for(int i = lastconsidered+1; i < fullmessage.length(); i++){
                                     if(fullmessage.charAt(i) == ','){
                                         messageend = i-1;
+                                        //
+                                        // breaks up the message into the motor
+                                        // then length of incoming string
+                                        // then motor speed
+                                        // 8-2-20
+                                        //
                                         break;
                                     }
                                 }
