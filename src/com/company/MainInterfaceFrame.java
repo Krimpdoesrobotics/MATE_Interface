@@ -117,19 +117,19 @@ public class MainInterfaceFrame extends JFrame
         contentPane.InterfaceElements[14].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
         //motor 2 display
         contentPane.InterfaceElements[15] = new Paintings(210,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(1));
-        contentPane.InterfaceElements[15].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[15].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(1),Color.CYAN,Color.BLACK);
         //motor 3 display
         contentPane.InterfaceElements[16] = new Paintings(310,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(2));
-        contentPane.InterfaceElements[16].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[16].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(2),Color.CYAN,Color.BLACK);
         //motor 4 display
         contentPane.InterfaceElements[17] = new Paintings(410,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(3));
-        contentPane.InterfaceElements[17].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[17].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(3),Color.CYAN,Color.BLACK);
         //motor 5 display
         contentPane.InterfaceElements[18] = new Paintings(510,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(4));
-        contentPane.InterfaceElements[18].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[18].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(4),Color.CYAN,Color.BLACK);
         //motor 6 display
         contentPane.InterfaceElements[19] = new Paintings(610,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(5));
-        contentPane.InterfaceElements[19].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
+        contentPane.InterfaceElements[19].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(5),Color.CYAN,Color.BLACK);
         //gripper rotation
         contentPane.InterfaceElements[20] = new Paintings(710,755,200,30,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(6));
         contentPane.InterfaceElements[20].setReferenceType34(SerialCommunication.getRobot().getGripperRotation(),Color.CYAN,Color.BLACK);
