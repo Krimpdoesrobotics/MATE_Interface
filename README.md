@@ -89,7 +89,6 @@ are high risk – 5 points each (20 points total)
 • Attaching a buoy marker to the U-bolt on the container with the highest-risk cargo – 10 points
 • Determining the direction and distance, within 10 cm, from the highest-risk container to the other
 three containers – 5 points each (15 points total)
-2017 RANGER Class 25
 • Using the distance and direction to make a survey map of the incident site – 10 points
 Total points = 80
 
