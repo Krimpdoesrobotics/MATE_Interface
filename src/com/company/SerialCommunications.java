@@ -144,6 +144,7 @@ public class SerialCommunications
                 {
                     byte temparray[] = serialPort.readBytes(event.getEventValue());
                     for(byte a: temparray){
+                        System.out.print(a);
                         if(BufferState == 8){
                             for(int i = 0; i < 6; i++)
                                 Robot.setMotorSpeed(i,(double)(Buffer[i]/128));

@@ -255,7 +255,8 @@ public class MainInterfaceFrame extends JFrame
         ArrayList<Integer> arrTasksPoints = new ArrayList<>();
         JLabel lblTasks = new JLabel("Tasks to be Completed");
         JLabel lblPoints = new JLabel();
-        final int totalTasks = 20;
+        int points = 0;
+        final int totalTasks = 16;
 
         // makes boxes
         lblTasks.setOpaque(true);
@@ -275,12 +276,14 @@ public class MainInterfaceFrame extends JFrame
             arrLblTasks.get(l).setBounds(1100, 100 + (l * 40), 50, 40);
             arrLblTasks.get(l).setHorizontalAlignment(SwingConstants.CENTER);
             arrLblTasks.get(l).setText(String.valueOf(arrTasksPoints.get(l)));
+            arrLblTasks.get(l).setFont(new Font("Comic Sans MS", Font.PLAIN, 20 ));
             contentPane.add(arrLblTasks.get(l), BorderLayout.CENTER);
 
             // checkboxes
             arrChkTasks.add(new JCheckBox());
             arrChkTasks.get(l).setBackground(Color.BLACK);
             arrChkTasks.get(l).setBounds(1160, 100 + (l * 40), 540, 40);
+            arrChkTasks.get(l).setFont(new Font("Comic Sans MS", Font.PLAIN, 16 ));
             contentPane.add(arrChkTasks.get(l), BorderLayout.CENTER);
         }
 
@@ -290,9 +293,78 @@ public class MainInterfaceFrame extends JFrame
         lblPoints.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(lblPoints, BorderLayout.CENTER);
 
+        arrLblTasks.get(0).setText("20");
+        arrLblTasks.get(1).setText("5");
+        arrLblTasks.get(2).setText("10");
+        arrLblTasks.get(3).setText("5");
+        arrLblTasks.get(4).setText("10");
+        arrLblTasks.get(5).setText("5");
+        arrLblTasks.get(6).setText("5");
+        arrLblTasks.get(7).setText("5");
+        arrLblTasks.get(8).setText("5");
+        arrLblTasks.get(9).setText("10");
+        arrLblTasks.get(10).setText("10");
+        arrLblTasks.get(11).setText("5");
+        arrLblTasks.get(12).setText("5");
+        arrLblTasks.get(13).setText("5");
+        arrLblTasks.get(14).setText("10");
+        arrLblTasks.get(15).setText("10");
+
+        arrChkTasks.get(0).setText("Installing the frame onto the baseplate");
+        arrChkTasks.get(1).setText("5");
+        arrChkTasks.get(2).setText("10");
+        arrChkTasks.get(3).setText("5");
+        arrChkTasks.get(4).setText("10");
+        arrChkTasks.get(5).setText("5");
+        arrChkTasks.get(6).setText("5");
+        arrChkTasks.get(7).setText("5");
+        arrChkTasks.get(8).setText("5");
+        arrChkTasks.get(9).setText("10");
+        arrChkTasks.get(10).setText("10");
+        arrChkTasks.get(11).setText("5");
+        arrChkTasks.get(12).setText("5");
+        arrChkTasks.get(13).setText("5");
+        arrChkTasks.get(14).setText("10");
+        arrChkTasks.get(15).setText("10");
+
+        if (arrChkTasks.get(0).isSelected()) {
+            points += 20;
+            lblPoints.setText("Total Points: " + points);
+        } else if (arrChkTasks.get(1).isSelected()) {
+
+        } else if (arrChkTasks.get(2).isSelected()) {
+
+        } else if (arrChkTasks.get(3).isSelected()) {
+
+        } else if (arrChkTasks.get(4).isSelected()) {
+
+        } else if (arrChkTasks.get(5).isSelected()) {
+
+        } else if (arrChkTasks.get(6).isSelected()) {
+
+        } else if (arrChkTasks.get(7).isSelected()) {
+
+        } else if (arrChkTasks.get(8).isSelected()) {
+
+        } else if (arrChkTasks.get(9).isSelected()) {
+
+        } else if (arrChkTasks.get(10).isSelected()) {
+
+        } else if (arrChkTasks.get(11).isSelected()) {
+
+        } else if (arrChkTasks.get(12).isSelected()) {
+
+        } else if (arrChkTasks.get(13).isSelected()) {
+
+        } else if (arrChkTasks.get(14).isSelected()) {
+
+        } else if (arrChkTasks.get(15).isSelected()) {
+
+        }
+
         // timer
         ControllerRefreshTimer = new Timer();
-        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,1000);
+        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,50);
 
         // colour
         contentPane.setBackground(new Color(0, 200, 150, 255));
