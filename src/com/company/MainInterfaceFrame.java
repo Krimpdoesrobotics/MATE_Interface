@@ -34,9 +34,12 @@ public class MainInterfaceFrame extends JFrame
                 SerialCommunication.getControllerRobot().updateVariables();
             }
             contentPane.Refresh();
-            if(SerialCommunication.isOpen()) {
+            if(SerialCommunication.isOpen()&&SerialCommunication.getTimeSinceLastUpdate()>20 && SerialCommunication.getTimeSinceLastUpdate() % 10 == 0) {
                 SerialCommunication.getControllerRobot().resetUpdated();
                 SerialCommunication.sendRobotInfo();
+            }
+            if(SerialCommunication.isOpen()){
+                SerialCommunication.incrementTime();
             }
             if(LogitechController.getController(0).isConnected()){LogitechController.getController(0).resetUpdated();}
         }
@@ -364,7 +367,7 @@ public class MainInterfaceFrame extends JFrame
 
         // timer
         ControllerRefreshTimer = new Timer();
-        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,20);
+        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,50);
 
         // colour
         contentPane.setBackground(new Color(0, 200, 150, 255));
@@ -407,16 +410,16 @@ public class MainInterfaceFrame extends JFrame
 
     public static void addSerialSent(String obj)    {
         modelSerialSent.addElement(obj);
-        if(modelSerialSent.capacity()> 27){
+        /*if(modelSerialSent.capacity()> 27){
             modelSerialSent.removeRange(0,13);
-        }
+        }*/
     }
 
     public static void addSerialReceived(String obj)    {
         modelSerialReceived.addElement(obj);
-        if(modelSerialReceived.capacity() > 27){
+        /*if(modelSerialReceived.capacity() > 27){
             modelSerialReceived.removeRange(0,13);
-        }
+        }*/
     }
 
     // COMPONENTS LIST //

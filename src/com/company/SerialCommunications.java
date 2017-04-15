@@ -23,6 +23,7 @@ public class SerialCommunications
     private static RobotInfo Robot= new RobotInfo();
     private ControllerRobotInfo ControllerRobot;
     private int currentUpdate = 0;
+    private int TimeSinceLastUpdate = -1;
 
     // constructor
     public SerialCommunications(GamepadController controller1, GamepadController controller2)
@@ -37,11 +38,17 @@ public class SerialCommunications
 
     public ControllerRobotInfo getControllerRobot(){return ControllerRobot;}
 
+    public int getTimeSinceLastUpdate(){return TimeSinceLastUpdate;}
+
+    public void incrementTime(){TimeSinceLastUpdate++;}
+
     public void sendRobotInfo(){
+        byte[] stuff = new byte[8];
         for(int i = 0; i < 6; i++)
-            PortSend((byte)(ControllerRobot.getMotorSpeed(i).getDouble()*90));
-        PortSend((byte)(ControllerRobot.getGripperRotation().getDouble()*90));
-        PortSend((byte)(ControllerRobot.getGripperClamp().getDouble()*90));
+            stuff[i] = (byte)(ControllerRobot.getMotorSpeed(i).getDouble()*90+90);
+        stuff[6]=(byte)(ControllerRobot.getGripperRotation().getDouble()*90+90);
+        stuff[7]=(byte)(ControllerRobot.getGripperClamp().getDouble()*90+90);
+        PortSend(stuff);
     }
     // refresh
     public void btnSerialRefreshClicked()
@@ -68,7 +75,7 @@ public class SerialCommunications
     public void btnSerialConnectClicked() {
         MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(false);
         MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(true);
-        MainInterfaceFrame.getComponentByName("btnSerialSendRefresh").setVisible(true);
+        //MainInterfaceFrame.getComponentByName("btnSerialSendRefresh").setVisible(true);
         try   {
             portSelected = MainInterfaceFrame.getSelectedPort();
             serialPort = new SerialPort(portSelected);
@@ -83,6 +90,7 @@ public class SerialCommunications
                     SerialPort.FLOWCONTROL_RTSCTS_OUT);
 
             serialPort.addEventListener(new PortReader(), SerialPort.MASK_RXCHAR);
+            TimeSinceLastUpdate = 0;
         } catch (SerialPortException ex) {
             System.out.println("There are an error on writing string to port: " + ex);
         }
@@ -91,7 +99,7 @@ public class SerialCommunications
     {
         MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(false);
         MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(true);
-        MainInterfaceFrame.getComponentByName("btnSerialSendRefresh").setVisible(false);
+        //MainInterfaceFrame.getComponentByName("btnSerialSendRefresh").setVisible(false);
         try {
             serialPort.closePort();
             Opened=false;
@@ -122,10 +130,10 @@ public class SerialCommunications
         return true;
     }*/
 
-    public boolean PortSend(byte val){
+    public boolean PortSend(byte[] val){
         if(isOpen()){
             try{
-                serialPort.writeByte(val);
+                serialPort.writeBytes(val);
                 return true;
             } catch (SerialPortException ex){
                 System.out.println("Error sending byte: "+ex);
@@ -142,9 +150,12 @@ public class SerialCommunications
             {
                 try
                 {
+                    String toDisplay = "Output:";
                     System.out.print("Output:");
                     for(int j = 0; j < 8; j++){
                         byte a[] = serialPort.readBytes(1);
+                        int temp = (int)(a[0]);
+                        toDisplay += String.valueOf(temp);
                         System.out.print(a[0]);
                         if(j == 6){
                             Robot.setGripperRotation((double)(a[0]/90));
@@ -154,55 +165,7 @@ public class SerialCommunications
                             Robot.setMotorSpeed(j,(double)(a[0]/90));
                         }
                     }
-                        
-                    /*String receivedData = serialPort.readString(event.getEventValue());
-                    System.out.print(receivedData);
-                    if(receivedData.length() > 0) {
-                        fullmessage += receivedData;
-                        System.out.println(fullmessage);
-                        if (fullmessage.length() > 0)
-                        {
-                            int messageend, messagecontent;
-                            messageend = -1;
-                            while (fullmessage.length() > lastconsidered) {
-                                for(int i = lastconsidered+1; i < fullmessage.length(); i++){
-                                    if(fullmessage.charAt(i) == ','){
-                                        messageend = i-1;
-                                        //
-                                        // breaks up the message into the motor
-                                        // then length of incoming string
-                                        // then motor speed
-                                        // 8-2-20
-                                        //
-                                        break;
-                                    }
-                                }
-                                if(messageend > -1){
-                                    messagecontent = Integer.getInteger(fullmessage.substring(lastconsidered,messageend));
-                                    MainInterfaceFrame.addSerialReceived(String.valueOf(messagecontent));
-                                    switch(currentUpdate){
-                                        case 6:
-                                            Robot.setGripperRotation((((double) messagecontent)-90)/90);
-                                            break;
-                                        case 7:
-                                            Robot.setGripperClamp((((double) messagecontent)-90)/90);
-                                            currentUpdate = -1;
-                                            String someString = fullmessage.substring(messageend+1);
-                                            fullmessage = someString;
-                                            messageend = -1;
-                                            break;
-                                        default:
-                                            Robot.setMotorSpeed(currentUpdate,(((double) messagecontent)-90)/90);
-                                            break;
-                                    }
-                                    lastconsidered = messageend+1;
-                                    currentUpdate++;
-                                }else{
-                                    break;
-                                }
-                            }
-                        }
-                    }*/
+                    MainInterfaceFrame.addSerialReceived(toDisplay);
                 } catch (SerialPortException ex) {
                     System.out.println("Error in receiving string from COM-port: " + ex);
                 }
