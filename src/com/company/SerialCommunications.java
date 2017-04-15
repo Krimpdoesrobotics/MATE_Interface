@@ -42,12 +42,22 @@ public class SerialCommunications
 
     public void incrementTime(){TimeSinceLastUpdate++;}
 
+    public byte fromDouble(double a){
+        int b = (int)(a*90+90);
+        if(b>=128){
+            b = -1*(256-b);
+            return ((byte) b);
+        }else{
+            return ((byte)b);
+        }
+    }
+
     public void sendRobotInfo(){
         byte[] stuff = new byte[8];
         for(int i = 0; i < 6; i++)
-            stuff[i] = (byte)(ControllerRobot.getMotorSpeed(i).getDouble()*90+90);
-        stuff[6]=(byte)(ControllerRobot.getGripperRotation().getDouble()*90+90);
-        stuff[7]=(byte)(ControllerRobot.getGripperClamp().getDouble()*90+90);
+            stuff[i] = fromDouble(ControllerRobot.getMotorSpeed(i).getDouble());
+        stuff[6]=fromDouble(ControllerRobot.getGripperRotation().getDouble());
+        stuff[7]=fromDouble(ControllerRobot.getGripperClamp().getDouble());
         PortSend(stuff);
     }
     // refresh
@@ -162,15 +172,18 @@ public class SerialCommunications
                     for(int j = 0; j < 8; j++){
                         byte a[] = serialPort.readBytes(1);
                         int temp = (int)(a[0]);
+                        if(temp < 0){
+                            temp = 256+temp;
+                        }
                         toDisplay+= " ";
                         toDisplay += String.valueOf(temp);
                         System.out.print(a[0]);
                         if(j == 6){
-                            Robot.setGripperRotation((double)(a[0]/90));
+                            Robot.setGripperRotation((double)(temp)/90);
                         }else if(j == 7){
-                            Robot.setGripperClamp((double)(a[0]/90));
+                            Robot.setGripperClamp((double)(temp)/90);
                         }else{
-                            Robot.setMotorSpeed(j,(double)(a[0]/90));
+                            Robot.setMotorSpeed(j,(double)(temp)/90);
                         }
                     }
                     MainInterfaceFrame.addSerialReceived(toDisplay);
