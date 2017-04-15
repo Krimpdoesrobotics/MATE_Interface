@@ -250,19 +250,20 @@ public class MainInterfaceFrame extends JFrame
 
         // checkboxes and the tasks variables
 
-        ArrayList<JCheckBox> arrChkTasks = new ArrayList<>();
+        final ArrayList<JCheckBox> arrChkTasks = new ArrayList<>();
         ArrayList<JLabel> arrLblTasks = new ArrayList<>();
         ArrayList<Integer> arrTasksPoints = new ArrayList<>();
         JLabel lblTasks = new JLabel("Tasks to be Completed");
-        JLabel lblPoints = new JLabel();
+        final JLabel lblPoints = new JLabel("0");
         int points = 0;
         final int totalTasks = 16;
 
         // makes boxes
         lblTasks.setOpaque(true);
         lblTasks.setBackground(Color.WHITE);
-        lblTasks.setBounds(1100, 50, 600, 40);
+        lblTasks.setBounds(1100, 50, 780, 40);
         lblTasks.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTasks.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         contentPane.add(lblTasks, BorderLayout.CENTER);
 
         for (int l = 0; l < totalTasks; l++) {
@@ -276,22 +277,137 @@ public class MainInterfaceFrame extends JFrame
             arrLblTasks.get(l).setBounds(1100, 100 + (l * 40), 50, 40);
             arrLblTasks.get(l).setHorizontalAlignment(SwingConstants.CENTER);
             arrLblTasks.get(l).setText(String.valueOf(arrTasksPoints.get(l)));
-            arrLblTasks.get(l).setFont(new Font("Comic Sans MS", Font.PLAIN, 20 ));
+            arrLblTasks.get(l).setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
             contentPane.add(arrLblTasks.get(l), BorderLayout.CENTER);
 
             // checkboxes
             arrChkTasks.add(new JCheckBox());
             arrChkTasks.get(l).setBackground(Color.BLACK);
-            arrChkTasks.get(l).setBounds(1160, 100 + (l * 40), 540, 40);
+            arrChkTasks.get(l).setBounds(1160, 100 + (l * 40), 720, 40);
             arrChkTasks.get(l).setFont(new Font("Comic Sans MS", Font.PLAIN, 16 ));
+            arrChkTasks.get(l).setForeground(Color.WHITE);
             contentPane.add(arrChkTasks.get(l), BorderLayout.CENTER);
         }
 
-        lblPoints.setBounds(1100, 910, 600, 40);
+        lblPoints.setBounds(1100, 910, 780, 40);
         lblPoints.setOpaque(true);
         lblPoints.setBackground(Color.WHITE);
         lblPoints.setHorizontalAlignment(SwingConstants.CENTER);
+        lblPoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         contentPane.add(lblPoints, BorderLayout.CENTER);
+
+        arrChkTasks.get(0).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arrChkTasks.get(0).setSelected(true);
+                tallyPoints(arrChkTasks, lblPoints);
+            }
+        });
+        arrChkTasks.get(1).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arrChkTasks.get(1).setSelected(true);
+                tallyPoints(arrChkTasks, lblPoints);
+            }
+        });
+        arrChkTasks.get(2).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arrChkTasks.get(2).setSelected(true);
+                tallyPoints(arrChkTasks, lblPoints);
+            }
+        });
+        arrChkTasks.get(3).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arrChkTasks.get(3).setSelected(true);
+                tallyPoints(arrChkTasks, lblPoints);
+            }
+        });
+        arrChkTasks.get(4).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arrChkTasks.get(4).setSelected(true);
+                tallyPoints(arrChkTasks, lblPoints);
+            }
+        });
+        arrChkTasks.get(5).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arrChkTasks.get(5).setSelected(true);
+                tallyPoints(arrChkTasks, lblPoints);
+            }
+        });
+        arrChkTasks.get(6).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arrChkTasks.get(6).setSelected(true);
+                tallyPoints(arrChkTasks, lblPoints);
+            }
+        });
+        arrChkTasks.get(7).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arrChkTasks.get(7).setSelected(true);
+                tallyPoints(arrChkTasks, lblPoints);
+            }
+        });
+        arrChkTasks.get(8).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arrChkTasks.get(8).setSelected(true);
+                tallyPoints(arrChkTasks, lblPoints);
+            }
+        });
+        arrChkTasks.get(9).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arrChkTasks.get(9).setSelected(true);
+                tallyPoints(arrChkTasks, lblPoints);
+            }
+        });
+        arrChkTasks.get(10).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arrChkTasks.get(10).setSelected(true);
+                tallyPoints(arrChkTasks, lblPoints);
+            }
+        });
+        arrChkTasks.get(11).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arrChkTasks.get(11).setSelected(true);
+                tallyPoints(arrChkTasks, lblPoints);
+            }
+        });
+        arrChkTasks.get(12).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arrChkTasks.get(12).setSelected(true);
+                tallyPoints(arrChkTasks, lblPoints);
+            }
+        });
+        arrChkTasks.get(13).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arrChkTasks.get(13).setSelected(true);
+                tallyPoints(arrChkTasks, lblPoints);
+            }
+        });
+        arrChkTasks.get(14).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arrChkTasks.get(14).setSelected(true);
+                tallyPoints(arrChkTasks, lblPoints);
+            }
+        });
+        arrChkTasks.get(15).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                arrChkTasks.get(15).setSelected(true);
+                tallyPoints(arrChkTasks, lblPoints);
+            }
+        });
 
         arrLblTasks.get(0).setText("20");
         arrLblTasks.get(1).setText("5");
@@ -311,56 +427,21 @@ public class MainInterfaceFrame extends JFrame
         arrLblTasks.get(15).setText("10");
 
         arrChkTasks.get(0).setText("Installing the frame onto the baseplate");
-        arrChkTasks.get(1).setText("5");
-        arrChkTasks.get(2).setText("10");
-        arrChkTasks.get(3).setText("5");
-        arrChkTasks.get(4).setText("10");
-        arrChkTasks.get(5).setText("5");
-        arrChkTasks.get(6).setText("5");
-        arrChkTasks.get(7).setText("5");
-        arrChkTasks.get(8).setText("5");
-        arrChkTasks.get(9).setText("10");
-        arrChkTasks.get(10).setText("10");
-        arrChkTasks.get(11).setText("5");
-        arrChkTasks.get(12).setText("5");
-        arrChkTasks.get(13).setText("5");
-        arrChkTasks.get(14).setText("10");
-        arrChkTasks.get(15).setText("10");
-
-        if (arrChkTasks.get(0).isSelected()) {
-            points += 20;
-            lblPoints.setText("Total Points: " + points);
-        } else if (arrChkTasks.get(1).isSelected()) {
-
-        } else if (arrChkTasks.get(2).isSelected()) {
-
-        } else if (arrChkTasks.get(3).isSelected()) {
-
-        } else if (arrChkTasks.get(4).isSelected()) {
-
-        } else if (arrChkTasks.get(5).isSelected()) {
-
-        } else if (arrChkTasks.get(6).isSelected()) {
-
-        } else if (arrChkTasks.get(7).isSelected()) {
-
-        } else if (arrChkTasks.get(8).isSelected()) {
-
-        } else if (arrChkTasks.get(9).isSelected()) {
-
-        } else if (arrChkTasks.get(10).isSelected()) {
-
-        } else if (arrChkTasks.get(11).isSelected()) {
-
-        } else if (arrChkTasks.get(12).isSelected()) {
-
-        } else if (arrChkTasks.get(13).isSelected()) {
-
-        } else if (arrChkTasks.get(14).isSelected()) {
-
-        } else if (arrChkTasks.get(15).isSelected()) {
-
-        }
+        arrChkTasks.get(1).setText("Removing a pin to release the chains holding the frame");
+        arrChkTasks.get(2).setText("Transporting and positioning the hose for pouring concrete into the frame");
+        arrChkTasks.get(3).setText("Disconnecting the power cable from the platform");
+        arrChkTasks.get(4).setText("Turning the valve to stop the flow of water to the platform");
+        arrChkTasks.get(5).setText("Disengaging the locking mechanism at the base of the fountain");
+        arrChkTasks.get(6).setText("Removing the old fountain");
+        arrChkTasks.get(7).setText("Installing the new fountain");
+        arrChkTasks.get(8).setText("Re-engaging the locking mechanism at the base of the fountain");
+        arrChkTasks.get(9).setText("Turning the valve to restore the flow of water to the platform");
+        arrChkTasks.get(10).setText("Reconnecting the power cable to the platform");
+        arrChkTasks.get(11).setText("Returning the old fountain to the surface, side of the pool");
+        arrChkTasks.get(12).setText("Using a simulated Raman spectrometer to determine if contaminants are present in two areas");
+        arrChkTasks.get(13).setText("Locating the four cargo containers");
+        arrChkTasks.get(14).setText("Attaching a buoy marker to the U-bolt on the container with the highest-risk cargo");
+        arrChkTasks.get(15).setText("Using the distance and direction to make a survey map of the incident site");
 
         // timer
         ControllerRefreshTimer = new Timer();
@@ -381,6 +462,65 @@ public class MainInterfaceFrame extends JFrame
             ScrollPaneSent.getVerticalScrollBar().setValue(ScrollPaneSent.getVerticalScrollBar().getMaximum());
         }
     }
+    private void tallyPoints(ArrayList<JCheckBox> arrChkTasks, JLabel lblPoints) {
+        int points = 0;
+        if (lblPoints.getText().length() < 2) {
+            points = 0;
+        } else {
+            points = Integer.parseInt(lblPoints.getText().substring(14, lblPoints.getText().length()));
+        }
+
+        if (arrChkTasks.get(15).isSelected()) {
+            points += 10;
+            lblPoints.setText("Total Points: " + points);
+        } else if (arrChkTasks.get(14).isSelected()) {
+            points += 10;
+            lblPoints.setText("Total Points: " + points);
+        } else if (arrChkTasks.get(13).isSelected()) {
+            points += 5;
+            lblPoints.setText("Total Points: " + points);
+        } else if (arrChkTasks.get(12).isSelected()) {
+            points += 5;
+            lblPoints.setText("Total Points: " + points);
+        } else if (arrChkTasks.get(11).isSelected()) {
+            points += 5;
+            lblPoints.setText("Total Points: " + points);
+        } else if (arrChkTasks.get(10).isSelected()) {
+            points += 10;
+            lblPoints.setText("Total Points: " + points);
+        } else if (arrChkTasks.get(9).isSelected()) {
+            points += 10;
+            lblPoints.setText("Total Points: " + points);
+        } else if (arrChkTasks.get(8).isSelected()) {
+            points += 5;
+            lblPoints.setText("Total Points: " + points);
+        } else if (arrChkTasks.get(7).isSelected()) {
+            points += 5;
+            lblPoints.setText("Total Points: " + points);
+        } else if (arrChkTasks.get(6).isSelected()) {
+            points += 5;
+            lblPoints.setText("Total Points: " + points);
+        } else if (arrChkTasks.get(5).isSelected()) {
+            points += 5;
+            lblPoints.setText("Total Points: " + points);
+        } else if (arrChkTasks.get(4).isSelected()) {
+            points += 10;
+            lblPoints.setText("Total Points: " + points);
+        } else if (arrChkTasks.get(3).isSelected()) {
+            points += 5;
+            lblPoints.setText("Total Points: " + points);
+        } else if (arrChkTasks.get(2).isSelected()) {
+            points += 10;
+            lblPoints.setText("Total Points: " + points);
+        } else if (arrChkTasks.get(1).isSelected()) {
+            points += 5;
+            lblPoints.setText("Total Points: " + points);
+        } else if (arrChkTasks.get(0).isSelected()) {
+            points += 20;
+            lblPoints.setText("Total Points: " + points);
+        }
+    }
+
 
     public void createComponentMap()    {
         componentMap = new HashMap<String,Component>();
