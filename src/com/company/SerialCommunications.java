@@ -138,23 +138,20 @@ public class SerialCommunications
     {
         public void serialEvent(SerialPortEvent event)
         {
-            if (event.isRXCHAR() && event.getEventValue() > 0)
+            if (event.isRXCHAR() && event.getEventValue() > 8)
             {
                 try
                 {
-                    byte temparray[] = serialPort.readBytes(event.getEventValue());
-                    for(byte a: temparray){
-                        System.out.print(a);
-                        if(BufferState == 8){
-                            for(int i = 0; i < 6; i++)
-                                Robot.setMotorSpeed(i,(double)(Buffer[i]/128));
-                            Robot.setGripperRotation((double)(Buffer[6]/128));
-                            Robot.setGripperClamp((double)(Buffer[7]/128));
-                            Buffer[0] = a;
-                            BufferState = 1;
+                    System.out.print("Output:");
+                    for(int j = 0; j < 8; j++){
+                        byte a[] = serialPort.readBytes(1);
+                        System.out.print(a[0]);
+                        if(j == 6){
+                            Robot.setGripperRotation((double)(a[0]/90));
+                        }else if(j == 7){
+                            Robot.setGripperClamp((double)(a[0]/90));
                         }else{
-                            Buffer[BufferState] = a;
-                            BufferState++;
+                            Robot.setMotorSpeed(j,(double)(a[0]/90));
                         }
                     }
                         

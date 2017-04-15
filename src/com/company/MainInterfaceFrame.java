@@ -445,7 +445,7 @@ public class MainInterfaceFrame extends JFrame
 
         // timer
         ControllerRefreshTimer = new Timer();
-        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,50);
+        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,20);
 
         // colour
         contentPane.setBackground(new Color(0, 200, 150, 255));
