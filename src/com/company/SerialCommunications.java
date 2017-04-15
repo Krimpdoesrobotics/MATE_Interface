@@ -134,6 +134,13 @@ public class SerialCommunications
         if(isOpen()){
             try{
                 serialPort.writeBytes(val);
+                String stuff ="I:";
+                for(int i=0; i< 8;i++){
+                    stuff += " ";
+                    int temp = (int)(val[i]);
+                    stuff += String.valueOf(temp);
+                }
+                MainInterfaceFrame.addSerialSent(stuff);
                 return true;
             } catch (SerialPortException ex){
                 System.out.println("Error sending byte: "+ex);
@@ -150,11 +157,12 @@ public class SerialCommunications
             {
                 try
                 {
-                    String toDisplay = "Output:";
-                    System.out.print("Output:");
+                    String toDisplay = "O:";
+                    System.out.print("O:");
                     for(int j = 0; j < 8; j++){
                         byte a[] = serialPort.readBytes(1);
                         int temp = (int)(a[0]);
+                        toDisplay+= " ";
                         toDisplay += String.valueOf(temp);
                         System.out.print(a[0]);
                         if(j == 6){
