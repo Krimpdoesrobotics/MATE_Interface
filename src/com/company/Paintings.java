@@ -182,13 +182,12 @@ public class Paintings
             g.setColor(OuterColor);
             g.fillRect(x,y,width,height);
             g.setColor(FillColor);
-            if(FillAmount.getDouble() > 0)
-            {
-                g.fillRect(x,(int)(y+(height/2)-(FillAmount.getDouble()*(height/2))),width,(int)(FillAmount.getDouble()*(height/-2)));
+            if(FillAmount.getDouble() > 0){
+                g.fillRect(x,(int)(y+(height/2)-(FillAmount.getDouble()*(height/2))),width,(int)(FillAmount.getDouble()*(height/2)));
             } else {
-                g.fillRect(x,y+height/2,width,(int)(FillAmount.getDouble()*(height/2)));
+                g.fillRect(x,(y+(height/2)),width,(int)(FillAmount.getDouble()*(height/-2)));
             }
-            //if(FillAmount.getDouble() != 0){System.out.println(FillAmount);}
+            if(FillAmount.getDouble() != 0){System.out.print("FillAmount is =");System.out.println((int)(FillAmount.getDouble()*10000));}
 
             g.setColor(BorderColor);
             g.drawRect(x,y,width,height);
