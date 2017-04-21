@@ -54,7 +54,7 @@ public class SerialCommunications
 
     public void sendRobotInfo(){
         byte[] stuff = new byte[8];
-        /*int remain = (getTimeSinceLastUpdate()/10) % 6;
+        int remain = (getTimeSinceLastUpdate()/10) % 6;
         switch(remain){
             case 0: stuff[0] = fromDouble(0.5); break;
             case 1: stuff[0] = fromDouble(0.75);break;
@@ -62,8 +62,8 @@ public class SerialCommunications
             case 3: stuff[0] = fromDouble(-0.25);break;
             case 4: stuff[0] = fromDouble(-0.5);break;
             case 5: stuff[0] = fromDouble(0);break;
-        }*/
-        for(int i = 0; i < 6; i++)
+        }
+        for(int i = 1; i < 6; i++)
             stuff[i] = fromDouble(ControllerRobot.getMotorSpeed(i).getDouble());
         stuff[6]=fromDouble(ControllerRobot.getGripperRotation().getDouble());
         stuff[7]=fromDouble(ControllerRobot.getGripperClamp().getDouble());
@@ -100,7 +100,7 @@ public class SerialCommunications
             serialPort = new SerialPort(portSelected);
             serialPort.openPort();
             Opened = true;
-            serialPort.setParams(SerialPort.BAUDRATE_9600,
+            serialPort.setParams(SerialPort.BAUDRATE_19200,
                     SerialPort.DATABITS_8,
                     SerialPort.STOPBITS_1,
                     SerialPort.PARITY_NONE);
@@ -177,7 +177,7 @@ public class SerialCommunications
                 try
                 {
                     String toDisplay = "O:";
-                    System.out.print("O:");
+                    //System.out.print("O:");
                     for(int j = 0; j < 8; j++){
                         byte a[] = serialPort.readBytes(1);
                         int temp = (int)(a[0]);
@@ -186,7 +186,7 @@ public class SerialCommunications
                         }
                         toDisplay+= " ";
                         toDisplay += String.valueOf(temp);
-                        System.out.print(a[0]);
+                        //System.out.print(a[0]);
                         if(j == 6){
                             Robot.setGripperRotation((double)(temp-90)/90);
                         }else if(j == 7){
