@@ -1087,16 +1087,16 @@ public class MainInterfaceFrame extends JFrame
 
     public static void addSerialSent(String obj)    {
         modelSerialSent.addElement(obj);
-        /*if(modelSerialSent.capacity()> 27){
-            modelSerialSent.removeRange(0,13);
-        }*/
+        if(modelSerialSent.getSize()>10){
+            modelSerialSent.removeElementAt(0);
+        }
     }
 
     public static void addSerialReceived(String obj)    {
         modelSerialReceived.addElement(obj);
-        /*if(modelSerialReceived.capacity() > 27){
-            modelSerialReceived.removeRange(0,13);
-        }*/
+        if(modelSerialReceived.getSize()>10){
+            modelSerialReceived.removeElementAt(0);
+        }
     }
 
     // COMPONENTS LIST //

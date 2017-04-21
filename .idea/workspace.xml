@@ -41,8 +41,8 @@
       <file leaf-file-name="MainInterfaceFrame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="1092" column="5" lean-forward="true" selection-start-line="1092" selection-start-column="5" selection-end-line="1092" selection-end-column="5" />
+            <state relative-caret-position="80">
+              <caret line="1090" column="45" lean-forward="false" selection-start-line="1090" selection-start-column="45" selection-end-line="1090" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#11149#11261#0" expanded="true" />
@@ -866,7 +866,14 @@
       <option name="project" value="LOCAL" />
       <updated>1492800180749</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Quick Update before i transfer over to Jose's laptop to test">
+      <created>1492801345203</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1492801345203</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -928,7 +935,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Reduced refresh rate of gui components" />
     <MESSAGE value="Testing" />
     <MESSAGE value="Added DPad control for servos" />
     <MESSAGE value="Added refresh to GUI" />
@@ -953,7 +959,8 @@
     <MESSAGE value="Fixed Serial ( i hope)" />
     <MESSAGE value="Testing Serial With Controller" />
     <MESSAGE value="Added some new code in SerialCommunications - should make things a bit clearer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some new code in SerialCommunications - should make things a bit clearer" />
+    <MESSAGE value="Quick Update before i transfer over to Jose's laptop to test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Quick Update before i transfer over to Jose's laptop to test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1393,8 +1400,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="1092" column="5" lean-forward="true" selection-start-line="1092" selection-start-column="5" selection-end-line="1092" selection-end-column="5" />
+        <state relative-caret-position="80">
+          <caret line="1090" column="45" lean-forward="false" selection-start-line="1090" selection-start-column="45" selection-end-line="1090" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#11149#11261#0" expanded="true" />
