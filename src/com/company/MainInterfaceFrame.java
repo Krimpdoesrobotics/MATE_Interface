@@ -187,10 +187,7 @@ public class MainInterfaceFrame extends JFrame
         scrollPaneSerialSent.setBounds(new Rectangle(625, 80, 175, 150));
         contentPane.add(scrollPaneSerialSent, BorderLayout.CENTER);
         // recieved serial messages display label
-        JLabel lblSerialReceived = new JLabel("Received Serial Messages");
-        lblSerialReceived.setName("lblSerialReceived");
-        lblSerialReceived.setBounds(new Rectangle(825, 50, 170, 20));
-        contentPane.add(lblSerialReceived, BorderLayout.CENTER);
+        contentPane.add(newComponent("JLabel","lblSerialReceived",new Rectangle(825, 50, 170, 20),"Received Serial Messages",null,true), BorderLayout.CENTER);
         // recieved serial messages display
         JList<String> listSerialReceived = new JList<>(modelSerialReceived);
         JScrollPane scrollPaneSerialReceived = new JScrollPane();
@@ -199,10 +196,7 @@ public class MainInterfaceFrame extends JFrame
         scrollPaneSerialReceived.setBounds(new Rectangle(825, 80, 175, 150));
         contentPane.add(scrollPaneSerialReceived, BorderLayout.CENTER);
         // choose controller label
-		JLabel lblChooseController = new JLabel("Choose Controller");
-		lblChooseController.setName("lblChooseController");
-		lblChooseController.setBounds(new Rectangle(350, 50, 130, 20));
-		contentPane.add(lblChooseController, BorderLayout.CENTER);
+        contentPane.add(newComponent("JLabel","lblChooseController",new Rectangle(350, 50, 130, 20),"Choose Controller",null,true), BorderLayout.CENTER);
         // choose controller selection box
 		JComboBox ControllerComboBox = new JComboBox();
 		ControllerComboBox.setBounds(new Rectangle(350, 80, 130, 30));

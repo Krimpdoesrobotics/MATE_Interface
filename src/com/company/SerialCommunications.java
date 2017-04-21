@@ -94,7 +94,6 @@ public class SerialCommunications
     public void btnSerialConnectClicked() {
         MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(false);
         MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(true);
-        //MainInterfaceFrame.getComponentByName("btnSerialSendRefresh").setVisible(true);
         try   {
             portSelected = MainInterfaceFrame.getSelectedPort();
             serialPort = new SerialPort(portSelected);
@@ -118,7 +117,6 @@ public class SerialCommunications
     {
         MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(false);
         MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(true);
-        //MainInterfaceFrame.getComponentByName("btnSerialSendRefresh").setVisible(false);
         try {
             serialPort.closePort();
             Opened=false;
@@ -127,27 +125,7 @@ public class SerialCommunications
         }
     }
 
-    /*public void btnSerialSendRefreshClicked()
-    {
-        if(isOpen())
-        {
-            PortSender("A");
-        }
-    }*/
-
     public boolean isOpen(){return Opened;}
-
-    // outputs to the port
-    /*public boolean PortSender(String command) {
-        try {
-            serialPort.writeString(command);
-            MainInterfaceFrame.addSerialSent(command);
-        } catch(SerialPortException ex) {
-            System.out.println("Error sending string: " + ex);
-            return false;
-        }
-        return true;
-    }*/
 
     public boolean PortSend(byte[] val){
         if(isOpen()){
