@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2ea6b67-79ca-46fe-8459-5b9f4fe1627a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications$PortReader.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications$PortReader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java" afterPath="$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,117 +18,48 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="MainInterfaceFrame.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainInterfaceFrame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="1050" column="90" lean-forward="false" selection-start-line="1050" selection-start-column="90" selection-end-line="1050" selection-end-column="90" />
+            <state relative-caret-position="296">
+              <caret line="488" column="31" lean-forward="true" selection-start-line="488" selection-start-column="31" selection-end-line="488" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#788#1798#0" expanded="true" />
                 <element signature="e#1797#1798#0" expanded="true" />
                 <element signature="e#1923#2232#0" expanded="true" />
                 <element signature="e#2231#2232#0" expanded="true" />
-                <element signature="e#10479#10591#0" expanded="true" />
-                <element signature="e#10590#10591#0" expanded="true" />
-                <element signature="e#10922#11034#0" expanded="true" />
-                <element signature="e#11033#11034#0" expanded="true" />
-                <element signature="e#11433#11548#0" expanded="true" />
-                <element signature="e#11547#11548#0" expanded="true" />
-                <element signature="e#14184#14299#0" expanded="true" />
-                <element signature="e#14298#14299#0" expanded="true" />
-                <element signature="e#14634#14749#0" expanded="true" />
-                <element signature="e#14748#14749#0" expanded="true" />
-                <element signature="e#15073#15189#0" expanded="true" />
-                <element signature="e#15188#15189#0" expanded="true" />
-                <element signature="e#15579#15698#0" expanded="true" />
-                <element signature="e#15697#15698#0" expanded="true" />
-                <element signature="e#19025#19571#0" expanded="true" />
-                <element signature="e#19570#19571#0" expanded="true" />
-                <element signature="e#19619#20164#0" expanded="true" />
-                <element signature="e#20163#20164#0" expanded="true" />
-                <element signature="e#20212#20758#0" expanded="true" />
-                <element signature="e#20757#20758#0" expanded="true" />
-                <element signature="e#20806#21351#0" expanded="true" />
-                <element signature="e#21350#21351#0" expanded="true" />
-                <element signature="e#21399#21945#0" expanded="true" />
-                <element signature="e#21944#21945#0" expanded="true" />
-                <element signature="e#21993#22538#0" expanded="true" />
-                <element signature="e#22537#22538#0" expanded="true" />
-                <element signature="e#22586#23131#0" expanded="true" />
-                <element signature="e#23130#23131#0" expanded="true" />
-                <element signature="e#23179#23724#0" expanded="true" />
-                <element signature="e#23723#23724#0" expanded="true" />
-                <element signature="e#23772#24317#0" expanded="true" />
-                <element signature="e#24316#24317#0" expanded="true" />
-                <element signature="e#24365#24911#0" expanded="true" />
-                <element signature="e#24910#24911#0" expanded="true" />
-                <element signature="e#24960#25507#0" expanded="true" />
-                <element signature="e#25506#25507#0" expanded="true" />
-                <element signature="e#25556#26102#0" expanded="true" />
-                <element signature="e#26101#26102#0" expanded="true" />
-                <element signature="e#26151#26697#0" expanded="true" />
-                <element signature="e#26696#26697#0" expanded="true" />
-                <element signature="e#26746#27293#0" expanded="true" />
-                <element signature="e#27292#27293#0" expanded="true" />
-                <element signature="e#27342#27888#0" expanded="true" />
-                <element signature="e#27887#27888#0" expanded="true" />
-                <element signature="e#27937#28484#0" expanded="true" />
-                <element signature="e#28483#28484#0" expanded="true" />
-                <element signature="e#28533#29080#0" expanded="true" />
-                <element signature="e#29079#29080#0" expanded="true" />
-                <element signature="e#41005#41537#0" expanded="true" />
-                <element signature="e#41536#41537#0" expanded="true" />
-                <element signature="e#41576#42108#0" expanded="true" />
-                <element signature="e#42107#42108#0" expanded="true" />
-                <element signature="e#42148#42681#0" expanded="true" />
-                <element signature="e#42680#42681#0" expanded="true" />
-                <element signature="e#42721#43254#0" expanded="true" />
-                <element signature="e#43253#43254#0" expanded="true" />
-                <element signature="e#43294#43827#0" expanded="true" />
-                <element signature="e#43826#43827#0" expanded="true" />
-                <element signature="e#43865#44396#0" expanded="true" />
-                <element signature="e#44395#44396#0" expanded="true" />
-                <element signature="e#44434#44965#0" expanded="true" />
-                <element signature="e#44964#44965#0" expanded="true" />
-                <element signature="e#45005#45538#0" expanded="true" />
-                <element signature="e#45537#45538#0" expanded="true" />
-                <element signature="e#45578#46111#0" expanded="true" />
-                <element signature="e#46110#46111#0" expanded="true" />
-                <element signature="e#46151#46684#0" expanded="true" />
-                <element signature="e#46683#46684#0" expanded="true" />
-                <element signature="e#46724#47257#0" expanded="true" />
-                <element signature="e#47256#47257#0" expanded="true" />
-                <element signature="e#47295#47826#0" expanded="true" />
-                <element signature="e#47825#47826#0" expanded="true" />
-                <element signature="e#47864#48395#0" expanded="true" />
-                <element signature="e#48394#48395#0" expanded="true" />
-                <element signature="e#48433#48964#0" expanded="true" />
-                <element signature="e#48963#48964#0" expanded="true" />
-                <element signature="e#49002#49533#0" expanded="true" />
-                <element signature="e#49532#49533#0" expanded="true" />
-                <element signature="e#49573#50106#0" expanded="true" />
-                <element signature="e#50105#50106#0" expanded="true" />
-                <element signature="e#50146#50679#0" expanded="true" />
-                <element signature="e#50678#50679#0" expanded="true" />
-                <element signature="e#50719#51252#0" expanded="true" />
-                <element signature="e#51251#51252#0" expanded="true" />
-                <element signature="e#51287#52179#0" expanded="true" />
-                <element signature="e#52178#52179#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Paintings.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/company/Paintings.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="188" column="13" lean-forward="true" selection-start-line="188" selection-start-column="13" selection-end-line="188" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SerialCommunications.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/company/SerialCommunications.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-119">
+              <caret line="141" column="13" lean-forward="true" selection-start-line="124" selection-start-column="41" selection-end-line="141" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="1900">
-                <caret line="76" column="49" lean-forward="false" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
-                <folding />
-              </first_editor>
-              <second_editor />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -189,10 +116,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-11" />
-    <option name="y" value="-11" />
-    <option name="width" value="1942" />
-    <option name="height" value="1042" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1723" />
+    <option name="height" value="1043" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -210,7 +137,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -244,6 +170,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -267,22 +194,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$1.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$2.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$3.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$4.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$5.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$6.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$7.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$8.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$9.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications$PortReader.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/CustomPanel.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/SerialCommunications.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -375,6 +286,764 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$3.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$4.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$5.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$6.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$7.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$8.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$9.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications$PortReader.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/CustomPanel.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/SerialCommunications.java</PATH>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
       </FILE-GROUP>
     </UpdatedFiles>
   </component>
@@ -613,19 +1282,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="executeSpecs" factoryName="Gauge Execution">
-      <setting name="environment" value="" />
-      <setting name="specsToExecute" value="" />
-      <setting name="tags" value="" />
-      <setting name="parallelNodes" value="" />
-      <setting name="execInParallel" value="false" />
-      <setting name="programParameters" value="" />
-      <setting name="workingDirectory" value="" />
-      <setting name="moduleName" value="" />
-      <envMap />
-      <setting name="rowsRange" value="" />
       <method />
     </configuration>
     <list size="1">
@@ -893,39 +1549,62 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <frame x="-8" y="-8" width="1723" height="1043" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.49479166" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32990867" sideWeight="0.5052083" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39618137" sideWeight="0.49783784" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13603818" sideWeight="0.49375" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1329046" sideWeight="0.49375" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29796356" sideWeight="0.49783784" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29297298" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21851201" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39976135" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39976135" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32990867" sideWeight="0.5052083" order="13" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39976135" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.49479166" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39618137" sideWeight="0.49783784" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13603818" sideWeight="0.49375" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29297298" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1025,7 +1704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1875">
           <caret line="80" column="55" lean-forward="true" selection-start-line="80" selection-start-column="55" selection-end-line="80" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1039,92 +1717,6 @@
             <element signature="e#1797#1798#0" expanded="true" />
             <element signature="e#1923#2232#0" expanded="true" />
             <element signature="e#2231#2232#0" expanded="true" />
-            <element signature="e#10479#10591#0" expanded="true" />
-            <element signature="e#10590#10591#0" expanded="true" />
-            <element signature="e#10922#11034#0" expanded="true" />
-            <element signature="e#11033#11034#0" expanded="true" />
-            <element signature="e#11433#11548#0" expanded="true" />
-            <element signature="e#11547#11548#0" expanded="true" />
-            <element signature="e#14184#14299#0" expanded="true" />
-            <element signature="e#14298#14299#0" expanded="true" />
-            <element signature="e#14634#14749#0" expanded="true" />
-            <element signature="e#14748#14749#0" expanded="true" />
-            <element signature="e#15073#15189#0" expanded="true" />
-            <element signature="e#15188#15189#0" expanded="true" />
-            <element signature="e#15579#15698#0" expanded="true" />
-            <element signature="e#15697#15698#0" expanded="true" />
-            <element signature="e#19025#19571#0" expanded="true" />
-            <element signature="e#19570#19571#0" expanded="true" />
-            <element signature="e#19619#20164#0" expanded="true" />
-            <element signature="e#20163#20164#0" expanded="true" />
-            <element signature="e#20212#20758#0" expanded="true" />
-            <element signature="e#20757#20758#0" expanded="true" />
-            <element signature="e#20806#21351#0" expanded="true" />
-            <element signature="e#21350#21351#0" expanded="true" />
-            <element signature="e#21399#21945#0" expanded="true" />
-            <element signature="e#21944#21945#0" expanded="true" />
-            <element signature="e#21993#22538#0" expanded="true" />
-            <element signature="e#22537#22538#0" expanded="true" />
-            <element signature="e#22586#23131#0" expanded="true" />
-            <element signature="e#23130#23131#0" expanded="true" />
-            <element signature="e#23179#23724#0" expanded="true" />
-            <element signature="e#23723#23724#0" expanded="true" />
-            <element signature="e#23772#24317#0" expanded="true" />
-            <element signature="e#24316#24317#0" expanded="true" />
-            <element signature="e#24365#24911#0" expanded="true" />
-            <element signature="e#24910#24911#0" expanded="true" />
-            <element signature="e#24960#25507#0" expanded="true" />
-            <element signature="e#25506#25507#0" expanded="true" />
-            <element signature="e#25556#26102#0" expanded="true" />
-            <element signature="e#26101#26102#0" expanded="true" />
-            <element signature="e#26151#26697#0" expanded="true" />
-            <element signature="e#26696#26697#0" expanded="true" />
-            <element signature="e#26746#27293#0" expanded="true" />
-            <element signature="e#27292#27293#0" expanded="true" />
-            <element signature="e#27342#27888#0" expanded="true" />
-            <element signature="e#27887#27888#0" expanded="true" />
-            <element signature="e#27937#28484#0" expanded="true" />
-            <element signature="e#28483#28484#0" expanded="true" />
-            <element signature="e#28533#29080#0" expanded="true" />
-            <element signature="e#29079#29080#0" expanded="true" />
-            <element signature="e#41005#41537#0" expanded="true" />
-            <element signature="e#41536#41537#0" expanded="true" />
-            <element signature="e#41576#42108#0" expanded="true" />
-            <element signature="e#42107#42108#0" expanded="true" />
-            <element signature="e#42148#42681#0" expanded="true" />
-            <element signature="e#42680#42681#0" expanded="true" />
-            <element signature="e#42721#43254#0" expanded="true" />
-            <element signature="e#43253#43254#0" expanded="true" />
-            <element signature="e#43294#43827#0" expanded="true" />
-            <element signature="e#43826#43827#0" expanded="true" />
-            <element signature="e#43865#44396#0" expanded="true" />
-            <element signature="e#44395#44396#0" expanded="true" />
-            <element signature="e#44434#44965#0" expanded="true" />
-            <element signature="e#44964#44965#0" expanded="true" />
-            <element signature="e#45005#45538#0" expanded="true" />
-            <element signature="e#45537#45538#0" expanded="true" />
-            <element signature="e#45578#46111#0" expanded="true" />
-            <element signature="e#46110#46111#0" expanded="true" />
-            <element signature="e#46151#46684#0" expanded="true" />
-            <element signature="e#46683#46684#0" expanded="true" />
-            <element signature="e#46724#47257#0" expanded="true" />
-            <element signature="e#47256#47257#0" expanded="true" />
-            <element signature="e#47295#47826#0" expanded="true" />
-            <element signature="e#47825#47826#0" expanded="true" />
-            <element signature="e#47864#48395#0" expanded="true" />
-            <element signature="e#48394#48395#0" expanded="true" />
-            <element signature="e#48433#48964#0" expanded="true" />
-            <element signature="e#48963#48964#0" expanded="true" />
-            <element signature="e#49002#49533#0" expanded="true" />
-            <element signature="e#49532#49533#0" expanded="true" />
-            <element signature="e#49573#50106#0" expanded="true" />
-            <element signature="e#50105#50106#0" expanded="true" />
-            <element signature="e#50146#50679#0" expanded="true" />
-            <element signature="e#50678#50679#0" expanded="true" />
-            <element signature="e#50719#51252#0" expanded="true" />
-            <element signature="e#51251#51252#0" expanded="true" />
-            <element signature="e#51287#52179#0" expanded="true" />
-            <element signature="e#52178#52179#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1148,7 +1740,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2000">
           <caret line="80" column="54" lean-forward="false" selection-start-line="80" selection-start-column="49" selection-end-line="80" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1162,92 +1753,6 @@
             <element signature="e#1797#1798#0" expanded="true" />
             <element signature="e#1923#2232#0" expanded="true" />
             <element signature="e#2231#2232#0" expanded="true" />
-            <element signature="e#10479#10591#0" expanded="true" />
-            <element signature="e#10590#10591#0" expanded="true" />
-            <element signature="e#10922#11034#0" expanded="true" />
-            <element signature="e#11033#11034#0" expanded="true" />
-            <element signature="e#11433#11548#0" expanded="true" />
-            <element signature="e#11547#11548#0" expanded="true" />
-            <element signature="e#14184#14299#0" expanded="true" />
-            <element signature="e#14298#14299#0" expanded="true" />
-            <element signature="e#14634#14749#0" expanded="true" />
-            <element signature="e#14748#14749#0" expanded="true" />
-            <element signature="e#15073#15189#0" expanded="true" />
-            <element signature="e#15188#15189#0" expanded="true" />
-            <element signature="e#15579#15698#0" expanded="true" />
-            <element signature="e#15697#15698#0" expanded="true" />
-            <element signature="e#19025#19571#0" expanded="true" />
-            <element signature="e#19570#19571#0" expanded="true" />
-            <element signature="e#19619#20164#0" expanded="true" />
-            <element signature="e#20163#20164#0" expanded="true" />
-            <element signature="e#20212#20758#0" expanded="true" />
-            <element signature="e#20757#20758#0" expanded="true" />
-            <element signature="e#20806#21351#0" expanded="true" />
-            <element signature="e#21350#21351#0" expanded="true" />
-            <element signature="e#21399#21945#0" expanded="true" />
-            <element signature="e#21944#21945#0" expanded="true" />
-            <element signature="e#21993#22538#0" expanded="true" />
-            <element signature="e#22537#22538#0" expanded="true" />
-            <element signature="e#22586#23131#0" expanded="true" />
-            <element signature="e#23130#23131#0" expanded="true" />
-            <element signature="e#23179#23724#0" expanded="true" />
-            <element signature="e#23723#23724#0" expanded="true" />
-            <element signature="e#23772#24317#0" expanded="true" />
-            <element signature="e#24316#24317#0" expanded="true" />
-            <element signature="e#24365#24911#0" expanded="true" />
-            <element signature="e#24910#24911#0" expanded="true" />
-            <element signature="e#24960#25507#0" expanded="true" />
-            <element signature="e#25506#25507#0" expanded="true" />
-            <element signature="e#25556#26102#0" expanded="true" />
-            <element signature="e#26101#26102#0" expanded="true" />
-            <element signature="e#26151#26697#0" expanded="true" />
-            <element signature="e#26696#26697#0" expanded="true" />
-            <element signature="e#26746#27293#0" expanded="true" />
-            <element signature="e#27292#27293#0" expanded="true" />
-            <element signature="e#27342#27888#0" expanded="true" />
-            <element signature="e#27887#27888#0" expanded="true" />
-            <element signature="e#27937#28484#0" expanded="true" />
-            <element signature="e#28483#28484#0" expanded="true" />
-            <element signature="e#28533#29080#0" expanded="true" />
-            <element signature="e#29079#29080#0" expanded="true" />
-            <element signature="e#41005#41537#0" expanded="true" />
-            <element signature="e#41536#41537#0" expanded="true" />
-            <element signature="e#41576#42108#0" expanded="true" />
-            <element signature="e#42107#42108#0" expanded="true" />
-            <element signature="e#42148#42681#0" expanded="true" />
-            <element signature="e#42680#42681#0" expanded="true" />
-            <element signature="e#42721#43254#0" expanded="true" />
-            <element signature="e#43253#43254#0" expanded="true" />
-            <element signature="e#43294#43827#0" expanded="true" />
-            <element signature="e#43826#43827#0" expanded="true" />
-            <element signature="e#43865#44396#0" expanded="true" />
-            <element signature="e#44395#44396#0" expanded="true" />
-            <element signature="e#44434#44965#0" expanded="true" />
-            <element signature="e#44964#44965#0" expanded="true" />
-            <element signature="e#45005#45538#0" expanded="true" />
-            <element signature="e#45537#45538#0" expanded="true" />
-            <element signature="e#45578#46111#0" expanded="true" />
-            <element signature="e#46110#46111#0" expanded="true" />
-            <element signature="e#46151#46684#0" expanded="true" />
-            <element signature="e#46683#46684#0" expanded="true" />
-            <element signature="e#46724#47257#0" expanded="true" />
-            <element signature="e#47256#47257#0" expanded="true" />
-            <element signature="e#47295#47826#0" expanded="true" />
-            <element signature="e#47825#47826#0" expanded="true" />
-            <element signature="e#47864#48395#0" expanded="true" />
-            <element signature="e#48394#48395#0" expanded="true" />
-            <element signature="e#48433#48964#0" expanded="true" />
-            <element signature="e#48963#48964#0" expanded="true" />
-            <element signature="e#49002#49533#0" expanded="true" />
-            <element signature="e#49532#49533#0" expanded="true" />
-            <element signature="e#49573#50106#0" expanded="true" />
-            <element signature="e#50105#50106#0" expanded="true" />
-            <element signature="e#50146#50679#0" expanded="true" />
-            <element signature="e#50678#50679#0" expanded="true" />
-            <element signature="e#50719#51252#0" expanded="true" />
-            <element signature="e#51251#51252#0" expanded="true" />
-            <element signature="e#51287#52179#0" expanded="true" />
-            <element signature="e#52178#52179#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1271,7 +1776,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1875">
           <caret line="80" column="54" lean-forward="false" selection-start-line="80" selection-start-column="49" selection-end-line="80" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1285,92 +1789,6 @@
             <element signature="e#1797#1798#0" expanded="true" />
             <element signature="e#1923#2232#0" expanded="true" />
             <element signature="e#2231#2232#0" expanded="true" />
-            <element signature="e#10479#10591#0" expanded="true" />
-            <element signature="e#10590#10591#0" expanded="true" />
-            <element signature="e#10922#11034#0" expanded="true" />
-            <element signature="e#11033#11034#0" expanded="true" />
-            <element signature="e#11433#11548#0" expanded="true" />
-            <element signature="e#11547#11548#0" expanded="true" />
-            <element signature="e#14184#14299#0" expanded="true" />
-            <element signature="e#14298#14299#0" expanded="true" />
-            <element signature="e#14634#14749#0" expanded="true" />
-            <element signature="e#14748#14749#0" expanded="true" />
-            <element signature="e#15073#15189#0" expanded="true" />
-            <element signature="e#15188#15189#0" expanded="true" />
-            <element signature="e#15579#15698#0" expanded="true" />
-            <element signature="e#15697#15698#0" expanded="true" />
-            <element signature="e#19025#19571#0" expanded="true" />
-            <element signature="e#19570#19571#0" expanded="true" />
-            <element signature="e#19619#20164#0" expanded="true" />
-            <element signature="e#20163#20164#0" expanded="true" />
-            <element signature="e#20212#20758#0" expanded="true" />
-            <element signature="e#20757#20758#0" expanded="true" />
-            <element signature="e#20806#21351#0" expanded="true" />
-            <element signature="e#21350#21351#0" expanded="true" />
-            <element signature="e#21399#21945#0" expanded="true" />
-            <element signature="e#21944#21945#0" expanded="true" />
-            <element signature="e#21993#22538#0" expanded="true" />
-            <element signature="e#22537#22538#0" expanded="true" />
-            <element signature="e#22586#23131#0" expanded="true" />
-            <element signature="e#23130#23131#0" expanded="true" />
-            <element signature="e#23179#23724#0" expanded="true" />
-            <element signature="e#23723#23724#0" expanded="true" />
-            <element signature="e#23772#24317#0" expanded="true" />
-            <element signature="e#24316#24317#0" expanded="true" />
-            <element signature="e#24365#24911#0" expanded="true" />
-            <element signature="e#24910#24911#0" expanded="true" />
-            <element signature="e#24960#25507#0" expanded="true" />
-            <element signature="e#25506#25507#0" expanded="true" />
-            <element signature="e#25556#26102#0" expanded="true" />
-            <element signature="e#26101#26102#0" expanded="true" />
-            <element signature="e#26151#26697#0" expanded="true" />
-            <element signature="e#26696#26697#0" expanded="true" />
-            <element signature="e#26746#27293#0" expanded="true" />
-            <element signature="e#27292#27293#0" expanded="true" />
-            <element signature="e#27342#27888#0" expanded="true" />
-            <element signature="e#27887#27888#0" expanded="true" />
-            <element signature="e#27937#28484#0" expanded="true" />
-            <element signature="e#28483#28484#0" expanded="true" />
-            <element signature="e#28533#29080#0" expanded="true" />
-            <element signature="e#29079#29080#0" expanded="true" />
-            <element signature="e#41005#41537#0" expanded="true" />
-            <element signature="e#41536#41537#0" expanded="true" />
-            <element signature="e#41576#42108#0" expanded="true" />
-            <element signature="e#42107#42108#0" expanded="true" />
-            <element signature="e#42148#42681#0" expanded="true" />
-            <element signature="e#42680#42681#0" expanded="true" />
-            <element signature="e#42721#43254#0" expanded="true" />
-            <element signature="e#43253#43254#0" expanded="true" />
-            <element signature="e#43294#43827#0" expanded="true" />
-            <element signature="e#43826#43827#0" expanded="true" />
-            <element signature="e#43865#44396#0" expanded="true" />
-            <element signature="e#44395#44396#0" expanded="true" />
-            <element signature="e#44434#44965#0" expanded="true" />
-            <element signature="e#44964#44965#0" expanded="true" />
-            <element signature="e#45005#45538#0" expanded="true" />
-            <element signature="e#45537#45538#0" expanded="true" />
-            <element signature="e#45578#46111#0" expanded="true" />
-            <element signature="e#46110#46111#0" expanded="true" />
-            <element signature="e#46151#46684#0" expanded="true" />
-            <element signature="e#46683#46684#0" expanded="true" />
-            <element signature="e#46724#47257#0" expanded="true" />
-            <element signature="e#47256#47257#0" expanded="true" />
-            <element signature="e#47295#47826#0" expanded="true" />
-            <element signature="e#47825#47826#0" expanded="true" />
-            <element signature="e#47864#48395#0" expanded="true" />
-            <element signature="e#48394#48395#0" expanded="true" />
-            <element signature="e#48433#48964#0" expanded="true" />
-            <element signature="e#48963#48964#0" expanded="true" />
-            <element signature="e#49002#49533#0" expanded="true" />
-            <element signature="e#49532#49533#0" expanded="true" />
-            <element signature="e#49573#50106#0" expanded="true" />
-            <element signature="e#50105#50106#0" expanded="true" />
-            <element signature="e#50146#50679#0" expanded="true" />
-            <element signature="e#50678#50679#0" expanded="true" />
-            <element signature="e#50719#51252#0" expanded="true" />
-            <element signature="e#51251#51252#0" expanded="true" />
-            <element signature="e#51287#52179#0" expanded="true" />
-            <element signature="e#52178#52179#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1387,7 +1805,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1875">
           <caret line="80" column="54" lean-forward="false" selection-start-line="80" selection-start-column="49" selection-end-line="80" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1401,92 +1818,6 @@
             <element signature="e#1797#1798#0" expanded="true" />
             <element signature="e#1923#2232#0" expanded="true" />
             <element signature="e#2231#2232#0" expanded="true" />
-            <element signature="e#10479#10591#0" expanded="true" />
-            <element signature="e#10590#10591#0" expanded="true" />
-            <element signature="e#10922#11034#0" expanded="true" />
-            <element signature="e#11033#11034#0" expanded="true" />
-            <element signature="e#11433#11548#0" expanded="true" />
-            <element signature="e#11547#11548#0" expanded="true" />
-            <element signature="e#14184#14299#0" expanded="true" />
-            <element signature="e#14298#14299#0" expanded="true" />
-            <element signature="e#14634#14749#0" expanded="true" />
-            <element signature="e#14748#14749#0" expanded="true" />
-            <element signature="e#15073#15189#0" expanded="true" />
-            <element signature="e#15188#15189#0" expanded="true" />
-            <element signature="e#15579#15698#0" expanded="true" />
-            <element signature="e#15697#15698#0" expanded="true" />
-            <element signature="e#19025#19571#0" expanded="true" />
-            <element signature="e#19570#19571#0" expanded="true" />
-            <element signature="e#19619#20164#0" expanded="true" />
-            <element signature="e#20163#20164#0" expanded="true" />
-            <element signature="e#20212#20758#0" expanded="true" />
-            <element signature="e#20757#20758#0" expanded="true" />
-            <element signature="e#20806#21351#0" expanded="true" />
-            <element signature="e#21350#21351#0" expanded="true" />
-            <element signature="e#21399#21945#0" expanded="true" />
-            <element signature="e#21944#21945#0" expanded="true" />
-            <element signature="e#21993#22538#0" expanded="true" />
-            <element signature="e#22537#22538#0" expanded="true" />
-            <element signature="e#22586#23131#0" expanded="true" />
-            <element signature="e#23130#23131#0" expanded="true" />
-            <element signature="e#23179#23724#0" expanded="true" />
-            <element signature="e#23723#23724#0" expanded="true" />
-            <element signature="e#23772#24317#0" expanded="true" />
-            <element signature="e#24316#24317#0" expanded="true" />
-            <element signature="e#24365#24911#0" expanded="true" />
-            <element signature="e#24910#24911#0" expanded="true" />
-            <element signature="e#24960#25507#0" expanded="true" />
-            <element signature="e#25506#25507#0" expanded="true" />
-            <element signature="e#25556#26102#0" expanded="true" />
-            <element signature="e#26101#26102#0" expanded="true" />
-            <element signature="e#26151#26697#0" expanded="true" />
-            <element signature="e#26696#26697#0" expanded="true" />
-            <element signature="e#26746#27293#0" expanded="true" />
-            <element signature="e#27292#27293#0" expanded="true" />
-            <element signature="e#27342#27888#0" expanded="true" />
-            <element signature="e#27887#27888#0" expanded="true" />
-            <element signature="e#27937#28484#0" expanded="true" />
-            <element signature="e#28483#28484#0" expanded="true" />
-            <element signature="e#28533#29080#0" expanded="true" />
-            <element signature="e#29079#29080#0" expanded="true" />
-            <element signature="e#41005#41537#0" expanded="true" />
-            <element signature="e#41536#41537#0" expanded="true" />
-            <element signature="e#41576#42108#0" expanded="true" />
-            <element signature="e#42107#42108#0" expanded="true" />
-            <element signature="e#42148#42681#0" expanded="true" />
-            <element signature="e#42680#42681#0" expanded="true" />
-            <element signature="e#42721#43254#0" expanded="true" />
-            <element signature="e#43253#43254#0" expanded="true" />
-            <element signature="e#43294#43827#0" expanded="true" />
-            <element signature="e#43826#43827#0" expanded="true" />
-            <element signature="e#43865#44396#0" expanded="true" />
-            <element signature="e#44395#44396#0" expanded="true" />
-            <element signature="e#44434#44965#0" expanded="true" />
-            <element signature="e#44964#44965#0" expanded="true" />
-            <element signature="e#45005#45538#0" expanded="true" />
-            <element signature="e#45537#45538#0" expanded="true" />
-            <element signature="e#45578#46111#0" expanded="true" />
-            <element signature="e#46110#46111#0" expanded="true" />
-            <element signature="e#46151#46684#0" expanded="true" />
-            <element signature="e#46683#46684#0" expanded="true" />
-            <element signature="e#46724#47257#0" expanded="true" />
-            <element signature="e#47256#47257#0" expanded="true" />
-            <element signature="e#47295#47826#0" expanded="true" />
-            <element signature="e#47825#47826#0" expanded="true" />
-            <element signature="e#47864#48395#0" expanded="true" />
-            <element signature="e#48394#48395#0" expanded="true" />
-            <element signature="e#48433#48964#0" expanded="true" />
-            <element signature="e#48963#48964#0" expanded="true" />
-            <element signature="e#49002#49533#0" expanded="true" />
-            <element signature="e#49532#49533#0" expanded="true" />
-            <element signature="e#49573#50106#0" expanded="true" />
-            <element signature="e#50105#50106#0" expanded="true" />
-            <element signature="e#50146#50679#0" expanded="true" />
-            <element signature="e#50678#50679#0" expanded="true" />
-            <element signature="e#50719#51252#0" expanded="true" />
-            <element signature="e#51251#51252#0" expanded="true" />
-            <element signature="e#51287#52179#0" expanded="true" />
-            <element signature="e#52178#52179#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1503,7 +1834,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3000">
           <caret line="125" column="26" lean-forward="true" selection-start-line="125" selection-start-column="26" selection-end-line="125" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1517,92 +1847,6 @@
             <element signature="e#1797#1798#0" expanded="true" />
             <element signature="e#1923#2232#0" expanded="true" />
             <element signature="e#2231#2232#0" expanded="true" />
-            <element signature="e#10479#10591#0" expanded="true" />
-            <element signature="e#10590#10591#0" expanded="true" />
-            <element signature="e#10922#11034#0" expanded="true" />
-            <element signature="e#11033#11034#0" expanded="true" />
-            <element signature="e#11433#11548#0" expanded="true" />
-            <element signature="e#11547#11548#0" expanded="true" />
-            <element signature="e#14184#14299#0" expanded="true" />
-            <element signature="e#14298#14299#0" expanded="true" />
-            <element signature="e#14634#14749#0" expanded="true" />
-            <element signature="e#14748#14749#0" expanded="true" />
-            <element signature="e#15073#15189#0" expanded="true" />
-            <element signature="e#15188#15189#0" expanded="true" />
-            <element signature="e#15579#15698#0" expanded="true" />
-            <element signature="e#15697#15698#0" expanded="true" />
-            <element signature="e#19025#19571#0" expanded="true" />
-            <element signature="e#19570#19571#0" expanded="true" />
-            <element signature="e#19619#20164#0" expanded="true" />
-            <element signature="e#20163#20164#0" expanded="true" />
-            <element signature="e#20212#20758#0" expanded="true" />
-            <element signature="e#20757#20758#0" expanded="true" />
-            <element signature="e#20806#21351#0" expanded="true" />
-            <element signature="e#21350#21351#0" expanded="true" />
-            <element signature="e#21399#21945#0" expanded="true" />
-            <element signature="e#21944#21945#0" expanded="true" />
-            <element signature="e#21993#22538#0" expanded="true" />
-            <element signature="e#22537#22538#0" expanded="true" />
-            <element signature="e#22586#23131#0" expanded="true" />
-            <element signature="e#23130#23131#0" expanded="true" />
-            <element signature="e#23179#23724#0" expanded="true" />
-            <element signature="e#23723#23724#0" expanded="true" />
-            <element signature="e#23772#24317#0" expanded="true" />
-            <element signature="e#24316#24317#0" expanded="true" />
-            <element signature="e#24365#24911#0" expanded="true" />
-            <element signature="e#24910#24911#0" expanded="true" />
-            <element signature="e#24960#25507#0" expanded="true" />
-            <element signature="e#25506#25507#0" expanded="true" />
-            <element signature="e#25556#26102#0" expanded="true" />
-            <element signature="e#26101#26102#0" expanded="true" />
-            <element signature="e#26151#26697#0" expanded="true" />
-            <element signature="e#26696#26697#0" expanded="true" />
-            <element signature="e#26746#27293#0" expanded="true" />
-            <element signature="e#27292#27293#0" expanded="true" />
-            <element signature="e#27342#27888#0" expanded="true" />
-            <element signature="e#27887#27888#0" expanded="true" />
-            <element signature="e#27937#28484#0" expanded="true" />
-            <element signature="e#28483#28484#0" expanded="true" />
-            <element signature="e#28533#29080#0" expanded="true" />
-            <element signature="e#29079#29080#0" expanded="true" />
-            <element signature="e#41005#41537#0" expanded="true" />
-            <element signature="e#41536#41537#0" expanded="true" />
-            <element signature="e#41576#42108#0" expanded="true" />
-            <element signature="e#42107#42108#0" expanded="true" />
-            <element signature="e#42148#42681#0" expanded="true" />
-            <element signature="e#42680#42681#0" expanded="true" />
-            <element signature="e#42721#43254#0" expanded="true" />
-            <element signature="e#43253#43254#0" expanded="true" />
-            <element signature="e#43294#43827#0" expanded="true" />
-            <element signature="e#43826#43827#0" expanded="true" />
-            <element signature="e#43865#44396#0" expanded="true" />
-            <element signature="e#44395#44396#0" expanded="true" />
-            <element signature="e#44434#44965#0" expanded="true" />
-            <element signature="e#44964#44965#0" expanded="true" />
-            <element signature="e#45005#45538#0" expanded="true" />
-            <element signature="e#45537#45538#0" expanded="true" />
-            <element signature="e#45578#46111#0" expanded="true" />
-            <element signature="e#46110#46111#0" expanded="true" />
-            <element signature="e#46151#46684#0" expanded="true" />
-            <element signature="e#46683#46684#0" expanded="true" />
-            <element signature="e#46724#47257#0" expanded="true" />
-            <element signature="e#47256#47257#0" expanded="true" />
-            <element signature="e#47295#47826#0" expanded="true" />
-            <element signature="e#47825#47826#0" expanded="true" />
-            <element signature="e#47864#48395#0" expanded="true" />
-            <element signature="e#48394#48395#0" expanded="true" />
-            <element signature="e#48433#48964#0" expanded="true" />
-            <element signature="e#48963#48964#0" expanded="true" />
-            <element signature="e#49002#49533#0" expanded="true" />
-            <element signature="e#49532#49533#0" expanded="true" />
-            <element signature="e#49573#50106#0" expanded="true" />
-            <element signature="e#50105#50106#0" expanded="true" />
-            <element signature="e#50146#50679#0" expanded="true" />
-            <element signature="e#50678#50679#0" expanded="true" />
-            <element signature="e#50719#51252#0" expanded="true" />
-            <element signature="e#51251#51252#0" expanded="true" />
-            <element signature="e#51287#52179#0" expanded="true" />
-            <element signature="e#52178#52179#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1640,92 +1884,6 @@
             <element signature="e#1797#1798#0" expanded="true" />
             <element signature="e#1923#2232#0" expanded="true" />
             <element signature="e#2231#2232#0" expanded="true" />
-            <element signature="e#10479#10591#0" expanded="true" />
-            <element signature="e#10590#10591#0" expanded="true" />
-            <element signature="e#10922#11034#0" expanded="true" />
-            <element signature="e#11033#11034#0" expanded="true" />
-            <element signature="e#11433#11548#0" expanded="true" />
-            <element signature="e#11547#11548#0" expanded="true" />
-            <element signature="e#14184#14299#0" expanded="true" />
-            <element signature="e#14298#14299#0" expanded="true" />
-            <element signature="e#14634#14749#0" expanded="true" />
-            <element signature="e#14748#14749#0" expanded="true" />
-            <element signature="e#15073#15189#0" expanded="true" />
-            <element signature="e#15188#15189#0" expanded="true" />
-            <element signature="e#15579#15698#0" expanded="true" />
-            <element signature="e#15697#15698#0" expanded="true" />
-            <element signature="e#19025#19571#0" expanded="true" />
-            <element signature="e#19570#19571#0" expanded="true" />
-            <element signature="e#19619#20164#0" expanded="true" />
-            <element signature="e#20163#20164#0" expanded="true" />
-            <element signature="e#20212#20758#0" expanded="true" />
-            <element signature="e#20757#20758#0" expanded="true" />
-            <element signature="e#20806#21351#0" expanded="true" />
-            <element signature="e#21350#21351#0" expanded="true" />
-            <element signature="e#21399#21945#0" expanded="true" />
-            <element signature="e#21944#21945#0" expanded="true" />
-            <element signature="e#21993#22538#0" expanded="true" />
-            <element signature="e#22537#22538#0" expanded="true" />
-            <element signature="e#22586#23131#0" expanded="true" />
-            <element signature="e#23130#23131#0" expanded="true" />
-            <element signature="e#23179#23724#0" expanded="true" />
-            <element signature="e#23723#23724#0" expanded="true" />
-            <element signature="e#23772#24317#0" expanded="true" />
-            <element signature="e#24316#24317#0" expanded="true" />
-            <element signature="e#24365#24911#0" expanded="true" />
-            <element signature="e#24910#24911#0" expanded="true" />
-            <element signature="e#24960#25507#0" expanded="true" />
-            <element signature="e#25506#25507#0" expanded="true" />
-            <element signature="e#25556#26102#0" expanded="true" />
-            <element signature="e#26101#26102#0" expanded="true" />
-            <element signature="e#26151#26697#0" expanded="true" />
-            <element signature="e#26696#26697#0" expanded="true" />
-            <element signature="e#26746#27293#0" expanded="true" />
-            <element signature="e#27292#27293#0" expanded="true" />
-            <element signature="e#27342#27888#0" expanded="true" />
-            <element signature="e#27887#27888#0" expanded="true" />
-            <element signature="e#27937#28484#0" expanded="true" />
-            <element signature="e#28483#28484#0" expanded="true" />
-            <element signature="e#28533#29080#0" expanded="true" />
-            <element signature="e#29079#29080#0" expanded="true" />
-            <element signature="e#41005#41537#0" expanded="true" />
-            <element signature="e#41536#41537#0" expanded="true" />
-            <element signature="e#41576#42108#0" expanded="true" />
-            <element signature="e#42107#42108#0" expanded="true" />
-            <element signature="e#42148#42681#0" expanded="true" />
-            <element signature="e#42680#42681#0" expanded="true" />
-            <element signature="e#42721#43254#0" expanded="true" />
-            <element signature="e#43253#43254#0" expanded="true" />
-            <element signature="e#43294#43827#0" expanded="true" />
-            <element signature="e#43826#43827#0" expanded="true" />
-            <element signature="e#43865#44396#0" expanded="true" />
-            <element signature="e#44395#44396#0" expanded="true" />
-            <element signature="e#44434#44965#0" expanded="true" />
-            <element signature="e#44964#44965#0" expanded="true" />
-            <element signature="e#45005#45538#0" expanded="true" />
-            <element signature="e#45537#45538#0" expanded="true" />
-            <element signature="e#45578#46111#0" expanded="true" />
-            <element signature="e#46110#46111#0" expanded="true" />
-            <element signature="e#46151#46684#0" expanded="true" />
-            <element signature="e#46683#46684#0" expanded="true" />
-            <element signature="e#46724#47257#0" expanded="true" />
-            <element signature="e#47256#47257#0" expanded="true" />
-            <element signature="e#47295#47826#0" expanded="true" />
-            <element signature="e#47825#47826#0" expanded="true" />
-            <element signature="e#47864#48395#0" expanded="true" />
-            <element signature="e#48394#48395#0" expanded="true" />
-            <element signature="e#48433#48964#0" expanded="true" />
-            <element signature="e#48963#48964#0" expanded="true" />
-            <element signature="e#49002#49533#0" expanded="true" />
-            <element signature="e#49532#49533#0" expanded="true" />
-            <element signature="e#49573#50106#0" expanded="true" />
-            <element signature="e#50105#50106#0" expanded="true" />
-            <element signature="e#50146#50679#0" expanded="true" />
-            <element signature="e#50678#50679#0" expanded="true" />
-            <element signature="e#50719#51252#0" expanded="true" />
-            <element signature="e#51251#51252#0" expanded="true" />
-            <element signature="e#51287#52179#0" expanded="true" />
-            <element signature="e#52178#52179#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1796,8 +1954,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/SerialCommunications.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="162" column="44" lean-forward="true" selection-start-line="162" selection-start-column="44" selection-end-line="162" selection-end-column="44" />
+        <state relative-caret-position="-119">
+          <caret line="141" column="13" lean-forward="true" selection-start-line="124" selection-start-column="41" selection-end-line="141" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1806,7 +1964,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
           <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1819,8 +1976,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Paintings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3909">
-          <caret line="13" column="19" lean-forward="false" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+        <state relative-caret-position="400">
+          <caret line="188" column="13" lean-forward="true" selection-start-line="188" selection-start-column="13" selection-end-line="188" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1842,7 +2000,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="566">
           <caret line="43" column="45" lean-forward="false" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1875,117 +2032,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="1900">
-            <caret line="76" column="49" lean-forward="false" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
-            <folding />
-          </first_editor>
-          <second_editor />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="1050" column="90" lean-forward="false" selection-start-line="1050" selection-start-column="90" selection-end-line="1050" selection-end-column="90" />
+        <state relative-caret-position="296">
+          <caret line="488" column="31" lean-forward="true" selection-start-line="488" selection-start-column="31" selection-end-line="488" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#788#1798#0" expanded="true" />
             <element signature="e#1797#1798#0" expanded="true" />
             <element signature="e#1923#2232#0" expanded="true" />
             <element signature="e#2231#2232#0" expanded="true" />
-            <element signature="e#10479#10591#0" expanded="true" />
-            <element signature="e#10590#10591#0" expanded="true" />
-            <element signature="e#10922#11034#0" expanded="true" />
-            <element signature="e#11033#11034#0" expanded="true" />
-            <element signature="e#11433#11548#0" expanded="true" />
-            <element signature="e#11547#11548#0" expanded="true" />
-            <element signature="e#14184#14299#0" expanded="true" />
-            <element signature="e#14298#14299#0" expanded="true" />
-            <element signature="e#14634#14749#0" expanded="true" />
-            <element signature="e#14748#14749#0" expanded="true" />
-            <element signature="e#15073#15189#0" expanded="true" />
-            <element signature="e#15188#15189#0" expanded="true" />
-            <element signature="e#15579#15698#0" expanded="true" />
-            <element signature="e#15697#15698#0" expanded="true" />
-            <element signature="e#19025#19571#0" expanded="true" />
-            <element signature="e#19570#19571#0" expanded="true" />
-            <element signature="e#19619#20164#0" expanded="true" />
-            <element signature="e#20163#20164#0" expanded="true" />
-            <element signature="e#20212#20758#0" expanded="true" />
-            <element signature="e#20757#20758#0" expanded="true" />
-            <element signature="e#20806#21351#0" expanded="true" />
-            <element signature="e#21350#21351#0" expanded="true" />
-            <element signature="e#21399#21945#0" expanded="true" />
-            <element signature="e#21944#21945#0" expanded="true" />
-            <element signature="e#21993#22538#0" expanded="true" />
-            <element signature="e#22537#22538#0" expanded="true" />
-            <element signature="e#22586#23131#0" expanded="true" />
-            <element signature="e#23130#23131#0" expanded="true" />
-            <element signature="e#23179#23724#0" expanded="true" />
-            <element signature="e#23723#23724#0" expanded="true" />
-            <element signature="e#23772#24317#0" expanded="true" />
-            <element signature="e#24316#24317#0" expanded="true" />
-            <element signature="e#24365#24911#0" expanded="true" />
-            <element signature="e#24910#24911#0" expanded="true" />
-            <element signature="e#24960#25507#0" expanded="true" />
-            <element signature="e#25506#25507#0" expanded="true" />
-            <element signature="e#25556#26102#0" expanded="true" />
-            <element signature="e#26101#26102#0" expanded="true" />
-            <element signature="e#26151#26697#0" expanded="true" />
-            <element signature="e#26696#26697#0" expanded="true" />
-            <element signature="e#26746#27293#0" expanded="true" />
-            <element signature="e#27292#27293#0" expanded="true" />
-            <element signature="e#27342#27888#0" expanded="true" />
-            <element signature="e#27887#27888#0" expanded="true" />
-            <element signature="e#27937#28484#0" expanded="true" />
-            <element signature="e#28483#28484#0" expanded="true" />
-            <element signature="e#28533#29080#0" expanded="true" />
-            <element signature="e#29079#29080#0" expanded="true" />
-            <element signature="e#41005#41537#0" expanded="true" />
-            <element signature="e#41536#41537#0" expanded="true" />
-            <element signature="e#41576#42108#0" expanded="true" />
-            <element signature="e#42107#42108#0" expanded="true" />
-            <element signature="e#42148#42681#0" expanded="true" />
-            <element signature="e#42680#42681#0" expanded="true" />
-            <element signature="e#42721#43254#0" expanded="true" />
-            <element signature="e#43253#43254#0" expanded="true" />
-            <element signature="e#43294#43827#0" expanded="true" />
-            <element signature="e#43826#43827#0" expanded="true" />
-            <element signature="e#43865#44396#0" expanded="true" />
-            <element signature="e#44395#44396#0" expanded="true" />
-            <element signature="e#44434#44965#0" expanded="true" />
-            <element signature="e#44964#44965#0" expanded="true" />
-            <element signature="e#45005#45538#0" expanded="true" />
-            <element signature="e#45537#45538#0" expanded="true" />
-            <element signature="e#45578#46111#0" expanded="true" />
-            <element signature="e#46110#46111#0" expanded="true" />
-            <element signature="e#46151#46684#0" expanded="true" />
-            <element signature="e#46683#46684#0" expanded="true" />
-            <element signature="e#46724#47257#0" expanded="true" />
-            <element signature="e#47256#47257#0" expanded="true" />
-            <element signature="e#47295#47826#0" expanded="true" />
-            <element signature="e#47825#47826#0" expanded="true" />
-            <element signature="e#47864#48395#0" expanded="true" />
-            <element signature="e#48394#48395#0" expanded="true" />
-            <element signature="e#48433#48964#0" expanded="true" />
-            <element signature="e#48963#48964#0" expanded="true" />
-            <element signature="e#49002#49533#0" expanded="true" />
-            <element signature="e#49532#49533#0" expanded="true" />
-            <element signature="e#49573#50106#0" expanded="true" />
-            <element signature="e#50105#50106#0" expanded="true" />
-            <element signature="e#50146#50679#0" expanded="true" />
-            <element signature="e#50678#50679#0" expanded="true" />
-            <element signature="e#50719#51252#0" expanded="true" />
-            <element signature="e#51251#51252#0" expanded="true" />
-            <element signature="e#51287#52179#0" expanded="true" />
-            <element signature="e#52178#52179#0" expanded="true" />
           </folding>
         </state>
       </provider>
