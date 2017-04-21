@@ -13,6 +13,8 @@ import net.java.games.input.DefaultControllerEnvironment;
 
 import javax.swing.*;
 
+import java.lang.reflect.Constructor;
+
 import static com.company.RandomStuff.BooleanH.newBooleanH;
 import static com.company.RandomStuff.DoubleH.newDoubleH;
 import static com.company.RandomStuff.IntH.newIntH;
@@ -22,7 +24,19 @@ public class ControllerInput {
     // private data
     private GamepadController controllers[] = new GamepadController[2];
     private Controller[] Controllers; // this temporarily holds an array of controllers that can be accessed.
-    private DefaultControllerEnvironment ce = new DefaultControllerEnvironment();
+
+    private static ControllerEnvironment createDefaultEnvironment() throws ReflectiveOperationException {
+
+        // Find constructor (class is package private, so we can't access it directly)
+        Constructor<ControllerEnvironment> constructor = (Constructor<ControllerEnvironment>)
+                Class.forName("net.java.games.input.DefaultControllerEnvironment").getDeclaredConstructors()[0];
+
+        // Constructor is package private, so we have to deactivate access control checks
+        constructor.setAccessible(true);
+
+        // Create object with default constructor
+        return constructor.newInstance();
+    }
 
     // constructors
     public ControllerInput(){
@@ -90,8 +104,13 @@ public class ControllerInput {
     // refresh
     public void btnControllerRefreshClicked(){
         // refreshes all controllers, not just a specific one
-
-        Controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
+        try
+        {
+            Controllers = createDefaultEnvironment().getControllers();
+        }catch(ReflectiveOperationException ex){
+            System.out.print("Error creating environment:");
+            System.out.print(ex);
+        }
         JComboBox SomeComboBox = (JComboBox) MainInterfaceFrame.getComponentByName("ControllerComboBox");
         SomeComboBox.removeAllItems();
         for(int i = 0; i < Controllers.length; i++){

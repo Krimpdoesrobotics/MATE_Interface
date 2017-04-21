@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2ea6b67-79ca-46fe-8459-5b9f4fe1627a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$3.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$4.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$5.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$6.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$7.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$8.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$9.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame$9.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/MainInterfaceFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications$PortReader.class" afterPath="$PROJECT_DIR$/out/production/MATE Interface/com/company/SerialCommunications$PortReader.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java" afterPath="$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/ControllerInput.java" afterPath="$PROJECT_DIR$/src/com/company/ControllerInput.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,7 +30,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainInterfaceFrame.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainInterfaceFrame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="80">
@@ -66,18 +58,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ControllerInput.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ControllerInput.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/ControllerInput.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1320">
-              <caret line="81" column="26" lean-forward="false" selection-start-line="81" selection-start-column="20" selection-end-line="81" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1170#1171#0" expanded="false" />
-                <element signature="e#1219#1220#0" expanded="false" />
-                <element signature="e#5236#5237#0" expanded="false" />
-                <element signature="e#5277#5278#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="100">
+              <caret line="97" column="17" lean-forward="true" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -87,9 +73,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1920">
               <caret line="104" column="22" lean-forward="false" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -194,7 +178,6 @@
         <option value="$PROJECT_DIR$/src/com/company/ROV_Monitor/Compass.java" />
         <option value="$PROJECT_DIR$/src/com/company/ROV_Monitor/Custom_Components/Button.java" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/com/company/ControllerInput.java" />
         <option value="$PROJECT_DIR$/src/com/company/ControllerInputFrame.java" />
         <option value="$PROJECT_DIR$/src/com/company/RandomJunk.java" />
         <option value="$PROJECT_DIR$/src/com/company/RobotInfo.java" />
@@ -203,6 +186,7 @@
         <option value="$PROJECT_DIR$/src/com/company/Paintings.java" />
         <option value="$PROJECT_DIR$/src/com/company/SerialCommunications.java" />
         <option value="$PROJECT_DIR$/src/com/company/MainInterfaceFrame.java" />
+        <option value="$PROJECT_DIR$/src/com/company/ControllerInput.java" />
       </list>
     </option>
   </component>
@@ -339,6 +323,116 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/company/ControllerRobotInfo.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -873,7 +967,14 @@
       <option name="project" value="LOCAL" />
       <updated>1492801345203</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Quick Update before i transfer over to Jose's laptop to test">
+      <created>1492801483597</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1492801483597</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -895,7 +996,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.057291668" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24322917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -975,13 +1076,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4525">
           <caret line="198" column="22" lean-forward="false" selection-start-line="198" selection-start-column="22" selection-end-line="198" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1170#1171#0" expanded="false" />
-            <element signature="e#1219#1220#0" expanded="false" />
-            <element signature="e#5236#5237#0" expanded="false" />
-            <element signature="e#5277#5278#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1013,13 +1108,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1875">
           <caret line="80" column="55" lean-forward="true" selection-start-line="80" selection-start-column="55" selection-end-line="80" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1170#1171#0" expanded="false" />
-            <element signature="e#1219#1220#0" expanded="false" />
-            <element signature="e#5236#5237#0" expanded="false" />
-            <element signature="e#5277#5278#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1058,13 +1147,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2000">
           <caret line="80" column="54" lean-forward="false" selection-start-line="80" selection-start-column="49" selection-end-line="80" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1170#1171#0" expanded="false" />
-            <element signature="e#1219#1220#0" expanded="false" />
-            <element signature="e#5236#5237#0" expanded="false" />
-            <element signature="e#5277#5278#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1103,13 +1186,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1875">
           <caret line="80" column="54" lean-forward="false" selection-start-line="80" selection-start-column="49" selection-end-line="80" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1170#1171#0" expanded="false" />
-            <element signature="e#1219#1220#0" expanded="false" />
-            <element signature="e#5236#5237#0" expanded="false" />
-            <element signature="e#5277#5278#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1141,13 +1218,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1875">
           <caret line="80" column="54" lean-forward="false" selection-start-line="80" selection-start-column="49" selection-end-line="80" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1170#1171#0" expanded="false" />
-            <element signature="e#1219#1220#0" expanded="false" />
-            <element signature="e#5236#5237#0" expanded="false" />
-            <element signature="e#5277#5278#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1179,13 +1250,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3000">
           <caret line="125" column="26" lean-forward="true" selection-start-line="125" selection-start-column="26" selection-end-line="125" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1170#1171#0" expanded="false" />
-            <element signature="e#1219#1220#0" expanded="false" />
-            <element signature="e#5236#5237#0" expanded="false" />
-            <element signature="e#5277#5278#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1330,30 +1395,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/ControllerInput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="81" column="26" lean-forward="false" selection-start-line="81" selection-start-column="20" selection-end-line="81" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1170#1171#0" expanded="false" />
-            <element signature="e#1219#1220#0" expanded="false" />
-            <element signature="e#5236#5237#0" expanded="false" />
-            <element signature="e#5277#5278#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/GamepadController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1920">
-          <caret line="104" column="22" lean-forward="false" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/CustomPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="580">
@@ -1411,6 +1452,22 @@
             <element signature="e#11736#11851#0" expanded="true" />
             <element signature="e#11850#11851#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/GamepadController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1920">
+          <caret line="104" column="22" lean-forward="false" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/ControllerInput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="97" column="17" lean-forward="true" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
