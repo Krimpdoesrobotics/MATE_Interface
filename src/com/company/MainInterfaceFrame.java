@@ -60,23 +60,26 @@ public class MainInterfaceFrame extends JFrame
         });
     }
 
-    private Component newComponent(String type, String name, Rectangle Bounds, String content, ActionListener listener){
+    private Component newComponent(String type, String name, Rectangle Bounds, String content, ActionListener listener, boolean visibility){
         switch(type){
             case "JLabel":
                 JLabel toReturn = new JLabel(content);
                 toReturn.setName(name);
                 toReturn.setBounds(Bounds);
+                toReturn.setVisible(visibility);
                 return toReturn;
             case "JComboBox":
                 JComboBox obj = new JComboBox();
                 obj.setName(name);
                 obj.setBounds(Bounds);
+                obj.setVisible(visibility);
                 return obj;
             case "JButton":
                 JButton button = new JButton(content);
                 button.setName(name);
                 button.setBounds(Bounds);
                 button.addActionListener(listener);
+                button.setVisible(visibility);
                 return button;
             default:
                 return null;
@@ -165,30 +168,17 @@ public class MainInterfaceFrame extends JFrame
 
         getContentPane().setLayout(null);
         // serial port label
-        contentPane.add(newComponent("JLabel","lblChooseSerialPort",new Rectangle(50, 50, 130, 20),"Choose Serial Port",null), BorderLayout.CENTER);
+        contentPane.add(newComponent("JLabel","lblChooseSerialPort",new Rectangle(50, 50, 130, 20),"Choose Serial Port",null,true), BorderLayout.CENTER);
         // serial port selection box
-        contentPane.add(newComponent("JComboBox","serialComboBox",new Rectangle(50, 80, 130, 30),null,null), BorderLayout.CENTER);
+        contentPane.add(newComponent("JComboBox","serialComboBox",new Rectangle(50, 80, 130, 30),null,null,true), BorderLayout.CENTER);
         // refresh serial port selection box button
-        contentPane.add(newComponent("JButton","btnSerialRefresh",new Rectangle(200, 50, 100, 40),"Refresh",new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialRefreshClicked();}}), BorderLayout.CENTER);
+        contentPane.add(newComponent("JButton","btnSerialRefresh",new Rectangle(200, 50, 100, 40),"Refresh",new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialRefreshClicked();}},true), BorderLayout.CENTER);
         // connect serial port button
-        /*JButton btnSerialConnect = new JButton("Connect");
-        btnSerialConnect.setBounds(new Rectangle(200, 100, 100, 40));
-        btnSerialConnect.setName("btnSerialConnect");
-        btnSerialConnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialConnectClicked();}});
-        contentPane.add(btnSerialConnect, BorderLayout.CENTER);*/
-        contentPane.add(newComponent("JButton","btnSerialConnect",new Rectangle(200, 100, 100, 40),"Connect",new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialConnectClicked();}}), BorderLayout.CENTER);
+        contentPane.add(newComponent("JButton","btnSerialConnect",new Rectangle(200, 100, 100, 40),"Connect",new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialConnectClicked();}},true), BorderLayout.CENTER);
         // disconnect serial port button
-        JButton btnSerialDisconnect = new JButton("Disconnect");
-        btnSerialDisconnect.setBounds(new Rectangle(200, 150, 100, 40));
-        btnSerialDisconnect.setName("btnSerialDisconnect");
-        btnSerialDisconnect.setVisible(false);
-        btnSerialDisconnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialDisconnectClicked();}});
-        contentPane.add(btnSerialDisconnect, BorderLayout.CENTER);
+        contentPane.add(newComponent("JButton","btnSerialDisconnect",new Rectangle(200, 150, 100, 40),"Disconnect",new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialDisconnectClicked();}},false), BorderLayout.CENTER);
         // sent serial messages display label
-        JLabel lblSerialSent = new JLabel("Sent Serial Messages");
-        lblSerialSent.setName("lblSerialSent");
-        lblSerialSent.setBounds(new Rectangle(625, 50, 130, 20));
-        contentPane.add(lblSerialSent, BorderLayout.CENTER);
+        contentPane.add(newComponent("JLabel","lblSerialSent",new Rectangle(625, 50, 130, 20),"Sent Serial Messages",null,true), BorderLayout.CENTER);
         // sent serial messages display
         JList<String> listSerialSent = new JList<>(modelSerialSent);
         JScrollPane scrollPaneSerialSent = new JScrollPane();
