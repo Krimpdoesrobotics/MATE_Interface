@@ -1051,17 +1051,6 @@ public class MainInterfaceFrame extends JFrame
         createComponentMap();
     }
 
-    public static void scrollDown()    {
-        Component SomeComponent = getComponentByName("scrollPaneSerialReceived");
-        Component SomeComponent2 = getComponentByName("scrollPaneSerialSent");
-        if(SomeComponent instanceof JScrollPane && SomeComponent2 instanceof  JScrollPane){
-            JScrollPane ScrollPaneReceived = (JScrollPane) SomeComponent;
-            JScrollPane ScrollPaneSent = (JScrollPane) SomeComponent2;
-            ScrollPaneReceived.getVerticalScrollBar().setValue(ScrollPaneReceived.getVerticalScrollBar().getMaximum());
-            ScrollPaneSent.getVerticalScrollBar().setValue(ScrollPaneSent.getVerticalScrollBar().getMaximum());
-        }
-    }
-
     public void createComponentMap()    {
         componentMap = new HashMap<String,Component>();
         Component[] components = getContentPane().getComponents();
