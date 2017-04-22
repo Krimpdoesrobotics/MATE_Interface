@@ -54,7 +54,16 @@ public class SerialCommunications
 
     public void sendRobotInfo(){
         byte[] stuff = new byte[8];
-        for(int i = 0; i < 6; i++)
+        int remain = (getTimeSinceLastUpdate()/10) % 6;
+        switch(remain){
+            case 0: stuff[0] = fromDouble(0.5); break;
+            case 1: stuff[0] = fromDouble(0.75);break;
+            case 2: stuff[0] = fromDouble(0.25);break;
+            case 3: stuff[0] = fromDouble(-0.25);break;
+            case 4: stuff[0] = fromDouble(-0.5);break;
+            case 5: stuff[0] = fromDouble(0);break;
+        }
+        for(int i = 1; i < 6; i++)
             stuff[i] = fromDouble(ControllerRobot.getMotorSpeed(i).getDouble());
         stuff[6]=fromDouble(ControllerRobot.getGripperRotation().getDouble());
         stuff[7]=fromDouble(ControllerRobot.getGripperClamp().getDouble());
@@ -85,13 +94,12 @@ public class SerialCommunications
     public void btnSerialConnectClicked() {
         MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(false);
         MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(true);
-        //MainInterfaceFrame.getComponentByName("btnSerialSendRefresh").setVisible(true);
         try   {
             portSelected = MainInterfaceFrame.getSelectedPort();
             serialPort = new SerialPort(portSelected);
             serialPort.openPort();
             Opened = true;
-            serialPort.setParams(SerialPort.BAUDRATE_9600,
+            serialPort.setParams(SerialPort.BAUDRATE_19200,
                     SerialPort.DATABITS_8,
                     SerialPort.STOPBITS_1,
                     SerialPort.PARITY_NONE);
@@ -109,7 +117,6 @@ public class SerialCommunications
     {
         MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(false);
         MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(true);
-        //MainInterfaceFrame.getComponentByName("btnSerialSendRefresh").setVisible(false);
         try {
             serialPort.closePort();
             Opened=false;
@@ -118,27 +125,7 @@ public class SerialCommunications
         }
     }
 
-    /*public void btnSerialSendRefreshClicked()
-    {
-        if(isOpen())
-        {
-            PortSender("A");
-        }
-    }*/
-
     public boolean isOpen(){return Opened;}
-
-    // outputs to the port
-    /*public boolean PortSender(String command) {
-        try {
-            serialPort.writeString(command);
-            MainInterfaceFrame.addSerialSent(command);
-        } catch(SerialPortException ex) {
-            System.out.println("Error sending string: " + ex);
-            return false;
-        }
-        return true;
-    }*/
 
     public boolean PortSend(byte[] val){
         if(isOpen()){
@@ -168,7 +155,7 @@ public class SerialCommunications
                 try
                 {
                     String toDisplay = "O:";
-                    System.out.print("O:");
+                    //System.out.print("O:");
                     for(int j = 0; j < 8; j++){
                         byte a[] = serialPort.readBytes(1);
                         int temp = (int)(a[0]);
@@ -177,13 +164,13 @@ public class SerialCommunications
                         }
                         toDisplay+= " ";
                         toDisplay += String.valueOf(temp);
-                        System.out.print(a[0]);
+                        //System.out.print(a[0]);
                         if(j == 6){
-                            Robot.setGripperRotation((double)(temp)/90);
+                            Robot.setGripperRotation((double)(temp-90)/90);
                         }else if(j == 7){
-                            Robot.setGripperClamp((double)(temp)/90);
+                            Robot.setGripperClamp((double)(temp-90)/90);
                         }else{
-                            Robot.setMotorSpeed(j,(double)(temp)/90);
+                            Robot.setMotorSpeed(j,(double)(temp-90)/90);
                         }
                     }
                     MainInterfaceFrame.addSerialReceived(toDisplay);

@@ -130,11 +130,11 @@ public class ControllerRobotInfo extends RobotInfo
             else if (controller1.getDPadRight()){setGripperRotation(0.5);}
             else{setGripperRotation(0);}
             if (controller1.getDPadUp()){
-                setGripperClamp(getGripperClamp().getDouble()+0.05);
+                setGripperClamp(getGripperClamp().getDouble()+0.02);
                 if(getGripperClamp().getDouble() > 1){setGripperClamp(1);}
             }
             else if (controller1.getDPadDown()){
-                setGripperClamp(getGripperClamp().getDouble()-0.05);
+                setGripperClamp(getGripperClamp().getDouble()-0.02);
                 if(getGripperClamp().getDouble() < -1){getGripperClamp().setDouble(-1);}
             }
         }
