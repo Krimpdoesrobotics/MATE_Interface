@@ -97,138 +97,164 @@ public class MainInterfaceFrame extends JFrame
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         contentPane = new CustomPanel(NumGraphics);
         //Left Analog stick display
-        contentPane.InterfaceElements[0] = new Paintings(175,525,200,200,0,Color.BLACK,LogitechController.getController(0).getLeftAnalogUpdatedH());
+        contentPane.InterfaceElements[0] = new Paintings(150,575,200,200,0,Color.BLACK,LogitechController.getController(0).getLeftAnalogUpdatedH());
         contentPane.InterfaceElements[0].setReferenceType0(LogitechController.getController(0).getXValueH(),LogitechController.getController(0).getYValueH(),Color.BLACK,Color.CYAN);
         //Right Analog stick display
-        contentPane.InterfaceElements[1] = new Paintings(425,525,200,200,0,Color.BLACK,LogitechController.getController(0).getRightAnalogUpdatedH());
+        contentPane.InterfaceElements[1] = new Paintings(375,575,200,200,0,Color.BLACK,LogitechController.getController(0).getRightAnalogUpdatedH());
         contentPane.InterfaceElements[1].setReferenceType0(LogitechController.getController(0).getXRotationH(),LogitechController.getController(0).getYRotationH(),Color.BLACK,Color.CYAN);
         //Up or down
-        contentPane.InterfaceElements[2] = new Paintings(300,250,200,50,3,Color.BLACK,LogitechController.getController(0).getUpdatedH(4));
+        contentPane.InterfaceElements[2] = new Paintings(275,300,200,50,3,Color.BLACK,LogitechController.getController(0).getUpdatedH(4));
         contentPane.InterfaceElements[2].setReferenceType34(LogitechController.getController(0).getZAxisH(),Color.WHITE,Color.CYAN);
         //button maybe A
-        contentPane.InterfaceElements[3] = new Paintings(620,440,60,60,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(5));
+        contentPane.InterfaceElements[3] = new Paintings(570,490,60,60,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(5));
         contentPane.InterfaceElements[3].setReferenceType2(LogitechController.getController(0).getButtonH(0),Color.WHITE, Color.CYAN);
         //button maybe B
-        contentPane.InterfaceElements[4] = new Paintings(690,370,60,60,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(6));
+        contentPane.InterfaceElements[4] = new Paintings(640,420,60,60,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(6));
         contentPane.InterfaceElements[4].setReferenceType2(LogitechController.getController(0).getButtonH(1),Color.WHITE, Color.CYAN);
         //button maybe x
-        contentPane.InterfaceElements[5] = new Paintings(550,370,60,60,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(7));
+        contentPane.InterfaceElements[5] = new Paintings(500,420,60,60,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(7));
         contentPane.InterfaceElements[5].setReferenceType2(LogitechController.getController(0).getButtonH(2),Color.WHITE, Color.CYAN);
         //button maybe y
-        contentPane.InterfaceElements[6] = new Paintings(620,300,60,60,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(8));
+        contentPane.InterfaceElements[6] = new Paintings(570,350,60,60,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(8));
         contentPane.InterfaceElements[6].setReferenceType2(LogitechController.getController(0).getButtonH(3),Color.WHITE, Color.CYAN);
         //button maybe L
-        contentPane.InterfaceElements[7] = new Paintings(50,250,200,30,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(9));
+        contentPane.InterfaceElements[7] = new Paintings(50,300,200,30,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(9));
         contentPane.InterfaceElements[7].setReferenceType2(LogitechController.getController(0).getButtonH(4),Color.WHITE, Color.CYAN);
         //button maybe R
-        contentPane.InterfaceElements[8] = new Paintings(550,250,200,30,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(10));
+        contentPane.InterfaceElements[8] = new Paintings(500,300,200,30,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(10));
         contentPane.InterfaceElements[8].setReferenceType2(LogitechController.getController(0).getButtonH(5),Color.WHITE, Color.CYAN);
         //button maybe back
-        contentPane.InterfaceElements[9] = new Paintings(300,350,80,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(11));
+        contentPane.InterfaceElements[9] = new Paintings(275,400,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(11));
         contentPane.InterfaceElements[9].setReferenceType2(LogitechController.getController(0).getButtonH(6),Color.WHITE, Color.CYAN);
         //button maybe start
-        contentPane.InterfaceElements[10] = new Paintings(420,350,80,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(12));
+        contentPane.InterfaceElements[10] = new Paintings(400,400,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(12));
         contentPane.InterfaceElements[10].setReferenceType2(LogitechController.getController(0).getButtonH(7),Color.WHITE, Color.CYAN);
         //button maybe L-stick
-        contentPane.InterfaceElements[11] = new Paintings(50,525,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(13));
+        contentPane.InterfaceElements[11] = new Paintings(50,575,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(13));
         contentPane.InterfaceElements[11].setReferenceType2(LogitechController.getController(0).getButtonH(8),Color.WHITE, Color.CYAN);
         //button maybe R-stick
-        contentPane.InterfaceElements[12] = new Paintings(675,525,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(14));
+        contentPane.InterfaceElements[12] = new Paintings(600,575,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(14));
         contentPane.InterfaceElements[12].setReferenceType2(LogitechController.getController(0).getButtonH(9),Color.WHITE, Color.CYAN);
         //d-pad display
-        contentPane.InterfaceElements[13] = new Paintings(50,300,200,200,1,Color.BLACK,LogitechController.getController(0).getUpdatedH(15));
+        contentPane.InterfaceElements[13] = new Paintings(50,350,200,200,1,Color.BLACK,LogitechController.getController(0).getUpdatedH(15));
         contentPane.InterfaceElements[13].setReferenceType1(LogitechController.getController(0).getDPadH(),Color.BLACK, Color.CYAN);
         //motor 1 display
-        contentPane.InterfaceElements[14] = new Paintings(110,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(0));
+        contentPane.InterfaceElements[14] = new Paintings(750,300,50,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(0));
         contentPane.InterfaceElements[14].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(0),Color.CYAN,Color.BLACK);
         //motor 2 display
-        contentPane.InterfaceElements[15] = new Paintings(210,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(1));
+        contentPane.InterfaceElements[15] = new Paintings(950,300,50,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(1));
         contentPane.InterfaceElements[15].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(1),Color.CYAN,Color.BLACK);
         //motor 3 display
-        contentPane.InterfaceElements[16] = new Paintings(310,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(2));
+        contentPane.InterfaceElements[16] = new Paintings(750,525,50,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(2));
         contentPane.InterfaceElements[16].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(2),Color.CYAN,Color.BLACK);
         //motor 4 display
-        contentPane.InterfaceElements[17] = new Paintings(410,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(3));
+        contentPane.InterfaceElements[17] = new Paintings(950,525,50,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(3));
         contentPane.InterfaceElements[17].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(3),Color.CYAN,Color.BLACK);
         //motor 5 display
-        contentPane.InterfaceElements[18] = new Paintings(510,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(4));
+        contentPane.InterfaceElements[18] = new Paintings(815,410,50,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(4));
         contentPane.InterfaceElements[18].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(4),Color.CYAN,Color.BLACK);
         //motor 6 display
-        contentPane.InterfaceElements[19] = new Paintings(610,755,80,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(5));
+        contentPane.InterfaceElements[19] = new Paintings(885,410,50,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(5));
         contentPane.InterfaceElements[19].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(5),Color.CYAN,Color.BLACK);
         //gripper rotation
-        contentPane.InterfaceElements[20] = new Paintings(710,755,200,30,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(6));
+        contentPane.InterfaceElements[20] = new Paintings(750,750,115,25,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(6));
         contentPane.InterfaceElements[20].setReferenceType34(SerialCommunication.getRobot().getGripperRotation(),Color.CYAN,Color.BLACK);
         //gripper clamp
-        contentPane.InterfaceElements[21] = new Paintings(710,855,200,30,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(7));
+        contentPane.InterfaceElements[21] = new Paintings(885,750,115,25,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(7));
         contentPane.InterfaceElements[21].setReferenceType34(SerialCommunication.getRobot().getGripperClamp(),Color.CYAN,Color.BLACK);
 
         setContentPane(contentPane);
         setBackground(new Color(0, 100, 100, 255));
 
         getContentPane().setLayout(null);
-        // serial port label
-        contentPane.add(newComponent("JLabel","lblChooseSerialPort",new Rectangle(50, 50, 130, 20),"Choose Serial Port",null,true), BorderLayout.CENTER);
-        // serial port selection box
-        contentPane.add(newComponent("JComboBox","serialComboBox",new Rectangle(50, 80, 130, 30),null,null,true), BorderLayout.CENTER);
-        // refresh serial port selection box button
-        contentPane.add(newComponent("JButton","btnSerialRefresh",new Rectangle(200, 50, 100, 40),"Refresh",new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialRefreshClicked();}},true), BorderLayout.CENTER);
-        // connect serial port button
-        contentPane.add(newComponent("JButton","btnSerialConnect",new Rectangle(200, 100, 100, 40),"Connect",new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialConnectClicked();}},true), BorderLayout.CENTER);
-        // disconnect serial port button
-        contentPane.add(newComponent("JButton","btnSerialDisconnect",new Rectangle(200, 150, 100, 40),"Disconnect",new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialDisconnectClicked();}},false), BorderLayout.CENTER);
-        // sent serial messages display label
-        contentPane.add(newComponent("JLabel","lblSerialSent",new Rectangle(625, 50, 130, 20),"Sent Serial Messages",null,true), BorderLayout.CENTER);
-        // sent serial messages display
-        JList<String> listSerialSent = new JList<>(modelSerialSent);
-        JScrollPane scrollPaneSerialSent = new JScrollPane();
-        scrollPaneSerialSent.setViewportView(listSerialSent);
-        scrollPaneSerialSent.setName("scrollPaneSerialSent");
-        scrollPaneSerialSent.setBounds(new Rectangle(625, 80, 175, 150));
-        contentPane.add(scrollPaneSerialSent, BorderLayout.CENTER);
-        // recieved serial messages display label
-        contentPane.add(newComponent("JLabel","lblSerialReceived",new Rectangle(825, 50, 170, 20),"Received Serial Messages",null,true), BorderLayout.CENTER);
-        // recieved serial messages display
-        JList<String> listSerialReceived = new JList<>(modelSerialReceived);
-        JScrollPane scrollPaneSerialReceived = new JScrollPane();
-        scrollPaneSerialReceived.setViewportView(listSerialReceived);
-        scrollPaneSerialReceived.setName("scrollPaneSerialReceived");
-        scrollPaneSerialReceived.setBounds(new Rectangle(825, 80, 175, 150));
-        contentPane.add(scrollPaneSerialReceived, BorderLayout.CENTER);
-        // choose controller label
-        contentPane.add(newComponent("JLabel","lblChooseController",new Rectangle(350, 50, 130, 20),"Choose Controller",null,true), BorderLayout.CENTER);
-        // choose controller selection box
-		JComboBox ControllerComboBox = new JComboBox();
-		ControllerComboBox.setBounds(new Rectangle(350, 80, 130, 30));
-		ControllerComboBox.setName("ControllerComboBox");
-		ControllerComboBox.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.ControllerComboBoxSelection();}});
-		contentPane.add(ControllerComboBox, BorderLayout.CENTER);
-        // refresh controller selection box button
-		JButton btnControllerRefresh = new JButton("Refresh");
-		btnControllerRefresh.setBounds(new Rectangle(500, 50, 100, 40));
-		btnControllerRefresh.setName("btnControllerRefresh");
-		btnControllerRefresh.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnControllerRefreshClicked();}});
-		contentPane.add(btnControllerRefresh, BorderLayout.CENTER);
-        // connect controller button
-		JButton btnControllerConnect = new JButton("Connect");
-		btnControllerConnect.setBounds(new Rectangle(500, 100, 100, 40));
-		btnControllerConnect.setName("btnControllerConnect");
-		btnControllerConnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnController1ConnectClicked();}});
-		contentPane.add(btnControllerConnect, BorderLayout.CENTER);
-        // disconnect controller button
-		JButton btnControllerDisconnect = new JButton("Disconnect");
-		btnControllerDisconnect.setBounds(new Rectangle(500, 150, 100, 40));
-		btnControllerDisconnect.setName("btnControllerDisconnect");
-		btnControllerDisconnect.setVisible(false);
-		btnControllerDisconnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnController1DisconnectClicked();}});
-		contentPane.add(btnControllerDisconnect, BorderLayout.CENTER);
-
-		//Evan and Zach's displays
+        try {
+            // serial port label
+            contentPane.add(newComponent("JLabel", "lblChooseSerialPort", new Rectangle(50, 50, 130, 20), "Choose Serial Port", null, true), BorderLayout.CENTER);
+            // serial port selection box
+            contentPane.add(newComponent("JComboBox", "serialComboBox", new Rectangle(50, 80, 130, 30), null, null, true), BorderLayout.CENTER);
+            // refresh serial port selection box button
+            contentPane.add(newComponent("JButton", "btnSerialRefresh", new Rectangle(200, 50, 100, 40), "Refresh", new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    SerialCommunication.btnSerialRefreshClicked();
+                }
+            }, true), BorderLayout.CENTER);
+            // connect serial port button
+            contentPane.add(newComponent("JButton", "btnSerialConnect", new Rectangle(200, 100, 100, 40), "Connect", new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    SerialCommunication.btnSerialConnectClicked();
+                }
+            }, true), BorderLayout.CENTER);
+            // disconnect serial port button
+            contentPane.add(newComponent("JButton", "btnSerialDisconnect", new Rectangle(200, 150, 100, 40), "Disconnect", new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    SerialCommunication.btnSerialDisconnectClicked();
+                }
+            }, false), BorderLayout.CENTER);
+            // sent serial messages display label
+            contentPane.add(newComponent("JLabel", "lblSerialSent", new Rectangle(625, 50, 130, 20), "Sent Serial Messages", null, true), BorderLayout.CENTER);
+            // sent serial messages display
+            JList<String> listSerialSent = new JList<>(modelSerialSent);
+            JScrollPane scrollPaneSerialSent = new JScrollPane();
+            scrollPaneSerialSent.setViewportView(listSerialSent);
+            scrollPaneSerialSent.setName("scrollPaneSerialSent");
+            scrollPaneSerialSent.setBounds(new Rectangle(625, 80, 175, 150));
+            contentPane.add(scrollPaneSerialSent, BorderLayout.CENTER);
+            // recieved serial messages display label
+            contentPane.add(newComponent("JLabel", "lblSerialReceived", new Rectangle(825, 50, 170, 20), "Received Serial Messages", null, true), BorderLayout.CENTER);
+            // recieved serial messages display
+            JList<String> listSerialReceived = new JList<>(modelSerialReceived);
+            JScrollPane scrollPaneSerialReceived = new JScrollPane();
+            scrollPaneSerialReceived.setViewportView(listSerialReceived);
+            scrollPaneSerialReceived.setName("scrollPaneSerialReceived");
+            scrollPaneSerialReceived.setBounds(new Rectangle(825, 80, 175, 150));
+            contentPane.add(scrollPaneSerialReceived, BorderLayout.CENTER);
+            // choose controller label
+            contentPane.add(newComponent("JLabel", "lblChooseController", new Rectangle(350, 50, 130, 20), "Choose Controller", null, true), BorderLayout.CENTER);
+            // choose controller selection box
+            JComboBox ControllerComboBox = new JComboBox();
+            ControllerComboBox.setBounds(new Rectangle(350, 80, 130, 30));
+            ControllerComboBox.setName("ControllerComboBox");
+            ControllerComboBox.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    LogitechController.ControllerComboBoxSelection();
+                }
+            });
+            contentPane.add(ControllerComboBox, BorderLayout.CENTER);
+            // refresh controller selection box button
+            contentPane.add(newComponent("JButton", "btnControllerRefresh", new Rectangle(500, 50, 100, 40), "Refresh", new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    LogitechController.btnControllerRefreshClicked();
+                }
+            }, true), BorderLayout.CENTER);
+            // connect controller button
+            contentPane.add(newComponent("JButton", "btnControllerConnect", new Rectangle(500, 100, 100, 40), "Connect", new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    LogitechController.btnController1ConnectClicked();
+                }
+            }, true), BorderLayout.CENTER);
+            // disconnect controller button
+            contentPane.add(newComponent("JButton", "btnControllerDisconnect", new Rectangle(500, 150, 100, 40), "Disconnect", new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    LogitechController.btnController1DisconnectClicked();
+                }
+            }, false), BorderLayout.CENTER);
+        }
+        catch(NullPointerException ex){
+            System.out.print("Error Loading objects");
+            System.out.print(ex);
+        }
+        //Evan and Zach's displays
         JLabel lblBorder = new JLabel();
         lblBorder.setBounds(1040, 0, 20, (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight());
         lblBorder.setOpaque(true);
         lblBorder.setBackground(Color.BLACK);
         contentPane.add(lblBorder, BorderLayout.CENTER);
+
+        JLabel lblHBorder = new JLabel();
+        lblHBorder.setBounds(0, 250, 1050, 20);
+        lblHBorder.setOpaque(true);
+        lblHBorder.setBackground(Color.BLACK);
+        contentPane.add(lblHBorder, BorderLayout.CENTER);
 
         // checkboxes and the tasks variables
 
@@ -1088,16 +1114,16 @@ public class MainInterfaceFrame extends JFrame
     // 2: X ROTATION ABSOLUTE ANALOG: Right Stick X
     // 3: Y ROTATION ABSOLUTE ANALOG: Right Stick Y
     // 4: Z AXIS ABSOLUTE ANALOG: Sum of Left Trigger(+) and Right Trigger(-)
-    // 5: BUTTON 0: A Button (PUMP IN)
-    // 6: BUTTON 1: B Button (PUMP OUT)
-    // 7: BUTTON 2: X Button (YOU ARE DRIVER 1)
-    // 8: BUTTON 3: Y Button (YOU ARE DRIVER 2)
-    // 9: BUTTON 4: L Button (not working well ATM)
-    // 10: BUTTON 5: R Button
-    // 11: BUTTON 6: Back Button (Flash Light On/Off)
-    // 12: BUTTON 7: Start Button (MAKES YOU DRIVER)
-    // 13: BUTTON 8: L Stick Push Down
-    // 14: BUTTON 9: R Stick Push Down
+    // 5: BUTTON 0: A Button (FL Test temporarily)
+    // 6: BUTTON 1: B Button (FR Test temporarily)
+    // 7: BUTTON 2: X Button (BL Test temporarily)
+    // 8: BUTTON 3: Y Button (BR Test temporarily)
+    // 9: BUTTON 4: L Button (FL Test temporarily)
+    // 10: BUTTON 5: R Button (FR Test temporarily)
+    // 11: BUTTON 6: Back Button
+    // 12: BUTTON 7: Start Button (Stops everything when held)
+    // 13: BUTTON 8: L Stick Push Down (Decrease throttle to 1/4 of usual)
+    // 14: BUTTON 9: R Stick Push Down (Decrease throttle to 1/4 of usual)
     // 15: HAT SWITCH: D Pad 0 Nothing .125 FL .25 F, .375 FR, etc..... 1.0 L
     // --------------- //
 

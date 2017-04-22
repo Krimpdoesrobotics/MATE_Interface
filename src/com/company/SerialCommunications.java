@@ -43,7 +43,7 @@ public class SerialCommunications
     public void incrementTime(){TimeSinceLastUpdate++;}
 
     public byte fromDouble(double a){
-        int b = (int)(a*90+90);
+        int b = (int)(a*65+90);
         if(b>=128){
             b = -1*(256-b);
             return ((byte) b);
@@ -54,16 +54,16 @@ public class SerialCommunications
 
     public void sendRobotInfo(){
         byte[] stuff = new byte[8];
-        int remain = (getTimeSinceLastUpdate()/10) % 6;
+        /*int remain = (getTimeSinceLastUpdate()/10) % 6;
         switch(remain){
             case 0: stuff[0] = fromDouble(0.5); break;
-            case 1: stuff[0] = fromDouble(0.75);break;
-            case 2: stuff[0] = fromDouble(0.25);break;
-            case 3: stuff[0] = fromDouble(-0.25);break;
-            case 4: stuff[0] = fromDouble(-0.5);break;
-            case 5: stuff[0] = fromDouble(0);break;
-        }
-        for(int i = 1; i < 6; i++)
+            case 1: stuff[0] = fromDouble(0.5);break;
+            case 2: stuff[0] = fromDouble(0.5);break;
+            case 3: stuff[0] = fromDouble(0.5);break;
+            case 4: stuff[0] = fromDouble(0.5);break;
+            case 5: stuff[0] = fromDouble(0.5);break;
+        }*/
+        for(int i = 0; i < 6; i++)
             stuff[i] = fromDouble(ControllerRobot.getMotorSpeed(i).getDouble());
         stuff[6]=fromDouble(ControllerRobot.getGripperRotation().getDouble());
         stuff[7]=fromDouble(ControllerRobot.getGripperClamp().getDouble());
@@ -146,14 +146,10 @@ public class SerialCommunications
         return false;
     }
 
-    private static class PortReader implements SerialPortEventListener
-    {
-        public void serialEvent(SerialPortEvent event)
-        {
-            if (event.isRXCHAR() && event.getEventValue() > 8)
-            {
-                try
-                {
+    private static class PortReader implements SerialPortEventListener {
+        public void serialEvent(SerialPortEvent event) {
+            if (event.isRXCHAR() && event.getEventValue() > 8) {
+                try {
                     String toDisplay = "O:";
                     //System.out.print("O:");
                     for(int j = 0; j < 8; j++){

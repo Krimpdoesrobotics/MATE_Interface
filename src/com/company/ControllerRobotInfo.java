@@ -1,7 +1,7 @@
 package com.company;
 
 /**
- * Created by richard on 4/2/17.
+ * Created by Richard on 4/2/17.
  */
 public class ControllerRobotInfo extends RobotInfo
 {
@@ -136,6 +136,30 @@ public class ControllerRobotInfo extends RobotInfo
             else if (controller1.getDPadDown()){
                 setGripperClamp(getGripperClamp().getDouble()-0.02);
                 if(getGripperClamp().getDouble() < -1){getGripperClamp().setDouble(-1);}
+            }
+        }
+        //temporary testing buttons
+        boolean testing = false;
+        for(int k = 0; k < 6; k++){
+            if(controller1.getButton(k)){
+                testing = true;
+                setMotorSpeed(k,0.1);
+            }
+        }
+        if(testing){
+            for(int k = 0; k < 6; k++){
+                if(getMotorSpeed(k).getDouble()!= 0.1){
+                    setMotorSpeed(k,0);
+                }
+            }
+        }else if(controller1.getButton(8) || controller1.getButton(9)){
+            for(int k = 0; k < 6; k++){
+                setMotorSpeed(k,getMotorSpeed(k).getDouble()/4);
+            }
+        }
+        if(controller1.getButton(7)){
+            for (int k = 0; k < 6; k++){
+                setMotorSpeed(k,0);
             }
         }
     }

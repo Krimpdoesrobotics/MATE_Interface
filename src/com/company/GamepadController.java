@@ -11,7 +11,7 @@ import static com.company.RandomStuff.IntH.newIntH;
 import net.java.games.input.*;
 
 /**
- * Created by julia on 3/26/2017.
+ * Created by Richard on 3/26/2017.
  */
 public class GamepadController {
     private DoubleH XAxis, YAxis, XRotation, YRotation, DPad, ZAxis; // Value of each axis
