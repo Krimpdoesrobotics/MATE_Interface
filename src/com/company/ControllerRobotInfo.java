@@ -1,7 +1,7 @@
 package com.company;
 
 /**
- * Created by richard on 4/2/17.
+ * Created by Richard on 4/2/17.
  */
 public class ControllerRobotInfo extends RobotInfo
 {

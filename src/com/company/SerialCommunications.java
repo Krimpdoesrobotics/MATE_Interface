@@ -146,14 +146,10 @@ public class SerialCommunications
         return false;
     }
 
-    private static class PortReader implements SerialPortEventListener
-    {
-        public void serialEvent(SerialPortEvent event)
-        {
-            if (event.isRXCHAR() && event.getEventValue() > 8)
-            {
-                try
-                {
+    private static class PortReader implements SerialPortEventListener {
+        public void serialEvent(SerialPortEvent event) {
+            if (event.isRXCHAR() && event.getEventValue() > 8) {
+                try {
                     String toDisplay = "O:";
                     //System.out.print("O:");
                     for(int j = 0; j < 8; j++){

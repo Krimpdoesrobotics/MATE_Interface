@@ -167,63 +167,83 @@ public class MainInterfaceFrame extends JFrame
         setBackground(new Color(0, 100, 100, 255));
 
         getContentPane().setLayout(null);
-        // serial port label
-        contentPane.add(newComponent("JLabel","lblChooseSerialPort",new Rectangle(50, 50, 130, 20),"Choose Serial Port",null,true), BorderLayout.CENTER);
-        // serial port selection box
-        contentPane.add(newComponent("JComboBox","serialComboBox",new Rectangle(50, 80, 130, 30),null,null,true), BorderLayout.CENTER);
-        // refresh serial port selection box button
-        contentPane.add(newComponent("JButton","btnSerialRefresh",new Rectangle(200, 50, 100, 40),"Refresh",new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialRefreshClicked();}},true), BorderLayout.CENTER);
-        // connect serial port button
-        contentPane.add(newComponent("JButton","btnSerialConnect",new Rectangle(200, 100, 100, 40),"Connect",new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialConnectClicked();}},true), BorderLayout.CENTER);
-        // disconnect serial port button
-        contentPane.add(newComponent("JButton","btnSerialDisconnect",new Rectangle(200, 150, 100, 40),"Disconnect",new ActionListener(){public void actionPerformed(ActionEvent e){SerialCommunication.btnSerialDisconnectClicked();}},false), BorderLayout.CENTER);
-        // sent serial messages display label
-        contentPane.add(newComponent("JLabel","lblSerialSent",new Rectangle(625, 50, 130, 20),"Sent Serial Messages",null,true), BorderLayout.CENTER);
-        // sent serial messages display
-        JList<String> listSerialSent = new JList<>(modelSerialSent);
-        JScrollPane scrollPaneSerialSent = new JScrollPane();
-        scrollPaneSerialSent.setViewportView(listSerialSent);
-        scrollPaneSerialSent.setName("scrollPaneSerialSent");
-        scrollPaneSerialSent.setBounds(new Rectangle(625, 80, 175, 150));
-        contentPane.add(scrollPaneSerialSent, BorderLayout.CENTER);
-        // recieved serial messages display label
-        contentPane.add(newComponent("JLabel","lblSerialReceived",new Rectangle(825, 50, 170, 20),"Received Serial Messages",null,true), BorderLayout.CENTER);
-        // recieved serial messages display
-        JList<String> listSerialReceived = new JList<>(modelSerialReceived);
-        JScrollPane scrollPaneSerialReceived = new JScrollPane();
-        scrollPaneSerialReceived.setViewportView(listSerialReceived);
-        scrollPaneSerialReceived.setName("scrollPaneSerialReceived");
-        scrollPaneSerialReceived.setBounds(new Rectangle(825, 80, 175, 150));
-        contentPane.add(scrollPaneSerialReceived, BorderLayout.CENTER);
-        // choose controller label
-        contentPane.add(newComponent("JLabel","lblChooseController",new Rectangle(350, 50, 130, 20),"Choose Controller",null,true), BorderLayout.CENTER);
-        // choose controller selection box
-		JComboBox ControllerComboBox = new JComboBox();
-		ControllerComboBox.setBounds(new Rectangle(350, 80, 130, 30));
-		ControllerComboBox.setName("ControllerComboBox");
-		ControllerComboBox.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.ControllerComboBoxSelection();}});
-		contentPane.add(ControllerComboBox, BorderLayout.CENTER);
-        // refresh controller selection box button
-		JButton btnControllerRefresh = new JButton("Refresh");
-		btnControllerRefresh.setBounds(new Rectangle(500, 50, 100, 40));
-		btnControllerRefresh.setName("btnControllerRefresh");
-		btnControllerRefresh.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnControllerRefreshClicked();}});
-		contentPane.add(btnControllerRefresh, BorderLayout.CENTER);
-        // connect controller button
-		JButton btnControllerConnect = new JButton("Connect");
-		btnControllerConnect.setBounds(new Rectangle(500, 100, 100, 40));
-		btnControllerConnect.setName("btnControllerConnect");
-		btnControllerConnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnController1ConnectClicked();}});
-		contentPane.add(btnControllerConnect, BorderLayout.CENTER);
-        // disconnect controller button
-		JButton btnControllerDisconnect = new JButton("Disconnect");
-		btnControllerDisconnect.setBounds(new Rectangle(500, 150, 100, 40));
-		btnControllerDisconnect.setName("btnControllerDisconnect");
-		btnControllerDisconnect.setVisible(false);
-		btnControllerDisconnect.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){LogitechController.btnController1DisconnectClicked();}});
-		contentPane.add(btnControllerDisconnect, BorderLayout.CENTER);
-
-		//Evan and Zach's displays
+        try {
+            // serial port label
+            contentPane.add(newComponent("JLabel", "lblChooseSerialPort", new Rectangle(50, 50, 130, 20), "Choose Serial Port", null, true), BorderLayout.CENTER);
+            // serial port selection box
+            contentPane.add(newComponent("JComboBox", "serialComboBox", new Rectangle(50, 80, 130, 30), null, null, true), BorderLayout.CENTER);
+            // refresh serial port selection box button
+            contentPane.add(newComponent("JButton", "btnSerialRefresh", new Rectangle(200, 50, 100, 40), "Refresh", new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    SerialCommunication.btnSerialRefreshClicked();
+                }
+            }, true), BorderLayout.CENTER);
+            // connect serial port button
+            contentPane.add(newComponent("JButton", "btnSerialConnect", new Rectangle(200, 100, 100, 40), "Connect", new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    SerialCommunication.btnSerialConnectClicked();
+                }
+            }, true), BorderLayout.CENTER);
+            // disconnect serial port button
+            contentPane.add(newComponent("JButton", "btnSerialDisconnect", new Rectangle(200, 150, 100, 40), "Disconnect", new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    SerialCommunication.btnSerialDisconnectClicked();
+                }
+            }, false), BorderLayout.CENTER);
+            // sent serial messages display label
+            contentPane.add(newComponent("JLabel", "lblSerialSent", new Rectangle(625, 50, 130, 20), "Sent Serial Messages", null, true), BorderLayout.CENTER);
+            // sent serial messages display
+            JList<String> listSerialSent = new JList<>(modelSerialSent);
+            JScrollPane scrollPaneSerialSent = new JScrollPane();
+            scrollPaneSerialSent.setViewportView(listSerialSent);
+            scrollPaneSerialSent.setName("scrollPaneSerialSent");
+            scrollPaneSerialSent.setBounds(new Rectangle(625, 80, 175, 150));
+            contentPane.add(scrollPaneSerialSent, BorderLayout.CENTER);
+            // recieved serial messages display label
+            contentPane.add(newComponent("JLabel", "lblSerialReceived", new Rectangle(825, 50, 170, 20), "Received Serial Messages", null, true), BorderLayout.CENTER);
+            // recieved serial messages display
+            JList<String> listSerialReceived = new JList<>(modelSerialReceived);
+            JScrollPane scrollPaneSerialReceived = new JScrollPane();
+            scrollPaneSerialReceived.setViewportView(listSerialReceived);
+            scrollPaneSerialReceived.setName("scrollPaneSerialReceived");
+            scrollPaneSerialReceived.setBounds(new Rectangle(825, 80, 175, 150));
+            contentPane.add(scrollPaneSerialReceived, BorderLayout.CENTER);
+            // choose controller label
+            contentPane.add(newComponent("JLabel", "lblChooseController", new Rectangle(350, 50, 130, 20), "Choose Controller", null, true), BorderLayout.CENTER);
+            // choose controller selection box
+            JComboBox ControllerComboBox = new JComboBox();
+            ControllerComboBox.setBounds(new Rectangle(350, 80, 130, 30));
+            ControllerComboBox.setName("ControllerComboBox");
+            ControllerComboBox.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    LogitechController.ControllerComboBoxSelection();
+                }
+            });
+            contentPane.add(ControllerComboBox, BorderLayout.CENTER);
+            // refresh controller selection box button
+            contentPane.add(newComponent("JButton", "btnControllerRefresh", new Rectangle(500, 50, 100, 40), "Refresh", new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    LogitechController.btnControllerRefreshClicked();
+                }
+            }, true), BorderLayout.CENTER);
+            // connect controller button
+            contentPane.add(newComponent("JButton", "btnControllerConnect", new Rectangle(500, 100, 100, 40), "Connect", new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    LogitechController.btnController1ConnectClicked();
+                }
+            }, true), BorderLayout.CENTER);
+            // disconnect controller button
+            contentPane.add(newComponent("JButton", "btnControllerDisconnect", new Rectangle(500, 150, 100, 40), "Disconnect", new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    LogitechController.btnController1DisconnectClicked();
+                }
+            }, false), BorderLayout.CENTER);
+        }
+        catch(NullPointerException ex){
+            System.out.print("Error Loading objects");
+            System.out.print(ex);
+        }
+        //Evan and Zach's displays
         JLabel lblBorder = new JLabel();
         lblBorder.setBounds(1040, 0, 20, (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight());
         lblBorder.setOpaque(true);
