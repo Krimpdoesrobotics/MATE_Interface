@@ -62,16 +62,16 @@ public class ControllerInput {
                 if (counter == 0) {
                     String output = "<html>";
                     output += Controllers[i].getName();
-                    output += "<BR>";
+                    output += '\n';
                     output += "Type: " + Controllers[i].getType().toString();
-                    output += "<BR>";
+                    output += '\n';
                     Component[] Components = Controllers[i].getComponents();
-                    output += "<BR>";
+                    output += '\n';
                     output += "Component Count: " + Components.length;
-                    output += "<BR>";
+                    output += '\n';
                     for(int j = 0; j < Components.length; j++) {
                         output += "Component " + j + ": " + Components[j].getName();
-                        output += "<BR>";
+                        output += '\n';
                         output += "    Identifier: "+ Components[j].getIdentifier().getName();
                         output += "    ComponentType: ";
                         //
@@ -90,7 +90,7 @@ public class ControllerInput {
                         } else {
                             output += " Digital";
                         }
-                        output += "<BR>";
+                        output += '\n';
 
                     }
                     System.out.println(output);

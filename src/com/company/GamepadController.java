@@ -55,7 +55,6 @@ public class GamepadController {
                 buffer.append(" at ");
                 buffer.append(event.getNanos()).append(", ");
                 Component comp = event.getComponent();
-                buffer.append(comp.getIdentifier().toString()).append(" or ");
                 buffer.append(comp.getName()).append(" changed to ");
                 double value = event.getValue();
                 if(comp.isAnalog()) {

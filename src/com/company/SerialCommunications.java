@@ -24,7 +24,6 @@ public class SerialCommunications
     private ControllerRobotInfo ControllerRobot;
     private int currentUpdate = 0;
     private int TimeSinceLastUpdate = -1;
-
     // constructor
     public SerialCommunications(GamepadController controller1, GamepadController controller2)
     {
@@ -42,8 +41,9 @@ public class SerialCommunications
 
     public void incrementTime(){TimeSinceLastUpdate++;}
 
-    public byte fromDouble(double a){
-        int b = (int)(a*65+90);
+    public byte fromDouble(double a, int index){
+        int[] multipliers = {1,1,1,1,1,1,1,1};
+        int b = (int)(a*65*multipliers[index]+90);
         if(b>=128){
             b = -1*(256-b);
             return ((byte) b);
@@ -64,9 +64,9 @@ public class SerialCommunications
             case 5: stuff[0] = fromDouble(0.5);break;
         }*/
         for(int i = 0; i < 6; i++)
-            stuff[i] = fromDouble(ControllerRobot.getMotorSpeed(i).getDouble());
-        stuff[6]=fromDouble(ControllerRobot.getGripperRotation().getDouble());
-        stuff[7]=fromDouble(ControllerRobot.getGripperClamp().getDouble());
+            stuff[i] = fromDouble(ControllerRobot.getMotorSpeed(i).getDouble(),i);
+        stuff[6]=fromDouble(ControllerRobot.getGripperRotation().getDouble(),6);
+        stuff[7]=fromDouble(ControllerRobot.getGripperClamp().getDouble(),7);
         PortSend(stuff);
     }
     // refresh
@@ -89,7 +89,6 @@ public class SerialCommunications
             }
         }
     }
-
     // connection
     public void btnSerialConnectClicked() {
         MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(false);
@@ -103,10 +102,8 @@ public class SerialCommunications
                     SerialPort.DATABITS_8,
                     SerialPort.STOPBITS_1,
                     SerialPort.PARITY_NONE);
-
             serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN |
                     SerialPort.FLOWCONTROL_RTSCTS_OUT);
-
             serialPort.addEventListener(new PortReader(), SerialPort.MASK_RXCHAR);
             TimeSinceLastUpdate = 0;
         } catch (SerialPortException ex) {
