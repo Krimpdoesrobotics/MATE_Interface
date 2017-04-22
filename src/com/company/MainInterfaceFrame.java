@@ -1094,16 +1094,16 @@ public class MainInterfaceFrame extends JFrame
     // 2: X ROTATION ABSOLUTE ANALOG: Right Stick X
     // 3: Y ROTATION ABSOLUTE ANALOG: Right Stick Y
     // 4: Z AXIS ABSOLUTE ANALOG: Sum of Left Trigger(+) and Right Trigger(-)
-    // 5: BUTTON 0: A Button (PUMP IN)
-    // 6: BUTTON 1: B Button (PUMP OUT)
-    // 7: BUTTON 2: X Button (YOU ARE DRIVER 1)
-    // 8: BUTTON 3: Y Button (YOU ARE DRIVER 2)
-    // 9: BUTTON 4: L Button (not working well ATM)
-    // 10: BUTTON 5: R Button
-    // 11: BUTTON 6: Back Button (Flash Light On/Off)
-    // 12: BUTTON 7: Start Button (MAKES YOU DRIVER)
-    // 13: BUTTON 8: L Stick Push Down
-    // 14: BUTTON 9: R Stick Push Down
+    // 5: BUTTON 0: A Button (FL Test temporarily)
+    // 6: BUTTON 1: B Button (FR Test temporarily)
+    // 7: BUTTON 2: X Button (BL Test temporarily)
+    // 8: BUTTON 3: Y Button (BR Test temporarily)
+    // 9: BUTTON 4: L Button (FL Test temporarily)
+    // 10: BUTTON 5: R Button (FR Test temporarily)
+    // 11: BUTTON 6: Back Button
+    // 12: BUTTON 7: Start Button (Stops everything when held)
+    // 13: BUTTON 8: L Stick Push Down (Decrease throttle to 1/4 of usual)
+    // 14: BUTTON 9: R Stick Push Down (Decrease throttle to 1/4 of usual)
     // 15: HAT SWITCH: D Pad 0 Nothing .125 FL .25 F, .375 FR, etc..... 1.0 L
     // --------------- //
 
