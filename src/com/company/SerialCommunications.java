@@ -63,7 +63,7 @@ public class SerialCommunications
             case 4: stuff[0] = fromDouble(-0.5);break;
             case 5: stuff[0] = fromDouble(0);break;
         }
-        for(int i = 1; i < 6; i++)
+        for(int i = 0; i < 6; i++)
             stuff[i] = fromDouble(ControllerRobot.getMotorSpeed(i).getDouble());
         stuff[6]=fromDouble(ControllerRobot.getGripperRotation().getDouble());
         stuff[7]=fromDouble(ControllerRobot.getGripperClamp().getDouble());
