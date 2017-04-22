@@ -76,7 +76,7 @@ public class GamepadController {
                         updated[3].setBoolean(true);
                         RightAnalogUpdated.setBoolean(true);
                     } else if(comp.getIdentifier() == Component.Identifier.Axis.Z) {
-                        ZAxis.setDouble(value);
+                        ZAxis.setDouble(-value);
                         updated[4].setBoolean(true);
                     }
                 } else {

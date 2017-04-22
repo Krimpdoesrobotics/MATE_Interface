@@ -31,7 +31,7 @@ public class Paintings
             case 0: return RepaintType0(g);
             case 1: return RepaintType1(g);
             case 2: return RepaintType2(g);
-            case 3: return RepaintType3(g);
+            case 3: return RepaintType34(g);
             case 4: return RepaintType4(g);
             default: return false;
         }
@@ -156,25 +156,25 @@ public class Paintings
         }
         return (type == 3 || type == 4);
     }
-    public boolean RepaintType3(Graphics g)
+    public boolean RepaintType34(Graphics g)
     {
-        if(type == 3)
+        if(type == 3 || type == 4)
         {
             g.setColor(OuterColor);
             g.fillRect(x,y,width,height);
             g.setColor(FillColor);
             if(FillAmount.getDouble() > 0)
             {
-                g.fillRect(x+(width/2),y,(int)(FillAmount.getDouble()*(width/2)),height);
+                g.fillRect((x+(width/2)),y,(int)((FillAmount.getDouble()*(width/2))),height);
             } else {
-                g.fillRect((int)(x+(width/2)+(FillAmount.getDouble()*(width/2))),y,(int)(FillAmount.getDouble()*(width/-2)),height);
+                g.fillRect((int)(((x+(width/2)+(FillAmount.getDouble()*(width/2))))),y,(int)((FillAmount.getDouble()*(width/-2))),height);
             }
             //if(FillAmount.getDouble() != 0){System.out.println(FillAmount);}
 
             g.setColor(BorderColor);
             g.drawRect(x,y,width,height);
         }
-        return (type == 3);
+        return (type == 3 || type == 4);
     }
     public boolean RepaintType4(Graphics g){
         if(type == 4)
