@@ -20,6 +20,20 @@ public class GamepadController {
     private IntH DPadIntVal;
     private BooleanH LeftAnalogUpdated, RightAnalogUpdated;
     private Controller controller;
+    private boolean isLinux = false;
+    private double ZR, ZA;
+    private Component.Identifier[] Identifiers = {
+            Component.Identifier.Button.A,
+            Component.Identifier.Button.B,
+            Component.Identifier.Button.X,
+            Component.Identifier.Button.Y,
+            Component.Identifier.Button.LEFT_THUMB,
+            Component.Identifier.Button.RIGHT_THUMB,
+            Component.Identifier.Button.BACK,
+            Component.Identifier.Button.START,
+            Component.Identifier.Button.LEFT_THUMB3,
+            Component.Identifier.Button.RIGHT_THUMB3,
+    };
     public GamepadController(){
         DPad = newDoubleH(0);
         XAxis = newDoubleH(0);
@@ -36,64 +50,91 @@ public class GamepadController {
         for(int i = 0; i < 16; i++){
             updated[i] = newBooleanH(false);
         }
+        ZR = 0;
+        ZA = 0;
         controller = null;
     }
     public boolean isConnected(){return controller != null;}
-    public void ConnectController(Controller controller){this.controller = controller;}
+    public void ConnectController(Controller controller){
+        this.controller = controller;
+        if(controller.getComponents().length==18){
+            System.out.print("Linux Controller Detected");
+            isLinux = true;
+        }
+    }
     public void DisconnectController(){this.controller = null;}
     public void UpdateController(){
         if(controller != null) {
             try {
                 controller.poll();
-            }catch(Exception ex){
+            } catch (Exception ex) {
                 System.out.println("Trouble Polling Controller: Possible Disconnection");
             }
             EventQueue queue = controller.getEventQueue();
             Event event = new Event();
-            while(queue.getNextEvent(event)) {
+            while (queue.getNextEvent(event)) {
                 StringBuffer buffer = new StringBuffer(controller.getName());
                 buffer.append(" at ");
                 buffer.append(event.getNanos()).append(", ");
                 Component comp = event.getComponent();
                 buffer.append(comp.getName()).append(" changed to ");
                 double value = event.getValue();
-                if(comp.isAnalog()) {
+                if (comp.isAnalog()) {
                     buffer.append(value);
-                    if(comp.getIdentifier() == Component.Identifier.Axis.Y) {
+                    if (comp.getIdentifier() == Component.Identifier.Axis.Y) {
                         YAxis.setDouble(value);
                         updated[0].setBoolean(true);
                         LeftAnalogUpdated.setBoolean(true);
-                    } else if(comp.getIdentifier() == Component.Identifier.Axis.X) {
+                    } else if (comp.getIdentifier() == Component.Identifier.Axis.X) {
                         XAxis.setDouble(value);
                         updated[1].setBoolean(true);
                         LeftAnalogUpdated.setBoolean(true);
-                    } else if(comp.getIdentifier() == Component.Identifier.Axis.RY) {
+                    } else if (comp.getIdentifier() == Component.Identifier.Axis.RY) {
                         YRotation.setDouble(value);
                         updated[2].setBoolean(true);
                         RightAnalogUpdated.setBoolean(true);
-                    } else if(comp.getIdentifier() == Component.Identifier.Axis.RX) {
+                    } else if (comp.getIdentifier() == Component.Identifier.Axis.RX) {
                         XRotation.setDouble(value);
                         updated[3].setBoolean(true);
                         RightAnalogUpdated.setBoolean(true);
-                    } else if(comp.getIdentifier() == Component.Identifier.Axis.Z) {
+                    } else if(isLinux) {
+                        if(comp.getIdentifier() == Component.Identifier.Axis.Z){
+                            ZA = value;
+                            updated[4].setBoolean(true);
+                            ZAxis.setDouble(ZR-ZA);
+                        }else if(comp.getIdentifier() == Component.Identifier.Axis.RZ){
+                            ZR = value;
+                            updated[4].setBoolean(true);
+                            ZAxis.setDouble(ZR-ZA);
+                        }
+                    } else if (comp.getIdentifier() == Component.Identifier.Axis.Z) {
                         ZAxis.setDouble(-value);
                         updated[4].setBoolean(true);
                     }
                 } else {
-                    if(comp.getIdentifier() == Component.Identifier.Axis.POV) {
+                    if (comp.getIdentifier() == Component.Identifier.Axis.POV) {
                         DPad.setDouble(value);
-                        DPadIntVal.setInt((int)((value*8)+0.25));
+                        DPadIntVal.setInt((int) ((value * 8) + 0.25));
                         updated[15].setBoolean(true);
                         buffer.append(value);
                     } else {
                         int buttonnum = 0;
-                        for(int i = 0; i < 10; i++) {
-                            if(comp.getIdentifier().getName().contains(Integer.toString(i))) {
-                                buttonnum = i;
-                                updated[i+5].setBoolean(true);
+                        if(isLinux){
+                            for(int i = 0; i < 10; i++){
+                                if(comp.getIdentifier()==Identifiers[i]){
+                                    buttonnum = i;
+                                    updated[i+5].setBoolean(true);
+                                }
+                            }
+                        }else {
+                            for (int i = 0; i < 10; i++) {
+                                if (comp.getIdentifier().getName().contains(Integer.toString(i))) {
+                                    buttonnum = i;
+                                    updated[i + 5].setBoolean(true);
+                                }
                             }
                         }
-                        if(value >0.5) {
+                        if (value > 0.5) {
                             buffer.append("On" + Integer.toString(buttonnum));
                             buttons[buttonnum].setBoolean(true);
                         } else {
@@ -104,6 +145,7 @@ public class GamepadController {
                 }
                 System.out.println(buffer.toString());
             }
+
         }
     }
     public double getYValue(){return YAxis.getDouble();}

@@ -24,6 +24,7 @@ public class SerialCommunications
     private ControllerRobotInfo ControllerRobot;
     private int currentUpdate = 0;
     private int TimeSinceLastUpdate = -1;
+    private static int[] multipliers = {1,1,1,1,1,1,1,1};
     // constructor
     public SerialCommunications(GamepadController controller1, GamepadController controller2)
     {
@@ -42,8 +43,7 @@ public class SerialCommunications
     public void incrementTime(){TimeSinceLastUpdate++;}
 
     public byte fromDouble(double a, int index){
-        int[] multipliers = {1,1,1,1,1,1,1,1};
-        int b = (int)(a*65*multipliers[index]+90);
+        int b = (int)(a*65*multipliers[index]+90); // WARNING : Do not set a*65 to a*90 or more or it will break serial
         if(b>=128){
             b = -1*(256-b);
             return ((byte) b);
@@ -148,7 +148,6 @@ public class SerialCommunications
             if (event.isRXCHAR() && event.getEventValue() > 8) {
                 try {
                     String toDisplay = "O:";
-                    //System.out.print("O:");
                     for(int j = 0; j < 8; j++){
                         byte a[] = serialPort.readBytes(1);
                         int temp = (int)(a[0]);
@@ -157,13 +156,12 @@ public class SerialCommunications
                         }
                         toDisplay+= " ";
                         toDisplay += String.valueOf(temp);
-                        //System.out.print(a[0]);
                         if(j == 6){
-                            Robot.setGripperRotation((double)(temp-90)/90);
+                            Robot.setGripperRotation((double)(multipliers[6]*(temp-90))/90);
                         }else if(j == 7){
-                            Robot.setGripperClamp((double)(temp-90)/90);
+                            Robot.setGripperClamp((double)(multipliers[7]*(temp-90))/90);
                         }else{
-                            Robot.setMotorSpeed(j,(double)(temp-90)/90);
+                            Robot.setMotorSpeed(j,(double)(multipliers[j]*(temp-90))/90);
                         }
                     }
                     MainInterfaceFrame.addSerialReceived(toDisplay);
