@@ -47,6 +47,12 @@ public class MainInterfaceFrame extends JFrame
                     SerialCommunication.resetSerialReceived();
                     SerialCommunication.resetSerialReceivedU();
                 }
+                if(SerialCommunication.getTimeSinceLastReceived()>20){
+                    SerialCommunication.btnSerialDisconnectClicked();
+                    SerialCommunication.btnSerialConnectClicked();
+                }else{
+                    SerialCommunication.incrementTimeSinceLastReceived();
+                }
             }
             if(LogitechController.getController(0).isConnected()){LogitechController.getController(0).resetUpdated();}
         }
@@ -1081,7 +1087,7 @@ public class MainInterfaceFrame extends JFrame
 
         // timer
         ControllerRefreshTimer = new Timer();
-        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,25);
+        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,45);
 
         // colour
         contentPane.setBackground(new Color(0, 200, 150, 255));

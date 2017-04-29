@@ -7,6 +7,7 @@ import com.company.RandomStuff.DoubleH;
 import jssc.*;
 
 import java.awt.*;
+import java.sql.Time;
 import javax.swing.JComboBox;
 
 public class SerialCommunications
@@ -23,6 +24,7 @@ public class SerialCommunications
     private static int[] multipliers = {1,-1,1,-1,-1,1,1,1,1,1};
     private static BooleanH SerialReceived = new BooleanH(false);
     private static BooleanH SerialReceivedU = new BooleanH(false);
+    private static int TimeSinceLastReceived = 0;
     // constructor
     public SerialCommunications(GamepadController controller1, GamepadController controller2)
     {
@@ -30,6 +32,12 @@ public class SerialCommunications
         // default constructor
     }
 
+    public void incrementTimeSinceLastReceived(){
+        TimeSinceLastReceived++;
+    }
+    public int getTimeSinceLastReceived(){
+        return TimeSinceLastReceived;
+    }
     public RobotInfo getRobot(){return Robot;}
 
     public BooleanH getSerialReceived(){return SerialReceived;}
@@ -117,11 +125,12 @@ public class SerialCommunications
     }
     public void btnSerialDisconnectClicked()
     {
+        TimeSinceLastReceived = 0;
+        Opened=false;
         MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(false);
         MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(true);
         try {
             serialPort.closePort();
-            Opened=false;
         } catch (SerialPortException e) {
             e.printStackTrace();
         }
@@ -152,6 +161,7 @@ public class SerialCommunications
         public void serialEvent(SerialPortEvent event) {
             if (event.isRXCHAR() && event.getEventValue() >= 11) {
                 try {
+                    TimeSinceLastReceived =0;
                     SerialReceived.setBoolean(true);
                     SerialReceivedU.setBoolean(true);
                     String toDisplay = "O:";

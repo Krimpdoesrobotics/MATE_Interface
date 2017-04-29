@@ -10,6 +10,10 @@ public class ControllerRobotInfo extends RobotInfo
     private int timerCounter = 0;
     private int powerScaling = 1;   // this is from .1 to 1, and acts as a multiplier for power
     private GamepadController controller1, controller2;
+    private double tmpmotors1[] = new double[4];
+    private double tmpmotors2[] = new double[4];
+    public void setMotorSpeed1(int index, double power){tmpmotors1[index]=power;}
+    public void setMotorSpeed2(int index, double power){tmpmotors2[index]=power;}
     public ControllerRobotInfo(GamepadController controller1, GamepadController controller2)
     {
         this.controller1 = controller1;
@@ -30,59 +34,59 @@ public class ControllerRobotInfo extends RobotInfo
             if (rotation <= (5.0 * pi) / 8.0 && rotation >= (3.0 * pi) / 8.0) {
                 //forward
                 power = Math.abs(yVal * powerScaling);
-                setMotorSpeed(0,power);
-                setMotorSpeed(1,power);
-                setMotorSpeed(2,-power);
-                setMotorSpeed(3,-power);
+                setMotorSpeed1(0,power);
+                setMotorSpeed1(1,power);
+                setMotorSpeed1(2,-power);
+                setMotorSpeed1(3,-power);
             } else if (rotation <= (3.0 * pi) / 8.0 && rotation >= pi / 8.0) {
                 //forward right
                 power = Math.sqrt(xVal*xVal+yVal*yVal) * powerScaling;
-                setMotorSpeed(0,0);
-                setMotorSpeed(1,power);
-                setMotorSpeed(2,-power);
-                setMotorSpeed(3,0);
+                setMotorSpeed1(0,0);
+                setMotorSpeed1(1,power);
+                setMotorSpeed1(2,-power);
+                setMotorSpeed1(3,0);
             } else if (rotation <= pi / 8.0 && rotation >= -pi / 8.0) {
                 //right
                 power = Math.abs(xVal);
-                setMotorSpeed(0,-power);
-                setMotorSpeed(1,power);
-                setMotorSpeed(2,-power);
-                setMotorSpeed(3,power);
+                setMotorSpeed1(0,-power);
+                setMotorSpeed1(1,power);
+                setMotorSpeed1(2,-power);
+                setMotorSpeed1(3,power);
             } else if (rotation <= -pi / 8.0 && rotation >= (-3.0 * pi) / 8.0) {
                 //backward right
                 power = Math.sqrt(xVal*xVal+yVal*yVal) * powerScaling;
-                setMotorSpeed(0,-power);
-                setMotorSpeed(1,0);
-                setMotorSpeed(2,0);
-                setMotorSpeed(3,power);
+                setMotorSpeed1(0,-power);
+                setMotorSpeed1(1,0);
+                setMotorSpeed1(2,0);
+                setMotorSpeed1(3,power);
             } else if (rotation <= (-3.0 * pi) / 8.0 && rotation >= (-5.0 * pi) / 8.0) {
                 //backward
                 power = Math.abs(yVal);
-                setMotorSpeed(0,-power);
-                setMotorSpeed(1,-power);
-                setMotorSpeed(2,power);
-                setMotorSpeed(3,power);
+                setMotorSpeed1(0,-power);
+                setMotorSpeed1(1,-power);
+                setMotorSpeed1(2,power);
+                setMotorSpeed1(3,power);
             } else if (rotation <= (-5.0 * pi) / 8.0 && rotation >= (-7.0 * pi) / 8.0) {
                 //backward left
                 power = Math.sqrt(xVal*xVal+yVal*yVal) * powerScaling;
-                setMotorSpeed(0,0);
-                setMotorSpeed(1,-power);
-                setMotorSpeed(2,power);
-                setMotorSpeed(3,0);
+                setMotorSpeed1(0,0);
+                setMotorSpeed1(1,-power);
+                setMotorSpeed1(2,power);
+                setMotorSpeed1(3,0);
             } else if (rotation <= (-7.0 * pi) / 8.0 || rotation >= (7.0 * pi) / 8.0) {
                 //left
                 power = Math.abs(xVal);
-                setMotorSpeed(0,power);
-                setMotorSpeed(1,-power);
-                setMotorSpeed(2,power);
-                setMotorSpeed(3,-power);
+                setMotorSpeed1(0,power);
+                setMotorSpeed1(1,-power);
+                setMotorSpeed1(2,power);
+                setMotorSpeed1(3,-power);
             } else if (rotation <= (7.0 * pi) / 8.0 && rotation >= (5.0 * pi) / 8.0) {
                 //forward left
                 power = Math.sqrt(xVal*xVal+yVal*yVal) * powerScaling;
-                setMotorSpeed(0,power);
-                setMotorSpeed(1,0);
-                setMotorSpeed(2,0);
-                setMotorSpeed(3,-power);
+                setMotorSpeed1(0,power);
+                setMotorSpeed1(1,0);
+                setMotorSpeed1(2,0);
+                setMotorSpeed1(3,-power);
             }
         }
         // Right Stick controls turning left and right, up and down
@@ -103,10 +107,10 @@ public class ControllerRobotInfo extends RobotInfo
                 setMotorSpeed(5,power);
             }else if(rotation <= pi/4.0 && rotation >= (-1.0*pi)/4.0) {
                 power = Math.abs(xVal) * powerScaling;
-                setMotorSpeed(0,-power+getMotorSpeed(0).getDouble());
-                setMotorSpeed(1,power+getMotorSpeed(1).getDouble());
-                setMotorSpeed(2,power+getMotorSpeed(2).getDouble());
-                setMotorSpeed(3,-power+getMotorSpeed(3).getDouble());
+                setMotorSpeed2(0,-power);
+                setMotorSpeed2(1,power);
+                setMotorSpeed2(2,power);
+                setMotorSpeed2(3,-power);
                 setMotorSpeed(4,0);
                 setMotorSpeed(5,0);
             }else if(rotation <= (-1.0*pi)/4.0 && rotation >= (-3.0*pi)/4.0) {
@@ -115,13 +119,16 @@ public class ControllerRobotInfo extends RobotInfo
                 setMotorSpeed(5,-power);
             }else if(rotation <= (-3.0*pi)/4.0 || rotation >= (3.0*pi)/4.0)  {
                 power = Math.abs(xVal) * powerScaling;
-                setMotorSpeed(0,power+getMotorSpeed(0).getDouble());
-                setMotorSpeed(1,-power+getMotorSpeed(1).getDouble());
-                setMotorSpeed(2,-power+getMotorSpeed(2).getDouble());
-                setMotorSpeed(3,power+getMotorSpeed(3).getDouble());
+                setMotorSpeed2(0,power);
+                setMotorSpeed2(1,-power);
+                setMotorSpeed2(2,-power);
+                setMotorSpeed2(3,power);
                 setMotorSpeed(4,0);
                 setMotorSpeed(5,0);
             }
+        }
+        for(int i = 0; i< 4; i++) {
+            setMotorSpeed(i, tmpmotors1[i] + tmpmotors2[i]);
         }
         // D-Pad controls the Gripper control
         if (controller1.getUpdated(15)){
