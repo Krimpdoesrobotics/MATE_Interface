@@ -123,6 +123,16 @@ public class SerialCommunications
             System.out.println("There are an error on writing string to port: " + ex);
         }
     }
+
+    public void Reset(){
+        try {
+            serialPort.closePort();
+            serialPort.openPort();
+        }catch (SerialPortException ex){
+
+        }
+    }
+
     public void btnSerialDisconnectClicked()
     {
         TimeSinceLastReceived = 0;

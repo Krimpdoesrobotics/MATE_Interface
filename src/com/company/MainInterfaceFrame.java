@@ -41,10 +41,9 @@ public class MainInterfaceFrame extends JFrame
                 if (SerialCommunication.isOpen() && SerialCommunication.getTimeSinceLastUpdate() > 20 && SerialCommunication.getTimeSinceLastUpdate() % 5 == 0) {
                     SerialCommunication.getControllerRobot().resetUpdated();
                     SerialCommunication.sendRobotInfo();
-                    if (SerialCommunication.getTimeSinceLastReceived() > 10) {
-                        SerialCommunication.btnSerialDisconnectClicked();
-                        SerialCommunication.btnSerialConnectClicked();
-                        TimerDelay=30;
+                    if (SerialCommunication.getTimeSinceLastReceived() > 5) {
+                        SerialCommunication.Reset();
+                        TimerDelay=20;
                     } else {
                         SerialCommunication.incrementTimeSinceLastReceived();
                     }
