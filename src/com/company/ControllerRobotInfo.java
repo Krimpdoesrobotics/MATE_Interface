@@ -103,10 +103,10 @@ public class ControllerRobotInfo extends RobotInfo
                 setMotorSpeed(5,power);
             }else if(rotation <= pi/4.0 && rotation >= (-1.0*pi)/4.0) {
                 power = Math.abs(xVal) * powerScaling;
-                setMotorSpeed(0,power+getMotorSpeed(0).getDouble());
-                setMotorSpeed(1,-power+getMotorSpeed(1).getDouble());
-                setMotorSpeed(2,-power+getMotorSpeed(2).getDouble());
-                setMotorSpeed(3,power+getMotorSpeed(3).getDouble());
+                setMotorSpeed(0,-power+getMotorSpeed(0).getDouble());
+                setMotorSpeed(1,power+getMotorSpeed(1).getDouble());
+                setMotorSpeed(2,power+getMotorSpeed(2).getDouble());
+                setMotorSpeed(3,-power+getMotorSpeed(3).getDouble());
                 setMotorSpeed(4,0);
                 setMotorSpeed(5,0);
             }else if(rotation <= (-1.0*pi)/4.0 && rotation >= (-3.0*pi)/4.0) {
@@ -115,10 +115,10 @@ public class ControllerRobotInfo extends RobotInfo
                 setMotorSpeed(5,-power);
             }else if(rotation <= (-3.0*pi)/4.0 || rotation >= (3.0*pi)/4.0)  {
                 power = Math.abs(xVal) * powerScaling;
-                setMotorSpeed(0,-power+getMotorSpeed(0).getDouble());
-                setMotorSpeed(1,power+getMotorSpeed(1).getDouble());
-                setMotorSpeed(2,power+getMotorSpeed(2).getDouble());
-                setMotorSpeed(3,-power+getMotorSpeed(3).getDouble());
+                setMotorSpeed(0,power+getMotorSpeed(0).getDouble());
+                setMotorSpeed(1,-power+getMotorSpeed(1).getDouble());
+                setMotorSpeed(2,-power+getMotorSpeed(2).getDouble());
+                setMotorSpeed(3,power+getMotorSpeed(3).getDouble());
                 setMotorSpeed(4,0);
                 setMotorSpeed(5,0);
             }
