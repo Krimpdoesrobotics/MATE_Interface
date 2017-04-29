@@ -59,12 +59,13 @@ public class Paintings
     }
     public boolean RepaintType0(Graphics g)
     {
-        if(type == 0)
+        if(type == 0 || type ==1)
         {
             g.setColor(BackGroundColor);
             g.fillRect(x,y,width,height);
             g.setColor(StickColor);
             g.drawLine(x+(width/2),y+(height/2),(int)(x+(width/2)+(xval.getDouble()*width/2)),(int)(y+(height/2)+(yval.getDouble()*height/2)));
+            if(type == 0){g.drawOval(x+(9*width/20),y+(9*width/20),width/10,height/10);}
             g.setColor(BorderColor);
             g.drawRect(x,y,width,height);
         }
@@ -87,7 +88,6 @@ public class Paintings
     {
         if(type == 1)
         {
-            type = 0;
             if(DPadValue.getInt() == 1 || DPadValue.getInt() == 7 || DPadValue.getInt() == 8)
             {
                 xval = newDoubleH(-1.0);
@@ -107,7 +107,6 @@ public class Paintings
                 yval = newDoubleH(1.0);
             }
             RepaintType0(g);
-            type = 1;
         }
         return (type == 1);
     }

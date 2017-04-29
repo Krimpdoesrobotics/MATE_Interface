@@ -22,10 +22,21 @@ public class MainInterfaceFrame extends JFrame
     private CustomPanel contentPane;
     private ControllerInput LogitechController = new ControllerInput();
     private Timer ControllerRefreshTimer;
+    private Timer SerialRefreshTimer;
     private static DefaultListModel<String> modelSerialSent = new DefaultListModel<>();
     private static DefaultListModel<String> modelSerialReceived = new DefaultListModel<>();
-    private TimerTask timerTask = new TimerTask() {
     private int TimerDelay = 0;
+    private TimerTask refreshController = new TimerTask() {
+        @Override
+        public void run() {
+            // TODO Auto-generated method stub
+            //
+            // Invoke your function here
+            //
+            LogitechController.UpdateController1Components();
+        }
+    };
+    private TimerTask timerTask = new TimerTask() {
         @Override
         public void run() {
             // TODO Auto-generated method stub
@@ -1093,7 +1104,9 @@ public class MainInterfaceFrame extends JFrame
 
         // timer
         ControllerRefreshTimer = new Timer();
+        SerialRefreshTimer = new Timer();
         ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,40);
+        SerialRefreshTimer.scheduleAtFixedRate(refreshController,1000,20);
 
         // colour
         contentPane.setBackground(new Color(0, 200, 150, 255));

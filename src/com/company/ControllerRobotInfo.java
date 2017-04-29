@@ -28,65 +28,71 @@ public class ControllerRobotInfo extends RobotInfo
             // This is the left controller and is controlled by 'values'
             double xVal = controller1.getXValue();//from -1 to 1
             double yVal = controller1.getYValue();//from -1 to 1
-            double rotation = Math.atan2(yVal, xVal); //radians, from -pi to pi
-            double power;
-            // determine region (1 = forward, 2 = forward and right, 3 = right, 4 = back and right, 5 = back, 6 = back and left, 7 = left, 8 = forward and left)
-            if (rotation <= (5.0 * pi) / 8.0 && rotation >= (3.0 * pi) / 8.0) {
-                //forward
-                power = Math.abs(yVal * powerScaling);
-                setMotorSpeed1(0,power);
-                setMotorSpeed1(1,power);
-                setMotorSpeed1(2,-power);
-                setMotorSpeed1(3,-power);
-            } else if (rotation <= (3.0 * pi) / 8.0 && rotation >= pi / 8.0) {
-                //forward right
-                power = Math.sqrt(xVal*xVal+yVal*yVal) * powerScaling;
-                setMotorSpeed1(0,0);
-                setMotorSpeed1(1,power);
-                setMotorSpeed1(2,-power);
-                setMotorSpeed1(3,0);
-            } else if (rotation <= pi / 8.0 && rotation >= -pi / 8.0) {
-                //right
-                power = Math.abs(xVal);
-                setMotorSpeed1(0,-power);
-                setMotorSpeed1(1,power);
-                setMotorSpeed1(2,-power);
-                setMotorSpeed1(3,power);
-            } else if (rotation <= -pi / 8.0 && rotation >= (-3.0 * pi) / 8.0) {
-                //backward right
-                power = Math.sqrt(xVal*xVal+yVal*yVal) * powerScaling;
-                setMotorSpeed1(0,-power);
-                setMotorSpeed1(1,0);
-                setMotorSpeed1(2,0);
-                setMotorSpeed1(3,power);
-            } else if (rotation <= (-3.0 * pi) / 8.0 && rotation >= (-5.0 * pi) / 8.0) {
-                //backward
-                power = Math.abs(yVal);
-                setMotorSpeed1(0,-power);
-                setMotorSpeed1(1,-power);
-                setMotorSpeed1(2,power);
-                setMotorSpeed1(3,power);
-            } else if (rotation <= (-5.0 * pi) / 8.0 && rotation >= (-7.0 * pi) / 8.0) {
-                //backward left
-                power = Math.sqrt(xVal*xVal+yVal*yVal) * powerScaling;
-                setMotorSpeed1(0,0);
-                setMotorSpeed1(1,-power);
-                setMotorSpeed1(2,power);
-                setMotorSpeed1(3,0);
-            } else if (rotation <= (-7.0 * pi) / 8.0 || rotation >= (7.0 * pi) / 8.0) {
-                //left
-                power = Math.abs(xVal);
-                setMotorSpeed1(0,power);
-                setMotorSpeed1(1,-power);
-                setMotorSpeed1(2,power);
-                setMotorSpeed1(3,-power);
-            } else if (rotation <= (7.0 * pi) / 8.0 && rotation >= (5.0 * pi) / 8.0) {
-                //forward left
-                power = Math.sqrt(xVal*xVal+yVal*yVal) * powerScaling;
-                setMotorSpeed1(0,power);
-                setMotorSpeed1(1,0);
-                setMotorSpeed1(2,0);
-                setMotorSpeed1(3,-power);
+            if(xVal*xVal+yVal+yVal>0.01) {
+                double rotation = Math.atan2(yVal, xVal); //radians, from -pi to pi
+                double power;
+                // determine region (1 = forward, 2 = forward and right, 3 = right, 4 = back and right, 5 = back, 6 = back and left, 7 = left, 8 = forward and left)
+                if (rotation <= (5.0 * pi) / 8.0 && rotation >= (3.0 * pi) / 8.0) {
+                    //forward
+                    power = Math.abs(yVal * powerScaling);
+                    setMotorSpeed1(0, power);
+                    setMotorSpeed1(1, power);
+                    setMotorSpeed1(2, -power);
+                    setMotorSpeed1(3, -power);
+                } else if (rotation <= (3.0 * pi) / 8.0 && rotation >= pi / 8.0) {
+                    //forward right
+                    power = Math.sqrt(xVal * xVal + yVal * yVal) * powerScaling;
+                    setMotorSpeed1(0, 0);
+                    setMotorSpeed1(1, power);
+                    setMotorSpeed1(2, -power);
+                    setMotorSpeed1(3, 0);
+                } else if (rotation <= pi / 8.0 && rotation >= -pi / 8.0) {
+                    //right
+                    power = Math.abs(xVal);
+                    setMotorSpeed1(0, -power);
+                    setMotorSpeed1(1, power);
+                    setMotorSpeed1(2, -power);
+                    setMotorSpeed1(3, power);
+                } else if (rotation <= -pi / 8.0 && rotation >= (-3.0 * pi) / 8.0) {
+                    //backward right
+                    power = Math.sqrt(xVal * xVal + yVal * yVal) * powerScaling;
+                    setMotorSpeed1(0, -power);
+                    setMotorSpeed1(1, 0);
+                    setMotorSpeed1(2, 0);
+                    setMotorSpeed1(3, power);
+                } else if (rotation <= (-3.0 * pi) / 8.0 && rotation >= (-5.0 * pi) / 8.0) {
+                    //backward
+                    power = Math.abs(yVal);
+                    setMotorSpeed1(0, -power);
+                    setMotorSpeed1(1, -power);
+                    setMotorSpeed1(2, power);
+                    setMotorSpeed1(3, power);
+                } else if (rotation <= (-5.0 * pi) / 8.0 && rotation >= (-7.0 * pi) / 8.0) {
+                    //backward left
+                    power = Math.sqrt(xVal * xVal + yVal * yVal) * powerScaling;
+                    setMotorSpeed1(0, 0);
+                    setMotorSpeed1(1, -power);
+                    setMotorSpeed1(2, power);
+                    setMotorSpeed1(3, 0);
+                } else if (rotation <= (-7.0 * pi) / 8.0 || rotation >= (7.0 * pi) / 8.0) {
+                    //left
+                    power = Math.abs(xVal);
+                    setMotorSpeed1(0, power);
+                    setMotorSpeed1(1, -power);
+                    setMotorSpeed1(2, power);
+                    setMotorSpeed1(3, -power);
+                } else if (rotation <= (7.0 * pi) / 8.0 && rotation >= (5.0 * pi) / 8.0) {
+                    //forward left
+                    power = Math.sqrt(xVal * xVal + yVal * yVal) * powerScaling;
+                    setMotorSpeed1(0, power);
+                    setMotorSpeed1(1, 0);
+                    setMotorSpeed1(2, 0);
+                    setMotorSpeed1(3, -power);
+                }
+            }else{
+                for(int i = 0; i < 4; i++){
+                    setMotorSpeed1(i,0);
+                }
             }
         }
         // Right Stick controls turning left and right, up and down
@@ -95,36 +101,44 @@ public class ControllerRobotInfo extends RobotInfo
             //joystick that will contol vertical movement and turning
             double xVal = controller1.getXRotation();//from -1 to 1
             double yVal = controller1.getYRotation();//from -1 to 1
-            double rotation = Math.atan2(yVal,xVal);//radians, from -pi to pi
-            //double magnitude = Math.sqrt(xVal*xVal + yVal * yVal);
-            //int power = (int)((double)65 * magnitude * powerScaling);
-            double power;
-            //determine region (1 = up, 2 = turn right, 3 = down, 4 = turn left)
-            if(rotation <= (3.0*pi)/4.0 && rotation >= pi/4.0){
-                //up
-                power = Math.abs(yVal) * powerScaling;
-                setMotorSpeed(4,power);
-                setMotorSpeed(5,power);
-            }else if(rotation <= pi/4.0 && rotation >= (-1.0*pi)/4.0) {
-                power = Math.abs(xVal) * powerScaling;
-                setMotorSpeed2(0,-power);
-                setMotorSpeed2(1,power);
-                setMotorSpeed2(2,power);
-                setMotorSpeed2(3,-power);
-                setMotorSpeed(4,0);
-                setMotorSpeed(5,0);
-            }else if(rotation <= (-1.0*pi)/4.0 && rotation >= (-3.0*pi)/4.0) {
-                power = Math.abs(yVal) * powerScaling;
-                setMotorSpeed(4,-power);
-                setMotorSpeed(5,-power);
-            }else if(rotation <= (-3.0*pi)/4.0 || rotation >= (3.0*pi)/4.0)  {
-                power = Math.abs(xVal) * powerScaling;
-                setMotorSpeed2(0,power);
-                setMotorSpeed2(1,-power);
-                setMotorSpeed2(2,-power);
-                setMotorSpeed2(3,power);
-                setMotorSpeed(4,0);
-                setMotorSpeed(5,0);
+            if(xVal*xVal+yVal+yVal>0.01) {
+                double rotation = Math.atan2(yVal, xVal);//radians, from -pi to pi
+                //double magnitude = Math.sqrt(xVal*xVal + yVal * yVal);
+                //int power = (int)((double)65 * magnitude * powerScaling);
+                double power;
+                //determine region (1 = up, 2 = turn right, 3 = down, 4 = turn left)
+                if (rotation <= (3.0 * pi) / 4.0 && rotation >= pi / 4.0) {
+                    //up
+                    power = Math.abs(yVal) * powerScaling;
+                    setMotorSpeed(4, power);
+                    setMotorSpeed(5, power);
+                } else if (rotation <= pi / 4.0 && rotation >= (-1.0 * pi) / 4.0) {
+                    power = Math.abs(xVal) * powerScaling;
+                    setMotorSpeed2(0, -power);
+                    setMotorSpeed2(1, power);
+                    setMotorSpeed2(2, power);
+                    setMotorSpeed2(3, -power);
+                    setMotorSpeed(4, 0);
+                    setMotorSpeed(5, 0);
+                } else if (rotation <= (-1.0 * pi) / 4.0 && rotation >= (-3.0 * pi) / 4.0) {
+                    power = Math.abs(yVal) * powerScaling;
+                    setMotorSpeed(4, -power);
+                    setMotorSpeed(5, -power);
+                } else if (rotation <= (-3.0 * pi) / 4.0 || rotation >= (3.0 * pi) / 4.0) {
+                    power = Math.abs(xVal) * powerScaling;
+                    setMotorSpeed2(0, power);
+                    setMotorSpeed2(1, -power);
+                    setMotorSpeed2(2, -power);
+                    setMotorSpeed2(3, power);
+                    setMotorSpeed(4, 0);
+                    setMotorSpeed(5, 0);
+                }
+            }else{
+                for(int i = 0; i < 4; i++){
+                    setMotorSpeed2(i,0);
+                    setMotorSpeed(4,0);
+                    setMotorSpeed(5,0);
+                }
             }
         }
         for(int i = 0; i< 4; i++) {
