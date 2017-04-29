@@ -71,7 +71,7 @@ public class ControllerRobotInfo extends RobotInfo
                 setMotorSpeed(3,power*reverseEfficencyHandicap);
             } else if (rotation <= (-7.0 * pi) / 8.0 || rotation >= (7.0 * pi) / 8.0) {
                 //left
-                power = Math.abs(yVal);
+                power = Math.abs(xVal);
                 setMotorSpeed(0,-power);
                 setMotorSpeed(1,power);
                 setMotorSpeed(2,-power);
@@ -154,7 +154,7 @@ public class ControllerRobotInfo extends RobotInfo
             }
         }else if(controller1.getButton(8) || controller1.getButton(9)){
             for(int k = 0; k < 6; k++){
-                setMotorSpeed(k,getMotorSpeed(k).getDouble()/4);
+                setMotorSpeed(k,getMotorSpeed(k).getDouble()/2);
             }
         }
         if(controller1.getButton(7)){

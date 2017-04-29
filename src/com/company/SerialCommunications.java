@@ -3,6 +3,7 @@ package com.company;
  * Created by Richard on 2/17/2017.
  */
 import com.company.RandomStuff.BooleanH;
+import com.company.RandomStuff.DoubleH;
 import jssc.*;
 
 import java.awt.*;
@@ -16,25 +17,26 @@ public class SerialCommunications
     private String portSelected;
     private static SerialPort serialPort;
     private boolean Opened =false;
-    private static byte[] Buffer = new byte[8];
-    private static int BufferState = 0;
-    private String fullmessage;
-    private int lastconsidered = 0;
     private static RobotInfo Robot= new RobotInfo();
     private ControllerRobotInfo ControllerRobot;
-    private int currentUpdate = 0;
     private int TimeSinceLastUpdate = -1;
     private static int[] multipliers = {1,1,1,1,1,1,1,1};
+    private static BooleanH SerialReceived = new BooleanH(false);
+    private static BooleanH SerialReceivedU = new BooleanH(false);
     // constructor
     public SerialCommunications(GamepadController controller1, GamepadController controller2)
     {
         ControllerRobot = new ControllerRobotInfo(controller1,controller2);
         // default constructor
-        for(int i = 0; i < 8; i++)
-            Buffer[i] = 0;
     }
 
     public RobotInfo getRobot(){return Robot;}
+
+    public BooleanH getSerialReceived(){return SerialReceived;}
+    public BooleanH getSerialReceivedU(){return SerialReceivedU;}
+
+    public void resetSerialReceived(){SerialReceived.setBoolean(false);}
+    public void resetSerialReceivedU(){SerialReceivedU.setBoolean(true);}
 
     public ControllerRobotInfo getControllerRobot(){return ControllerRobot;}
 
@@ -43,7 +45,7 @@ public class SerialCommunications
     public void incrementTime(){TimeSinceLastUpdate++;}
 
     public byte fromDouble(double a, int index){
-        int b = (int)(a*65*multipliers[index]+90); // WARNING : Do not set a*65 to a*90 or more or it will break serial
+        int b = (int)(a*68*multipliers[index]+90); // WARNING : Do not set a*65 to a*90 or more or it will break serial
         if(b>=128){
             b = -1*(256-b);
             return ((byte) b);
@@ -53,7 +55,8 @@ public class SerialCommunications
     }
 
     public void sendRobotInfo(){
-        byte[] stuff = new byte[8];
+        byte[] stuff = new byte[9];
+        stuff[0] = 0;
         /*int remain = (getTimeSinceLastUpdate()/10) % 6;
         switch(remain){
             case 0: stuff[0] = fromDouble(0.5); break;
@@ -64,9 +67,9 @@ public class SerialCommunications
             case 5: stuff[0] = fromDouble(0.5);break;
         }*/
         for(int i = 0; i < 6; i++)
-            stuff[i] = fromDouble(ControllerRobot.getMotorSpeed(i).getDouble(),i);
-        stuff[6]=fromDouble(ControllerRobot.getGripperRotation().getDouble(),6);
-        stuff[7]=fromDouble(ControllerRobot.getGripperClamp().getDouble(),7);
+            stuff[i+1] = fromDouble(ControllerRobot.getMotorSpeed(i).getDouble(),i);
+        stuff[7]=fromDouble(ControllerRobot.getGripperRotation().getDouble(),6);
+        stuff[8]=fromDouble(ControllerRobot.getGripperClamp().getDouble(),7);
         PortSend(stuff);
     }
     // refresh
@@ -145,23 +148,31 @@ public class SerialCommunications
 
     private static class PortReader implements SerialPortEventListener {
         public void serialEvent(SerialPortEvent event) {
-            if (event.isRXCHAR() && event.getEventValue() > 8) {
+            if (event.isRXCHAR() && event.getEventValue() > 9) {
                 try {
+                    SerialReceived.setBoolean(true);
+                    SerialReceivedU.setBoolean(true);
                     String toDisplay = "O:";
+                    byte a[] = serialPort.readBytes(1);
+                    if(a[0] != 0){
+                        return;
+                    }
                     for(int j = 0; j < 8; j++){
-                        byte a[] = serialPort.readBytes(1);
+                        a = serialPort.readBytes(1);
                         int temp = (int)(a[0]);
                         if(temp < 0){
                             temp = 256+temp;
+                        }else if(temp == 0){
+                            break;
                         }
                         toDisplay+= " ";
                         toDisplay += String.valueOf(temp);
                         if(j == 6){
-                            Robot.setGripperRotation((double)(multipliers[6]*(temp-90))/90);
+                            Robot.setGripperRotation((double)(multipliers[6]*(temp-90))/70);
                         }else if(j == 7){
-                            Robot.setGripperClamp((double)(multipliers[7]*(temp-90))/90);
+                            Robot.setGripperClamp((double)(multipliers[7]*(temp-90))/70);
                         }else{
-                            Robot.setMotorSpeed(j,(double)(multipliers[j]*(temp-90))/90);
+                            Robot.setMotorSpeed(j,(double)(multipliers[j]*(temp-90))/70);
                         }
                     }
                     MainInterfaceFrame.addSerialReceived(toDisplay);

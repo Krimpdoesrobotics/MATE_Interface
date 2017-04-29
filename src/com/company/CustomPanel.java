@@ -41,6 +41,6 @@ public class CustomPanel extends JPanel
                 //System.out.print(i);
             }
         }
-        if(changed){ System.out.println(0); }
+        //if(changed){ System.out.println(0); }
     }
 }

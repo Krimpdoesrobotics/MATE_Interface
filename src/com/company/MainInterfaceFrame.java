@@ -3,6 +3,9 @@ package com.company;
  * Created by Richard on 2/17/2017.
  */
 
+import com.company.RandomStuff.BooleanH;
+import com.company.RandomStuff.DoubleH;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -13,7 +16,7 @@ import java.util.TimerTask;
 
 public class MainInterfaceFrame extends JFrame
 {
-    private final int NumGraphics = 22;
+    private final int NumGraphics = 23;
     private static HashMap componentMap;
     private SerialCommunications SerialCommunication;
     private CustomPanel contentPane;
@@ -40,6 +43,10 @@ public class MainInterfaceFrame extends JFrame
             }
             if(SerialCommunication.isOpen()){
                 SerialCommunication.incrementTime();
+                if(SerialCommunication.getTimeSinceLastUpdate()%5 == 0) {
+                    SerialCommunication.resetSerialReceived();
+                    SerialCommunication.resetSerialReceivedU();
+                }
             }
             if(LogitechController.getController(0).isConnected()){LogitechController.getController(0).resetUpdated();}
         }
@@ -162,6 +169,9 @@ public class MainInterfaceFrame extends JFrame
         //gripper clamp
         contentPane.InterfaceElements[21] = new Paintings(885,750,115,25,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(7));
         contentPane.InterfaceElements[21].setReferenceType34(SerialCommunication.getRobot().getGripperClamp(),Color.CYAN,Color.BLACK);
+        //received serial flash
+        contentPane.InterfaceElements[22] = new Paintings(845, 10, 100, 30,2,Color.BLACK,SerialCommunication.getSerialReceivedU());
+        contentPane.InterfaceElements[22].setReferenceType2(SerialCommunication.getSerialReceived(),Color.WHITE,Color.CYAN);
 
         setContentPane(contentPane);
         setBackground(new Color(0, 100, 100, 255));
