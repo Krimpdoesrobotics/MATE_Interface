@@ -20,7 +20,7 @@ public class SerialCommunications
     private static RobotInfo Robot= new RobotInfo();
     private ControllerRobotInfo ControllerRobot;
     private int TimeSinceLastUpdate = -1;
-    private static int[] multipliers = {1,1,1,1,1,1,1,1};
+    private static int[] multipliers = {1,-1,1,-1,-1,1,1,1};
     private static BooleanH SerialReceived = new BooleanH(false);
     private static BooleanH SerialReceivedU = new BooleanH(false);
     // constructor
@@ -45,7 +45,7 @@ public class SerialCommunications
     public void incrementTime(){TimeSinceLastUpdate++;}
 
     public byte fromDouble(double a, int index){
-        int b = (int)(a*68*multipliers[index]+90); // WARNING : Do not set a*65 to a*90 or more or it will break serial
+        int b = (int)(a*63*multipliers[index]+90); // WARNING : Do not set a*65 to a*90 or more or it will break serial
         if(b>=128){
             b = -1*(256-b);
             return ((byte) b);
