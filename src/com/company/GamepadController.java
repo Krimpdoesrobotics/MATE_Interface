@@ -149,19 +149,13 @@ public class GamepadController {
         }
     }
     public double getYValue(){return YAxis.getDouble();}
-    public void setYValue(double a){this.YAxis.setDouble(a);}
     public DoubleH getYValueH(){return YAxis;}
     public double getXValue(){return XAxis.getDouble();}
-    public void setXValue(double a){this.XAxis.setDouble(a);}
     public DoubleH getXValueH(){return XAxis;}
     public double getYRotation(){return YRotation.getDouble();}
-    public void setYRotation(double a){this.YRotation.setDouble(a);}
     public DoubleH getYRotationH(){return YRotation;}
     public double getXRotation(){return XRotation.getDouble();}
-    public void setXRotation(double a){this.XRotation.setDouble(a);}
     public DoubleH getXRotationH(){return XRotation;}
-    public int getDPad(){return (int)(DPad.getDouble()*8+.25);}
-    public void setDPad(double a){this.DPad.setDouble(a);}
     public IntH getDPadH(){ return DPadIntVal;}
     public boolean getDPadLeft(){return (DPadIntVal.getInt() == 8);}
     public boolean getDPadRight(){return (DPadIntVal.getInt() == 4);}
@@ -171,7 +165,6 @@ public class GamepadController {
     public BooleanH getButtonH(int index){return buttons[index];}
     public boolean getUpdated(int index) { return updated[index].getBoolean();}
     public BooleanH getUpdatedH(int index){return updated[index];}
-    public double getZAxis(){return ZAxis.getDouble();}
     public DoubleH  getZAxisH(){ return ZAxis;}
     public boolean getLeftAnalogUpdated(){return LeftAnalogUpdated.getBoolean();}
     public BooleanH getLeftAnalogUpdatedH(){return LeftAnalogUpdated;}

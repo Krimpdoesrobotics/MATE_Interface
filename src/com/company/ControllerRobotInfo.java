@@ -129,30 +129,23 @@ public class ControllerRobotInfo extends RobotInfo
             if(controller1.getDPadLeft()){setGripperRotation(-0.5);}
             else if (controller1.getDPadRight()){setGripperRotation(0.5);}
             else{setGripperRotation(0);}
-            if (controller1.getDPadUp()){
-                setGripperClamp(getGripperClamp().getDouble()+0.02);
-                if(getGripperClamp().getDouble() > 1){setGripperClamp(1);}
-            }
-            else if (controller1.getDPadDown()){
-                setGripperClamp(getGripperClamp().getDouble()-0.02);
-                if(getGripperClamp().getDouble() < -1){getGripperClamp().setDouble(-1);}
-            }
         }
-        //temporary testing buttons
-        boolean testing = false;
-        for(int k = 0; k < 6; k++){
-            if(controller1.getButton(k)){
-                testing = true;
-                setMotorSpeed(k,0.1);
-            }
+        if (controller1.getDPadUp()){
+            setGripperClamp(getGripperClamp().getDouble()+0.02);
+        }else if (controller1.getDPadDown()){
+            setGripperClamp(getGripperClamp().getDouble()-0.02);
         }
-        if(testing){
-            for(int k = 0; k < 6; k++){
-                if(getMotorSpeed(k).getDouble()!= 0.1){
-                    setMotorSpeed(k,0);
-                }
-            }
-        }else if(controller1.getButton(8) || controller1.getButton(9)){
+        if(controller1.getButton(0) && !controller1.getButton(3)){
+            setCameraTilt(getCameraTilt().getDouble()-0.02);
+        }else if(controller1.getButton(3) && !controller1.getButton(0)){
+            setCameraTilt(getCameraTilt().getDouble()+0.02);
+        }
+        if(controller1.getButton(1) && !controller1.getButton(2)){
+            setCameraPan(getCameraPan().getDouble()-0.02);
+        }else if(controller1.getButton(2) && !controller1.getButton(1)){
+            setCameraPan(getCameraPan().getDouble()+0.02);
+        }
+        if(controller1.getButton(8) || controller1.getButton(9)){
             for(int k = 0; k < 6; k++){
                 setMotorSpeed(k,getMotorSpeed(k).getDouble()/2);
             }

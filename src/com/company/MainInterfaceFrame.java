@@ -16,7 +16,7 @@ import java.util.TimerTask;
 
 public class MainInterfaceFrame extends JFrame
 {
-    private final int NumGraphics = 23;
+    private final int NumGraphics = 25;
     private static HashMap componentMap;
     private SerialCommunications SerialCommunication;
     private CustomPanel contentPane;
@@ -165,14 +165,20 @@ public class MainInterfaceFrame extends JFrame
         contentPane.InterfaceElements[19] = new Paintings(885,410,50,200,4,Color.BLACK,SerialCommunication.getRobot().getUpdated(5));
         contentPane.InterfaceElements[19].setReferenceType34(SerialCommunication.getRobot().getMotorSpeed(5),Color.CYAN,Color.BLACK);
         //gripper rotation
-        contentPane.InterfaceElements[20] = new Paintings(750,750,115,25,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(6));
+        contentPane.InterfaceElements[20] = new Paintings(750,750,115,35,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(6));
         contentPane.InterfaceElements[20].setReferenceType34(SerialCommunication.getRobot().getGripperRotation(),Color.CYAN,Color.BLACK);
         //gripper clamp
-        contentPane.InterfaceElements[21] = new Paintings(885,750,115,25,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(7));
+        contentPane.InterfaceElements[21] = new Paintings(885,750,115,35,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(7));
         contentPane.InterfaceElements[21].setReferenceType34(SerialCommunication.getRobot().getGripperClamp(),Color.CYAN,Color.BLACK);
+        //camera pan
+        contentPane.InterfaceElements[22] = new Paintings(750,800,115,35,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(8));
+        contentPane.InterfaceElements[22].setReferenceType34(SerialCommunication.getRobot().getCameraPan(),Color.CYAN,Color.BLACK);
+        //camera tilt
+        contentPane.InterfaceElements[23] = new Paintings(885,800,115,35,3,Color.BLACK,SerialCommunication.getRobot().getUpdated(9));
+        contentPane.InterfaceElements[23].setReferenceType34(SerialCommunication.getRobot().getCameraTilt(),Color.CYAN,Color.BLACK);
         //received serial flash
-        contentPane.InterfaceElements[22] = new Paintings(845, 10, 100, 30,2,Color.BLACK,SerialCommunication.getSerialReceivedU());
-        contentPane.InterfaceElements[22].setReferenceType2(SerialCommunication.getSerialReceived(),Color.WHITE,Color.CYAN);
+        contentPane.InterfaceElements[24] = new Paintings(845, 10, 100, 30,2,Color.BLACK,SerialCommunication.getSerialReceivedU());
+        contentPane.InterfaceElements[24].setReferenceType2(SerialCommunication.getSerialReceived(),Color.WHITE,Color.CYAN);
 
         setContentPane(contentPane);
         setBackground(new Color(0, 100, 100, 255));

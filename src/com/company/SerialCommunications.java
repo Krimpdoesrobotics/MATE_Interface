@@ -20,7 +20,7 @@ public class SerialCommunications
     private static RobotInfo Robot= new RobotInfo();
     private ControllerRobotInfo ControllerRobot;
     private int TimeSinceLastUpdate = -1;
-    private static int[] multipliers = {1,-1,1,-1,-1,1,1,1};
+    private static int[] multipliers = {1,-1,1,-1,-1,1,1,1,1,1};
     private static BooleanH SerialReceived = new BooleanH(false);
     private static BooleanH SerialReceivedU = new BooleanH(false);
     // constructor
@@ -55,7 +55,7 @@ public class SerialCommunications
     }
 
     public void sendRobotInfo(){
-        byte[] stuff = new byte[9];
+        byte[] stuff = new byte[11];
         stuff[0] = 0;
         /*int remain = (getTimeSinceLastUpdate()/10) % 6;
         switch(remain){
@@ -70,6 +70,8 @@ public class SerialCommunications
             stuff[i+1] = fromDouble(ControllerRobot.getMotorSpeed(i).getDouble(),i);
         stuff[7]=fromDouble(ControllerRobot.getGripperRotation().getDouble(),6);
         stuff[8]=fromDouble(ControllerRobot.getGripperClamp().getDouble(),7);
+        stuff[9]=fromDouble(ControllerRobot.getCameraPan().getDouble(),8);
+        stuff[10]=fromDouble(ControllerRobot.getCameraTilt().getDouble(),9);
         PortSend(stuff);
     }
     // refresh
@@ -132,7 +134,7 @@ public class SerialCommunications
             try{
                 serialPort.writeBytes(val);
                 String stuff ="I:";
-                for(int i=0; i< 8;i++){
+                for(int i=0; i< 11;i++){
                     stuff += " ";
                     int temp = (int)(val[i]);
                     stuff += String.valueOf(temp);
@@ -148,7 +150,7 @@ public class SerialCommunications
 
     private static class PortReader implements SerialPortEventListener {
         public void serialEvent(SerialPortEvent event) {
-            if (event.isRXCHAR() && event.getEventValue() > 9) {
+            if (event.isRXCHAR() && event.getEventValue() >= 11) {
                 try {
                     SerialReceived.setBoolean(true);
                     SerialReceivedU.setBoolean(true);
@@ -157,7 +159,7 @@ public class SerialCommunications
                     if(a[0] != 0){
                         return;
                     }
-                    for(int j = 0; j < 8; j++){
+                    for(int j = 0; j < 10; j++){
                         a = serialPort.readBytes(1);
                         int temp = (int)(a[0]);
                         if(temp < 0){
@@ -167,12 +169,12 @@ public class SerialCommunications
                         }
                         toDisplay+= " ";
                         toDisplay += String.valueOf(temp);
-                        if(j == 6){
-                            Robot.setGripperRotation((double)(multipliers[6]*(temp-90))/70);
-                        }else if(j == 7){
-                            Robot.setGripperClamp((double)(multipliers[7]*(temp-90))/70);
-                        }else{
-                            Robot.setMotorSpeed(j,(double)(multipliers[j]*(temp-90))/70);
+                        switch(j){
+                            case 6:Robot.setGripperRotation((double)(multipliers[6]*(temp-90))/90);break;
+                            case 7:Robot.setGripperClamp((double)(multipliers[7]*(temp-90))/90);break;
+                            case 8:Robot.setCameraPan((double)(multipliers[8]*(temp-90))/90);break;
+                            case 9:Robot.setCameraTilt((double)(multipliers[9]*(temp-90))/90);break;
+                            default:Robot.setMotorSpeed(j,(double)(multipliers[j]*(temp-90))/70);break;
                         }
                     }
                     MainInterfaceFrame.addSerialReceived(toDisplay);
