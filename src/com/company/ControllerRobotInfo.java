@@ -28,7 +28,7 @@ public class ControllerRobotInfo extends RobotInfo
             // This is the left controller and is controlled by 'values'
             double xVal = controller1.getXValue();//from -1 to 1
             double yVal = controller1.getYValue();//from -1 to 1
-            if(xVal*xVal+yVal+yVal>0.01) {
+            if(xVal*xVal+yVal*yVal>0.01) {
                 double rotation = Math.atan2(yVal, xVal); //radians, from -pi to pi
                 double power;
                 // determine region (1 = forward, 2 = forward and right, 3 = right, 4 = back and right, 5 = back, 6 = back and left, 7 = left, 8 = forward and left)
@@ -101,7 +101,7 @@ public class ControllerRobotInfo extends RobotInfo
             //joystick that will contol vertical movement and turning
             double xVal = controller1.getXRotation();//from -1 to 1
             double yVal = controller1.getYRotation();//from -1 to 1
-            if(xVal*xVal+yVal+yVal>0.01) {
+            if(xVal*xVal+yVal*yVal>0.01) {
                 double rotation = Math.atan2(yVal, xVal);//radians, from -pi to pi
                 //double magnitude = Math.sqrt(xVal*xVal + yVal * yVal);
                 //int power = (int)((double)65 * magnitude * powerScaling);
