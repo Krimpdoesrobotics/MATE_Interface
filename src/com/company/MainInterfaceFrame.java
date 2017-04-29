@@ -37,13 +37,13 @@ public class MainInterfaceFrame extends JFrame
                 SerialCommunication.getControllerRobot().updateVariables();
             }
             contentPane.Refresh();
-            if(SerialCommunication.isOpen()&&SerialCommunication.getTimeSinceLastUpdate()>20 && SerialCommunication.getTimeSinceLastUpdate() % 10 == 0) {
+            if(SerialCommunication.isOpen()&&SerialCommunication.getTimeSinceLastUpdate()>20 && SerialCommunication.getTimeSinceLastUpdate() % 5 == 0) {
                 SerialCommunication.getControllerRobot().resetUpdated();
                 SerialCommunication.sendRobotInfo();
             }
             if(SerialCommunication.isOpen()){
                 SerialCommunication.incrementTime();
-                if(SerialCommunication.getTimeSinceLastUpdate()%5 == 0) {
+                if(SerialCommunication.getTimeSinceLastUpdate()%2 == 0) {
                     SerialCommunication.resetSerialReceived();
                     SerialCommunication.resetSerialReceivedU();
                 }
@@ -1075,7 +1075,7 @@ public class MainInterfaceFrame extends JFrame
 
         // timer
         ControllerRefreshTimer = new Timer();
-        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,30);
+        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,25);
 
         // colour
         contentPane.setBackground(new Color(0, 200, 150, 255));
