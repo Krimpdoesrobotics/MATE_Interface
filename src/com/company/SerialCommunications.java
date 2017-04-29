@@ -128,6 +128,7 @@ public class SerialCommunications
         try {
             serialPort.closePort();
             serialPort.openPort();
+            TimeSinceLastUpdate = 0;
         }catch (SerialPortException ex){
 
         }
