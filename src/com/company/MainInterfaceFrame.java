@@ -25,36 +25,43 @@ public class MainInterfaceFrame extends JFrame
     private static DefaultListModel<String> modelSerialSent = new DefaultListModel<>();
     private static DefaultListModel<String> modelSerialReceived = new DefaultListModel<>();
     private TimerTask timerTask = new TimerTask() {
-
+    private int TimerDelay = 0;
         @Override
-        public void run(){
+        public void run() {
             // TODO Auto-generated method stub
             //
             // Invoke your function here
             //
-            LogitechController.UpdateController1Components();
-            if(SerialCommunication.isOpen() && LogitechController.getController(0).isConnected()) {
-                SerialCommunication.getControllerRobot().updateVariables();
-            }
-            contentPane.Refresh();
-            if(SerialCommunication.isOpen()&&SerialCommunication.getTimeSinceLastUpdate()>20 && SerialCommunication.getTimeSinceLastUpdate() % 5 == 0) {
-                SerialCommunication.getControllerRobot().resetUpdated();
-                SerialCommunication.sendRobotInfo();
-            }
-            if(SerialCommunication.isOpen()){
-                SerialCommunication.incrementTime();
-                if(SerialCommunication.getTimeSinceLastUpdate()%2 == 0) {
-                    SerialCommunication.resetSerialReceived();
-                    SerialCommunication.resetSerialReceivedU();
+            if (TimerDelay == 0) {
+                LogitechController.UpdateController1Components();
+                if (SerialCommunication.isOpen() && LogitechController.getController(0).isConnected()) {
+                    SerialCommunication.getControllerRobot().updateVariables();
                 }
-                if(SerialCommunication.getTimeSinceLastReceived()>20){
-                    SerialCommunication.btnSerialDisconnectClicked();
-                    SerialCommunication.btnSerialConnectClicked();
-                }else{
-                    SerialCommunication.incrementTimeSinceLastReceived();
+                contentPane.Refresh();
+                if (SerialCommunication.isOpen() && SerialCommunication.getTimeSinceLastUpdate() > 20 && SerialCommunication.getTimeSinceLastUpdate() % 5 == 0) {
+                    SerialCommunication.getControllerRobot().resetUpdated();
+                    SerialCommunication.sendRobotInfo();
+                    if (SerialCommunication.getTimeSinceLastReceived() > 10) {
+                        SerialCommunication.btnSerialDisconnectClicked();
+                        SerialCommunication.btnSerialConnectClicked();
+                        TimerDelay=30;
+                    } else {
+                        SerialCommunication.incrementTimeSinceLastReceived();
+                    }
                 }
+                if (SerialCommunication.isOpen()) {
+                    SerialCommunication.incrementTime();
+                    if (SerialCommunication.getTimeSinceLastUpdate() % 2 == 0) {
+                        SerialCommunication.resetSerialReceived();
+                        SerialCommunication.resetSerialReceivedU();
+                    }
+                }
+                if (LogitechController.getController(0).isConnected()) {
+                    LogitechController.getController(0).resetUpdated();
+                }
+            }else{
+                TimerDelay--;
             }
-            if(LogitechController.getController(0).isConnected()){LogitechController.getController(0).resetUpdated();}
         }
     };
     /**
@@ -1087,7 +1094,7 @@ public class MainInterfaceFrame extends JFrame
 
         // timer
         ControllerRefreshTimer = new Timer();
-        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,45);
+        ControllerRefreshTimer.scheduleAtFixedRate(timerTask,1000,40);
 
         // colour
         contentPane.setBackground(new Color(0, 200, 150, 255));
