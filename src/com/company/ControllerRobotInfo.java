@@ -37,24 +37,24 @@ public class ControllerRobotInfo extends RobotInfo
             } else if (rotation <= (3.0 * pi) / 8.0 && rotation >= pi / 8.0) {
                 //forward right
                 power = Math.sqrt(xVal*xVal+yVal*yVal) * powerScaling;
-                setMotorSpeed(0,power*reverseEfficencyHandicap);
-                setMotorSpeed(1,0);
-                setMotorSpeed(2,0);
-                setMotorSpeed(3,-power);
+                setMotorSpeed(0,0);
+                setMotorSpeed(1,power);
+                setMotorSpeed(2,-power);
+                setMotorSpeed(3,0);
             } else if (rotation <= pi / 8.0 && rotation >= -pi / 8.0) {
                 //right
                 power = Math.abs(xVal);
-                setMotorSpeed(0,power);
-                setMotorSpeed(1,-power);
-                setMotorSpeed(2,power);
-                setMotorSpeed(3,-power);
+                setMotorSpeed(0,-power);
+                setMotorSpeed(1,power);
+                setMotorSpeed(2,-power);
+                setMotorSpeed(3,power);
             } else if (rotation <= -pi / 8.0 && rotation >= (-3.0 * pi) / 8.0) {
                 //backward right
                 power = Math.sqrt(xVal*xVal+yVal*yVal) * powerScaling;
-                setMotorSpeed(0,0);
-                setMotorSpeed(1,-power);
-                setMotorSpeed(2,power*reverseEfficencyHandicap);
-                setMotorSpeed(3,0);
+                setMotorSpeed(0,-power);
+                setMotorSpeed(1,0);
+                setMotorSpeed(2,0);
+                setMotorSpeed(3,power);
             } else if (rotation <= (-3.0 * pi) / 8.0 && rotation >= (-5.0 * pi) / 8.0) {
                 //backward
                 power = Math.abs(yVal);
@@ -65,24 +65,24 @@ public class ControllerRobotInfo extends RobotInfo
             } else if (rotation <= (-5.0 * pi) / 8.0 && rotation >= (-7.0 * pi) / 8.0) {
                 //backward left
                 power = Math.sqrt(xVal*xVal+yVal*yVal) * powerScaling;
-                setMotorSpeed(0,-power);
-                setMotorSpeed(1,0);
-                setMotorSpeed(2,0);
-                setMotorSpeed(3,power*reverseEfficencyHandicap);
+                setMotorSpeed(0,0);
+                setMotorSpeed(1,-power);
+                setMotorSpeed(2,power);
+                setMotorSpeed(3,0);
             } else if (rotation <= (-7.0 * pi) / 8.0 || rotation >= (7.0 * pi) / 8.0) {
                 //left
                 power = Math.abs(xVal);
-                setMotorSpeed(0,-power);
-                setMotorSpeed(1,power);
-                setMotorSpeed(2,-power);
-                setMotorSpeed(3,power);
+                setMotorSpeed(0,power);
+                setMotorSpeed(1,-power);
+                setMotorSpeed(2,power);
+                setMotorSpeed(3,-power);
             } else if (rotation <= (7.0 * pi) / 8.0 && rotation >= (5.0 * pi) / 8.0) {
                 //forward left
                 power = Math.sqrt(xVal*xVal+yVal*yVal) * powerScaling;
-                setMotorSpeed(0,0);
-                setMotorSpeed(1,power*reverseEfficencyHandicap);
-                setMotorSpeed(2,-power);
-                setMotorSpeed(3,0);
+                setMotorSpeed(0,power);
+                setMotorSpeed(1,0);
+                setMotorSpeed(2,0);
+                setMotorSpeed(3,-power);
             }
         }
         // Right Stick controls turning left and right, up and down

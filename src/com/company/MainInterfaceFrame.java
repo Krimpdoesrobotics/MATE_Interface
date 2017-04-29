@@ -103,11 +103,12 @@ public class MainInterfaceFrame extends JFrame
         setLocation(-10,0);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         contentPane = new CustomPanel(NumGraphics);
+
         //Left Analog stick display
         contentPane.InterfaceElements[0] = new Paintings(150,575,200,200,0,Color.BLACK,LogitechController.getController(0).getLeftAnalogUpdatedH());
         contentPane.InterfaceElements[0].setReferenceType0(LogitechController.getController(0).getXValueH(),LogitechController.getController(0).getYValueH(),Color.BLACK,Color.CYAN);
         //Right Analog stick display
-        contentPane.InterfaceElements[1] = new Paintings(375,575,200,200,0,Color.BLACK,LogitechController.getController(0).getRightAnalogUpdatedH());
+        contentPane.InterfaceElements[1] = new Paintings(400,575,200,200,0,Color.BLACK,LogitechController.getController(0).getRightAnalogUpdatedH());
         contentPane.InterfaceElements[1].setReferenceType0(LogitechController.getController(0).getXRotationH(),LogitechController.getController(0).getYRotationH(),Color.BLACK,Color.CYAN);
         //Up or down
         contentPane.InterfaceElements[2] = new Paintings(275,300,200,50,3,Color.BLACK,LogitechController.getController(0).getUpdatedH(4));
@@ -140,7 +141,7 @@ public class MainInterfaceFrame extends JFrame
         contentPane.InterfaceElements[11] = new Paintings(50,575,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(13));
         contentPane.InterfaceElements[11].setReferenceType2(LogitechController.getController(0).getButtonH(8),Color.WHITE, Color.CYAN);
         //button maybe R-stick
-        contentPane.InterfaceElements[12] = new Paintings(600,575,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(14));
+        contentPane.InterfaceElements[12] = new Paintings(625,575,75,100,2,Color.BLACK,LogitechController.getController(0).getUpdatedH(14));
         contentPane.InterfaceElements[12].setReferenceType2(LogitechController.getController(0).getButtonH(9),Color.WHITE, Color.CYAN);
         //d-pad display
         contentPane.InterfaceElements[13] = new Paintings(50,350,200,200,1,Color.BLACK,LogitechController.getController(0).getUpdatedH(15));
