@@ -44,7 +44,6 @@ public class MainInterfaceFrame extends JFrame
             // Invoke your function here
             //
             if (TimerDelay == 0) {
-                LogitechController.UpdateController1Components();
                 if (SerialCommunication.isOpen() && LogitechController.getController(0).isConnected()) {
                     SerialCommunication.getControllerRobot().updateVariables();
                 }
@@ -53,7 +52,8 @@ public class MainInterfaceFrame extends JFrame
                     SerialCommunication.getControllerRobot().resetUpdated();
                     SerialCommunication.sendRobotInfo();
                     if (SerialCommunication.getTimeSinceLastReceived() > 5) {
-                        SerialCommunication.Reset();
+                        SerialCommunication.btnSerialDisconnectClicked();
+                        SerialCommunication.btnSerialConnectClicked();
                         TimerDelay=20;
                     } else {
                         SerialCommunication.incrementTimeSinceLastReceived();
