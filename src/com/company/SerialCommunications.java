@@ -124,36 +124,18 @@ public class SerialCommunications
         }
     }
 
-    public void Reset(){
-        try {
-            serialPort.closePort();
-            portSelected = MainInterfaceFrame.getSelectedPort();
-            serialPort = new SerialPort(portSelected);
-            serialPort.openPort();
-            Opened = true;
-            serialPort.setParams(SerialPort.BAUDRATE_19200,
-                    SerialPort.DATABITS_8,
-                    SerialPort.STOPBITS_1,
-                    SerialPort.PARITY_NONE);
-            serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN |
-                    SerialPort.FLOWCONTROL_RTSCTS_OUT);
-            serialPort.addEventListener(new PortReader(), SerialPort.MASK_RXCHAR);
-            TimeSinceLastUpdate = 0;
-        }catch (SerialPortException ex){
-
-        }
-    }
-
     public void btnSerialDisconnectClicked()
     {
-        TimeSinceLastReceived = 0;
-        Opened=false;
-        MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(false);
-        MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(true);
-        try {
-            serialPort.closePort();
-        } catch (SerialPortException e) {
-            e.printStackTrace();
+        if(Opened) {
+            TimeSinceLastReceived = 0;
+            Opened = false;
+            MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(false);
+            MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(true);
+            try {
+                serialPort.closePort();
+            } catch (SerialPortException e) {
+                e.printStackTrace();
+            }
         }
     }
 
