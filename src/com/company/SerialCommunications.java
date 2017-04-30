@@ -127,7 +127,17 @@ public class SerialCommunications
     public void Reset(){
         try {
             serialPort.closePort();
+            portSelected = MainInterfaceFrame.getSelectedPort();
+            serialPort = new SerialPort(portSelected);
             serialPort.openPort();
+            Opened = true;
+            serialPort.setParams(SerialPort.BAUDRATE_19200,
+                    SerialPort.DATABITS_8,
+                    SerialPort.STOPBITS_1,
+                    SerialPort.PARITY_NONE);
+            serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN |
+                    SerialPort.FLOWCONTROL_RTSCTS_OUT);
+            serialPort.addEventListener(new PortReader(), SerialPort.MASK_RXCHAR);
             TimeSinceLastUpdate = 0;
         }catch (SerialPortException ex){
 
