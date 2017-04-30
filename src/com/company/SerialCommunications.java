@@ -104,23 +104,25 @@ public class SerialCommunications
     }
     // connection
     public void btnSerialConnectClicked() {
-        MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(false);
-        MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(true);
-        try   {
-            portSelected = MainInterfaceFrame.getSelectedPort();
-            serialPort = new SerialPort(portSelected);
-            serialPort.openPort();
-            Opened = true;
-            serialPort.setParams(SerialPort.BAUDRATE_19200,
-                    SerialPort.DATABITS_8,
-                    SerialPort.STOPBITS_1,
-                    SerialPort.PARITY_NONE);
-            serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN |
-                    SerialPort.FLOWCONTROL_RTSCTS_OUT);
-            serialPort.addEventListener(new PortReader(), SerialPort.MASK_RXCHAR);
-            TimeSinceLastUpdate = 0;
-        } catch (SerialPortException ex) {
-            System.out.println("There are an error on writing string to port: " + ex);
+        if(!Opened) {
+            MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(false);
+            MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(true);
+            try {
+                portSelected = MainInterfaceFrame.getSelectedPort();
+                serialPort = new SerialPort(portSelected);
+                serialPort.openPort();
+                Opened = true;
+                serialPort.setParams(SerialPort.BAUDRATE_19200,
+                        SerialPort.DATABITS_8,
+                        SerialPort.STOPBITS_1,
+                        SerialPort.PARITY_NONE);
+                serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN |
+                        SerialPort.FLOWCONTROL_RTSCTS_OUT);
+                serialPort.addEventListener(new PortReader(), SerialPort.MASK_RXCHAR);
+                TimeSinceLastUpdate = 0;
+            } catch (SerialPortException ex) {
+                System.out.println("There are an error on writing string to port: " + ex);
+            }
         }
     }
 
