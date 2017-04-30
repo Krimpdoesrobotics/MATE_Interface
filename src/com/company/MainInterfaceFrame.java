@@ -53,8 +53,7 @@ public class MainInterfaceFrame extends JFrame
                     SerialCommunication.sendRobotInfo();
                     if (SerialCommunication.getTimeSinceLastReceived() > 5) {
                         SerialCommunication.btnSerialDisconnectClicked();
-                        SerialCommunication.btnSerialConnectClicked();
-                        TimerDelay=20;
+                        TimerDelay = 20;
                     } else {
                         SerialCommunication.incrementTimeSinceLastReceived();
                     }
@@ -69,6 +68,9 @@ public class MainInterfaceFrame extends JFrame
                 if (LogitechController.getController(0).isConnected()) {
                     LogitechController.getController(0).resetUpdated();
                 }
+            }else if(TimerDelay ==15){
+                SerialCommunication.btnSerialConnectClicked();
+                TimerDelay--;
             }else{
                 TimerDelay--;
             }
