@@ -28,6 +28,10 @@ public class MainInterfaceFrame extends JFrame
             if (LogitechController.getController(0).isConnected()) {
                 LogitechController.getController(0).resetUpdated();
             }
+            if(SerialCommunication.isOpen()){
+                SerialCommunication.resetSerialReceivedU();
+                SerialCommunication.resetSerialReceived();
+            }
         }
     };
     /**

@@ -22,8 +22,7 @@ public class SerialCommunications
     private boolean Opened =false;
     private static RobotInfo Robot= new RobotInfo();
     private ControllerRobotInfo ControllerRobot;
-    private int TimeSinceLastUpdate = -1;
-    private static int[] multipliers = {1,-1,1,-1,-1,1,1,1,1,1};
+    private static int[] multipliers = {1,-1,1,-1,1,-1,1,1,1,1};
     private static BooleanH SerialReceived = new BooleanH(false);
     private static BooleanH SerialReceivedU = new BooleanH(false);
     private static int TimeSinceLastReceived = 0;
@@ -36,6 +35,11 @@ public class SerialCommunications
                     ControllerRobot.updateVariables();
                 }
                 sendRobotInfo();
+                if(TimeSinceLastReceived >= 3){
+                    btnSerialDisconnectClicked();
+                    btnSerialConnectClicked();
+                }
+                TimeSinceLastReceived++;
             }
         }
     };
@@ -48,12 +52,6 @@ public class SerialCommunications
         SerialRefreshTimer.schedule(refreshSerial,250);
     }
 
-    public void incrementTimeSinceLastReceived(){
-        TimeSinceLastReceived++;
-    }
-    public int getTimeSinceLastReceived(){
-        return TimeSinceLastReceived;
-    }
     public RobotInfo getRobot(){return Robot;}
 
     public BooleanH getSerialReceived(){return SerialReceived;}
@@ -61,12 +59,6 @@ public class SerialCommunications
 
     public void resetSerialReceived(){SerialReceived.setBoolean(false);}
     public void resetSerialReceivedU(){SerialReceivedU.setBoolean(true);}
-
-    public ControllerRobotInfo getControllerRobot(){return ControllerRobot;}
-
-    public int getTimeSinceLastUpdate(){return TimeSinceLastUpdate;}
-
-    public void incrementTime(){TimeSinceLastUpdate++;}
 
     public byte fromDouble(double a, int index){
         int b = (int)(a*63*multipliers[index]+90); // WARNING : Do not set a*65 to a*90 or more or it will break serial
@@ -135,7 +127,7 @@ public class SerialCommunications
                 serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN |
                         SerialPort.FLOWCONTROL_RTSCTS_OUT);
                 serialPort.addEventListener(new PortReader(), SerialPort.MASK_RXCHAR);
-                TimeSinceLastUpdate = 0;
+                TimeSinceLastReceived = 0;
             } catch (SerialPortException ex) {
                 System.out.println("There are an error on writing string to port: " + ex);
             }
