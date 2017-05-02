@@ -2,6 +2,10 @@
 This would be the Arduino Interface for the Underwater Robot. We broke up the files into GUI, Serial, Controller,
 and software throughout the entire system.
 
+NOTE: Before Using - In order for the JInput Library to function correctly, you MUST add the natives folder as libraries
+This can be done in IntelliJ by going to  File >> Project Structure >> Project Settings >> Libraries  , then clicking
+the + symbol, then on "Java", then clicking on the natives directory inside this repository and clicking OK, then Apply
+
 Specifics in spacing involve...
 
 //
