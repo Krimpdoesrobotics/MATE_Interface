@@ -64,7 +64,7 @@ public class GamepadController {
     }
     public void DisconnectController(){this.controller = null;}
     public void UpdateController(){
-        if(controller != null) {
+        if(isConnected()) {
             try {
                 controller.poll();
             } catch (Exception ex) {

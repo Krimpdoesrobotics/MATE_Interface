@@ -14,6 +14,8 @@ import net.java.games.input.DefaultControllerEnvironment;
 import javax.swing.*;
 
 import java.lang.reflect.Constructor;
+import java.util.*;
+import java.util.Timer;
 
 import static com.company.RandomStuff.BooleanH.newBooleanH;
 import static com.company.RandomStuff.DoubleH.newDoubleH;
@@ -24,6 +26,14 @@ public class ControllerInput {
     // private data
     private GamepadController controllers[] = new GamepadController[2];
     private Controller[] Controllers; // this temporarily holds an array of controllers that can be accessed.
+    private java.util.Timer ControllerRefreshTimer;
+    private TimerTask refreshController = new TimerTask() {
+        @Override
+        public void run() {
+            controllers[0].UpdateController();
+            controllers[1].UpdateController();
+        }
+    };
 
     private static ControllerEnvironment createDefaultEnvironment() throws ReflectiveOperationException {
 
@@ -43,11 +53,8 @@ public class ControllerInput {
         // default constructor
         controllers[0] = new GamepadController();
         controllers[1] = new GamepadController();
-    }
-
-    // update
-    public void UpdateController1Components(){
-        controllers[0].UpdateController();
+        ControllerRefreshTimer = new Timer();
+        ControllerRefreshTimer.schedule(refreshController,40);
     }
 
     // This outputs all of the controller functions

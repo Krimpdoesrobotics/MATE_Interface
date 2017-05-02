@@ -14,6 +14,7 @@ public class ControllerRobotInfo extends RobotInfo
     private double tmpmotors2[] = new double[4];
     public void setMotorSpeed1(int index, double power){tmpmotors1[index]=power;}
     public void setMotorSpeed2(int index, double power){tmpmotors2[index]=power;}
+    public boolean getController1Connected(){return controller1.isConnected();}
     public ControllerRobotInfo(GamepadController controller1, GamepadController controller2)
     {
         this.controller1 = controller1;

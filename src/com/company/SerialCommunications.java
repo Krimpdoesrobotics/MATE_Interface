@@ -8,6 +8,8 @@ import jssc.*;
 
 import java.awt.*;
 import java.sql.Time;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JComboBox;
 
 public class SerialCommunications
@@ -25,11 +27,25 @@ public class SerialCommunications
     private static BooleanH SerialReceived = new BooleanH(false);
     private static BooleanH SerialReceivedU = new BooleanH(false);
     private static int TimeSinceLastReceived = 0;
+    private Timer SerialRefreshTimer;
+    private TimerTask refreshSerial = new TimerTask() {
+        @Override
+        public void run() {
+            if(isOpen()){
+                if(ControllerRobot.getController1Connected()){
+                    ControllerRobot.updateVariables();
+                }
+                sendRobotInfo();
+            }
+        }
+    };
     // constructor
     public SerialCommunications(GamepadController controller1, GamepadController controller2)
     {
         ControllerRobot = new ControllerRobotInfo(controller1,controller2);
         // default constructor
+        SerialRefreshTimer = new Timer();
+        SerialRefreshTimer.schedule(refreshSerial,250);
     }
 
     public void incrementTimeSinceLastReceived(){
