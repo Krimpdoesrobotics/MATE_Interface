@@ -25,13 +25,10 @@ public class MainInterfaceFrame extends JFrame
         @Override
         public void run() {
             contentPane.Refresh();
-            if (LogitechController.getController(0).isConnected()) {
-                LogitechController.getController(0).resetUpdated();
-            }
-            if(SerialCommunication.isOpen()){
-                SerialCommunication.resetSerialReceivedU();
-                SerialCommunication.resetSerialReceived();
-            }
+            LogitechController.getController(0).resetUpdated();
+            SerialCommunication.resetSerialReceivedU();
+            SerialCommunication.resetSerialReceived();
+            SerialCommunication.getRobot().resetUpdated();
         }
     };
     /**

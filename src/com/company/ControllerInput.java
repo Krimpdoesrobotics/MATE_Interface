@@ -22,8 +22,7 @@ import static com.company.RandomStuff.DoubleH.newDoubleH;
 import static com.company.RandomStuff.IntH.newIntH;
 
 public class ControllerInput {
-    // instance variables
-    // private data
+    //Organizes the controllers and method of connection
     private GamepadController controllers[] = new GamepadController[2];
     private Controller[] Controllers; // this temporarily holds an array of controllers that can be accessed.
     private java.util.Timer ControllerRefreshTimer;
@@ -111,8 +110,7 @@ public class ControllerInput {
     // refresh
     public void btnControllerRefreshClicked(){
         // refreshes all controllers, not just a specific one
-        try
-        {
+        try {
             Controllers = createDefaultEnvironment().getControllers();
         }catch(ReflectiveOperationException ex){
             System.out.print("Error creating environment:");

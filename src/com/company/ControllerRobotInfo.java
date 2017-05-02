@@ -3,8 +3,7 @@ package com.company;
 /**
  * Created by Richard on 4/2/17.
  */
-public class ControllerRobotInfo extends RobotInfo
-{
+public class ControllerRobotInfo extends RobotInfo{
     private final double pi = 3.14159;
     private final double reverseEfficencyHandicap = 1;
     private int timerCounter = 0;

@@ -190,7 +190,7 @@ public class SerialCommunications
                         }else if(temp == 0){
                             break;
                         }
-                        toDisplay+= " ";
+                        toDisplay += " ";
                         toDisplay += String.valueOf(temp);
                         switch(j){
                             case 6:Robot.setGripperRotation((double)(multipliers[6]*(temp-90))/90);break;
