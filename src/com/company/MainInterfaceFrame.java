@@ -17,7 +17,16 @@ public class MainInterfaceFrame extends JFrame{
     private static DefaultListModel<String> modelSerialSent = new DefaultListModel<>(); // List Model for the Sent Serial Commands (debugging)
     private static DefaultListModel<String> modelSerialReceived = new DefaultListModel<>(); // List Model for the Received Serial Commands
     private int SelectedControllerIndex = 0; // Current Controller Selected
-    
+    private TimerTask timerTask = new TimerTask() {
+        @Override
+        public void run() { // Timertask for the FrameRefresh Timer
+            contentPane.Refresh();       // Calls the Refresh subroutine, which updates all changed components via .paint method
+            LogitechController.getController(0).resetUpdated(); // resets the updated components to false
+            SerialCommunication.resetSerialReceivedU(); // There is a blinker above the Controller Selection Objects which blinks whenever Telemetry is Received
+            SerialCommunication.resetSerialReceived();  // These 2 subroutines reset the blinker to its normal state
+            SerialCommunication.getRobot().resetUpdated(); // resets the updated robot information from telemetry
+        }
+    };
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run()  {
@@ -1072,16 +1081,7 @@ public class MainInterfaceFrame extends JFrame{
         });
 
         Timer FrameRefreshTimer = new Timer(); // Timer to refresh items on the form
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() { // Timertask for the FrameRefresh Timer
-                contentPane.Refresh();       // Calls the Refresh subroutine, which updates all changed components via .paint method
-                LogitechController.getController(0).resetUpdated(); // resets the updated components to false
-                SerialCommunication.resetSerialReceivedU(); // There is a blinker above the Controller Selection Objects which blinks whenever Telemetry is Received
-                SerialCommunication.resetSerialReceived();  // These 2 subroutines reset the blinker to its normal state
-                SerialCommunication.getRobot().resetUpdated(); // resets the updated robot information from telemetry
-            }
-        };
+
         FrameRefreshTimer.schedule(timerTask,50);
 
         // colour
