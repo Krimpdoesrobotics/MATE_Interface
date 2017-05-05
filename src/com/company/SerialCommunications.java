@@ -30,7 +30,7 @@ class SerialCommunications{
                     ControllerRobot.updateVariables();
                 }
                 sendRobotInfo();
-                if(TimeSinceLastReceived >= 3){
+                if(TimeSinceLastReceived >= 15){
                     btnSerialDisconnectClicked();
                     btnSerialConnectClicked();
                 }
@@ -44,7 +44,7 @@ class SerialCommunications{
         ControllerRobot = new ControllerRobotInfo(controller1,controller2);
         // default constructor
         Timer SerialRefreshTimer = new Timer();
-        SerialRefreshTimer.schedule(refreshSerial,10,250);
+        SerialRefreshTimer.schedule(refreshSerial,10,500);
     }
 
     RobotInfo getRobot(){return Robot;}
@@ -157,6 +157,7 @@ class SerialCommunications{
         public void serialEvent(SerialPortEvent event) {
             if (event.isRXCHAR() && event.getEventValue() >= 11) {
                 try {
+                    System.out.print(event);
                     TimeSinceLastReceived =0;
                     SerialReceived.setBoolean(true);
                     SerialReceivedU.setBoolean(true);
