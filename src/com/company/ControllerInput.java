@@ -1,39 +1,18 @@
 package com.company;
-/**
- * Created by Richard on 2/17/2017.
- */
-import com.company.RandomStuff.BooleanH;
-import com.company.RandomStuff.DoubleH;
-import com.company.RandomStuff.IntH;
+
 import net.java.games.input.*;
 import net.java.games.input.Component;
-import net.java.games.input.Event;
-import net.java.games.input.EventQueue;
-import net.java.games.input.DefaultControllerEnvironment;
-
 import javax.swing.*;
-
 import java.lang.reflect.Constructor;
 import java.util.*;
 import java.util.Timer;
 
-import static com.company.RandomStuff.BooleanH.newBooleanH;
-import static com.company.RandomStuff.DoubleH.newDoubleH;
-import static com.company.RandomStuff.IntH.newIntH;
-
-public class ControllerInput {
+import static net.java.games.input.Controller.Type.GAMEPAD;
+@SuppressWarnings("unchecked")
+class ControllerInput {
     //Organizes the controllers and method of connection
     private GamepadController controllers[] = new GamepadController[2];
-    private Controller[] Controllers; // this temporarily holds an array of controllers that can be accessed.
-    private java.util.Timer ControllerRefreshTimer;
-    private TimerTask refreshController = new TimerTask() {
-        @Override
-        public void run() {
-            controllers[0].UpdateController();
-            controllers[1].UpdateController();
-        }
-    };
-
+    private Controller[] Controllers; // this temporarily holds an array of controllers that can be accessed
     private static ControllerEnvironment createDefaultEnvironment() throws ReflectiveOperationException {
 
         // Find constructor (class is package private, so we can't access it directly)
@@ -48,55 +27,54 @@ public class ControllerInput {
     }
 
     // constructors
-    public ControllerInput(){
+    ControllerInput(){
         // default constructor
         controllers[0] = new GamepadController();
         controllers[1] = new GamepadController();
-        ControllerRefreshTimer = new Timer();
+        java.util.Timer ControllerRefreshTimer = new Timer();
+        TimerTask refreshController = new TimerTask() {
+            @Override
+            public void run() {
+                controllers[0].UpdateController();
+                controllers[1].UpdateController();
+            }
+        };
         ControllerRefreshTimer.schedule(refreshController,40);
     }
 
     // This outputs all of the controller functions
-    public void ControllerComboBoxSelection(){
+    void ControllerComboBoxSelection(){
         //JLabel SomeLabel = (JLabel) MainInterfaceFrame.getComponentByName("lblControllerDetails");
         JComboBox SomeComboBox = (JComboBox) MainInterfaceFrame.getComponentByName("ControllerComboBox");
         //SomeLabel.setText("");
-        int counter = SomeComboBox.getSelectedIndex();
+        int counter = 0;
+        if (SomeComboBox != null) {
+            counter = SomeComboBox.getSelectedIndex();
+        }
         //System.out.println(counter);
-        for(int i = 0; i < Controllers.length; i++) {
-            if (Controllers[i].getType() == Controller.Type.GAMEPAD) {
+        for (net.java.games.input.Controller Controller : Controllers) {
+            if (Controller.getType() == GAMEPAD) {
                 if (counter == 0) {
-                    String output = "<html>";
-                    output += Controllers[i].getName();
-                    output += '\n';
-                    output += "Type: " + Controllers[i].getType().toString();
-                    output += '\n';
-                    Component[] Components = Controllers[i].getComponents();
-                    output += '\n';
-                    output += "Component Count: " + Components.length;
-                    output += '\n';
-                    for(int j = 0; j < Components.length; j++) {
-                        output += "Component " + j + ": " + Components[j].getName();
-                        output += '\n';
-                        output += "    Identifier: "+ Components[j].getIdentifier().getName();
-                        output += "    ComponentType: ";
-                        //
-                        // Checks to see if the value is absolute or relative
-                        //
+                    StringBuilder output = new StringBuilder();
+                    Component[] Components = Controller.getComponents();
+                    output.append(Controller.getName());
+                    output.append( '\n').append( "Type: ").append(Controller.getType().toString()).append( '\n').append( "Component Count: ").append(Components.length).append( '\n');
+                    for (int j = 0; j < Components.length; j++) {
+                        output.append("Component ").append(j).append(": ").append(Components[j].getName()).append( '\n').append( "    Identifier: ").append(Components[j].getIdentifier().getName()).append( "    ComponentType: ");
                         if (Components[j].isRelative()) {
-                            output += "Relative";
+                            output.append( "Relative");
                         } else {
-                            output += "Absolute";
+                            output.append( "Absolute");
                         }
                         //
                         // Checks to see if the connection is analog or digital
                         //
                         if (Components[j].isAnalog()) {
-                            output += " Analog";
+                            output.append( " Analog");
                         } else {
-                            output += " Digital";
+                            output.append( " Digital");
                         }
-                        output += '\n';
+                        output.append( '\n');
 
                     }
                     System.out.println(output);
@@ -108,42 +86,46 @@ public class ControllerInput {
     }
 
     // refresh
-    public void btnControllerRefreshClicked(){
+    void btnControllerRefreshClicked(){
         // refreshes all controllers, not just a specific one
         try {
             Controllers = createDefaultEnvironment().getControllers();
         }catch(ReflectiveOperationException ex){
             System.out.print("Error creating environment:");
-            System.out.print(ex);
+            ex.printStackTrace();
         }
         JComboBox SomeComboBox = (JComboBox) MainInterfaceFrame.getComponentByName("ControllerComboBox");
-        SomeComboBox.removeAllItems();
-        for(int i = 0; i < Controllers.length; i++){
-            if(Controllers[i].getType() == Controller.Type.GAMEPAD) {
-                SomeComboBox.addItem(Controllers[i]);
+        if (SomeComboBox != null) {
+            SomeComboBox.removeAllItems();
+            for (net.java.games.input.Controller Controller : Controllers) {
+                if (Controller.getType() == GAMEPAD) {
+                    SomeComboBox.addItem(Controller);
+                }
             }
         }
     }
 
     // connections
-    public void btnControllerConnectClicked(int index) {
+    void btnControllerConnectClicked(int index) {
         JComboBox SomeComboBox = (JComboBox) MainInterfaceFrame.getComponentByName("ControllerComboBox");
-        int counter = SomeComboBox.getSelectedIndex();
-        //System.out.println(counter);
-        for(int i = 0; i < Controllers.length; i++) {
-            if (Controllers[i].getType() == Controller.Type.GAMEPAD) {
-                if (counter == 0) {
-                    controllers[index].ConnectController(Controllers[i]);
-                    break;
+        if(SomeComboBox!= null) {
+            int counter = SomeComboBox.getSelectedIndex();
+            //System.out.println(counter);
+            for (net.java.games.input.Controller Controller : Controllers) {
+                if (Controller.getType() == GAMEPAD) {
+                    if (counter == 0) {
+                        controllers[index].ConnectController(Controller);
+                        break;
+                    }
+                    counter--;
                 }
-                counter--;
             }
         }
     }
-    public void btnControllerDisconnectClicked(int index) {
+    void btnControllerDisconnectClicked(int index) {
         controllers[index].DisconnectController();
     }
-    public GamepadController getController(int index){
+    GamepadController getController(int index){
         return controllers[index];
     }
 

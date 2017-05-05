@@ -1,26 +1,20 @@
 package com.company;
 
-/**
- * Created by Richard on 4/2/17.
- */
-public class ControllerRobotInfo extends RobotInfo{
-    private final double pi = 3.14159;
-    private final double reverseEfficencyHandicap = 1;
-    private int timerCounter = 0;
-    private int powerScaling = 1;   // this is from .1 to 1, and acts as a multiplier for power
+class ControllerRobotInfo extends RobotInfo{
     private GamepadController controller1, controller2;
     private double tmpmotors1[] = new double[4];
     private double tmpmotors2[] = new double[4];
-    public void setMotorSpeed1(int index, double power){tmpmotors1[index]=power;}
-    public void setMotorSpeed2(int index, double power){tmpmotors2[index]=power;}
-    public boolean getController1Connected(){return controller1.isConnected();}
-    public ControllerRobotInfo(GamepadController controller1, GamepadController controller2)
-    {
+    private void setMotorSpeed1(int index, double power){tmpmotors1[index]=power;}
+    private void setMotorSpeed2(int index, double power){tmpmotors2[index]=power;}
+    boolean getController1Connected(){return controller1.isConnected();}
+    boolean getController2Connected(){return controller2.isConnected();}
+    ControllerRobotInfo(GamepadController controller1, GamepadController controller2){
         this.controller1 = controller1;
         this.controller2 = controller2;
     }
-    public void updateVariables()
-    {
+    void updateVariables() {
+        double pi = 3.14159;
+        int powerScaling = 1;   // this is from .1 to 1, and acts as a multiplier for power
         // Left Stick to move the robot forward, backward, left, or right.
         if(controller1.getLeftAnalogUpdated())
         {
@@ -145,7 +139,7 @@ public class ControllerRobotInfo extends RobotInfo{
             setMotorSpeed(i, tmpmotors1[i] + tmpmotors2[i]);
         }
         // D-Pad controls the Gripper control
-        if (controller1.getUpdated(15)){
+        if (controller1.getUpdatedH(15).getBoolean()){
             // updated D-Pad
             if(controller1.getDPadLeft()){setGripperRotation(-0.5);}
             else if (controller1.getDPadRight()){setGripperRotation(0.5);}

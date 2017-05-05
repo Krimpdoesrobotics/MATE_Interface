@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import static com.company.MainInterfaceFrame.getComponentByName;
 import static com.company.MainInterfaceFrame.setVisibility;
 
+@SuppressWarnings("unchecked")
 class SerialCommunications{
     // instance variables
     // private data
@@ -31,7 +32,7 @@ class SerialCommunications{
             @Override
             public void run() {
                 if(isOpen()){
-                    if(ControllerRobot.getController1Connected()){
+                    if(ControllerRobot.getController1Connected() || ControllerRobot.getController2Connected()){
                         ControllerRobot.updateVariables();
                     }
                     sendRobotInfo();

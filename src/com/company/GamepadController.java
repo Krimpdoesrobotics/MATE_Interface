@@ -10,10 +10,7 @@ import static com.company.RandomStuff.IntH.newIntH;
 
 import net.java.games.input.*;
 
-/**
- * Created by Richard on 3/26/2017.
- */
-public class GamepadController {
+class GamepadController {
     // JInput doesn't give you values for each axis and only enables you
     // to retrieve events from the log, so these are all the private variables
     // that are needed on Windows (only Windows 10, Logitech F310 tested)
@@ -37,7 +34,7 @@ public class GamepadController {
             Component.Identifier.Button.LEFT_THUMB3,
             Component.Identifier.Button.RIGHT_THUMB3,
     };
-    public GamepadController(){                    // Initializing all private variables
+    GamepadController(){                    // Initializing all private variables
         DPad = newDoubleH(0);
         XAxis = newDoubleH(0);
         YAxis = newDoubleH(0);
@@ -57,16 +54,16 @@ public class GamepadController {
         ZA = 0;
         controller = null;
     }
-    public boolean isConnected(){return controller != null;} // if the controller is connected
-    public void ConnectController(Controller controller){    // connect controller subroutine
+    boolean isConnected(){return controller != null;} // if the controller is connected
+    void ConnectController(Controller controller){    // connect controller subroutine
         this.controller = controller;
         if(controller.getComponents().length==18){
             System.out.print("Linux Controller Detected");
             isLinux = true;
         }
     }
-    public void DisconnectController(){this.controller = null;} //disconnect controller subroutine
-    public void UpdateController(){                             // "polls" controller for changes and changes private variables accordingly
+    void DisconnectController(){this.controller = null;} //disconnect controller subroutine
+    void UpdateController(){                             // "polls" controller for changes and changes private variables accordingly
         if(isConnected()) {
             try {
                 controller.poll();
@@ -76,7 +73,7 @@ public class GamepadController {
             EventQueue queue = controller.getEventQueue();
             Event event = new Event();
             while (queue.getNextEvent(event)) {
-                StringBuffer buffer = new StringBuffer(controller.getName());
+                StringBuilder buffer = new StringBuilder(controller.getName());
                 buffer.append(" at ");
                 buffer.append(event.getNanos()).append(", ");
                 Component comp = event.getComponent();
@@ -138,10 +135,10 @@ public class GamepadController {
                             }
                         }
                         if (value > 0.5) {
-                            buffer.append("On" + Integer.toString(buttonNum));
+                            buffer.append("On").append(Integer.toString(buttonNum));
                             buttons[buttonNum].setBoolean(true);
                         } else {
-                            buffer.append("Off" + Integer.toString(buttonNum));
+                            buffer.append("Off").append(Integer.toString(buttonNum));
                             buttons[buttonNum].setBoolean(false);
                         }
                     }
@@ -151,29 +148,28 @@ public class GamepadController {
 
         }
     }
-    public double getYValue(){return YAxis.getDouble();}                             // List of subroutines to return private variables
-    public DoubleH getYValueH(){return YAxis;}
-    public double getXValue(){return XAxis.getDouble();}
-    public DoubleH getXValueH(){return XAxis;}
-    public double getYRotation(){return YRotation.getDouble();}
-    public DoubleH getYRotationH(){return YRotation;}
-    public double getXRotation(){return XRotation.getDouble();}
-    public DoubleH getXRotationH(){return XRotation;}
-    public IntH getDPadH(){ return DPadIntVal;}
-    public boolean getDPadLeft(){return (DPadIntVal.getInt() == 8);}
-    public boolean getDPadRight(){return (DPadIntVal.getInt() == 4);}
-    public boolean getDPadUp(){return (DPadIntVal.getInt() == 2);}
-    public boolean getDPadDown(){return (DPadIntVal.getInt() == 6);}
-    public boolean getButton(int index){return buttons[index].getBoolean();}
-    public BooleanH getButtonH(int index){return buttons[index];}
-    public boolean getUpdated(int index) { return updated[index].getBoolean();}
-    public BooleanH getUpdatedH(int index){return updated[index];}
-    public DoubleH  getZAxisH(){ return ZAxis;}
-    public boolean getLeftAnalogUpdated(){return LeftAnalogUpdated.getBoolean();}
-    public BooleanH getLeftAnalogUpdatedH(){return LeftAnalogUpdated;}
-    public boolean getRightAnalogUpdated(){return RightAnalogUpdated.getBoolean();}
-    public BooleanH getRightAnalogUpdatedH(){return RightAnalogUpdated;}
-    public void resetUpdated(){                                                     // reset updated array to indicate none of the
+    double getYValue(){return YAxis.getDouble();}                             // List of subroutines to return private variables
+    DoubleH getYValueH(){return YAxis;}
+    double getXValue(){return XAxis.getDouble();}
+    DoubleH getXValueH(){return XAxis;}
+    double getYRotation(){return YRotation.getDouble();}
+    DoubleH getYRotationH(){return YRotation;}
+    double getXRotation(){return XRotation.getDouble();}
+    DoubleH getXRotationH(){return XRotation;}
+    IntH getDPadH(){ return DPadIntVal;}
+    boolean getDPadLeft(){return (DPadIntVal.getInt() == 8);}
+    boolean getDPadRight(){return (DPadIntVal.getInt() == 4);}
+    boolean getDPadUp(){return (DPadIntVal.getInt() == 2);}
+    boolean getDPadDown(){return (DPadIntVal.getInt() == 6);}
+    boolean getButton(int index){return buttons[index].getBoolean();}
+    BooleanH getButtonH(int index){return buttons[index];}
+    BooleanH getUpdatedH(int index){return updated[index];}
+    DoubleH  getZAxisH(){ return ZAxis;}
+    boolean getLeftAnalogUpdated(){return LeftAnalogUpdated.getBoolean();}
+    BooleanH getLeftAnalogUpdatedH(){return LeftAnalogUpdated;}
+    boolean getRightAnalogUpdated(){return RightAnalogUpdated.getBoolean();}
+    BooleanH getRightAnalogUpdatedH(){return RightAnalogUpdated;}
+    void resetUpdated(){                                                     // reset updated array to indicate none of the
         for(int i = 0; i < 16; i++){                                                // variables have been changed
             updated[i].setBoolean(false);
         }

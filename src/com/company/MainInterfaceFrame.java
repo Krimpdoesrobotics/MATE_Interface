@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
+@SuppressWarnings("unchecked")
 public class MainInterfaceFrame extends JFrame{
     private static HashMap componentMap; // Parallel array of components on the form and their corresponding name (allows other classes access)
     private SerialCommunications SerialCommunication; // One instance of SerialCommunications class, which handles the output to serial
@@ -1088,12 +1089,12 @@ public class MainInterfaceFrame extends JFrame{
         createComponentMap();
     }
 
-    public void createComponentMap()    {
+    private void createComponentMap()    {
         componentMap = new HashMap<String,Component>();
         Component[] components = getContentPane().getComponents();
-        for (int i=0; i < components.length; i++)        {
-            componentMap.put(components[i].getName(), components[i]);
-            System.out.println(components[i].getName());
+        for (Component component : components) {
+            componentMap.put(component.getName(), component);
+            System.out.println(component.getName());
         }
     }
 
