@@ -21,6 +21,7 @@ public class MainInterfaceFrame extends JFrame
     private Timer FrameRefreshTimer;
     private static DefaultListModel<String> modelSerialSent = new DefaultListModel<>();
     private static DefaultListModel<String> modelSerialReceived = new DefaultListModel<>();
+    private int SelectedControllerIndex = 0;
     private TimerTask timerTask = new TimerTask() {
         @Override
         public void run() {
@@ -226,15 +227,41 @@ public class MainInterfaceFrame extends JFrame
             // connect controller button
             contentPane.add(newComponent("JButton", "btnControllerConnect", new Rectangle(500, 100, 100, 40), "Connect", new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    LogitechController.btnController1ConnectClicked();
+                    LogitechController.btnControllerConnectClicked(SelectedControllerIndex);updateVisibility();
                 }
             }, true), BorderLayout.CENTER);
             // disconnect controller button
             contentPane.add(newComponent("JButton", "btnControllerDisconnect", new Rectangle(500, 150, 100, 40), "Disconnect", new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    LogitechController.btnController1DisconnectClicked();
+                    LogitechController.btnControllerDisconnectClicked(SelectedControllerIndex);updateVisibility();
                 }
             }, false), BorderLayout.CENTER);
+            // radio buttons for controller selection
+            JRadioButton Controller1RadioButton = new JRadioButton("Cont. 1");
+            Controller1RadioButton.setBounds(380,200,100,40);
+            Controller1RadioButton.setName("Controller1RadioButton");
+            Controller1RadioButton.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    SelectedControllerIndex = 0;
+                    JRadioButton stuff = (JRadioButton) getComponentByName("Controller2RadioButton");
+                    stuff.setSelected(false);
+                    updateVisibility();
+                }
+            });
+            Controller1RadioButton.setSelected(true);
+            contentPane.add(Controller1RadioButton, BorderLayout.CENTER);
+            JRadioButton Controller2RadioButton = new JRadioButton("Cont. 2");
+            Controller2RadioButton.setBounds(500,200,100,40);
+            Controller2RadioButton.setName("Controller2RadioButton");
+            Controller2RadioButton.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    SelectedControllerIndex = 1;
+                    JRadioButton stuff = (JRadioButton) getComponentByName("Controller1RadioButton");
+                    stuff.setSelected(false);
+                    updateVisibility();
+                }
+            });
+            contentPane.add(Controller2RadioButton, BorderLayout.CENTER);
         }
         catch(NullPointerException ex){
             System.out.print("Error Loading objects");
@@ -1105,6 +1132,15 @@ public class MainInterfaceFrame extends JFrame
         }
     }
 
+    public void updateVisibility(){
+        if(LogitechController.getController(SelectedControllerIndex).isConnected()){
+            getComponentByName("btnControllerConnect").setVisible(false);
+            getComponentByName("btnControllerDisconnect").setVisible(true);
+        }else{
+            getComponentByName("btnControllerConnect").setVisible(true);
+            getComponentByName("btnControllerDisconnect").setVisible(false);
+        }
+    }
     // COMPONENTS LIST //
     // 0: Y AXIS ABSOLUTE ANALOG: Left Stick X
     // 1: X AXIS ABSOLUTE ANALOG: Left Stick Y

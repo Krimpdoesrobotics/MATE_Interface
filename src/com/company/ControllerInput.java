@@ -126,26 +126,22 @@ public class ControllerInput {
     }
 
     // connections
-    public void btnController1ConnectClicked() {
+    public void btnControllerConnectClicked(int index) {
         JComboBox SomeComboBox = (JComboBox) MainInterfaceFrame.getComponentByName("ControllerComboBox");
         int counter = SomeComboBox.getSelectedIndex();
         //System.out.println(counter);
         for(int i = 0; i < Controllers.length; i++) {
             if (Controllers[i].getType() == Controller.Type.GAMEPAD) {
                 if (counter == 0) {
-                    controllers[0].ConnectController(Controllers[i]);
+                    controllers[index].ConnectController(Controllers[i]);
                     break;
                 }
                 counter--;
             }
         }
-        MainInterfaceFrame.getComponentByName("btnControllerConnect").setVisible(false);
-        MainInterfaceFrame.getComponentByName("btnControllerDisconnect").setVisible(true);
     }
-    public void btnController1DisconnectClicked() {
-        MainInterfaceFrame.getComponentByName("btnControllerConnect").setVisible(true);
-        MainInterfaceFrame.getComponentByName("btnControllerDisconnect").setVisible(false);
-        controllers[0].DisconnectController();
+    public void btnControllerDisconnectClicked(int index) {
+        controllers[index].DisconnectController();
     }
     public GamepadController getController(int index){
         return controllers[index];
