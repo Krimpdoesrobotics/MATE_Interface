@@ -39,12 +39,14 @@ public class MainInterfaceFrame extends JFrame{
                 toReturn.setBounds(Bounds);
                 toReturn.setVisible(visibility);
                 panel.add(toReturn,BorderLayout.CENTER);
+                break;
             case "JComboBox":
                 JComboBox obj = new JComboBox();
                 obj.setName(name);
                 obj.setBounds(Bounds);
                 obj.setVisible(visibility);
                 panel.add(obj,BorderLayout.CENTER);
+                break;
             case "JButton":
                 JButton button = new JButton(content);
                 button.setName(name);
