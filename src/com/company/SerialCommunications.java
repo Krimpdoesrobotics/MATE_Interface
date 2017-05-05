@@ -1,58 +1,61 @@
 package com.company;
-/**
- * Created by Richard on 2/17/2017.
- */
-import com.company.RandomStuff.BooleanH;
-import com.company.RandomStuff.DoubleH;
-import jssc.*;
 
+import com.company.RandomStuff.BooleanH;
+import jssc.*;
 import java.awt.*;
-import java.sql.Time;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JComboBox;
 
-public class SerialCommunications
-{
+import static com.company.MainInterfaceFrame.getComponentByName;
+import static com.company.MainInterfaceFrame.setVisibility;
+
+@SuppressWarnings("unchecked")
+class SerialCommunications{
     // instance variables
     // private data
-    private String[] portNames;
-    private String portSelected;
     private static SerialPort serialPort;
     private boolean Opened =false;
     private static RobotInfo Robot= new RobotInfo();
     private ControllerRobotInfo ControllerRobot;
-    private int TimeSinceLastUpdate = -1;
-    private static int[] multipliers = {1,-1,1,-1,-1,1,1,1,1,1};
+    private static int[] multipliers = {1,-1,1,-1,1,-1,1,1,1,1};
     private static BooleanH SerialReceived = new BooleanH(false);
     private static BooleanH SerialReceivedU = new BooleanH(false);
     private static int TimeSinceLastReceived = 0;
     // constructor
-    public SerialCommunications(GamepadController controller1, GamepadController controller2)
+    SerialCommunications(GamepadController controller1, GamepadController controller2)
     {
         ControllerRobot = new ControllerRobotInfo(controller1,controller2);
         // default constructor
+        Timer SerialRefreshTimer = new Timer();
+        TimerTask refreshSerial = new TimerTask() {
+            @Override
+            public void run() {
+                if(isOpen()){
+                    if(ControllerRobot.getController1Connected() || ControllerRobot.getController2Connected()){
+                        ControllerRobot.updateVariables();
+                    }
+                    sendRobotInfo();
+                    if(TimeSinceLastReceived >= 3){
+                        btnSerialDisconnectClicked();
+                        btnSerialConnectClicked();
+                    }
+                    TimeSinceLastReceived++;
+                }
+            }
+        };
+        SerialRefreshTimer.schedule(refreshSerial,250);
     }
 
-    public void incrementTimeSinceLastReceived(){
-        TimeSinceLastReceived++;
-    }
-    public int getTimeSinceLastReceived(){
-        return TimeSinceLastReceived;
-    }
-    public RobotInfo getRobot(){return Robot;}
+    RobotInfo getRobot(){return Robot;}
 
-    public BooleanH getSerialReceived(){return SerialReceived;}
-    public BooleanH getSerialReceivedU(){return SerialReceivedU;}
+    BooleanH getSerialReceived(){return SerialReceived;}
+    BooleanH getSerialReceivedU(){return SerialReceivedU;}
 
-    public void resetSerialReceived(){SerialReceived.setBoolean(false);}
-    public void resetSerialReceivedU(){SerialReceivedU.setBoolean(true);}
+    void resetSerialReceived(){SerialReceived.setBoolean(false);}
+    void resetSerialReceivedU(){SerialReceivedU.setBoolean(true);}
 
-    public ControllerRobotInfo getControllerRobot(){return ControllerRobot;}
-
-    public int getTimeSinceLastUpdate(){return TimeSinceLastUpdate;}
-
-    public void incrementTime(){TimeSinceLastUpdate++;}
-
-    public byte fromDouble(double a, int index){
+    private byte fromDouble(double a, int index){
         int b = (int)(a*63*multipliers[index]+90); // WARNING : Do not set a*65 to a*90 or more or it will break serial
         if(b>=128){
             b = -1*(256-b);
@@ -62,7 +65,7 @@ public class SerialCommunications
         }
     }
 
-    public void sendRobotInfo(){
+    private void sendRobotInfo(){
         byte[] stuff = new byte[11];
         stuff[0] = 0;
         /*int remain = (getTimeSinceLastUpdate()/10) % 6;
@@ -82,33 +85,24 @@ public class SerialCommunications
         stuff[10]=fromDouble(ControllerRobot.getCameraTilt().getDouble(),9);
         PortSend(stuff);
     }
-    // refresh
-    public void btnSerialRefreshClicked()
-    {
-        //
-        // refreshes the port so if the port changes, it will update.
-        //
-        refreshPortList();
-    }
-    private void refreshPortList()
-    {
-        portNames = SerialPortList.getPortNames();
-        Component SomeComponent = MainInterfaceFrame.getComponentByName("serialComboBox");
+    void refreshPortList(){
+        String[] portNames = SerialPortList.getPortNames();
+        Component SomeComponent = getComponentByName("serialComboBox");
         if (SomeComponent instanceof JComboBox) {
             JComboBox SomeComboBox = (JComboBox) SomeComponent;
             SomeComboBox.removeAllItems();
-            for (int i = 0; i < portNames.length; i++) {
-                SomeComboBox.addItem(portNames[i]);
+            for (String portName : portNames) {
+                SomeComboBox.addItem(portName);
             }
         }
     }
     // connection
-    public void btnSerialConnectClicked() {
+    void btnSerialConnectClicked() {
         if(!Opened) {
-            MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(false);
-            MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(true);
+            setVisibility(getComponentByName("btnSerialConnect"),false);
+            setVisibility(getComponentByName("btnSerialDisconnect"),true);
             try {
-                portSelected = MainInterfaceFrame.getSelectedPort();
+                String portSelected = MainInterfaceFrame.getSelectedPort();
                 serialPort = new SerialPort(portSelected);
                 serialPort.openPort();
                 Opened = true;
@@ -119,20 +113,19 @@ public class SerialCommunications
                 serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN |
                         SerialPort.FLOWCONTROL_RTSCTS_OUT);
                 serialPort.addEventListener(new PortReader(), SerialPort.MASK_RXCHAR);
-                TimeSinceLastUpdate = 0;
+                TimeSinceLastReceived = 0;
             } catch (SerialPortException ex) {
                 System.out.println("There are an error on writing string to port: " + ex);
             }
         }
     }
 
-    public void btnSerialDisconnectClicked()
-    {
+    void btnSerialDisconnectClicked(){
         if(Opened) {
             TimeSinceLastReceived = 0;
             Opened = false;
-            MainInterfaceFrame.getComponentByName("btnSerialDisconnect").setVisible(false);
-            MainInterfaceFrame.getComponentByName("btnSerialConnect").setVisible(true);
+            setVisibility(getComponentByName("btnSerialConnect"),true);
+            setVisibility(getComponentByName("btnSerialDisconnect"),false);
             try {
                 serialPort.closePort();
             } catch (SerialPortException e) {
@@ -141,25 +134,23 @@ public class SerialCommunications
         }
     }
 
-    public boolean isOpen(){return Opened;}
+    private boolean isOpen(){return Opened;}
 
-    public boolean PortSend(byte[] val){
+    private void PortSend(byte[] val){
         if(isOpen()){
             try{
                 serialPort.writeBytes(val);
                 String stuff ="I:";
                 for(int i=0; i< 11;i++){
-                    stuff += " ";
+                    stuff = stuff.concat(" ");
                     int temp = (int)(val[i]);
-                    stuff += String.valueOf(temp);
+                    stuff = stuff.concat(String.valueOf(temp));
                 }
                 MainInterfaceFrame.addSerialSent(stuff);
-                return true;
             } catch (SerialPortException ex){
                 System.out.println("Error sending byte: "+ex);
             }
         }
-        return false;
     }
 
     private static class PortReader implements SerialPortEventListener {
@@ -178,12 +169,12 @@ public class SerialCommunications
                         a = serialPort.readBytes(1);
                         int temp = (int)(a[0]);
                         if(temp < 0){
-                            temp = 256+temp;
+                            temp += 256;
                         }else if(temp == 0){
                             break;
                         }
-                        toDisplay+= " ";
-                        toDisplay += String.valueOf(temp);
+                        toDisplay = toDisplay.concat(" ");
+                        toDisplay = toDisplay.concat(String.valueOf(temp));
                         switch(j){
                             case 6:Robot.setGripperRotation((double)(multipliers[6]*(temp-90))/90);break;
                             case 7:Robot.setGripperClamp((double)(multipliers[7]*(temp-90))/90);break;
