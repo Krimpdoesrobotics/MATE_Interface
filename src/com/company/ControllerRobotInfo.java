@@ -105,7 +105,7 @@ class ControllerRobotInfo extends RobotInfo{
                     //up
                     power = Math.abs(yVal) * powerScaling;
                     setMotorSpeed(4, power);
-                    setMotorSpeed(5, power);
+                    setMotorSpeed(5, -power);
                 } else if (rotation <= pi / 4.0 && rotation >= (-1.0 * pi) / 4.0) {
                     power = Math.abs(xVal) * powerScaling;
                     setMotorSpeed2(0, -power);
@@ -117,7 +117,7 @@ class ControllerRobotInfo extends RobotInfo{
                 } else if (rotation <= (-1.0 * pi) / 4.0 && rotation >= (-3.0 * pi) / 4.0) {
                     power = Math.abs(yVal) * powerScaling;
                     setMotorSpeed(4, -power);
-                    setMotorSpeed(5, -power);
+                    setMotorSpeed(5, +power);
                 } else if (rotation <= (-3.0 * pi) / 4.0 || rotation >= (3.0 * pi) / 4.0) {
                     power = Math.abs(xVal) * powerScaling;
                     setMotorSpeed2(0, power);
@@ -139,6 +139,8 @@ class ControllerRobotInfo extends RobotInfo{
             setMotorSpeed(i, tmpmotors1[i] + tmpmotors2[i]);
         }
         // D-Pad controls the Gripper control
+        // cool
+        // yeet
         if (controller1.getUpdatedH(15).getBoolean()){
             // updated D-Pad
             if(controller1.getDPadLeft()){setGripperRotation(-0.5);}
