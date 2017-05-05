@@ -111,7 +111,7 @@ public class ControllerRobotInfo extends RobotInfo
                     //up
                     power = Math.abs(yVal) * powerScaling;
                     setMotorSpeed(4, power);
-                    setMotorSpeed(5, power);
+                    setMotorSpeed(5, -power);
                 } else if (rotation <= pi / 4.0 && rotation >= (-1.0 * pi) / 4.0) {
                     power = Math.abs(xVal) * powerScaling;
                     setMotorSpeed2(0, -power);
@@ -123,7 +123,7 @@ public class ControllerRobotInfo extends RobotInfo
                 } else if (rotation <= (-1.0 * pi) / 4.0 && rotation >= (-3.0 * pi) / 4.0) {
                     power = Math.abs(yVal) * powerScaling;
                     setMotorSpeed(4, -power);
-                    setMotorSpeed(5, -power);
+                    setMotorSpeed(5, +power);
                 } else if (rotation <= (-3.0 * pi) / 4.0 || rotation >= (3.0 * pi) / 4.0) {
                     power = Math.abs(xVal) * powerScaling;
                     setMotorSpeed2(0, power);
