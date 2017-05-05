@@ -139,6 +139,7 @@ class ControllerRobotInfo extends RobotInfo{
             setMotorSpeed(i, tmpmotors1[i] + tmpmotors2[i]);
         }
         // D-Pad controls the Gripper control
+        // cool
         if (controller1.getUpdatedH(15).getBoolean()){
             // updated D-Pad
             if(controller1.getDPadLeft()){setGripperRotation(-0.5);}
