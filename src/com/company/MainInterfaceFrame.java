@@ -1,7 +1,4 @@
 package com.company;
-/**
- * Created by Richard on 2/17/2017.
- */
 
 import java.awt.*;
 import java.awt.event.*;
@@ -11,35 +8,20 @@ import javax.swing.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainInterfaceFrame extends JFrame
-{
-    private final int NumGraphics = 25;
-    private static HashMap componentMap;
-    private SerialCommunications SerialCommunication;
-    private CustomPanel contentPane;
-    private ControllerInput LogitechController = new ControllerInput();
-    private Timer FrameRefreshTimer;
-    private static DefaultListModel<String> modelSerialSent = new DefaultListModel<>();
-    private static DefaultListModel<String> modelSerialReceived = new DefaultListModel<>();
-    private int SelectedControllerIndex = 0;
-    private TimerTask timerTask = new TimerTask() {
-        @Override
-        public void run() {
-            contentPane.Refresh();
-            LogitechController.getController(0).resetUpdated();
-            SerialCommunication.resetSerialReceivedU();
-            SerialCommunication.resetSerialReceived();
-            SerialCommunication.getRobot().resetUpdated();
-        }
-    };
-    /**
-     * Launch the application.
-     */
+public class MainInterfaceFrame extends JFrame{
+    private static HashMap componentMap; // Parallel array of components on the form and their corresponding name (allows other classes access)
+    private SerialCommunications SerialCommunication; // One instance of SerialCommunications class, which handles the output to serial
+    private CustomPanel contentPane; // One instance of CustomPanel class (extends JFrame)
+    private ControllerInput LogitechController = new ControllerInput(); //One instance of ControllerInputClass, which handles controllers
+    private static DefaultListModel<String> modelSerialSent = new DefaultListModel<>(); // List Model for the Sent Serial Commands (debugging)
+    private static DefaultListModel<String> modelSerialReceived = new DefaultListModel<>(); // List Model for the Received Serial Commands
+    private int SelectedControllerIndex = 0; // Current Controller Selected
+    
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run()  {
                 try {
-                    MainInterfaceFrame frame = new MainInterfaceFrame();
+                    MainInterfaceFrame frame = new MainInterfaceFrame(); // declaration statement for the Frame
                     frame.setVisible(true);
                 }catch (Exception e){
                     e.printStackTrace();
@@ -48,43 +30,45 @@ public class MainInterfaceFrame extends JFrame
         });
     }
 
-    private Component newComponent(String type, String name, Rectangle Bounds, String content, ActionListener listener, boolean visibility){
+    // simple subroutine to create components on the Form
+    private void newComponent(String type, String name, Rectangle Bounds, String content, ActionListener listener, boolean visibility, CustomPanel panel){
         switch(type){
             case "JLabel":
                 JLabel toReturn = new JLabel(content);
                 toReturn.setName(name);
                 toReturn.setBounds(Bounds);
                 toReturn.setVisible(visibility);
-                return toReturn;
+                panel.add(toReturn,BorderLayout.CENTER);
             case "JComboBox":
                 JComboBox obj = new JComboBox();
                 obj.setName(name);
                 obj.setBounds(Bounds);
                 obj.setVisible(visibility);
-                return obj;
+                panel.add(obj,BorderLayout.CENTER);
             case "JButton":
                 JButton button = new JButton(content);
                 button.setName(name);
                 button.setBounds(Bounds);
                 button.addActionListener(listener);
                 button.setVisible(visibility);
-                return button;
-            default:
-                return null;
+                panel.add(button,BorderLayout.CENTER);
         }
     }
     /**
      * Create the frame.
      */
-    public MainInterfaceFrame()    {
+    private MainInterfaceFrame()    {
+        // setup of SerialCommunications instance
         SerialCommunication = new SerialCommunications(LogitechController.getController(0),LogitechController.getController(1));
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        //setup of form
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth() + 60, (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
         setLocation(-10,0);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        contentPane = new CustomPanel(NumGraphics);
-
+        contentPane = new CustomPanel(25);
+        
+        // setup of Graphics via the CustomPanel class
         //Left Analog stick display
         contentPane.InterfaceElements[0] = new Paintings(150,575,200,200,0,Color.BLACK,LogitechController.getController(0).getLeftAnalogUpdatedH());
         contentPane.InterfaceElements[0].setReferenceType0(LogitechController.getController(0).getXValueH(),LogitechController.getController(0).getYValueH(),Color.BLACK,Color.CYAN);
@@ -165,108 +149,106 @@ public class MainInterfaceFrame extends JFrame
         setBackground(new Color(0, 100, 100, 255));
 
         getContentPane().setLayout(null);
-        try {
-            // serial port label
-            contentPane.add(newComponent("JLabel", "lblChooseSerialPort", new Rectangle(50, 50, 130, 20), "Choose Serial Port", null, true), BorderLayout.CENTER);
-            // serial port selection box
-            contentPane.add(newComponent("JComboBox", "serialComboBox", new Rectangle(50, 80, 130, 30), null, null, true), BorderLayout.CENTER);
-            // refresh serial port selection box button
-            contentPane.add(newComponent("JButton", "btnSerialRefresh", new Rectangle(200, 50, 100, 40), "Refresh", new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    SerialCommunication.btnSerialRefreshClicked();
-                }
-            }, true), BorderLayout.CENTER);
-            // connect serial port button
-            contentPane.add(newComponent("JButton", "btnSerialConnect", new Rectangle(200, 100, 100, 40), "Connect", new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    SerialCommunication.btnSerialConnectClicked();
-                }
-            }, true), BorderLayout.CENTER);
-            // disconnect serial port button
-            contentPane.add(newComponent("JButton", "btnSerialDisconnect", new Rectangle(200, 150, 100, 40), "Disconnect", new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    SerialCommunication.btnSerialDisconnectClicked();
-                }
-            }, false), BorderLayout.CENTER);
-            // sent serial messages display label
-            contentPane.add(newComponent("JLabel", "lblSerialSent", new Rectangle(625, 50, 130, 20), "Sent Serial Messages", null, true), BorderLayout.CENTER);
-            // sent serial messages display
-            JList<String> listSerialSent = new JList<>(modelSerialSent);
-            JScrollPane scrollPaneSerialSent = new JScrollPane();
-            scrollPaneSerialSent.setViewportView(listSerialSent);
-            scrollPaneSerialSent.setName("scrollPaneSerialSent");
-            scrollPaneSerialSent.setBounds(new Rectangle(625, 80, 175, 150));
-            contentPane.add(scrollPaneSerialSent, BorderLayout.CENTER);
-            // recieved serial messages display label
-            contentPane.add(newComponent("JLabel", "lblSerialReceived", new Rectangle(825, 50, 170, 20), "Received Serial Messages", null, true), BorderLayout.CENTER);
-            // recieved serial messages display
-            JList<String> listSerialReceived = new JList<>(modelSerialReceived);
-            JScrollPane scrollPaneSerialReceived = new JScrollPane();
-            scrollPaneSerialReceived.setViewportView(listSerialReceived);
-            scrollPaneSerialReceived.setName("scrollPaneSerialReceived");
-            scrollPaneSerialReceived.setBounds(new Rectangle(825, 80, 175, 150));
-            contentPane.add(scrollPaneSerialReceived, BorderLayout.CENTER);
-            // choose controller label
-            contentPane.add(newComponent("JLabel", "lblChooseController", new Rectangle(350, 50, 130, 20), "Choose Controller", null, true), BorderLayout.CENTER);
-            // choose controller selection box
-            JComboBox ControllerComboBox = new JComboBox();
-            ControllerComboBox.setBounds(new Rectangle(350, 80, 130, 30));
-            ControllerComboBox.setName("ControllerComboBox");
-            ControllerComboBox.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    LogitechController.ControllerComboBoxSelection();
-                }
-            });
-            contentPane.add(ControllerComboBox, BorderLayout.CENTER);
-            // refresh controller selection box button
-            contentPane.add(newComponent("JButton", "btnControllerRefresh", new Rectangle(500, 50, 100, 40), "Refresh", new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    LogitechController.btnControllerRefreshClicked();
-                }
-            }, true), BorderLayout.CENTER);
-            // connect controller button
-            contentPane.add(newComponent("JButton", "btnControllerConnect", new Rectangle(500, 100, 100, 40), "Connect", new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    LogitechController.btnControllerConnectClicked(SelectedControllerIndex);updateVisibility();
-                }
-            }, true), BorderLayout.CENTER);
-            // disconnect controller button
-            contentPane.add(newComponent("JButton", "btnControllerDisconnect", new Rectangle(500, 150, 100, 40), "Disconnect", new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    LogitechController.btnControllerDisconnectClicked(SelectedControllerIndex);updateVisibility();
-                }
-            }, false), BorderLayout.CENTER);
-            // radio buttons for controller selection
-            JRadioButton Controller1RadioButton = new JRadioButton("Cont. 1");
-            Controller1RadioButton.setBounds(380,200,100,40);
-            Controller1RadioButton.setName("Controller1RadioButton");
-            Controller1RadioButton.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    SelectedControllerIndex = 0;
-                    JRadioButton stuff = (JRadioButton) getComponentByName("Controller2RadioButton");
+        // serial port label
+        newComponent("JLabel", "lblChooseSerialPort", new Rectangle(50, 50, 130, 20), "Choose Serial Port", null, true, contentPane);
+        // serial port selection box
+        newComponent("JComboBox", "serialComboBox", new Rectangle(50, 80, 130, 30), null, null, true,contentPane);
+        // refresh serial port selection box button
+        newComponent("JButton", "btnSerialRefresh", new Rectangle(200, 50, 100, 40), "Refresh", new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SerialCommunication.refreshPortList();
+            }
+        }, true, contentPane);
+        // connect serial port button
+        newComponent("JButton", "btnSerialConnect", new Rectangle(200, 100, 100, 40), "Connect", new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SerialCommunication.btnSerialConnectClicked();
+            }
+        }, true, contentPane);
+        // disconnect serial port button
+        newComponent("JButton", "btnSerialDisconnect", new Rectangle(200, 150, 100, 40), "Disconnect", new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SerialCommunication.btnSerialDisconnectClicked();
+            }
+        }, false, contentPane);
+        // sent serial messages display label
+        newComponent("JLabel", "lblSerialSent", new Rectangle(625, 50, 130, 20), "Sent Serial Messages", null, true, contentPane);
+        // sent serial messages display
+        JList<String> listSerialSent = new JList<>(modelSerialSent);
+        JScrollPane scrollPaneSerialSent = new JScrollPane();
+        scrollPaneSerialSent.setViewportView(listSerialSent);
+        scrollPaneSerialSent.setName("scrollPaneSerialSent");
+        scrollPaneSerialSent.setBounds(new Rectangle(625, 80, 175, 150));
+        contentPane.add(scrollPaneSerialSent, BorderLayout.CENTER);
+        // recieved serial messages display label
+        newComponent("JLabel", "lblSerialReceived", new Rectangle(825, 50, 170, 20), "Received Serial Messages", null, true, contentPane);
+        // recieved serial messages display
+        JList<String> listSerialReceived = new JList<>(modelSerialReceived);
+        JScrollPane scrollPaneSerialReceived = new JScrollPane();
+        scrollPaneSerialReceived.setViewportView(listSerialReceived);
+        scrollPaneSerialReceived.setName("scrollPaneSerialReceived");
+        scrollPaneSerialReceived.setBounds(new Rectangle(825, 80, 175, 150));
+        contentPane.add(scrollPaneSerialReceived, BorderLayout.CENTER);
+        // choose controller label
+        newComponent("JLabel", "lblChooseController", new Rectangle(350, 50, 130, 20), "Choose Controller", null, true, contentPane);
+        // choose controller selection box
+        JComboBox ControllerComboBox = new JComboBox();
+        ControllerComboBox.setBounds(new Rectangle(350, 80, 130, 30));
+        ControllerComboBox.setName("ControllerComboBox");
+        ControllerComboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                LogitechController.ControllerComboBoxSelection();
+            }
+        });
+        contentPane.add(ControllerComboBox, BorderLayout.CENTER);
+        // refresh controller selection box button
+        newComponent("JButton", "btnControllerRefresh", new Rectangle(500, 50, 100, 40), "Refresh", new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                LogitechController.btnControllerRefreshClicked();
+            }
+        }, true, contentPane);
+        // connect controller button
+        newComponent("JButton", "btnControllerConnect", new Rectangle(500, 100, 100, 40), "Connect", new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                LogitechController.btnControllerConnectClicked(SelectedControllerIndex);updateVisibility();
+            }
+        }, true, contentPane);
+        // disconnect controller button
+        newComponent("JButton", "btnControllerDisconnect", new Rectangle(500, 150, 100, 40), "Disconnect", new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                LogitechController.btnControllerDisconnectClicked(SelectedControllerIndex);updateVisibility();
+            }
+        }, false, contentPane);
+        // radio buttons for controller selection
+        JRadioButton Controller1RadioButton = new JRadioButton("Cont. 1");
+        Controller1RadioButton.setBounds(380,200,100,40);
+        Controller1RadioButton.setName("Controller1RadioButton");
+        Controller1RadioButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                SelectedControllerIndex = 0;
+                JRadioButton stuff = (JRadioButton) getComponentByName("Controller2RadioButton");
+                if(stuff != null){
                     stuff.setSelected(false);
-                    updateVisibility();
                 }
-            });
-            Controller1RadioButton.setSelected(true);
-            contentPane.add(Controller1RadioButton, BorderLayout.CENTER);
-            JRadioButton Controller2RadioButton = new JRadioButton("Cont. 2");
-            Controller2RadioButton.setBounds(500,200,100,40);
-            Controller2RadioButton.setName("Controller2RadioButton");
-            Controller2RadioButton.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    SelectedControllerIndex = 1;
-                    JRadioButton stuff = (JRadioButton) getComponentByName("Controller1RadioButton");
+                updateVisibility();
+            }
+        });
+        Controller1RadioButton.setSelected(true);
+        contentPane.add(Controller1RadioButton, BorderLayout.CENTER);
+        JRadioButton Controller2RadioButton = new JRadioButton("Cont. 2");
+        Controller2RadioButton.setBounds(500,200,100,40);
+        Controller2RadioButton.setName("Controller2RadioButton");
+        Controller2RadioButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                SelectedControllerIndex = 1;
+                JRadioButton stuff = (JRadioButton) getComponentByName("Controller1RadioButton");
+                if(stuff != null){
                     stuff.setSelected(false);
-                    updateVisibility();
                 }
-            });
-            contentPane.add(Controller2RadioButton, BorderLayout.CENTER);
-        }
-        catch(NullPointerException ex){
-            System.out.print("Error Loading objects");
-            System.out.print(ex);
-        }
+                updateVisibility();
+            }
+        });
+        contentPane.add(Controller2RadioButton, BorderLayout.CENTER);
         //Evan and Zach's displays
         JLabel lblBorder = new JLabel();
         lblBorder.setBounds(1040, 0, 20, (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight());
@@ -1086,8 +1068,17 @@ public class MainInterfaceFrame extends JFrame
             }
         });
 
-        // timer
-        FrameRefreshTimer = new Timer();
+        Timer FrameRefreshTimer = new Timer(); // Timer to refresh items on the form
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() { // Timertask for the FrameRefresh Timer
+                contentPane.Refresh();       // Calls the Refresh subroutine, which updates all changed components via .paint method
+                LogitechController.getController(0).resetUpdated(); // resets the updated components to false
+                SerialCommunication.resetSerialReceivedU(); // There is a blinker above the Controller Selection Objects which blinks whenever Telemetry is Received
+                SerialCommunication.resetSerialReceived();  // These 2 subroutines reset the blinker to its normal state
+                SerialCommunication.getRobot().resetUpdated(); // resets the updated robot information from telemetry
+            }
+        };
         FrameRefreshTimer.schedule(timerTask,50);
 
         // colour
@@ -1104,12 +1095,12 @@ public class MainInterfaceFrame extends JFrame
         }
     }
 
-    public static Component getComponentByName(String name)    {
+    static Component getComponentByName(String name)    {
         if (componentMap.containsKey(name))  return (Component) componentMap.get(name);
         else return null;
     }
 
-    public static String getSelectedPort()    {
+    static String getSelectedPort()    {
         Component SomeComponent = getComponentByName("serialComboBox");
         if(SomeComponent instanceof JComboBox){
             JComboBox SomeComboBox = (JComboBox) SomeComponent;
@@ -1118,27 +1109,32 @@ public class MainInterfaceFrame extends JFrame
         else return null;
     }
 
-    public static void addSerialSent(String obj)    {
+    static void addSerialSent(String obj)    {
         modelSerialSent.addElement(obj);
         if(modelSerialSent.getSize()>10){
             modelSerialSent.removeElementAt(0);
         }
     }
 
-    public static void addSerialReceived(String obj)    {
+    static void addSerialReceived(String obj)    {
         modelSerialReceived.addElement(obj);
         if(modelSerialReceived.getSize()>10){
             modelSerialReceived.removeElementAt(0);
         }
     }
 
-    public void updateVisibility(){
+    private void updateVisibility(){
         if(LogitechController.getController(SelectedControllerIndex).isConnected()){
-            getComponentByName("btnControllerConnect").setVisible(false);
-            getComponentByName("btnControllerDisconnect").setVisible(true);
+            setVisibility(getComponentByName("btnControllerConnect"),false);
+            setVisibility(getComponentByName("btnControllerDisconnect"),true);
         }else{
-            getComponentByName("btnControllerConnect").setVisible(true);
-            getComponentByName("btnControllerDisconnect").setVisible(false);
+            setVisibility(getComponentByName("btnControllerConnect"),true);
+            setVisibility(getComponentByName("btnControllerDisconnect"),false);
+        }
+    }
+    static void setVisibility(Component comp, boolean Visibility){
+        if(comp != null){
+            comp.setVisible(Visibility);
         }
     }
     // COMPONENTS LIST //
