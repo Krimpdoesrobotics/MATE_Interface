@@ -315,7 +315,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(0).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(0).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
@@ -329,7 +329,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(1).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(1).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
@@ -343,7 +343,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(2).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(2).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
@@ -357,7 +357,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(3).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(3).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
@@ -371,7 +371,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(4).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(4).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
@@ -385,7 +385,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(5).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(5).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
@@ -399,7 +399,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(6).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(6).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
@@ -413,7 +413,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(7).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(7).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
@@ -427,7 +427,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(8).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(8).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
@@ -441,7 +441,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(9).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(9).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
@@ -455,7 +455,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(10).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(10).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
@@ -469,7 +469,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(11).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(11).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
@@ -483,7 +483,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(12).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(12).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
@@ -497,7 +497,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(13).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(13).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
@@ -511,7 +511,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(14).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(14).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
@@ -525,7 +525,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(15).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(15).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
@@ -539,7 +539,7 @@ public class MainInterfaceFrame extends JFrame{
         arrChkTasks.get(16).addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int points = 0;
+                int points;
                 arrChkTasks.get(16).setSelected(true);
                 if (lblPoints.getText().length() < 2) {
                     points = 0;
