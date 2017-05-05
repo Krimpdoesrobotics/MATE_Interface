@@ -140,6 +140,7 @@ class ControllerRobotInfo extends RobotInfo{
         }
         // D-Pad controls the Gripper control
         // cool
+        // yeet
         if (controller1.getUpdatedH(15).getBoolean()){
             // updated D-Pad
             if(controller1.getDPadLeft()){setGripperRotation(-0.5);}
