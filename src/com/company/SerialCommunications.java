@@ -22,29 +22,29 @@ class SerialCommunications{
     private static BooleanH SerialReceived = new BooleanH(false);
     private static BooleanH SerialReceivedU = new BooleanH(false);
     private static int TimeSinceLastReceived = 0;
+    private TimerTask refreshSerial = new TimerTask() {
+        @Override
+        public void run() {
+            if(isOpen()){
+                if(ControllerRobot.getController1Connected() || ControllerRobot.getController2Connected()){
+                    ControllerRobot.updateVariables();
+                }
+                sendRobotInfo();
+                if(TimeSinceLastReceived >= 3){
+                    btnSerialDisconnectClicked();
+                    btnSerialConnectClicked();
+                }
+                TimeSinceLastReceived++;
+            }
+        }
+    };
     // constructor
     SerialCommunications(GamepadController controller1, GamepadController controller2)
     {
         ControllerRobot = new ControllerRobotInfo(controller1,controller2);
         // default constructor
         Timer SerialRefreshTimer = new Timer();
-        TimerTask refreshSerial = new TimerTask() {
-            @Override
-            public void run() {
-                if(isOpen()){
-                    if(ControllerRobot.getController1Connected() || ControllerRobot.getController2Connected()){
-                        ControllerRobot.updateVariables();
-                    }
-                    sendRobotInfo();
-                    if(TimeSinceLastReceived >= 3){
-                        btnSerialDisconnectClicked();
-                        btnSerialConnectClicked();
-                    }
-                    TimeSinceLastReceived++;
-                }
-            }
-        };
-        SerialRefreshTimer.schedule(refreshSerial,250);
+        SerialRefreshTimer.schedule(refreshSerial,10,250);
     }
 
     RobotInfo getRobot(){return Robot;}

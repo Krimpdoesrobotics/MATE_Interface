@@ -13,6 +13,13 @@ class ControllerInput {
     //Organizes the controllers and method of connection
     private GamepadController controllers[] = new GamepadController[2];
     private Controller[] Controllers; // this temporarily holds an array of controllers that can be accessed
+    private TimerTask refreshController = new TimerTask() {
+        @Override
+        public void run() {
+            controllers[0].UpdateController();
+            controllers[1].UpdateController();
+        }
+    };
     private static ControllerEnvironment createDefaultEnvironment() throws ReflectiveOperationException {
 
         // Find constructor (class is package private, so we can't access it directly)
@@ -32,14 +39,8 @@ class ControllerInput {
         controllers[0] = new GamepadController();
         controllers[1] = new GamepadController();
         java.util.Timer ControllerRefreshTimer = new Timer();
-        TimerTask refreshController = new TimerTask() {
-            @Override
-            public void run() {
-                controllers[0].UpdateController();
-                controllers[1].UpdateController();
-            }
-        };
-        ControllerRefreshTimer.schedule(refreshController,40);
+
+        ControllerRefreshTimer.schedule(refreshController,40,40);
     }
 
     // This outputs all of the controller functions
