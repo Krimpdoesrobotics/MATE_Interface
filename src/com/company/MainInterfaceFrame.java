@@ -1082,7 +1082,7 @@ public class MainInterfaceFrame extends JFrame{
 
         Timer FrameRefreshTimer = new Timer(); // Timer to refresh items on the form
 
-        FrameRefreshTimer.schedule(timerTask,50);
+        FrameRefreshTimer.schedule(timerTask,50,50);
 
         // colour
         contentPane.setBackground(new Color(0, 200, 150, 255));

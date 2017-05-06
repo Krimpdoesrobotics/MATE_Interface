@@ -30,7 +30,7 @@ class SerialCommunications{
                     ControllerRobot.updateVariables();
                 }
                 sendRobotInfo();
-                if(TimeSinceLastReceived >= 15){
+                if(TimeSinceLastReceived >= 5){
                     btnSerialDisconnectClicked();
                     btnSerialConnectClicked();
                 }
@@ -44,7 +44,7 @@ class SerialCommunications{
         ControllerRobot = new ControllerRobotInfo(controller1,controller2);
         // default constructor
         Timer SerialRefreshTimer = new Timer();
-        SerialRefreshTimer.schedule(refreshSerial,10,500);
+        SerialRefreshTimer.schedule(refreshSerial,10,250);
     }
 
     RobotInfo getRobot(){return Robot;}

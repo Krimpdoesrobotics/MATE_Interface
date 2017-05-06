@@ -16,7 +16,7 @@ class ControllerRobotInfo extends RobotInfo{
         double pi = 3.14159;
         int powerScaling = 1;   // this is from .1 to 1, and acts as a multiplier for power
         // Left Stick to move the robot forward, backward, left, or right.
-        if(controller1.getLeftAnalogUpdated())
+        if(true)
         {
             // joystick that will control lateral movement
             // This is the left controller and is controlled by 'values'
@@ -91,7 +91,7 @@ class ControllerRobotInfo extends RobotInfo{
         }
         // Right Stick controls turning left and right, up and down
         //
-        if (controller1.getRightAnalogUpdated()){
+        if (true){
             //joystick that will contol vertical movement and turning
             double xVal = controller1.getXRotation();//from -1 to 1
             double yVal = controller1.getYRotation();//from -1 to 1

@@ -40,7 +40,7 @@ class ControllerInput {
         controllers[1] = new GamepadController();
         java.util.Timer ControllerRefreshTimer = new Timer();
 
-        ControllerRefreshTimer.schedule(refreshController,40,40);
+        ControllerRefreshTimer.scheduleAtFixedRate(refreshController,40,40);
     }
 
     // This outputs all of the controller functions
