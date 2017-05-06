@@ -157,7 +157,6 @@ class SerialCommunications{
         public void serialEvent(SerialPortEvent event) {
             if (event.isRXCHAR() && event.getEventValue() >= 11) {
                 try {
-                    System.out.print(event);
                     TimeSinceLastReceived =0;
                     SerialReceived.setBoolean(true);
                     SerialReceivedU.setBoolean(true);
