@@ -7,8 +7,7 @@ import java.util.HashMap;
 import javax.swing.*;
 import java.util.Timer;
 import java.util.TimerTask;
-
-@SuppressWarnings("unchecked")
+@SuppressWarnings("unchecked Field")
 public class MainInterfaceFrame extends JFrame{
     private static HashMap componentMap; // Parallel array of components on the form and their corresponding name (allows other classes access)
     private SerialCommunications SerialCommunication; // One instance of SerialCommunications class, which handles the output to serial
